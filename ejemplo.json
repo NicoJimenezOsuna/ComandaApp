@@ -7,7 +7,7 @@
 */
 const misarroces = 
     {
-        category: 'arroces',
+        category: 'callos',
         data:[
             {
                 id: 1,
