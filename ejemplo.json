@@ -5,7 +5,7 @@
 *
 *
 */
-const arroces = 
+let arroces = 
     {
         category: 'arroces',
         data:[
