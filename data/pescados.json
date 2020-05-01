@@ -1,0 +1,60 @@
+const pescados =
+    { 
+        category:"pescados", 
+        data:[
+            {
+                id: 1,
+                name: 'Salmón Plancha',
+                price: 10.50,
+                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                comment: 'Pescado',
+                imageUrl:'. /assets/images/menu/pescados/pescado1.png',
+                attr: [11],
+            },
+            {   
+                id: 2,
+                name: 'Dorada',
+                price: 12,
+                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                comment: 'Pescado',
+                imageUrl:'. /assets/images/menu/pescados/pescado2.png',
+                attr: [11],
+            },
+            {
+                id: 3,
+                name: 'Lubina',
+                price: 8,
+                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                comment: 'Pescado',
+                imageUrl:'. /assets/images/menu/pescados/pescado3.png',
+                attr: [11],
+            },
+            {
+                id: 4,
+                name: 'Merluza plancha',
+                price: 15,
+                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                comment: 'Pescado',
+                imageUrl:'. /assets/images/menu/pescados/pescado4.png',
+                attr: [11],
+            },
+            {
+                id: 5,
+                name: 'Emperador',
+                price: 12,
+                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                comment: 'Pescado',
+                imageUrl:'. /assets/images/menu/pescados/pescado5.png',
+                attr: [11],
+            },
+            {
+                id: 6,
+                name: 'Bacalao',
+                price: 15,
+                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                comment: 'Pescado',
+                imageUrl:'. /assets/images/menu/pescados/pescado6.png',
+                attr: [11],
+            }
+        ]
+    }
