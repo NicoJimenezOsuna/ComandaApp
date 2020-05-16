@@ -4,7 +4,7 @@ import Header from "./views/Header"
 function App() {
   return (
     <Fragment>
-      <Header />
+      <h1>esto es una prueba</h1>
     </Fragment>
   );
 }

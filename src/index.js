@@ -14,7 +14,7 @@ ReactDOM.render(
     <Switch>
       <Route path="/" exact component={App}/>
       // <Route path="/" component={App}/>
-    </Switch>git status
+    </Switch>
   </BrowserRouter>,
   document.getElementById('root')
 );
