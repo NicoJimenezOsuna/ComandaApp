@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import {Redirect, BrowserRouter, Route, Switch} from 'react-router-dom'
-
+import "./App.css"
 import Header from './views/Header'
 
 import Footer from './views/Footer'
