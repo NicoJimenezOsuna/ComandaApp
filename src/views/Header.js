@@ -31,7 +31,7 @@ const Header = () => {
                     <div id="powered_by">
                         <span>powered by</span>
                     </div>
-                    <img id="socialPymes_Imagotipo" src="socialPymes_Imagotipo.png" srcset="socialPymes_Imagotipo.png 1x, socialPymes_Imagotipo@2x.png 2x"></img>
+                    <img id="socialPymes_Imagotipo" src="./assets/img/socialPymes_Imagotipo.png"></img>
 		        </div>
                     <svg class="L_nea_1" viewBox="0 0 720 2">
                         <path fill="transparent" stroke="rgba(112,112,112,1)" stroke-width="2px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="L_nea_1" d="M 0 0 L 720 0">
