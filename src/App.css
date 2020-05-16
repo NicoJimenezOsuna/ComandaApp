@@ -153,26 +153,14 @@
   top: 28.5px;
   overflow: visible;
 }
-<<<<<<< HEAD
+
 /*
 *
 * ESTILOS FOOTER
 *
 */
-#Grupo_20 {
-  position: absolute;
-  width: 105px;
-  height: 105px;
-  left: 184px;
-  top: 0px;
-  overflow: visible;
-  --web-animation: fadein 0.4s ease-out;
-  --web-action-type: page;
-  /*--web-action-target: Llamada.html;*/
-  cursor: pointer;
-}
 #Grupo_455 {
-  position: relative;
+  position: absolute;
   width: 639px;
   height: 105px;
   left: 41px;
@@ -180,7 +168,7 @@
   overflow: visible;
 }
 #Grupo_454 {
-  position: relative;
+  position: absolute;
   width: 639px;
   height: 98px;
   left: 0px;
@@ -322,18 +310,10 @@
   position: absolute;
   width: 70px;
   height: 70px;
-=======
-.L_nea_2 {
-  overflow: visible;
-  position: absolute;
-  width: 38px;
-  height: 3px;
->>>>>>> eac25c304b7bcc0f45b16d17fe13e4c54ea5efc8
   left: 0px;
   top: 0px;
   transform: matrix(1,0,0,1,0,0);
 }
-<<<<<<< HEAD
 #Grupo_351 {
   position: absolute;
   width: 33.972px;
@@ -412,23 +392,3 @@
   top: 0px;
   transform: matrix(1,0,0,1,0,0);
 }
-=======
-.L_nea_3 {
-  overflow: visible;
-  position: absolute;
-  width: 38px;
-  height: 3px;
-  left: 0px;
-  top: 13.533px;
-  transform: matrix(1,0,0,1,0,0);
-}
-.L_nea_4 {
-  overflow: visible;
-  position: absolute;
-  width: 38px;
-  height: 3px;
-  left: 0px;
-  top: 27.065px;
-  transform: matrix(1,0,0,1,0,0);
-}
->>>>>>> eac25c304b7bcc0f45b16d17fe13e4c54ea5efc8

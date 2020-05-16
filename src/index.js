@@ -3,11 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+/*
+*
+*  IMPORT ROUTER
+*
+* */
 import {Redirect, BrowserRouter, Route, Switch} from 'react-router-dom'
+/*
+*
+*  IMPORT STYLES
+*
+* */
 import "./App.css"
+/*
+*
+*  IMPORT VIEWS
+*
+* */
 import Header from './views/Header'
-
 import Footer from './views/Footer'
 
 ReactDOM.render(
