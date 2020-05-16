@@ -392,3 +392,242 @@
   top: 0px;
   transform: matrix(1,0,0,1,0,0);
 }
+
+/*
+*
+*ESTILOS SPINNER
+*
+*/
+#loadingProgressG{
+	width:414px;
+	height:19px;
+	overflow:hidden;
+	background-color:#0dc5c1;
+	margin:auto;
+	border-radius:10px;
+		-o-border-radius:10px;
+		-ms-border-radius:10px;
+		-webkit-border-radius:10px;
+		-moz-border-radius:10px;
+}
+
+.loadingProgressG{
+	background-color:rgb(255,255,255);
+	margin-top:0;
+	margin-left:-414px;
+	animation-name:bounce_loadingProgressG;
+		-o-animation-name:bounce_loadingProgressG;
+		-ms-animation-name:bounce_loadingProgressG;
+		-webkit-animation-name:bounce_loadingProgressG;
+		-moz-animation-name:bounce_loadingProgressG;
+	animation-duration:1.5s;
+		-o-animation-duration:1.5s;
+		-ms-animation-duration:1.5s;
+		-webkit-animation-duration:1.5s;
+		-moz-animation-duration:1.5s;
+	animation-iteration-count:infinite;
+		-o-animation-iteration-count:infinite;
+		-ms-animation-iteration-count:infinite;
+		-webkit-animation-iteration-count:infinite;
+		-moz-animation-iteration-count:infinite;
+	animation-timing-function:linear;
+		-o-animation-timing-function:linear;
+		-ms-animation-timing-function:linear;
+		-webkit-animation-timing-function:linear;
+		-moz-animation-timing-function:linear;
+	width:414px;
+	height:19px;
+}
+@keyframes bounce_loadingProgressG{
+	0%{
+		margin-left:-414px;
+	}
+	100%{
+		margin-left:414px;
+	}
+}
+@-o-keyframes bounce_loadingProgressG{
+	0%{
+		margin-left:-414px;
+	}
+	100%{
+		margin-left:414px;
+	}
+}
+@-ms-keyframes bounce_loadingProgressG{
+	0%{
+		margin-left:-414px;
+	}
+	100%{
+		margin-left:414px;
+	}
+}
+@-webkit-keyframes bounce_loadingProgressG{
+	0%{
+		margin-left:-414px;
+	}
+	100%{
+		margin-left:414px;
+	}
+}
+@-moz-keyframes bounce_loadingProgressG{
+	0%{
+		margin-left:-414px;
+	}
+	100%{
+		margin-left:414px;
+	}
+}
+
+/*
+*
+*ESTILOS LAUNCHER
+*
+*/
+
+#Pantalla_de_carga {
+  position: absolute;
+  width: 720px;
+  height: 1280px;
+  background-color: rgba(255,255,255,1);
+  overflow: hidden;
+  --web-view-name: Pantalla de carga;
+  --web-view-id: Pantalla_de_carga;
+  --web-scale-on-resize: true;
+  --web-enable-deep-linking: true;
+}
+#Grupo_2 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  left: 210px;
+  top: 103px;
+  overflow: visible;
+}
+.Elipse_1 {
+  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+  position: absolute;
+  overflow: visible;
+  width: 318px;
+  height: 318px;
+  left: 0px;
+  top: 0px;
+}
+.Elipse_2 {
+  position: absolute;
+  overflow: visible;
+  width: 220px;
+  height: 220px;
+  left: 40px;
+  top: 40px;
+}
+#Grupo_1 {
+  position: absolute;
+  width: 153px;
+  height: 205px;
+  left: 65px;
+  top: 55px;
+  overflow: visible;
+}
+#C {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: visible;
+  width: 131px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Papyrus;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 130px;
+  color: rgba(112,112,112,1);
+}
+#A {
+  position: absolute;
+  left: 85px;
+  top: 62px;
+  overflow: visible;
+  width: 69px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Papyrus;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 70px;
+  color: rgba(112,112,112,1);
+}
+#ComandApp {
+  position: absolute;
+  left: 153px;
+  top: 466px;
+  overflow: visible;
+  width: 415px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Papyrus;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 70px;
+  color: rgba(112,112,112,1);
+}
+#Tu_carta_digital {
+  position: absolute;
+  left: 368px;
+  top: 577px;
+  overflow: visible;
+  width: 200px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Papyrus;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  color: rgba(112,112,112,1);
+}
+.Rect_ngulo_1 {
+  position: absolute;
+  overflow: visible;
+  width: 414px;
+  height: 50px;
+  left: 153px;
+  top: 872px;
+}
+.Rect_ngulo_2 {
+  position: absolute;
+  overflow: visible;
+  width: 21px;
+  height: 22px;
+  left: 187px;
+  top: 886px;
+}
+#Grupo_8 {
+  position: absolute;
+  width: 230px;
+  height: 68px;
+  left: 245px;
+  top: 1185px;
+  overflow: visible;
+}
+#powered_by {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: visible;
+  width: 89px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: rgba(112,112,112,1);
+}
+#socialPymes_Imagotipo {
+  position: absolute;
+  width: 230px;
+  height: 40px;
+  left: 0px;
+  top: 28px;
+  overflow: visible;
+}

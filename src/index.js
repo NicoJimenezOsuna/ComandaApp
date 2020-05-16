@@ -25,12 +25,12 @@ import Footer from './views/Footer'
 
 ReactDOM.render(
   <BrowserRouter>
-  <Header/>
+  {/* <Header/> */}
     <Switch>
       <Route path="/" exact component={App}/>
        {/*<Route path="/" component={App}/>*/}
     </Switch>
-    <Footer />
+    {/* <Footer /> */}
   </BrowserRouter>,
   document.getElementById('root')
 );

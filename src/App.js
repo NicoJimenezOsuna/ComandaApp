@@ -1,10 +1,13 @@
 import React, {Fragment} from 'react';
-import Header from "./views/Header"
+import Header from "./views/Header";
+import Spinner from "./components/Spinner";
+import Launcher from './views/Launcher'
+
 
 function App() {
   return (
     <Fragment>
-      <h1>esto es una prueba</h1>
+      <Launcher />
     </Fragment>
   );
 }
