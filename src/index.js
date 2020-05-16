@@ -25,20 +25,12 @@ import "./App.css"
 
 ReactDOM.render(
   <BrowserRouter>
-<<<<<<< HEAD
   {/*<Header/>*/}
-=======
-  {/* <Header/> */}
->>>>>>> feature/spinner
     <Switch>
       <Route path="/" exact component={App}/>
        {/*<Route path="/" component={App}/>*/}
     </Switch>
-<<<<<<< HEAD
-    {/*<Footer />*/}
-=======
     {/* <Footer /> */}
->>>>>>> feature/spinner
   </BrowserRouter>,
   document.getElementById('root')
 );

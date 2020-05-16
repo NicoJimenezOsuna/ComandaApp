@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Spinner from '../components/Spinner';
-// import Socialpymes from '../components/Socialpymes';
+import Socialpymes from '../components/Socialpymes';
 
 const Launcher = () => {
 
@@ -32,7 +32,7 @@ const Launcher = () => {
                     <span>Tu carta digital</span>
                 </div>
                 <Spinner />
-                {/* <Socialpymes/> */}
+                 <Socialpymes/>
             </div>
         </Fragment>
     )
