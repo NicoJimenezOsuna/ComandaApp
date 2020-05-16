@@ -392,3 +392,206 @@
   top: 0px;
   transform: matrix(1,0,0,1,0,0);
 }
+/*
+*
+* LAUNCHER STYLES
+*
+*/
+.mediaViewInfo {
+  --web-view-name: Pantalla de Inicio;
+  --web-view-id: Pantalla_de_Inicio;
+  --web-scale-on-resize: true;
+  --web-enable-deep-linking: true;
+}
+:root {
+  --web-view-ids: Pantalla_de_Inicio;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+}
+#Pantalla_de_Inicio {
+  position: absolute;
+  width: 720px;
+  height: 1280px;
+  background-color: rgba(255,255,255,1);
+  overflow: hidden;
+  --web-view-name: Pantalla de Inicio;
+  --web-view-id: Pantalla_de_Inicio;
+  --web-scale-on-resize: true;
+  --web-enable-deep-linking: true;
+}
+#Grupo_5 {
+  position: absolute;
+  width: 366px;
+  height: 174px;
+  left: 177px;
+  top: 75px;
+  overflow: visible;
+}
+#Grupo_4 {
+  position: absolute;
+  width: 236px;
+  height: 87px;
+  left: 130px;
+  top: 87px;
+  overflow: visible;
+}
+#ComandApp {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: visible;
+  width: 237px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Papyrus;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  color: rgba(112,112,112,1);
+}
+#Tu_carta_digital {
+  position: absolute;
+  left: 137px;
+  top: 63px;
+  overflow: visible;
+  width: 100px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Papyrus;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: rgba(112,112,112,1);
+}
+#Grupo_3 {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  left: 0px;
+  top: 0px;
+  overflow: visible;
+}
+.Elipse_1 {
+  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+  position: absolute;
+  overflow: visible;
+  width: 148px;
+  height: 148px;
+  left: 0px;
+  top: 0px;
+}
+.Elipse_2 {
+  position: absolute;
+  overflow: visible;
+  width: 90px;
+  height: 90px;
+  left: 20px;
+  top: 20px;
+}
+#A {
+  position: absolute;
+  left: 65px;
+  top: 51px;
+  overflow: visible;
+  width: 30px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Papyrus;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  color: rgba(112,112,112,1);
+}
+#C {
+  position: absolute;
+  left: 34px;
+  top: 31px;
+  overflow: visible;
+  width: 51px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Papyrus;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 50px;
+  color: rgba(112,112,112,1);
+}
+#Grupo_6 {
+  position: absolute;
+  width: 295px;
+  height: 76px;
+  left: 213px;
+  top: 1022px;
+  overflow: visible;
+  --web-animation: fadein 0.1s ease-out;
+  --web-action-type: page;
+  /*--web-action-target: Pantalla_de_Inicio___1.html;*/
+  cursor: pointer;
+}
+.Rect_ngulo_3 {
+  filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.161));
+  position: absolute;
+  overflow: visible;
+  width: 313px;
+  height: 94px;
+  left: 0px;
+  top: 0px;
+}
+#INICIO {
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.161));
+  position: absolute;
+  left: 86px;
+  top: 14px;
+  overflow: visible;
+  width: 125px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Tahoma;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  color: rgba(112,112,112,1);
+}
+#restaurant_691397_1280 {
+  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.361));
+  position: absolute;
+  width: 795px;
+  height: 529.5px;
+  left: -37px;
+  top: 364px;
+  overflow: visible;
+}
+#Componente_1___1 {
+  position: absolute;
+  width: 230px;
+  height: 68px;
+  left: 245px;
+  top: 1185px;
+  overflow: visible;
+}
+#powered_by {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: visible;
+  width: 89px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: rgba(112,112,112,1);
+}
+#socialPymes_Imagotipo {
+  position: absolute;
+  width: 230px;
+  height: 40px;
+  left: 0px;
+  top: 28px;
+  overflow: visible;
+}

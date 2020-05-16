@@ -1,10 +1,11 @@
 import React, {Fragment} from 'react';
 import Header from "./views/Header"
+import Launch from "./components/Launch";
 
 function App() {
   return (
     <Fragment>
-      <h1>esto es una prueba</h1>
+      <Launch/>
     </Fragment>
   );
 }
