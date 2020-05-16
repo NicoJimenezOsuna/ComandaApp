@@ -8,13 +8,16 @@ import {Redirect, BrowserRouter, Route, Switch} from 'react-router-dom'
 
 import Header from './views/Header'
 
+import Footer from './views/Footer'
+
 ReactDOM.render(
   <BrowserRouter>
   <Header/>
     <Switch>
       <Route path="/" exact component={App}/>
-      // <Route path="/" component={App}/>
+       {/*<Route path="/" component={App}/>*/}
     </Switch>
+    <Footer />
   </BrowserRouter>,
   document.getElementById('root')
 );
