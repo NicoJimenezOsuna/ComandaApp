@@ -86,7 +86,13 @@ const Categorias = () => {
                     {categorias ? (
                     categorias.map(item =>{
                         return (
-                            <div id={item.id} style={cat.cat_cont} key={item.id}>
+                            <div 
+                            id={item.id} 
+                            style={cat.cat_cont} key={item.id}
+                            data-id={item.id}
+                            data-name={item.nombre}
+                            data-objectKey="categorias"
+                            >
                             <img style={cat.plato_img} src={item.imagenUrl} />
                                 <div style={cat.platos}>
                                     <span style={cat.nom_cat}>
