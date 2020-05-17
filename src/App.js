@@ -1,11 +1,19 @@
 import React, {Fragment} from 'react';
 // import Launcher from './views/Launcher';
-import Launch from './components/Launch';
+import Header from './views/Header';
+import Footer from './views/Footer';
+import Categoria from './components/Categoria';
+
+
 
 function App() {
   return (
     <Fragment>
-      <h1>Hola, Aqui irán los componentes y el enrutado o un Wrapper. Luego te explico que es ;)</h1>
+      <Header />
+      <Categoria />
+      {/* <h1>Hola, Aqui irán los componentes y el enrutado o un Wrapper. Luego te explico que es ;)</h1> */}
+
+      <Footer />
     </Fragment>
   );
 }

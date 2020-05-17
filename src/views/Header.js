@@ -1,57 +1,87 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 
 const Header = () => {
 
+    const header = {
+        grupo_17 : {
+            overflow: 'visible',
+            position: 'absolute',
+            width: `720px`,
+            height: `2px`,
+            left: `0px`,
+            top: `102px`,
+            transform: 'matrix(1, 0, 0, 1, 0, 0)',
+        },
+        grupo_13 : {
+            position: 'absolute',
+            width: `85px`,
+            height: `85px`,
+            left: `28px`,
+            top: `0px`,
+            overflow: 'visible'
+        },
+        grupo_12 : {
+            position: 'absolute',
+            width: `85px`,
+            height: `85px`,
+            left: `0px`,
+            top: `0px`,
+            overflow: 'visible'
+        },
+        img_tipo : {
+            position: 'absolute',
+            width: `150px`,
+            height: `26.339px`,
+            left: `0px`,
+            top: `20px`,
+            overflow: 'visible'
+        },
+        grupo_14 : {
+            position: 'absolute',
+            height: `27.065px`,
+            right: `15px`,
+            top: `28.5px`,
+            overflow: 'visible'
+
+        },
+        restaurante : {
+            // backgroundColor:'red'
+            fontSize: `3em`
+        }
+    }
+
+    const [restaurante, getRestaurante] = useState('Restaurante');
+
+    useEffect(() => {
+        getRestaurante(JSON.parse(localStorage.getItem('comandaApp')).app.nombre_restaurante);
+    },[restaurante])
+
     return (
 
+
         <Fragment>
-            <div id="Grupo_17">
-                <div id="Grupo_13">
-                    <div id="Grupo_12">
-                        <svg class="Elipse_1">
-                            <ellipse fill="rgba(255,255,255,1)" stroke="rgba(112,112,112,1)" stroke-width="1px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="Elipse_1" rx="42.5" ry="42.5" cx="42.5" cy="42.5">
-                            </ellipse>
-                        </svg>
-                        <svg class="Elipse_2">
-                            <ellipse fill="rgba(255,255,255,1)" stroke="rgba(112,112,112,0.259)" stroke-width="1px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="Elipse_2" rx="30" ry="30" cx="30" cy="30">
-                            </ellipse>
-                        </svg>
-                    </div>
-                    <div id="Grupo_11">
-                        <div id="A">
-                            <span>A</span>
-                        </div>
-                        <div id="C">
-                            <span>C</span>
-                        </div>
-                    </div>
+            <div id="Grupo_17" style={{borderBottom: '2px solid rgba(112,112,112,1)'}}>
+                <div 
+                    style={header.grupo_13}>
+                        <img 
+                            style={header.grupo_12} 
+                            src="./assets/img/logo.svg" />
                 </div>
                 <div id="Grupo_9">
                     <div id="powered_by">
                         <span>powered by</span>
                     </div>
-                    <img id="socialPymes_Imagotipo" src="./assets/img/socialPymes_Imagotipo.png"></img>
+                    <img 
+                        style={header.img_tipo} 
+                        src="./assets/img/socialPymes_Imagotipo.png" />
 		        </div>
-                    <svg class="L_nea_1" viewBox="0 0 720 2">
-                        <path fill="transparent" stroke="rgba(112,112,112,1)" stroke-width="2px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="L_nea_1" d="M 0 0 L 720 0">
-                        </path>
-                    </svg>
-                    <div id="Grupo_14">
-                        <svg class="L_nea_2" viewBox="0 0 35 3">
-                                <path fill="transparent" stroke="rgba(112,112,112,1)" stroke-width="3px" stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" shape-rendering="auto" id="L_nea_2" d="M 35 0 L 0 0">
-                                </path>
-                        </svg>
-                        <svg class="L_nea_3" viewBox="0 0 35 3">
-                            <path fill="transparent" stroke="rgba(112,112,112,1)" stroke-width="3px" stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" shape-rendering="auto" id="L_nea_3" d="M 35 0 L 0 0">
-                            </path>
-                        </svg>
-                        <svg class="L_nea_4" viewBox="0 0 35 3">
-                            <path fill="transparent" stroke="rgba(112,112,112,1)" stroke-width="3px" stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" shape-rendering="auto" id="L_nea_4" d="M 35 0 L 0 0">
-                            </path>
-                        </svg>
-                    </div>
+                <div style={header.grupo_14}>
+                    <span style={header.restaurante}>
+                        { restaurante }
+                    </span>
                 </div>
+            </div>
         </Fragment>
 
     )

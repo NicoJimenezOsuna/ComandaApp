@@ -87,14 +87,14 @@ const Launcher = () => {
 
     //fake data
     const data = {
-        app: {'nombre_restaurante': 'Mi reaturante'}
+        app: {'nombre_restaurante': 'Mi restaurante'}
     }
 
     useEffect(()=>{
             setTimeout(function(){
                 localStorage.setItem('comandaApp',  JSON.stringify(data));
                 getDatos(JSON.parse(localStorage.getItem('comandaApp')))
-            }, 15000);
+            }, 5000);
     }, [data]);
 
     return (
