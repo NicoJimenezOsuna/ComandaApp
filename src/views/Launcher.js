@@ -83,42 +83,41 @@ const Launcher = () => {
             color: 'rgba(112,112,112,1)'
         }
     }
-    const [datos, getDatos] = useState({})
 
     //fake data
     const data = {
         "app": {
-        "nombre_reatsurante": "Mi restaurante"
+        "nombre_restaurante": "Mi restaurante"
     },
-        "menu 1": [
+        "categorias": [
         {
             "id": 1,
-            "nombre": "ensaladilla",
+            "nombre": "arroces",
             "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
         },
         {
             "id": 2,
-            "nombre": "arroz a la cubana",
+            "nombre": "carnes",
             "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
         },
         {
             "id": 3,
-            "nombre": "mozzarella",
+            "nombre": "pescados",
             "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
         },
         {
             "id": 4,
-            "nombre": "fideuá",
+            "nombre": "ensaladas",
             "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
         },
         {
             "id": 5,
-            "nombre": "tortilla",
+            "nombre": "bebidas",
             "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
         },
         {
             "id": 6,
-            "nombre": "sopa",
+            "nombre": "postres",
             "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
         }
     ],
@@ -156,13 +155,14 @@ const Launcher = () => {
     ]
     }
 
+    const [datos, getDatos] = useState({})
 
     useEffect(()=>{
             setTimeout(function(){
                 localStorage.setItem('comandaApp',  JSON.stringify(data));
                 getDatos(JSON.parse(localStorage.getItem('comandaApp')))
             }, 5000);
-    }, [data]);
+    }, [datos]);
 
     return (
         <Fragment>

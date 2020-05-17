@@ -874,3 +874,7 @@
     overflow: visible;
 }
 
+html {
+    max-width: 720px;
+    height: 1280px;
+}

@@ -1,13 +1,22 @@
-import React from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 
 
 
 const Categorias = () => {
 
-    const categorias = {
+    const cat = {
+        padre : {
+            display : 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'flex-start',
+            width: `720px`,
+            padding: `30px 7.5px`
+        },
         cat_cont : {
+            flexGrow: `1`,
             position: 'relative',
-            width: `223px`,
+            margin: `3.6px`,
+            width: `30%`,
             height: `223px`,
             // left: `482px`,
             // top: `278px`,
@@ -16,16 +25,18 @@ const Categorias = () => {
             // --web-action-type: 'page',
             // --web-action-target: 'Arroces.html',
             cursor: 'pointer',
+            border: '2px solid black'
+
             
         },
         plato_img : {
             opacity: `0.5`,
-            position: 'absolute',
-            width: `223px`,
-            height: `223px`,
+            position: 'relative',
+            width: `100%`,
+            // height: `223px`,
             left: `0px`,
             top: `0px`,
-            overflow: 'visible',
+            overflow: 'visible'
         },
         platos : {
             // transform: 'translate(-249px, -499px) matrix(1,0,0,1,269.2774,570.7774) rotate(-45deg)',
@@ -61,23 +72,38 @@ const Categorias = () => {
         }
     }
 
-    const [categorias, getCategorias] = useState('Categorias');
+    const [categorias, getCategorias] = useState([]);
 
     useEffect(() => {
-        getCategorias(JSON.parse(localStorage.getItem('comandaApp')).app.categorias);
-    },[categorias])
+        getCategorias(JSON.parse(localStorage.getItem('comandaApp')).categorias);
+    },[])
 
+    console.log(categorias);
     return (
-
-        <div id={item.id} style={categorias.cat_cont}>
-            <img style={categorias.plato_img} src={item.imagenURL} />
-                <div style={categorias.platos}>
-                    <span style={categorias.nom_cat}>
-                        {/* { categorias } */}
-                        { item.nombre }
-                    </span>
+        <Fragment>
+        <div style={cat.padre}>
+            {categorias ? (
+            categorias.map(item =>{
+                return (
+                    <div id={item.id} style={cat.cat_cont} key={item.id}>
+                    <img style={cat.plato_img} src={item.imagenUrl} />
+                        <div style={cat.platos}>
+                            <span style={cat.nom_cat}>
+                                {/* {  categorias }  */}
+                                { item.nombre }
+                            </span>
+                        </div>
                 </div>
+                )
+            })
+
+            ):
+            <div>
+                <img src="./assets/img/logo192.png" alt="algo"/>
+            </div>
+            }
         </div>
+        </Fragment>
 
   )
 }
