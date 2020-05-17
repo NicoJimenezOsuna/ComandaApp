@@ -1,4 +1,5 @@
 import React, {Fragment, useEffect, useState} from 'react';
+import {Link} from "react-router-dom";
 
 
 
@@ -78,31 +79,31 @@ const Categorias = () => {
         getCategorias(JSON.parse(localStorage.getItem('comandaApp')).categorias);
     },[])
 
-    console.log(categorias);
     return (
         <Fragment>
-        <div style={cat.padre}>
-            {categorias ? (
-            categorias.map(item =>{
-                return (
-                    <div id={item.id} style={cat.cat_cont} key={item.id}>
-                    <img style={cat.plato_img} src={item.imagenUrl} />
-                        <div style={cat.platos}>
-                            <span style={cat.nom_cat}>
-                                {/* {  categorias }  */}
-                                { item.nombre }
-                            </span>
+            <Link to = "/subcategoria">
+                <div style={cat.padre}>
+                    {categorias ? (
+                    categorias.map(item =>{
+                        return (
+                            <div id={item.id} style={cat.cat_cont} key={item.id}>
+                            <img style={cat.plato_img} src={item.imagenUrl} />
+                                <div style={cat.platos}>
+                                    <span style={cat.nom_cat}>
+                                        { item.nombre }
+                                    </span>
+                                </div>
                         </div>
-                </div>
-                )
-            })
+                        )
+                    })
 
-            ):
-            <div>
-                <img src="./assets/img/logo192.png" alt="algo"/>
-            </div>
-            }
-        </div>
+                    ):
+                    <div>
+                        <img src="./assets/img/logo192.png" alt="algo"/>
+                    </div>
+                    }
+                </div>
+            </Link>
         </Fragment>
 
   )

@@ -19,6 +19,7 @@ import {Redirect, BrowserRouter, Route, Switch} from 'react-router-dom'
 * */
 import './index.css';
 import "./App.css"
+import Subcategoria from './components/Subcategoria';
 /*
 *
 *  IMPORT VIEWS
@@ -32,7 +33,8 @@ ReactDOM.render(
   {/*<Header/>*/}
     <Switch>
       <Route path="/" exact component={Launcher}/>
-       <Route path="/App" component={App}/>
+      <Route path="/categoria" component={App}/>
+      <Route path="/subcategoria" component={Subcategoria}/>
     </Switch>
     {/* <Footer /> */}
   </BrowserRouter>,

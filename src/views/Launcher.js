@@ -6,6 +6,7 @@ import Spinner from '../components/Spinner';
 import Socialpymes from '../components/Socialpymes';
 import Launch from '../components/Launch';
 
+
 const Launcher = () => {
 
     const launcher = {
@@ -84,84 +85,85 @@ const Launcher = () => {
         }
     }
 
-    //fake data
-    const data = {
-        "app": {
-        "nombre_restaurante": "Mi restaurante"
-    },
-        "categorias": [
-        {
-            "id": 1,
-            "nombre": "arroces",
-            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+        //fake data
+        const datas = {
+            "app": {
+            "nombre_restaurante": "Mi restaurante"
         },
-        {
-            "id": 2,
-            "nombre": "carnes",
-            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-        },
-        {
-            "id": 3,
-            "nombre": "pescados",
-            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-        },
-        {
-            "id": 4,
-            "nombre": "ensaladas",
-            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-        },
-        {
-            "id": 5,
-            "nombre": "bebidas",
-            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-        },
-        {
-            "id": 6,
-            "nombre": "postres",
-            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+            "categorias": [
+            {
+                "id": 1,
+                "nombre": "arroces",
+                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+            },
+            {
+                "id": 2,
+                "nombre": "carnes",
+                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+            },
+            {
+                "id": 3,
+                "nombre": "pescados",
+                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+            },
+            {
+                "id": 4,
+                "nombre": "ensaladas",
+                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+            },
+            {
+                "id": 5,
+                "nombre": "bebidas",
+                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+            },
+            {
+                "id": 6,
+                "nombre": "postres",
+                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+            }
+        ],
+          "menu 2": [
+            {
+                "id": 1,
+                "nombre": "paella",
+                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+            },
+            {
+                "id": 2,
+                "nombre": "osubuco",
+                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+            },
+            {
+                "id": 3,
+                "nombre": "rabiolis",
+                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+            },
+            {
+                "id": 4,
+                "nombre": "lentejas",
+                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+            },
+            {
+                "id": 5,
+                "nombre": "pizza",
+                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+            },
+            {
+                "id": 6,
+                "nombre": "pescado",
+                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+            }
+        ]
         }
-    ],
-      "menu 2": [
-        {
-            "id": 1,
-            "nombre": "paella",
-            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-        },
-        {
-            "id": 2,
-            "nombre": "osubuco",
-            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-        },
-        {
-            "id": 3,
-            "nombre": "rabiolis",
-            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-        },
-        {
-            "id": 4,
-            "nombre": "lentejas",
-            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-        },
-        {
-            "id": 5,
-            "nombre": "pizza",
-            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-        },
-        {
-            "id": 6,
-            "nombre": "pescado",
-            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-        }
-    ]
-    }
 
     const [datos, getDatos] = useState({})
 
     useEffect(()=>{
-            setTimeout(function(){
-                localStorage.setItem('comandaApp',  JSON.stringify(data));
+           let call =  setTimeout(function(){
+                localStorage.setItem('comandaApp',  JSON.stringify(datas));
                 getDatos(JSON.parse(localStorage.getItem('comandaApp')))
             }, 5000);
+            console.log('una y otra vez')
     }, [datos]);
 
     return (
