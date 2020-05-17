@@ -5,7 +5,7 @@ import React from 'react';
 const Categorias = () => {
 
     const categorias = {
-        grupo_359 : {
+        cat_cont : {
             position: 'relative',
             width: `223px`,
             height: `223px`,
@@ -18,7 +18,7 @@ const Categorias = () => {
             cursor: 'pointer',
             
         },
-        arroz : {
+        plato_img : {
             opacity: `0.5`,
             position: 'absolute',
             width: `223px`,
@@ -27,7 +27,7 @@ const Categorias = () => {
             top: `0px`,
             overflow: 'visible',
         },
-        arroces : {
+        platos : {
             // transform: 'translate(-249px, -499px) matrix(1,0,0,1,269.2774,570.7774) rotate(-45deg)',
 
             // position: 'rela',
@@ -41,7 +41,7 @@ const Categorias = () => {
             height: '100%',
             
         },
-        texto : {
+        nom_cat : {
             transform: 'rotate(-45deg)',
             transformOrigin: 'center',
             position: 'absolute',
@@ -61,12 +61,21 @@ const Categorias = () => {
         }
     }
 
+    const [categorias, getCategorias] = useState('Categorias');
+
+    useEffect(() => {
+        getCategorias(JSON.parse(localStorage.getItem('comandaApp')).app.categorias);
+    },[categorias])
+
     return (
 
-        <div onclick="application.goToTargetView(event)" style={categorias.grupo_359}>
-            <img style={categorias.arroz} src="./assets/img/categorias/arroz_categoria.png" />
-                <div style={categorias.arroces}>
-                    <span style={categorias.texto}>Arroces</span>
+        <div id={item.id} style={categorias.cat_cont}>
+            <img style={categorias.plato_img} src={item.imagenURL} />
+                <div style={categorias.platos}>
+                    <span style={categorias.nom_cat}>
+                        {/* { categorias } */}
+                        { item.nombre }
+                    </span>
                 </div>
         </div>
 
