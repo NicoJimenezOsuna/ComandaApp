@@ -87,8 +87,75 @@ const Launcher = () => {
 
     //fake data
     const data = {
-        app: {'nombre_restaurante': 'Mi restaurante'}
+        "app": {
+        "nombre_reatsurante": "Mi restaurante"
+    },
+        "menu 1": [
+        {
+            "id": 1,
+            "nombre": "ensaladilla",
+            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+        },
+        {
+            "id": 2,
+            "nombre": "arroz a la cubana",
+            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+        },
+        {
+            "id": 3,
+            "nombre": "mozzarella",
+            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+        },
+        {
+            "id": 4,
+            "nombre": "fideuá",
+            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+        },
+        {
+            "id": 5,
+            "nombre": "tortilla",
+            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+        },
+        {
+            "id": 6,
+            "nombre": "sopa",
+            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+        }
+    ],
+      "menu 2": [
+        {
+            "id": 1,
+            "nombre": "paella",
+            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+        },
+        {
+            "id": 2,
+            "nombre": "osubuco",
+            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+        },
+        {
+            "id": 3,
+            "nombre": "rabiolis",
+            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+        },
+        {
+            "id": 4,
+            "nombre": "lentejas",
+            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+        },
+        {
+            "id": 5,
+            "nombre": "pizza",
+            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+        },
+        {
+            "id": 6,
+            "nombre": "pescado",
+            "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+        }
+    ]
     }
+
 
     useEffect(()=>{
             setTimeout(function(){
