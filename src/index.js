@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+/*
+* IMPORT COMPONENTS ans VIEWS
+ */
+import App from './App';
+import Launcher from'./views/Launcher'
 /*
 *
 *  IMPORT ROUTER
@@ -14,6 +17,7 @@ import {Redirect, BrowserRouter, Route, Switch} from 'react-router-dom'
 *  IMPORT STYLES
 *
 * */
+import './index.css';
 import "./App.css"
 /*
 *
@@ -27,8 +31,8 @@ ReactDOM.render(
   <BrowserRouter>
   {/*<Header/>*/}
     <Switch>
-      <Route path="/" exact component={App}/>
-       {/*<Route path="/" component={App}/>*/}
+      <Route path="/" exact component={Launcher}/>
+       <Route path="/App" component={App}/>
     </Switch>
     {/* <Footer /> */}
   </BrowserRouter>,
