@@ -6,7 +6,7 @@ const Categorias = () => {
 
     const categorias = {
         grupo_359 : {
-            position: 'absolute',
+            // position: 'absolute',
             width: `223px`,
             height: `223px`,
             left: `482px`,
@@ -19,7 +19,7 @@ const Categorias = () => {
         },
         arroz : {
             opacity: `0.5`,
-            position: 'absolute',
+            // position: 'absolute',
             width: `223px`,
             height: `223px`,
             left: `0px`,
@@ -29,7 +29,7 @@ const Categorias = () => {
         arroces : {
             transform: 'translate(-249px, -499px) matrix(1,0,0,1,269.2774,570.7774) rotate(-45deg)',
             transformOrigin: 'center',
-            position: 'absolute',
+            // position: 'absolute',
             left: `0px`,
             top: `0px`,
             overflow: 'visible',
@@ -56,4 +56,4 @@ const Categorias = () => {
   )
 }
 
-export default Categoria;
+export default Categorias;
