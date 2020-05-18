@@ -6,6 +6,109 @@ import Spinner from '../components/Spinner';
 import Socialpymes from '../components/Socialpymes';
 import Launch from '../components/Launch';
 
+//fake data
+// const datas = {
+//     "app": {
+//         "nombre_restaurante": "Mi restaurante"
+//     },
+//     "categorias": [
+//         {
+//             "id": 1,
+//             "nombre": "arroces",
+//             "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+//         },
+//         {
+//             "id": 2,
+//             "nombre": "carnes",
+//             "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+//         },
+//         {
+//             "id": 3,
+//             "nombre": "pescados",
+//             "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+//         },
+//         {
+//             "id": 4,
+//             "nombre": "ensaladas",
+//             "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+//         },
+//         {
+//             "id": 5,
+//             "nombre": "bebidas",
+//             "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+//         },
+//         {
+//             "id": 6,
+//             "nombre": "postres",
+//             "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+//         }
+//     ],
+//     "menu 2": [
+//         {
+//             "id": 1,
+//             "nombre": "paella",
+//             "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+//         },
+//         {
+//             "id": 2,
+//             "nombre": "osubuco",
+//             "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+//         },
+//         {
+//             "id": 3,
+//             "nombre": "rabiolis",
+//             "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+//         },
+//         {
+//             "id": 4,
+//             "nombre": "lentejas",
+//             "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+//         },
+//         {
+//             "id": 5,
+//             "nombre": "pizza",
+//             "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+//         },
+//         {
+//             "id": 6,
+//             "nombre": "pescado",
+//             "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+//         }
+//     ]
+// }
+
+const datas = {
+    "data": {
+        "codigo": 'Mi restaurante',
+        "mensaje": "OK",
+        "respuesta": [
+            {
+                "orden": 1,
+                "categoria_id": 6,
+                "categoria": "Tapas",
+                "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+            },
+            {
+                "orden": 4,
+                "categoria_id": 2,
+                "categoria": "Entremeses",
+                "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+            },
+            {
+                "orden": 3,
+                "categoria_id": 1,
+                "categoria": "Carnes",
+                "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+            },
+            {
+                "orden": 2,
+                "categoria_id": 5,
+                "categoria": "Pescados",
+                "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
+            }
+        ]
+    }
+}
 
 const Launcher = () => {
 
@@ -85,76 +188,7 @@ const Launcher = () => {
         }
     }
 
-        //fake data
-        const datas = {
-            "app": {
-            "nombre_restaurante": "Mi restaurante"
-        },
-            "categorias": [
-            {
-                "id": 1,
-                "nombre": "arroces",
-                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-            },
-            {
-                "id": 2,
-                "nombre": "carnes",
-                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-            },
-            {
-                "id": 3,
-                "nombre": "pescados",
-                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-            },
-            {
-                "id": 4,
-                "nombre": "ensaladas",
-                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-            },
-            {
-                "id": 5,
-                "nombre": "bebidas",
-                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-            },
-            {
-                "id": 6,
-                "nombre": "postres",
-                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-            }
-        ],
-          "menu 2": [
-            {
-                "id": 1,
-                "nombre": "paella",
-                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-            },
-            {
-                "id": 2,
-                "nombre": "osubuco",
-                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-            },
-            {
-                "id": 3,
-                "nombre": "rabiolis",
-                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-            },
-            {
-                "id": 4,
-                "nombre": "lentejas",
-                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-            },
-            {
-                "id": 5,
-                "nombre": "pizza",
-                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-            },
-            {
-                "id": 6,
-                "nombre": "pescado",
-                "imagenUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1ahkkBoD15Hz_w4i77ox6AA_tvLjFJaQgzndxwX408wILg3Ik&usqp=CAU"
-            }
-        ]
-        }
+
 
     const [datos, getDatos] = useState({})
 

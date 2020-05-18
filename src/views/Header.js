@@ -54,7 +54,7 @@ const Header = () => {
     const [restaurante, getRestaurante] = useState('Restaurante');
 
     useEffect(() => {
-        getRestaurante(JSON.parse(localStorage.getItem('comandaApp')).app.nombre_restaurante);
+        getRestaurante(JSON.parse(localStorage.getItem('comandaApp')).data.codigo);
     },[restaurante])
 
     return (
@@ -62,18 +62,18 @@ const Header = () => {
 
         <Fragment>
             <div id="Grupo_17" style={{borderBottom: '2px solid rgba(112,112,112,1)'}}>
-                <div 
+                <div
                     style={header.grupo_13}>
-                        <img 
-                            style={header.grupo_12} 
+                        <img
+                            style={header.grupo_12}
                             src="./assets/img/logo.svg" />
                 </div>
                 <div id="Grupo_9">
                     <div id="powered_by">
                         <span>powered by</span>
                     </div>
-                    <img 
-                        style={header.img_tipo} 
+                    <img
+                        style={header.img_tipo}
                         src="./assets/img/socialPymes_Imagotipo.png" />
 		        </div>
                 <div style={header.grupo_14}>

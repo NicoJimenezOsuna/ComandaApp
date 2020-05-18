@@ -8,14 +8,14 @@ const Footer = () => {
       <div id="Grupo_454">
         <div id="Grupo_453">
           <svg className="Rect_ngulo_5">
-            <rect fill="rgba(255,255,255,1)" stroke="rgba(112,112,112,1)" stroke-width="3px" stroke-linejoin="miter"
-                  stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="Rect_ngulo_5" rx="49" ry="49"
+            <rect fill="rgba(255,255,255,1)" stroke="rgba(112,112,112,1)" strokeWidth="3px" strokeLinejoin="miter"
+                  strokeLinecap="butt" strokeMiterlimit="4" shapeRendering="auto" id="Rect_ngulo_5" rx="49" ry="49"
                   x="0" y="0" width="639" height="98">
             </rect>
           </svg>
           <svg className="Elipse_26">
-            <ellipse fill="rgba(255,255,255,1)" stroke="rgba(112,112,112,1)" stroke-width="3px" stroke-linejoin="miter"
-                     stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto"
+            <ellipse fill="rgba(255,255,255,1)" stroke="rgba(112,112,112,1)" strokeWidth="3px" strokeLinejoin="miter"
+                     strokeLinecap="butt" strokeMiterlimit="4" shapeRendering="auto"
                      id="Elipse_26" rx="49" ry="49" cx="49" cy="49">
             </ellipse>
           </svg>
@@ -30,8 +30,8 @@ const Footer = () => {
           </div>
         </div>
         <svg className="Elipse_4">
-          <ellipse fill="rgba(255,255,255,1)" stroke="rgba(112,112,112,1)" stroke-width="3px" stroke-linejoin="miter"
-                   stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto"
+          <ellipse fill="rgba(255,255,255,1)" stroke="rgba(112,112,112,1)" strokeWidth="3px" strokeLinejoin="miter"
+                   strokeLinecap="butt" strokeMiterlimit="4" shapeRendering="auto"
                    id="Elipse_4" rx="49" ry="49" cx="49" cy="49">
           </ellipse>
         </svg>
@@ -47,8 +47,8 @@ const Footer = () => {
       </div>
       <div id="Grupo_20">
         <svg className="Elipse_3">
-          <ellipse fill="rgba(255,255,255,1)" stroke="rgba(112,112,112,1)" stroke-width="3px" stroke-linejoin="miter"
-                   stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="Elipse_3" rx="52.5" ry="52.5"
+          <ellipse fill="rgba(255,255,255,1)" stroke="rgba(112,112,112,1)" strokeWidth="3px" strokeLinejoin="miter"
+                   strokeLinecap="butt" strokeMiterlimit="4" shapeRendering="auto" id="Elipse_3" rx="52.5" ry="52.5"
                    cx="52.5" cy="52.5">
           </ellipse>
         </svg>
@@ -74,8 +74,8 @@ const Footer = () => {
       <div id="Grupo_452">
         <div id="Grupo_450">
           <svg className="Elipse_3_ef">
-            <ellipse fill="rgba(255,255,255,1)" stroke="rgba(112,112,112,1)" stroke-width="3px" stroke-linejoin="miter"
-                     stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="Elipse_3_ef" rx="52.5"
+            <ellipse fill="rgba(255,255,255,1)" stroke="rgba(112,112,112,1)" strokeWidth="3px" strokeLinejoin="miter"
+                     strokeLinecap="butt" strokeMiterlimit="4" shapeRendering="auto" id="Elipse_3_ef" rx="52.5"
                      ry="52.5" cx="52.5" cy="52.5">
             </ellipse>
           </svg>
