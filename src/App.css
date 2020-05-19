@@ -10,6 +10,12 @@
       width: 720px;
       padding: 30px 7.5px;
     }
+a{
+    text-decoration: none;
+}
+a:hover{
+    cursor: pointer;
+}
 /*
 *
 * ESTILOS HEADER

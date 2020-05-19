@@ -2,8 +2,8 @@ import React, { Fragment, useEffect, useState } from "react";
 /*
  * IMPORT COMPONENTS
  */
-import Header from '../views/Header';
-import Footer from '../views/Footer';
+import Header from "../views/Header";
+import Footer from "../views/Footer";
 import Migas from "./Migas";
 import Labelsubcategory from "./Labelsubcategory";
 
@@ -14,15 +14,21 @@ const Subcategorias = ({ categoryData }) => {
         getSubcategorias(JSON.parse(localStorage.getItem("categorySelected")));
     }, []);
 
+    const titles = {};
+    titles.product = "plato";
+    titles.price = "P.V.P";
+    titles.info = "Info.";
+
     return (
         <Fragment>
             <Header />
             <div className="padre">
                 <Migas data={subcategorias.nombre} />
-                <Labelsubcategory />
-                <h1>hola</h1>
+                <Labelsubcategory data={titles} />
                 {
-                    <p>{`Viene desde categoría ${subcategorias.id} y ${subcategorias.nombre}`}</p>
+                    <fragment>
+                        <p>{`Viene desde categoría ${subcategorias.id} y ${subcategorias.nombre}`}</p>
+                    </fragment>
                 }
             </div>
             <Footer />
