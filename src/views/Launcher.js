@@ -153,7 +153,7 @@ const Launcher = () => {
                 getDatos(JSON.parse(localStorage.getItem('comandaApp')))
             }, 5000);
             // console.log('una y otra vez')
-    }, [datos]);
+    }, []);
 
     return (
         <Fragment>

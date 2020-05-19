@@ -7,7 +7,7 @@ const Subcategorias = ({categoryData}) => {
 
   useEffect(() => {
     getSubcategorias(JSON.parse(localStorage.getItem('categorySelected')));
-  }, [subcategorias])
+  }, [])
 
   return (
     <Fragment>
