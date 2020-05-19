@@ -1,9 +1,34 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
 const Footer = () => {
 
+  const styles = {
+
+    Contenedor : {
+      // position: 'relative',
+      // border: '2px solid rgba(112,112,112,1)',
+      backgroundColor: `rgba(230,230,230,1)`,
+      borderRadius: `100px`,
+      position: 'absolute',
+      top:'1116px',
+      left: `40px`,
+      height: `105px`,
+      width: `639px`,
+      margin: 'auto',
+      display: 'flex'
+
+    },
+    Boton: {
+      position: 'relative',
+      height: `105px`,
+      width: `105px`,
+      margin: 'auto',
+    }
+
+  }
 
   return (
+<<<<<<< HEAD
     <div id="Grupo_455">
       <div id="Grupo_454">
         <div id="Grupo_453">
@@ -89,8 +114,16 @@ const Footer = () => {
             </svg>
           </div>
         </div>
+=======
+    <Fragment>
+      <div style={styles.Contenedor}>
+        <img style={styles.Boton} src="./assets/img/footer/ico-back.svg"/>
+        <img style={styles.Boton} src="./assets/img/footer/ico-tel.svg"/>
+        <img style={styles.Boton} src="./assets/img/footer/ico-gps.svg"/>
+        <img style={styles.Boton} src="./assets/img/footer/ico-mail.svg"/>
+>>>>>>> feature/rework-css
       </div>
-    </div>
+    </Fragment>
   )
 }
 export default Footer;

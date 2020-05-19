@@ -9,7 +9,7 @@
 * ESTILOS HEADER
 *
 */
-/* .mediaViewInfo {
+.mediaViewInfo {
     --web-view-name: Pantalla de Inicio – 2;
     --web-view-id: Pantalla_de_Inicio___2;
     --web-scale-on-resize: true;
@@ -18,7 +18,7 @@
 
 :root {
     --web-view-ids: Pantalla_de_Inicio___2;
-} */
+}
 
 * {
     margin: 0;
@@ -27,7 +27,7 @@
     border: none;
 }
 
-/* #Pantalla_de_Inicio___2 {
+#Pantalla_de_Inicio___2 {
     position: absolute;
     width: 720px;
     height: 1280px;
@@ -37,7 +37,7 @@
     --web-view-id: Pantalla_de_Inicio___2;
     --web-scale-on-resize: true;
     --web-enable-deep-linking: true;
-} */
+}
 
 #Grupo_17 {
     position: relative;
@@ -66,7 +66,7 @@
     overflow: visible;
 }
 
-/* .Elipse_1 {
+.Elipse_1 {
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
     position: absolute;
     overflow: visible;
@@ -83,7 +83,7 @@
     height: 60px;
     left: 13px;
     top: 13px;
-} */
+}
 
 #Grupo_11 {
     position: absolute;
@@ -94,7 +94,7 @@
     overflow: visible;
 }
 
-/* #A {
+#A {
     position: absolute;
     left: 18px;
     top: 12px;
@@ -122,7 +122,7 @@
     font-weight: normal;
     font-size: 30px;
     color: rgba(112, 112, 112, 1);
-} */
+}
 
 #Grupo_9 {
     position: absolute;
@@ -447,7 +447,7 @@
 * LAUNCHER STYLES
 *
 */
-/* .mediaViewInfo {
+.mediaViewInfo {
     --web-view-name: Pantalla de Inicio;
     --web-view-id: Pantalla_de_Inicio;
     --web-scale-on-resize: true;
@@ -455,8 +455,8 @@
 }
 
 :root {
-    --web-view-ids: Pantalla_de_Inicio; 
-}*/
+    --web-view-ids: Pantalla_de_Inicio;
+}
 
 * {
     margin: 0;
@@ -597,14 +597,14 @@
     overflow: visible;
 }
 
-/* #Grupo_4 {
+#Grupo_4 {
     position: absolute;
     width: 236px;
     height: 87px;
     left: 130px;
     top: 87px;
     overflow: visible;
-} */
+}
 
 #ComandApp {
     --web-view-name: Pantalla de carga;
@@ -875,12 +875,6 @@
 }
 
 html {
-<<<<<<< HEAD
     max-width: 720px;
     height: 1280px;
 }
-=======
-    width: 720px !important;
-    height: 1280px !important;
-}
->>>>>>> feature/rework-css
