@@ -875,12 +875,6 @@
 }
 
 html {
-<<<<<<< HEAD
     max-width: 720px;
     height: 1280px;
 }
-=======
-    width: 720px !important;
-    height: 1280px !important;
-}
->>>>>>> feature/rework-css
