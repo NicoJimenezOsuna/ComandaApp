@@ -3,7 +3,13 @@
 * CLASES PERSONALIZADAS
 *
 */
-
+    .padre {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      width: 720px;
+      padding: 30px 7.5px;
+    }
 /*
 *
 * ESTILOS HEADER
