@@ -889,4 +889,8 @@ a:hover{
 html {
     max-width: 720px;
     height: 1280px;
+    background-image: url(./comandApp_logo.png);
+    background-size: content;
+    background-repeat: no-repeat;
+    background-position: center;
 }

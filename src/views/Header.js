@@ -63,7 +63,7 @@ const Header = () => {
                 ) {
                     // image was broken, replace with your new image
                     // element.src = './public/assets/images/merca_dev.png';
-                    element.src = "./assets/img/logo192.png";
+                    element.src = "./assets/img/categorias/carne_categoria.png";
                 }
             }
         }, 1000);
