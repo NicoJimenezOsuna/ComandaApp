@@ -87,9 +87,9 @@ const Launch = () => {
             <span>Tu carta digital</span>
           </div>
         </div>
-        <img style={styles.Elipse_1} src="./assets/img/logo.svg" />  
+        <img style={styles.Elipse_1} src="./assets/img/logo.svg" alt="Logo de ComandaApp"/>  
       </div>
-      <img style={styles.restaurant_691397_1280} src="./assets/img/restaurant_691397_1280.png"/>
+      <img style={styles.restaurant_691397_1280} src="./assets/img/restaurant_691397_1280.png" alt="Imagen de inicio"/>
       <Link to='/categoria' id="Grupo_6">
         <Binicio />
       </Link>

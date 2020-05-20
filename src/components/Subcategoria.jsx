@@ -6,14 +6,16 @@ import Header from "../views/Header";
 import Footer from "../views/Footer";
 import Migas from "./Migas";
 import Labelsubcategory from "./Labelsubcategory";
+import Listadomenu from './Listadomenu'
 
-const Subcategorias = ({ categoryData }) => {
+const Subcategorias = () => {
     const [subcategorias, getSubcategorias] = useState({});
 
     useEffect(() => {
         getSubcategorias(JSON.parse(localStorage.getItem("categorySelected")));
     }, []);
 
+    //define y pasa por props los títulos
     const titles = {};
     titles.product = "plato";
     titles.price = "P.V.P";
@@ -26,9 +28,9 @@ const Subcategorias = ({ categoryData }) => {
                 <Migas data={subcategorias.nombre} />
                 <Labelsubcategory data={titles} />
                 {
-                    <fragment>
-                        <p>{`Viene desde categoría ${subcategorias.id} y ${subcategorias.nombre}`}</p>
-                    </fragment>
+                    <Fragment>
+                        <Listadomenu dataid={subcategorias.id}/>
+                    </Fragment>
                 }
             </div>
             <Footer />

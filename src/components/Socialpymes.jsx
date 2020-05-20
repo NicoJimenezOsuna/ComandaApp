@@ -7,7 +7,7 @@ const Socialpymes = () => {
       <div id="powered_by">
         <span>powered by</span>
       </div>
-      <img id="socialPymes_Imagotipo" src="./assets/img/socialPymes_Imagotipo.png"/>
+      <img id="socialPymes_Imagotipo" src="./assets/img/socialPymes_Imagotipo.png" alt="Logo de Socialpymes"/>
     </div>
   )
 }

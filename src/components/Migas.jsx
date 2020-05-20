@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Migas = ({ data }) => {
@@ -17,7 +17,6 @@ const Migas = ({ data }) => {
             display: "flex",
             justifyContent: "space-around",
             alignItems: "center",
-            fontSize: "20px",
             fontFamily: "Papyrus",
             fontWeight: "bolder",
             fontSize: "30px"
@@ -30,7 +29,7 @@ const Migas = ({ data }) => {
         if (migas !== data) {
             getMigas(data);
         }
-    }, [migas]);
+    }, [migas, data]);
 
     return (
         <div style={mig.Grupo_364}>

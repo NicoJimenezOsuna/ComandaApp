@@ -11,7 +11,7 @@ import Launcher from'./views/Launcher'
 *  IMPORT ROUTER
 *
 * */
-import {Redirect, BrowserRouter, Route, Switch} from 'react-router-dom'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 /*
 *
 *  IMPORT STYLES

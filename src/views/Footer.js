@@ -30,10 +30,10 @@ const Footer = () => {
   return (
     <Fragment>
       <div style={styles.Contenedor}>
-        <img style={styles.Boton} src="./assets/img/footer/ico-back.svg"/>
-        <img style={styles.Boton} src="./assets/img/footer/ico-tel.svg"/>
-        <img style={styles.Boton} src="./assets/img/footer/ico-gps.svg"/>
-        <img style={styles.Boton} src="./assets/img/footer/ico-mail.svg"/>
+        <img style={styles.Boton} src="./assets/img/footer/ico-back.svg" alt="imagen de footer"/>
+        <img style={styles.Boton} src="./assets/img/footer/ico-tel.svg" alt="imagen de footer"/>
+        <img style={styles.Boton} src="./assets/img/footer/ico-gps.svg" alt="imagen de footer"/>
+        <img style={styles.Boton} src="./assets/img/footer/ico-mail.svg" alt="imagen de footer"/>
       </div>
     </Fragment>
   )

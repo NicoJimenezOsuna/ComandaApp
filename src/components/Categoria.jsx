@@ -96,8 +96,8 @@ const Categorias = () => {
                 <div
                   onClick={() => sendCategory(item.categoria_id, item.categoria)}
                   id={item.categoria}
-                  style={cat.cat_cont} key={item.id}
-                  key={item.categoria}
+                  style={cat.cat_cont}
+                  key={item.categoria + item.id}
                 >
                   <img style={cat.plato_img} src={item.imagen} alt={`Imagen de categoría ${item.categoria}`}/>
                   {/*<div style={cat.platos}>*/}
