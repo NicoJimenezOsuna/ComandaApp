@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import axios from "axios";
+import Buttoninfo from './Buttoninfo';
 /*
 * IMPORT SUPPORT FUNCIONS
 */
@@ -87,7 +88,7 @@ const Listadomenu = ({ dataid }) => {
                             <p>{dosDecim(item.precio, 2)} <span style={listmenu.font}>€</span></p>
                         </div>
                         <div style={listmenu.cont_button}>
-                            <button type="button">info</button>
+                            <Buttoninfo />
                         </div>
                     </div>
                 )

@@ -6,7 +6,7 @@ import Header from "../views/Header";
 import Footer from "../views/Footer";
 import Migas from "./Migas";
 import Labelsubcategory from "./Labelsubcategory";
-import Listadomenu from './Listadomenu'
+import Listadomenu from './Listadomenu';
 
 const Subcategorias = () => {
     const [subcategorias, getSubcategorias] = useState({});
