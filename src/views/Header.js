@@ -97,7 +97,7 @@ const Header = () => {
                     />
                 </div>
                 <div style={header.grupo_14}>
-                    <span style={header.restaurante}>{restaurante}</span>
+                    <span style={header.restaurante}>{isNaN(restaurante) ? restaurante : 'Mi restaurante'}</span>
                 </div>
             </div>
         </Fragment>
