@@ -63,9 +63,10 @@ const Listadomenu = ({ dataid }) => {
                     `${protocol}${url}${token}/${dataid}`,
                     userHeader
                 );
+                
                 const toString = JSON.stringify(response.data);
                 const toObject = JSON.parse(toString);
-                console.log("toObject", toObject.data.respuesta);
+                
                 await getProducts(toObject.data.respuesta);
             } catch (error) {
                 console.log("error", error);
