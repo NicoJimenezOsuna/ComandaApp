@@ -3,6 +3,7 @@ import React, {Fragment} from 'react';
 import Header from './views/Header';
 import Footer from './views/Footer';
 import Categoria from './components/Categoria';
+import NavUtils from './views/NavUtils';
 
 
 
@@ -10,6 +11,7 @@ function App() {
   return (
     <Fragment>
       <Header />
+      <NavUtils />
       <Categoria />
       {/* <h1>Hola, Aqui irán los componentes y el enrutado o un Wrapper. Luego te explico que es ;)</h1> */}
 
