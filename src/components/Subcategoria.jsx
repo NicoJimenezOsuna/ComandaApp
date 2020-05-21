@@ -6,15 +6,31 @@ import Header from "../views/Header";
 import Footer from "../views/Footer";
 import Migas from "./Migas";
 import Labelsubcategory from "./Labelsubcategory";
-import Listadomenu from './Listadomenu';
-import Allergensmodal from './Allergensmodal';
+import Listadomenu from "./Listadomenu";
+import Allergensmodal from "./Allergensmodal";
+import Slidermodal from "./Slidermodal";
 
 const Subcategorias = () => {
     const [subcategorias, getSubcategorias] = useState({});
     const [isVisible, getIsVisible] = useState(false);
-    
+    const [isVisibleSlider, getIsVisibleSlider] = useState(false);
+    const [dataSlider, getDataSlider] = useState([]);
+    const [dataProductId, getDataProductId] = useState([]);
+
     const visibleHandler = () => {
         !isVisible ? getIsVisible(true) : getIsVisible(false);
+    };
+
+    const dataSliderHandler = (dataFull, dataId) => {
+        getDataSlider(dataFull);
+        getDataProductId(dataId);
+        !isVisibleSlider ? getIsVisibleSlider(true) : getIsVisibleSlider(false);
+        alert(
+            "nombre: " + dataFull[0].nombreplato + "\n" + "plato id: " + dataId
+        );
+    };
+    const buttonCloseSlidermodalHandler = () => {
+        !isVisibleSlider ? getIsVisibleSlider(true) : getIsVisibleSlider(false);
     }
 
     useEffect(() => {
@@ -29,17 +45,24 @@ const Subcategorias = () => {
 
     return (
         <Fragment>
-            <Allergensmodal dataVisible={isVisible} visible={visibleHandler}/>
+            <Allergensmodal 
+                dataVisible={isVisible}
+                visible={visibleHandler} />
+            <Slidermodal 
+                isVisibleSlider={isVisibleSlider}
+                data={dataSlider}
+                buttonCloseSlidermodalHandler={buttonCloseSlidermodalHandler}
+                />
             <Header />
             <div className="padre">
-                <Migas 
-                    data={subcategorias.nombre}
-                    visible={visibleHandler}
-                    />
+                <Migas data={subcategorias.nombre} visible={visibleHandler} />
                 <Labelsubcategory data={titles} />
                 {
                     <Fragment>
-                        <Listadomenu dataid={subcategorias.id}/>
+                        <Listadomenu
+                            dataid={subcategorias.id}
+                            dataSliderHandler={dataSliderHandler}
+                        />
                     </Fragment>
                 }
             </div>
