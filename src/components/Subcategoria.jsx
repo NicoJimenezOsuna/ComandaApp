@@ -7,9 +7,15 @@ import Footer from "../views/Footer";
 import Migas from "./Migas";
 import Labelsubcategory from "./Labelsubcategory";
 import Listadomenu from './Listadomenu';
+import Allergensmodal from './Allergensmodal';
 
 const Subcategorias = () => {
     const [subcategorias, getSubcategorias] = useState({});
+    const [isVisible, getIsVisible] = useState(false);
+    
+    const visibleHandler = () => {
+        !isVisible ? getIsVisible(true) : getIsVisible(false);
+    }
 
     useEffect(() => {
         getSubcategorias(JSON.parse(localStorage.getItem("categorySelected")));
@@ -23,9 +29,13 @@ const Subcategorias = () => {
 
     return (
         <Fragment>
+            <Allergensmodal dataVisible={isVisible} visible={visibleHandler}/>
             <Header />
             <div className="padre">
-                <Migas data={subcategorias.nombre} />
+                <Migas 
+                    data={subcategorias.nombre}
+                    visible={visibleHandler}
+                    />
                 <Labelsubcategory data={titles} />
                 {
                     <Fragment>

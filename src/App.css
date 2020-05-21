@@ -16,6 +16,14 @@ a{
 a:hover{
     cursor: pointer;
 }
+
+.displayed{
+    display: block;
+}
+
+.displayed_none{
+    display: none!important;
+}
 /*
 *
 * ESTILOS HEADER
@@ -886,9 +894,12 @@ a:hover{
     overflow: visible;
 }
 
-html {
+html, body, #root {
     max-width: 720px;
     height: 1280px;
+}
+
+html {
     background-image: url(./comandApp_logo.png);
     background-size: content;
     background-repeat: no-repeat;
