@@ -42,7 +42,7 @@ const Subcategorias = () => {
     titles.product = "plato";
     titles.price = "P.V.P";
     titles.info = "Info.";
-
+    
     return (
         <Fragment>
             <Allergensmodal 
@@ -51,6 +51,7 @@ const Subcategorias = () => {
             <Slidermodal 
                 isVisibleSlider={isVisibleSlider}
                 data={dataSlider}
+                dataInicio={dataProductId}
                 buttonCloseSlidermodalHandler={buttonCloseSlidermodalHandler}
                 />
             <Header />

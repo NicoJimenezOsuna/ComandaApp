@@ -1,11 +1,18 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { ReactComponent as IconClose } from "../icons/times-circle-regular.svg";
+import Carousel from './Carousel'
+/*
+* Glide.js import
+*/
+
 
 const Slidermodal = ({
     isVisibleSlider,
-    dataSlider,
+    data,
+    dataInicio,
     buttonCloseSlidermodalHandler
 }) => {
+    
     const slider = {
         cont_princ: {
             width: "100%",
@@ -35,9 +42,20 @@ const Slidermodal = ({
             position: "absolute",
             top: "10px",
             right: "10px",
-            width: "3em"
+            width: "3em",
+            zIndex: 99999,
+            color: 'rgba(0,0,0,.4)'
         }
     };
+
+    const [dataToCar, getDataToCar] = useState([]);
+    const [dataInicioToCar, getDataInicioToCar] = useState([]);
+  
+    useEffect(()=>{
+          getDataToCar(data)
+          getDataInicioToCar(dataInicio)
+    }, [data, dataInicio])
+   
     return (
         <div
             style={slider.cont_princ}
@@ -48,7 +66,10 @@ const Slidermodal = ({
                     style={slider.close}
                     onClick={buttonCloseSlidermodalHandler}
                 />
-                <h1>esto es el modal del slider</h1>
+                <Carousel
+                    datas={dataToCar}
+                    dataInicios={dataInicioToCar}
+                    />
             </div>
         </div>
     );
