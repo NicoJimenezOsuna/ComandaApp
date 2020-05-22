@@ -1,12 +1,14 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
+import NavUtils from '../views/NavUtils';
+import Allergensmodal from './Allergensmodal';
+
 
 
 const Categorias = () => {
 
   const history = useHistory();
-
-  const cat = {
+    const cat = {
     padre: {
       display: 'flex',
       flexWrap: 'wrap',
@@ -73,15 +75,21 @@ const Categorias = () => {
       fontSize: `40px`,
       color: 'rgba(0,0,0,1)',
     }
-  }
-
+      }
+  
   const [categorias, getCategorias] = useState([]);
+  const [codigoqr, getCodigoqr] = useState([]);    
+  const [isVisible, getIsVisible] = useState(false);
+
 
   useEffect(() => {
     getCategorias(JSON.parse(localStorage.getItem('comandaApp')).data.respuesta);
-  }, [])
-
-
+  }, []);
+  
+  const visibleHandler = () => {
+    !isVisible ? getIsVisible(true) : getIsVisible(false);
+  };
+  
   const sendCategory = (item1, item2) => {
     localStorage.setItem('categorySelected', JSON.stringify({id: item1, nombre: item2}));
     history.push("/subcategoria");
@@ -89,6 +97,11 @@ const Categorias = () => {
 
   return (
     <Fragment>
+      <Allergensmodal 
+          dataVisible={isVisible}
+          visible={visibleHandler} />
+      <NavUtils visible={visibleHandler}/>
+
       <div style={cat.padre}>
         {categorias ? (
             categorias.map(item => {

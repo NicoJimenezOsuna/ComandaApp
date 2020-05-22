@@ -1,6 +1,14 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
+import Allergensmodal from './Allergensmodal';
 
-const Alergenos = () => {
+import { ReactComponent as IconClose } from "../icons/times-circle-regular.svg";
+
+/*
+ * IMPORT DATA FROM SRC/DATA/DATA.JSON
+ */
+import { allergens } from "../data/data.js";
+
+const Alergenos = ({visible}) => {
 
     const style = {
         alergenos : {
@@ -17,14 +25,17 @@ const Alergenos = () => {
             border: '2px solid  rgb(112, 112, 112)'
         }
     }
+    // console.log(allergens);
 
     return (
         <Fragment>
+            
             <button 
                 style={style.alergenos}
-                onClick={()=> alert('ok')}
+                onClick={visible}
                 >
-                !Alérgenos¡
+                !Alérgenos¡ 
+
             </button>
         </Fragment>
     )

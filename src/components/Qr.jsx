@@ -1,7 +1,12 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import { ReactComponent as YourSvg } from '../icons/codigo-qr.svg';
 
-const Qr = () => {
+/*
+ * IMPORT DATA FROM SRC/DATA/DATA.JSON
+ */
+import { qr } from "../data/data.js";
+
+const Qr = ({codigoqr}) => {
 
     const style = {
         alergenos : {
@@ -21,7 +26,7 @@ const Qr = () => {
         <Fragment>
             <YourSvg 
                 style={style.alergenos}
-                onClick={()=> alert('ok')}
+                onClick={codigoqr}
                 />
         </Fragment>
     )

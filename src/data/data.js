@@ -73,3 +73,12 @@ export const allergens = [
     imageUrl: "./assets/img/allergens/alergeno14.png"
   }
 ];
+
+/*   CODIGO QR   */
+export const qr = [
+  {
+    id: 1,
+    name: "Restaurante 1",
+    imageUrl: "./assets/img/qr_codigo.png"
+  }
+];

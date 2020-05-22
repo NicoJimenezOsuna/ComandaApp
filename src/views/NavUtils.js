@@ -3,7 +3,7 @@ import Alergenos from '../components/Alergenos';
 import Qr from '../components/Qr'
 
 
-const NavUtils = () => {
+const NavUtils = ({visible, codigoqr}) => {
     const style = {
         menu: {
             overflow: "visible",
@@ -24,13 +24,15 @@ const NavUtils = () => {
     };
 
 
+
     return (
         <Fragment>
             <div
                 style={style.menu}
             >
-                <Qr />
-                <Alergenos />
+                <Qr codigoqr={visible}/>
+                <Alergenos
+                    visible={visible} />
             </div>
         </Fragment>
     );
