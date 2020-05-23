@@ -9,6 +9,7 @@ import Labelsubcategory from "./Labelsubcategory";
 import Listadomenu from "./Listadomenu";
 import Allergensmodal from "./Allergensmodal";
 import Slidermodal from "./Slidermodal";
+import Qrmodal from "./Qrmodal";
 
 const Subcategorias = () => {
     const [subcategorias, getSubcategorias] = useState({});

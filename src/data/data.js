@@ -75,10 +75,9 @@ export const allergens = [
 ];
 
 /*   CODIGO QR   */
-export const qr = [
+export const codigoqrimg = 
   {
     id: 1,
     name: "Restaurante 1",
     imageUrl: "./assets/img/qr_codigo.png"
-  }
-];
+  };

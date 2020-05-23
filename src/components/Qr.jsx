@@ -1,10 +1,5 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment} from 'react';
 import { ReactComponent as YourSvg } from '../icons/codigo-qr.svg';
-
-/*
- * IMPORT DATA FROM SRC/DATA/DATA.JSON
- */
-import { qr } from "../data/data.js";
 
 const Qr = ({codigoqr}) => {
 

@@ -2,8 +2,7 @@ import React, {Fragment, useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
 import NavUtils from '../views/NavUtils';
 import Allergensmodal from './Allergensmodal';
-
-
+import Qrmodal from './Qrmodal';
 
 const Categorias = () => {
 
@@ -78,9 +77,8 @@ const Categorias = () => {
       }
   
   const [categorias, getCategorias] = useState([]);
-  const [codigoqr, getCodigoqr] = useState([]);    
+  const [verqr, getVerqr] = useState(false);//sirve para darle un estado inicial    
   const [isVisible, getIsVisible] = useState(false);
-
 
   useEffect(() => {
     getCategorias(JSON.parse(localStorage.getItem('comandaApp')).data.respuesta);
@@ -95,12 +93,25 @@ const Categorias = () => {
     history.push("/subcategoria");
   };
 
+  const codigoqr = () => {
+    !verqr ? getVerqr(true) : getVerqr(false);
+  }//sirve para actualizar el estado
+
   return (
     <Fragment>
       <Allergensmodal 
           dataVisible={isVisible}
           visible={visibleHandler} />
-      <NavUtils visible={visibleHandler}/>
+      <Qrmodal 
+        verqr={verqr}
+        codigoqr={codigoqr}
+      />
+      <NavUtils 
+      codigoqr={codigoqr}
+      dataVisible={isVisible}
+      visible={visibleHandler}
+                // codigoqr={qr}
+      />
 
       <div style={cat.padre}>
         {categorias ? (
