@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 // import {Link} from 'react-router-dom';
 // import Button from 'react-bootstrap/Button';
 
@@ -24,9 +24,9 @@ const styles = {
 
 }
   return ( 
-    <div>
+    <Fragment>
         <button style={styles.boton}>INICIO</button>
-     </div> 
+     </Fragment>
   )
 }
 

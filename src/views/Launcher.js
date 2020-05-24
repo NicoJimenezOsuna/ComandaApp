@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import axios from "axios";
 /*
  * IMPORT COMPONENTS
@@ -6,6 +6,8 @@ import axios from "axios";
 import Spinner from "../components/Spinner";
 import Socialpymes from "../components/Socialpymes";
 import Launch from "../components/Launch";
+
+import {fakeData1} from '../data/data';
 
 const Launcher = () => {
     const launcher = {
@@ -47,14 +49,14 @@ const Launcher = () => {
     const [datos, getDatos] = useState({});
 
     useEffect(() => {
-        
+
         const userHeader = {
             headers: {
                 "X-Requested-With": "XMLHttpRequest",
                 "Content-Type": "application/json"
             }
         };
-        
+
         const firstRequest = async (protocol, url, token) => {
             try {
                 // Make a request
@@ -67,19 +69,33 @@ const Launcher = () => {
                     JSON.stringify(response.data)
                 );
                 //to State
-                await getDatos(toObject.data.respuesta);
+                if(!toObject.data.respuesta > 0) {
+                    localStorage.setItem(
+                        "comandaApp",
+                        JSON.stringify(fakeData1)
+                    );
+                    getDatos(fakeData1.data.respuesta)
+                }else{
+                    await getDatos(toObject.data.respuesta);
+                }
+
             } catch (error) {
+                localStorage.setItem(
+                    "comandaApp",
+                    JSON.stringify(fakeData1)
+                );
+                getDatos(fakeData1.data.respuesta)
                 console.log("error", error);
             }
         };
-        
+
         firstRequest(protocol, url, token)
-        
+
     }, [protocol, url, token]);
 
     return (
         <Fragment>
-            {Object.keys(datos).length <=0 && !localStorage.getItem("comandaApp") ? (
+            {Object.keys(datos).length <= 0 && !localStorage.getItem("comandaApp") ? (
                 <div id="Pantalla_de_carga">
                     <div id="Grupo_2">
                         <img
@@ -93,11 +109,11 @@ const Launcher = () => {
                     <div style={launcher.Tu_carta_digital}>
                         <span>Tu carta digital</span>
                     </div>
-                    <Spinner />
-                    <Socialpymes />
+                    <Spinner/>
+                    <Socialpymes/>
                 </div>
             ) : (
-                <Launch />
+                <Launch/>
             )}
         </Fragment>
     );

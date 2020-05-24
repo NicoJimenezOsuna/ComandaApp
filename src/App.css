@@ -475,7 +475,7 @@ a:hover{
 }
 
 :root {
-    --web-view-ids: Pantalla_de_Inicio; 
+    --web-view-ids: Pantalla_de_Inicio;
 }*/
 
 * {
@@ -491,7 +491,7 @@ a:hover{
 *
 */
 #Componente_1___1 {
-    position: absolute;
+    position: relative;
     width: 230px;
     height: 68px;
     left: 245px;
@@ -895,13 +895,13 @@ a:hover{
 }
 
 html, body, #root {
-    max-width: 720px;
-    height: 1280px;
+    max-width: 720px!important;
+    max-height: 1280px!important;
 }
 
 html {
     background-image: url(./comandApp_logo.png);
-    background-size: content;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }

@@ -49,7 +49,7 @@ const Header = () => {
     };
 
     const [restaurante, getRestaurante] = useState("Restaurante");
-
+    let datosde = ''
     useEffect(() => {
         //        sustituir imagenes rotas
         setTimeout(function() {
@@ -68,10 +68,11 @@ const Header = () => {
             }
         }, 1000);
 
+        datosde = JSON.parse(localStorage.getItem("comandaApp")).data.codigo
         getRestaurante(
-            JSON.parse(localStorage.getItem("comandaApp")).data.codigo
+            JSON.parse(datosde)
         );
-    }, [restaurante]);
+    }, [restaurante, datosde]);
 
     return (
         <Fragment>

@@ -5,6 +5,7 @@ import Buttoninfo from "./Buttoninfo";
  * IMPORT SUPPORT FUNCIONS
  */
 import { dosDecim } from "../utils/utils";
+import {fakeData1, fakeData2} from "../data/data";
 
 const Listadomenu = ({ dataid, dataSliderHandler }) => {
   const listmenu = {
@@ -66,11 +67,19 @@ const Listadomenu = ({ dataid, dataSliderHandler }) => {
         const toString = JSON.stringify(response.data);
         const toObject = JSON.parse(toString);
 
-        await getProducts(toObject.data.respuesta);
+        if(!toObject.data.respuesta > 0) {
+          getProducts(fakeData2.data.respuesta)
+        }else{
+          await getProducts(toObject.data.respuesta);
+        }
+
       } catch (error) {
+        getProducts(fakeData2.data.respuesta)
         console.log("error", error);
       }
     };
+
+    //to State
     catIdtRequest(protocol, url, token, dataid);
   }, [dataid, protocol, url, token]);
 
