@@ -90,13 +90,6 @@ export const globalinfo = {
   telefono: "969999999"
 }
 
-export const codigoqrimg =
-    {
-        id: 1,
-        name: "Restaurante 1",
-        imageUrl: "./assets/img/qr_codigo.png"
-    };
-
 /* Fake data categorias */
 export const fakeData1 = {
     data: {
