@@ -31,12 +31,6 @@ const Allergensmodal = ({ dataVisible, visible }) => {
             padding: "10px",
             overflow: "scroll"
         },
-        close: {
-            position: "absolute",
-            top: "10px",
-            right: "10px",
-            width: "3em"
-        },
         cont_data: {
             display: "flex",
             justifyContent: "flex-start",
@@ -67,7 +61,9 @@ const Allergensmodal = ({ dataVisible, visible }) => {
             style={aller.princ}
         >
             <div style={aller.second}>
-                <IconClose style={aller.close} onClick={visible} />
+                <IconClose
+                    className="close"
+                    onClick={visible} />
                 <h1 style={aller.h1}>
                     Estos son los alergenos <br />
                     que utiliza este establecimiento.

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { ReactComponent as IconClose } from "../icons/times-circle-regular.svg";
+import React, {useEffect, useState} from "react";
+import {ReactComponent as IconClose} from "../icons/times-circle-regular.svg";
 /*
  * IMPORT DATA FROM SRC/DATA/DATA.JSON
  */
@@ -31,12 +31,6 @@ const Mapamodal = ({verMapamodal, vermapa}) => {
             padding: "10px",
             overflow: "scroll"
         },
-        close: {
-            position: "absolute",
-            top: "10px",
-            right: "10px",
-            width: "3em"
-        },
         cont_data: {
             display: "flex",
             justifyContent: "flex-start",
@@ -50,7 +44,7 @@ const Mapamodal = ({verMapamodal, vermapa}) => {
             padding: "5px",
             width: "calc(100%  - 75%)"
         },
-        h1 : {
+        h1: {
             padding: '10px 0 10px 20px'
         }
     };
@@ -72,7 +66,9 @@ const Mapamodal = ({verMapamodal, vermapa}) => {
             style={aller.princ}
         >
             <div style={aller.second}>
-                <IconClose style={aller.close} onClick={vermapa} />
+                <IconClose
+                    className="close"
+                    onClick={vermapa}/>
                 <h1 style={aller.h1}>
                     Esta es la localización GPS de este establecimiento.
 

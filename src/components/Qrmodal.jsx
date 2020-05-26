@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { ReactComponent as IconClose } from "../icons/times-circle-regular.svg";
+import React, {useEffect, useState} from "react";
+import {ReactComponent as IconClose} from "../icons/times-circle-regular.svg";
 /*
  * IMPORT DATA FROM SRC/DATA/DATA.JSON
  */
-import { codigoqrimg } from "../data/data.js";
+import {codigoqrimg} from "../data/data.js";
 
-const Qrmodal = ({ codigoqr, verqr }) => {
+const Qrmodal = ({codigoqr, verqr}) => {
     const style = {
         princ: {
             width: "100%",
@@ -31,12 +31,6 @@ const Qrmodal = ({ codigoqr, verqr }) => {
             padding: "10px",
             overflow: "scroll"
         },
-        close: {
-            position: "absolute",
-            top: "10px",
-            right: "10px",
-            width: "3em"
-        },
         cont_data: {
             display: "flex",
             justifyContent: "flex-start",
@@ -50,7 +44,7 @@ const Qrmodal = ({ codigoqr, verqr }) => {
             padding: "5px",
             width: "calc(100%  - 75%)"
         },
-        h1 : {
+        h1: {
             padding: '10px 0 10px 20px'
         }
     };
@@ -59,11 +53,10 @@ const Qrmodal = ({ codigoqr, verqr }) => {
     const [mostrarqr, getMostrarqr] = useState(false);
 
 
-
     useEffect(() => {
         getCodigoqr(codigoqrimg);
         getMostrarqr(verqr);
-    }, [verqr,codigoqrimg]);
+    }, [verqr, codigoqrimg]);
 
     // console.log(qrState)
 
@@ -73,9 +66,11 @@ const Qrmodal = ({ codigoqr, verqr }) => {
             style={style.princ}
         >
             <div style={style.second}>
-                <IconClose style={style.close} onClick={codigoqr} />
+                <IconClose
+                    className="close"
+                    onClick={codigoqr}/>
                 <h1 style={style.h1}>
-                    Este es el código Qr <br />
+                    Este es el código Qr <br/>
                     del establecimientos que utiliza este establecimiento.
                 </h1>
                 <div style={style.cont_data}>

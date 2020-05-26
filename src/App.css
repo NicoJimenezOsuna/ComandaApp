@@ -3,6 +3,14 @@
 * CLASES PERSONALIZADAS
 *
 */
+.close{
+    position: sticky;
+    top: 10px;
+    right: 10px;
+    width: 3em;
+    z-index: 99999;
+    color: rgba(0,0,0,.4);
+}
 .absolut{
     position: absolute;
     width: 100%;

@@ -37,14 +37,6 @@ const Slidermodal = ({
             borderRadius: "20px",
             padding: "10px",
             overflow: "scroll"
-        },
-        close: {
-            position: "absolute",
-            top: "10px",
-            right: "10px",
-            width: "3em",
-            zIndex: 99999,
-            color: 'rgba(0,0,0,.4)'
         }
     };
 
@@ -63,7 +55,7 @@ const Slidermodal = ({
         >
             <div style={slider.cont_slider}>
                 <IconClose
-                    style={slider.close}
+                    className="close"
                     onClick={buttonCloseSlidermodalHandler}
                 />
                 <Carousel
