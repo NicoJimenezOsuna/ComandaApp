@@ -83,7 +83,7 @@ const Categorias = () => {
   useEffect(() => {
     getCategorias(JSON.parse(localStorage.getItem('comandaApp')).data.respuesta);
   }, []);
-  
+
   const visibleHandler = () => {
     !isVisible ? getIsVisible(true) : getIsVisible(false);
   };

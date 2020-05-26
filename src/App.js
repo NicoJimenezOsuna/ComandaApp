@@ -9,13 +9,12 @@ import NavUtils from './views/NavUtils';
 
 function App() {
   return (
-    <Fragment>
-      <Header />
-      <Categoria />
-      {/* <h1>Hola, Aqui irán los componentes y el enrutado o un Wrapper. Luego te explico que es ;)</h1> */}
-
-      <Footer />
-    </Fragment>
+      <Fragment>
+        <Header />
+        <Categoria />
+        {/* <h1>Hola, Aqui irán los componentes y el enrutado o un Wrapper. Luego te explico que es ;)</h1> */}
+        <Footer />
+      </Fragment>
   );
 }
 

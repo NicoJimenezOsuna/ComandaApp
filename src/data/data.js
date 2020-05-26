@@ -81,3 +81,11 @@ export const codigoqrimg =
     name: "Restaurante 1",
     imageUrl: "./assets/img/qr_codigo.png"
   };
+
+/*  DATOS DEL LOCAL*/
+export const globalinfo = {
+  id: 1,
+  name: "Restaurante 1",
+  localizacionmaps: "https://goo.gl/maps/fNd5q1Rd3JQDq8ND8",
+  telefono: "969999999"
+}
