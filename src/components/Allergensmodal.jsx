@@ -42,7 +42,7 @@ const Allergensmodal = ({ dataVisible, visible }) => {
             flexDirection: "column",
             alignItems: "center",
             padding: "5px",
-            width: "calc(100%  - 75%)"
+            flex: 1
         },
         h1 : {
             padding: '10px 0 10px 20px'

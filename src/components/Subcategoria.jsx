@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, {Fragment, useEffect, useState} from "react";
 /*
  * IMPORT COMPONENTS
  */
@@ -40,32 +40,34 @@ const Subcategorias = () => {
     titles.product = "plato";
     titles.price = "P.V.P";
     titles.info = "Info.";
-    
+
     return (
         <Fragment>
-            <Allergensmodal 
-                dataVisible={isVisible}
-                visible={visibleHandler} />
-            <Slidermodal 
-                isVisibleSlider={isVisibleSlider}
-                data={dataSlider}
-                dataInicio={dataProductId}
-                buttonCloseSlidermodalHandler={buttonCloseSlidermodalHandler}
+            <div className="subRoot">
+                <Allergensmodal
+                    dataVisible={isVisible}
+                    visible={visibleHandler}/>
+                <Slidermodal
+                    isVisibleSlider={isVisibleSlider}
+                    data={dataSlider}
+                    dataInicio={dataProductId}
+                    buttonCloseSlidermodalHandler={buttonCloseSlidermodalHandler}
                 />
-            <Header />
-            <div className="padre">
-                <Migas data={subcategorias.nombre} visible={visibleHandler} />
-                <Labelsubcategory data={titles} />
-                {
-                    <Fragment>
-                        <Listadomenu
-                            dataid={subcategorias.id}
-                            dataSliderHandler={dataSliderHandler}
-                        />
-                    </Fragment>
-                }
+                <Header/>
+                <div className="padre">
+                    <Migas data={subcategorias.nombre} visible={visibleHandler}/>
+                    <Labelsubcategory data={titles}/>
+                    {
+                        <Fragment>
+                            <Listadomenu
+                                dataid={subcategorias.id}
+                                dataSliderHandler={dataSliderHandler}
+                            />
+                        </Fragment>
+                    }
+                </div>
             </div>
-            <Footer />
+            <Footer/>
         </Fragment>
     );
 };

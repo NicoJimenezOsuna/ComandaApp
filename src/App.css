@@ -3,15 +3,39 @@
 * CLASES PERSONALIZADAS
 *
 */
-.close{
+.subRoot{
+    background-image: url(./comandApp_logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /*background-attachment: fixed;*/
+}
+.subRoot {
+    height: 90%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.close {
     position: sticky;
-    top: 10px;
-    right: 10px;
+    top: 0;
     width: 3em;
     z-index: 99999;
-    color: rgba(0,0,0,.4);
+    color: rgba(0, 0, 0, .4);
 }
-.absolut{
+
+.cont_footer_absolut {
+    position: sticky;
+    width: 100%;
+    height: 10%;
+    background-color: #fff;
+    z-index: 9;
+    bottom: 0;
+    padding: .5em;
+}
+
+.absolut {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -19,6 +43,7 @@
     z-index: 9;
     opacity: .31;
 }
+
 .cont_childs {
     position: relative;
     width: calc(100% - 52%);
@@ -30,7 +55,8 @@
     align-items: center;
     flex-wrap: wrap;
 }
-@media(orientation: landscape){
+
+@media (orientation: landscape) {
     .cont_childs {
         position: relative;
         width: calc(100% - 68.7%);
@@ -491,13 +517,6 @@ a:hover {
     --web-view-ids: Pantalla_de_Inicio;
 }*/
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    border: none;
-}
-
 /*
 *
 * SOCIALPYMES COMPONENT STYLE
@@ -908,7 +927,7 @@ a:hover {
 }
 
 body {
-    background: yellow;
+    /*background: yellow;*/
     position: relative;
 }
 
@@ -918,10 +937,6 @@ html, body, #root {
 }
 
 html {
-    background-image: url(./comandApp_logo.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     margin: 0 auto;
 }
 

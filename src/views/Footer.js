@@ -1,4 +1,5 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
 import Mapamodal from '../components/Mapamodal';
 // import Mailmodal from '../components/Mailmodal';
 
@@ -8,24 +9,25 @@ const Footer = () => {
 
     const style = {
         contenedor: {
-            // position: 'relative',
+            position: 'sticky',
             // border: '2px solid rgba(112,112,112,1)',
             backgroundColor: `rgba(230, 230, 230, 1)`,
-            borderRadius: `100px`,
-            position: 'absolute',
-            top: '1116px',
-            left: `40px`,
-            height: `105px`,
-            width: `639px`,
-            margin: 'auto',
-            display: 'flex'
+            bottom: 0,
+            width: `100%`,
+            display: 'flex',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            zIndex: 999,
+            borderRadius: '20px'
 
         },
         boton: {
-            position: 'relative',
-            height: `105px`,
-            width: `105px`,
-            margin: 'auto',
+            width: '3em'
+            // position: 'relative',
+            // height: `105px`,
+            // width: `105px`,
+            // margin: 'auto',
             //  },
             // boton : {
             //   filter: 'drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.161))',
@@ -61,7 +63,7 @@ const Footer = () => {
     }, []);
 
     return (
-        <Fragment>
+        <div className="cont_footer_absolut">
             <Mapamodal
                 vermapa={vermapa}
                 verMapamodal={verMapamodal}
@@ -72,24 +74,28 @@ const Footer = () => {
 
             <div style={style.contenedor}>
                 <img
-                    style={style.boton} src="./assets/img/footer/ico-back.svg" alt="imagen de footer"
+                    style={style.boton}
+                    src="./assets/img/footer/ico-back.svg"
+                    alt="imagen de footer"
                 />
-                <a
-                    style={style.boton}
-                    href={`tel:${globalinfo.telefono}`}
-                >
-                    <img src="./assets/img/footer/ico-tel.svg" alt="imagen de footer"/>
+                <a href={`tel:${globalinfo.telefono}`}>
+                    <img
+                        style={style.boton}
+                        src="./assets/img/footer/ico-tel.svg"
+                        alt="imagen de footer"/>
                 </a>
-                <a
-                    style={style.boton}
+                <img
                     onClick={vermapa}
-                >
-                    <img src="./assets/img/footer/ico-gps.svg" alt="imagen de footer"/>
-                </a>
+                    style={style.boton}
+                    src="./assets/img/footer/ico-gps.svg"
+                    alt="imagen de footer"/>
                 {/*<img style={style.boton} src="./assets/img/footer/ico-gps.svg" alt="imagen de footer"/>*/}
-                <img style={style.boton} src="./assets/img/footer/ico-mail.svg" alt="imagen de footer"/>
+                <img
+                    style={style.boton}
+                    src="./assets/img/footer/ico-mail.svg"
+                    alt="imagen de footer"/>
             </div>
-        </Fragment>
+        </div>
     )
 }
 export default Footer;
