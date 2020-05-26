@@ -3,11 +3,11 @@ import React from 'react';
 const Socialpymes = () => {
 
   return (
-    <div id="Componente_1___1" className="Componente_1___1">
-      <div id="powered_by">
+    <div>
+      <div>
         <span>powered by</span>
       </div>
-      <img id="socialPymes_Imagotipo" src="./assets/img/socialPymes_Imagotipo.png" alt="Logo de Socialpymes"/>
+      <img  src="./assets/img/socialPymes_Imagotipo.png" alt="Logo de Socialpymes"/>
     </div>
   )
 }

@@ -3,27 +3,66 @@
 * CLASES PERSONALIZADAS
 *
 */
-    .padre {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      width: 720px;
-      padding: 30px 7.5px;
+.absolut{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    z-index: 9;
+    opacity: .31;
+}
+.cont_childs {
+    position: relative;
+    width: calc(100% - 52%);
+    margin: 1%;
+    text-align: center;
+    line-height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+@media(orientation: landscape){
+    .cont_childs {
+        position: relative;
+        width: calc(100% - 68.7%);
+        margin: 1%;
+        text-align: center;
+        line-height: 75px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
     }
-a{
+}
+
+.padre {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 1%;
+}
+
+a {
     text-decoration: none;
 }
-a:hover{
+
+a:hover {
     cursor: pointer;
 }
 
-.displayed{
+.displayed {
     display: block;
 }
 
-.displayed_none{
-    display: none!important;
+.displayed_none {
+    display: none !important;
 }
+
+.full {
+    width: 100%;
+    height: 100%;
+}
+
 /*
 *
 * ESTILOS HEADER
@@ -59,32 +98,6 @@ a:hover{
     --web-enable-deep-linking: true;
 } */
 
-#Grupo_17 {
-    position: relative;
-    width: 720px;
-    height: 102px;
-    left: 0px;
-    top: 18px;
-    overflow: visible;
-}
-
-#Grupo_13 {
-    position: absolute;
-    width: 85px;
-    height: 85px;
-    left: 28px;
-    top: 0px;
-    overflow: visible;
-}
-
-#Grupo_12 {
-    position: absolute;
-    width: 85px;
-    height: 85px;
-    left: 0px;
-    top: 0px;
-    overflow: visible;
-}
 
 /* .Elipse_1 {
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
@@ -144,14 +157,6 @@ a:hover{
     color: rgba(112, 112, 112, 1);
 } */
 
-#Grupo_9 {
-    position: absolute;
-    width: 150px;
-    height: 46.339px;
-    left: 123px;
-    top: 39px;
-    overflow: visible;
-}
 
 #powered_by {
     position: absolute;
@@ -492,11 +497,11 @@ a:hover{
 */
 #Componente_1___1 {
     position: relative;
-    width: 230px;
-    height: 68px;
-    left: 245px;
-    top: 1185px;
-    overflow: visible;
+    /*width: 230px;*/
+    /*height: 68px;*/
+    /*left: 245px;*/
+    /*top: 1185px;*/
+    overflow: hidden;
 }
 
 /*
@@ -839,7 +844,7 @@ a:hover{
 }
 
 #Componente_1___1 {
-    font-size: 30px;
+    /*font-size: 30px;*/
     color: rgba(112, 112, 112, 1);
 }
 
@@ -894,9 +899,14 @@ a:hover{
     overflow: visible;
 }
 
+body {
+    background: yellow;
+    position: relative;
+}
+
 html, body, #root {
-    max-width: 720px!important;
-    max-height: 1280px!important;
+    max-width: 900px !important;
+    max-height: 1280px !important;
 }
 
 html {
@@ -904,4 +914,37 @@ html {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    margin: 0 auto;
+}
+
+@media (max-width: 900px) and (orientation: portrait) {
+    html, body {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #root {
+        width: 100%;
+        height: 100%
+    }
+}
+
+@media (min-width: 901px) {
+    body, #root {
+        max-width: 720px !important;
+        max-height: 1280px !important;
+    }
+
+    html {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #root {
+        width: 100%;
+        height: 100%
+    }
 }

@@ -10,7 +10,7 @@ const NavUtils = ({visible, codigoqr}) => {
         menu: {
             overflow: "visible",
             position: "relative",
-            width: `720px`,
+            width: `100%`,
             height: `107px`,
             left: `0px`,
             padding: `10px`,

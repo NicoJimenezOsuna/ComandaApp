@@ -12,7 +12,7 @@ const Allergensmodal = ({ dataVisible, visible }) => {
             height: "100%",
             //            maxWidth: '720px',
             //            height: '100%',
-            position: "fixed",
+            position: "absolute",
             top: 0,
             left: 0,
             backgroundColor: "rgba(0,0,0,.3)",
