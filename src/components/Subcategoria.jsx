@@ -26,9 +26,6 @@ const Subcategorias = () => {
         getDataSlider(dataFull);
         getDataProductId(dataId);
         !isVisibleSlider ? getIsVisibleSlider(true) : getIsVisibleSlider(false);
-        alert(
-            "nombre: " + dataFull[0].nombreplato + "\n" + "plato id: " + dataId
-        );
     };
     const buttonCloseSlidermodalHandler = () => {
         !isVisibleSlider ? getIsVisibleSlider(true) : getIsVisibleSlider(false);

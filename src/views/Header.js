@@ -1,58 +1,57 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, {Fragment, useEffect, useState} from "react";
+import {ReactComponent as LogoComanda} from "../icons/logo.svg";
 
 const Header = () => {
     const header = {
         grupo_17: {
             overflow: "visible",
-            position: "absolute",
-            width: `720px`,
-            height: `2px`,
+            // position: "absolute",
+            width: `100%`,
+            minHeight: `100px`,
             left: `0px`,
             top: `102px`,
-            transform: "matrix(1, 0, 0, 1, 0, 0)"
+            transform: "matrix(1, 0, 0, 1, 0, 0)",
+            borderBottom: "2px solid rgba(112,112,112,1)",
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            padding: '10px'
         },
-        grupo_13: {
-            position: "absolute",
-            width: `85px`,
-            height: `85px`,
-            left: `28px`,
-            top: `0px`,
-            overflow: "visible"
+        cont_comanda_social: {
+            width: '100%',
+            textAlign: 'right',
         },
         grupo_12: {
-            position: "absolute",
-            width: `85px`,
-            height: `85px`,
-            left: `0px`,
-            top: `0px`,
-            overflow: "visible"
+            width: `45px`,
+            height: `45px`
         },
         img_tipo: {
             position: "absolute",
-            width: `150px`,
-            height: `26.339px`,
+            width: `7em`,
             left: `0px`,
             top: `20px`,
             overflow: "visible"
         },
-        grupo_14: {
-            position: "absolute",
-            height: `27.065px`,
-            right: `15px`,
-            top: `28.5px`,
-            overflow: "visible"
+        relativo: {
+            position: 'relative',
+            marginLeft: '.5em'
         },
         restaurante: {
             // backgroundColor:'red'
-            fontSize: `3em`
+            fontSize: `2em`,
+            fontFamily: 'Papyrus'
+        },
+        cont_logo_comanda : {
+            display: 'flex',
+            justifyContent: 'flex-start',
         }
     };
 
     const [restaurante, getRestaurante] = useState("Restaurante");
-
+    let datosde = ''
     useEffect(() => {
         //        sustituir imagenes rotas
-        setTimeout(function() {
+        setTimeout(function () {
             let arrImg = document.getElementsByTagName("img");
             for (let element of arrImg) {
                 // element.src = './assets/images/merca_dev.png';
@@ -68,35 +67,34 @@ const Header = () => {
             }
         }, 1000);
 
+        datosde = JSON.parse(localStorage.getItem("comandaApp")).data.codigo
         getRestaurante(
-            JSON.parse(localStorage.getItem("comandaApp")).data.codigo
+            JSON.parse(datosde)
         );
-    }, [restaurante]);
+    }, [restaurante, datosde]);
 
     return (
         <Fragment>
-            <div
-                id="Grupo_17"
-                style={{ borderBottom: "2px solid rgba(112,112,112,1)" }}
-            >
-                <div style={header.grupo_13}>
-                    <img
-                        style={header.grupo_12}
-                        src="./assets/img/logo.svg"
-                        alt="Logo de comandaApp"
-                    />
-                </div>
-                <div id="Grupo_9">
-                    <div id="powered_by">
-                        <span>powered by</span>
+            <div style={header.grupo_17}>
+                <div style={header.cont_comanda_social}>
+                    <div style={header.cont_logo_comanda}>
+                        <LogoComanda
+                            style={header.grupo_12}
+                            alt="Logo de comandaApp"
+                        />
+                        <div style={header.relativo}>
+                            <div id="powered_by">
+                                <span>powered by</span>
+                            </div>
+                            <img
+                                style={header.img_tipo}
+                                src="./assets/img/socialPymes_Imagotipo.png"
+                                alt="Logo de socialpymes"
+                            />
+                        </div>
                     </div>
-                    <img
-                        style={header.img_tipo}
-                        src="./assets/img/socialPymes_Imagotipo.png"
-                        alt="Logo de socialpymes"
-                    />
                 </div>
-                <div style={header.grupo_14}>
+                <div style={header.cont_comanda_social}>
                     <span style={header.restaurante}>{isNaN(restaurante) ? restaurante : 'Mi restaurante'}</span>
                 </div>
             </div>
