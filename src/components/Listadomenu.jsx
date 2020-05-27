@@ -109,6 +109,7 @@ const Listadomenu = ({ dataid, dataSliderHandler }) => {
             );
           })
         : "null"}
+    {/*    Aqui se mete los spiners de carga    */}
     </Fragment>
   );
 };

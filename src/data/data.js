@@ -87,7 +87,8 @@ export const globalinfo = {
   id: 1,
   name: "Restaurante 1",
   localizacionmaps: "https://goo.gl/maps/fNd5q1Rd3JQDq8ND8",
-  telefono: "969999999"
+  telefono: "969999999",
+  mail: "mail@mail.es"
 }
 
 /* Fake data categorias */
