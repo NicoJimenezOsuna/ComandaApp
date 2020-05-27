@@ -11,7 +11,7 @@ const NavUtils = ({visible, codigoqr}) => {
             overflow: "visible",
             position: "relative",
             width: `100%`,
-            height: `107px`,
+            height: `70px`,
             left: `0px`,
             padding: `10px`,
             // top: `102px`,

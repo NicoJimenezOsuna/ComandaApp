@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import Mapamodal from '../components/Mapamodal';
-// import Mailmodal from '../components/Mailmodal';
+import Mailmodal from '../components/Mailmodal';
 
 import {globalinfo} from "../data/data";
 
@@ -49,17 +49,18 @@ const Footer = () => {
     }
 
     const [verMapamodal, getMapamodal] = useState(false);
-    // const [verModalMail, getVerModalMail] = useState(false);
+    const [verMailmodal, getMailmodal] = useState(false);
 
     let vermapa = () => {
         !verMapamodal ? getMapamodal(true) : getMapamodal(false);
     }//sirve para actualizar el estado
-    // const verMail = () => {
-    //     !verModalMail ? getVerModalMail(true) : getVerModalMail(false);
-    // }//sirve para actualizar el estado
+     const vermail = () => {
+         !verMailmodal ? getMailmodal(true) : getMailmodal(false);
+     }//sirve para actualizar el estado
 
     useEffect(() => {
         getMapamodal(verMapamodal);
+        getMailmodal(verMailmodal);
     }, []);
 
     return (
@@ -67,6 +68,10 @@ const Footer = () => {
             <Mapamodal
                 vermapa={vermapa}
                 verMapamodal={verMapamodal}
+            />
+            <Mailmodal
+                vermail={vermail}
+                verMailmodal={verMailmodal}
             />
             {/*<ModalMail*/}
             {/*    verMail={verMail}*/}
@@ -91,6 +96,7 @@ const Footer = () => {
                     alt="imagen de footer"/>
                 {/*<img style={style.boton} src="./assets/img/footer/ico-gps.svg" alt="imagen de footer"/>*/}
                 <img
+                    onClick={vermail}
                     style={style.boton}
                     src="./assets/img/footer/ico-mail.svg"
                     alt="imagen de footer"/>

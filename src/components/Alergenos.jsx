@@ -14,7 +14,7 @@ const Alergenos = ({visible}) => {
         alergenos : {
             position: 'relative',
             whidth: `194px`,
-            height:  `70px`,
+            height:  `50px`,
             backgroundColor: 'rgba(156, 255, 242, 0.68)',
             padding: `5px 25px 5px 25px`,
             alignItems: 'center',

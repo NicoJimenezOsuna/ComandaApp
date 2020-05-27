@@ -45,7 +45,8 @@ const Qrmodal = ({codigoqr, verqr}) => {
             width: "calc(100%  - 75%)"
         },
         h1: {
-            padding: '10px 0 10px 20px'
+            padding: '10px 0 10px 20px',
+            fontSize: `1.3rem`
         }
     };
 

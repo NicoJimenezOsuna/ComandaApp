@@ -5,7 +5,7 @@ import {ReactComponent as IconClose} from "../icons/times-circle-regular.svg";
  */
 import {globalinfo} from "../data/data"
 
-const Mapamodal = ({verMapamodal, vermapa}) => {
+const Mailmodal = ({verMailmodal, vermail}) => {
     const aller = {
         princ: {
             width: "100%",
@@ -35,43 +35,41 @@ const Mapamodal = ({verMapamodal, vermapa}) => {
         },
         cont_data: {
             display: "flex",
-            justifyContent: "flex-start",
+            justifyContent: "space-around",
             alignItems: "center",
-            flexWrap: "wrap"
+            flexWrap: "wrap",
+            width: `100%`
         },
         cont_aller: {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             padding: "5px",
-            width: "calc(100%  - 75%)"
+            width: "calc(100%  - 75%)",
         },
-        h1: {
+        texto: {
             padding: '10px 0 10px 20px',
             fontSize: `1.3rem`,
             fontWeight: "bold"
         },
-        iframe: {
-            flexWrap: "wrap",
-            width: `100%`,
-            height: `70%`,
-            frameBorder: "0",
-            border: "0",
-            borderRadius: `20px`
-        },
         cabecera: {
             display: "flex",
-            justifyContent:"space-between"
+            justifyContent: "space-between"
         },
-        texto: {
-            width: `100%`,
-            fontSize: "1.2rem",
-            textAlign: "center",
-            flexWrap: "wrap"
+        botonsi: {
+            // width: 'auto',
+            // height: '50px',
+            backgroundColor: 'rgba(156, 255, 242, 0.68)',
+            padding: `5px 25px 5px 25px`,
+            alignItems: 'center',
+            filter: 'drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.161))',
+            borderRadius: `50px`,
+            border: '2px solid  rgb(112, 112, 112)',
+            marginTop: `15px`
         },
-        botonir: {
-            width: 'auto',
-            height:  '50px',
+        botonno: {
+            // width: 'auto',
+            // height: '50px',
             backgroundColor: 'rgba(156, 255, 242, 0.68)',
             padding: `5px 25px 5px 25px`,
             alignItems: 'center',
@@ -83,51 +81,36 @@ const Mapamodal = ({verMapamodal, vermapa}) => {
     };
 
     // const [vermapaState, getVermapa] = useState();
-    const [mostrarmapa, getMostrarmapa] = useState(false);
-    const iframe = globalinfo.localizacionmaps;
+    const [mostrarmail, getMostrarmail] = useState(false);
 
 // console.log(mostrarmapa)
 
     useEffect(() => {
         // getVermapa(globalinfo);
-        getMostrarmapa(verMapamodal);
-    }, [verMapamodal]);
+        getMostrarmail(verMailmodal);
+    }, [verMailmodal]);
     // console.log(globalinfo)
-    
 
     return (
         <div
-            className={mostrarmapa ? "displayed" : "displayed_none"}
+            className={mostrarmail ? "displayed" : "displayed_none"}
             style={aller.princ}
         >
             <div style={aller.second}>
                 <div style={aller.cabecera}>
                     <IconClose
                         className="close"
-                        onClick={vermapa}/>
-                    {/*<h1 style={aller.h1}>*/}
-                    {/*    Esta es la localización GPS de {globalinfo.name ? globalinfo.name : "este establecimiento"}.*/}
-                    {/*</h1>*/}
-                    <p style={aller.h1}>¿Quieres ir al local {globalinfo.name}?</p>
+                        onClick={vermail}/>
+                    <p style={aller.texto}>¿Quieres mandar un correo
+                        a {globalinfo.name ? globalinfo.name : "este establecimiento"}?</p>
                 </div>
-
-                {/*{iframe}*/}
                 <div style={aller.cont_data}>
-                    <iframe
-                        style={aller.iframe}
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d197294.47340645303!2d-0.5015954687885393!3d39.40770125212401!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd604f4cf0efb06f%3A0xb4a351011f7f1d39!2sValencia!5e0!3m2!1ses!2ses!4v1590518444632!5m2!1ses!2ses"
-                        // zoom="21"
-                        allowFullScreen=""
-                        aria-hidden="false" tabIndex="0"></iframe>
-                    <div style={aller.texto}>
-
-                        <a style={aller.botonir} href={globalinfo.localizacionmaps}>Llévame!</a>
-                    </div>
-
+                    <a style={aller.botonsi} href={`mailto:${globalinfo.mail}`}>Si!</a>
+                    <a style={aller.botonno}>No!</a>
                 </div>
             </div>
         </div>
     );
 };
 
-export default Mapamodal;
+export default Mailmodal;
