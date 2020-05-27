@@ -30,8 +30,10 @@ const Slidermodal = ({
         },
         cont_slider: {
             position: "relative",
-            width: "90%",
+            minWidth: "90%",
+            maxWidth: "90%",
             maxHeight: "90%",
+            minHeight: "90%",
             backgroundColor: "#fff",
             border: "2px solid #000",
             borderRadius: "20px",

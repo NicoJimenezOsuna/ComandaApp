@@ -3,6 +3,15 @@
 * CLASES PERSONALIZADAS
 *
 */
+.paddingLeftAllergensModal{
+    padding-left: 1.3em;
+}
+.paddingRighttAllergensModal{
+    padding-right: 1.3em;
+}
+.paddingAllergensModal{
+    padding: 0 1.3em;
+}
 .subRoot{
     background-image: url(./comandApp_logo.png);
     background-size: contain;
