@@ -20,14 +20,9 @@ const Subcategorias = () => {
     const [isVisible, getIsVisible] = useState(false);
     const [isVisibleSlider, getIsVisibleSlider] = useState(false);
     const [dataSlider, getDataSlider] = useState([]);
-<<<<<<< HEAD
     const [dataProductId, getDataProductId] = useState(0);
-=======
-    const [dataProductId, getDataProductId] = useState([]);
     const [verqr, getVerqr] = useState(false);
 
-
->>>>>>> 96e6a3729abc88343c19721754ee698704343964
     const visibleHandler = () => {
         !isVisible ? getIsVisible(true) : getIsVisible(false);
     };
