@@ -4,8 +4,8 @@ import * as serviceWorker from './serviceWorker';
 /*
 * IMPORT COMPONENTS ans VIEWS
  */
-import App from './App';
-import Launcher from'./views/Launcher'
+import App from './containers/App';
+import Launcher from './containers/Launcher'
 /*
 *
 *  IMPORT ROUTER
@@ -19,14 +19,14 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 * */
 import './index.css';
 import "./App.css"
-import Subcategoria from './components/Subcategoria';
+import Subcategoria from './containers/Subcategoria';
 /*
 *
 *  IMPORT VIEWS
 *
 * */
-// import Header from './views/Header'
-// import Footer from './views/Footer'
+// import Header from './containers/Header'
+// import Footer from './containers/Footer'
 
 ReactDOM.render(
   <BrowserRouter>

@@ -1,6 +1,6 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
-import NavUtils from '../views/NavUtils';
+import NavUtils from './NavUtils';
 import Allergensmodal from './Allergensmodal';
 import Qrmodal from './Qrmodal';
 

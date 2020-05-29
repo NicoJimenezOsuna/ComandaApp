@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
-import Mapamodal from '../components/Mapamodal';
-import Mailmodal from '../components/Mailmodal';
+import Mapamodal from './Mapamodal';
+import Mailmodal from './Mailmodal';
 
 import {globalinfo} from "../data/data";
 

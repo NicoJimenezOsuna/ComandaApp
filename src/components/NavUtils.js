@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
-import Alergenos from '../components/Alergenos';
-import Qr from '../components/Qr'
+import Alergenos from './Alergenos';
+import Qr from './Qr'
 
 import { qr } from "../data/data.js";
 
@@ -36,7 +36,7 @@ const NavUtils = ({visible, codigoqr}) => {
                 <Qr 
                     codigoqr={codigoqr}/>
                 <Alergenos
-                    visible={visible} 
+                    visible={visible}
                     />
             </div>
         </Fragment>

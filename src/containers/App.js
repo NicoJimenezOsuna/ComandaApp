@@ -1,9 +1,9 @@
 import React, {Fragment} from 'react';
-// import Launcher from './views/Launcher';
-import Header from './views/Header';
-import Footer from './views/Footer';
-import Categoria from './components/Categoria';
-import NavUtils from './views/NavUtils';
+// import Launcher from './containers/Launcher';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import Categoria from '../components/Categoria';
+import NavUtils from '../components/NavUtils';
 
 
 function App() {
