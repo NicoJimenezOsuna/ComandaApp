@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { ReactComponent as IconClose } from "../icons/times-circle-regular.svg";
+import React, {Fragment, useEffect, useState} from "react";
+import {ReactComponent as IconClose} from "../icons/times-circle-regular.svg";
 import Carousel from './Carousel'
 /*
 * Glide.js import
@@ -7,12 +7,13 @@ import Carousel from './Carousel'
 
 
 const Slidermodal = ({
-    isVisibleSlider,
-    data,
-    dataInicio,
-    buttonCloseSlidermodalHandler
-}) => {
-    
+                         isVisibleSlider,
+                         data,
+                         dataInicio,
+                         buttonCloseSlidermodalHandler,
+                         actualizaPropDataProductId
+                     }) => {
+
     const slider = {
         cont_princ: {
             width: "100%",
@@ -41,13 +42,13 @@ const Slidermodal = ({
     };
 
     const [dataToCar, getDataToCar] = useState([]);
-    const [dataInicioToCar, getDataInicioToCar] = useState([]);
-  
-    useEffect(()=>{
-          getDataToCar(data)
-          getDataInicioToCar(dataInicio)
+    const [dataInicioToCar, getDataInicioToCar] = useState(0);
+
+    useEffect(() => {
+        getDataToCar(data)
+        getDataInicioToCar(dataInicio)
     }, [data, dataInicio])
-   
+
     return (
         <div
             style={slider.cont_princ}
@@ -61,7 +62,8 @@ const Slidermodal = ({
                 <Carousel
                     datas={dataToCar}
                     dataInicios={dataInicioToCar}
-                    />
+                    actualizaPropDataProductId={actualizaPropDataProductId}
+                />
             </div>
         </div>
     );

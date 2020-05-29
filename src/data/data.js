@@ -75,20 +75,20 @@ export const allergens = [
 ];
 
 /*   CODIGO QR   */
-export const codigoqrimg = 
-  {
-    id: 1,
-    name: "Restaurante 1",
-    imageUrl: "./assets/img/qr_codigo.png"
-  };
+export const codigoqrimg =
+    {
+        id: 1,
+        name: "Restaurante 1",
+        imageUrl: "./assets/img/qr_codigo.png"
+    };
 
 /*  DATOS DEL LOCAL*/
 export const globalinfo = {
-  id: 1,
-  name: "Restaurante 1",
-  localizacionmaps: "https://goo.gl/maps/fNd5q1Rd3JQDq8ND8",
-  telefono: "969999999",
-  mail: "mail@mail.es"
+    id: 1,
+    name: "Restaurante 1",
+    localizacionmaps: "https://goo.gl/maps/fNd5q1Rd3JQDq8ND8",
+    telefono: "969999999",
+    mail: "mail@mail.es"
 }
 
 /* Fake data categorias */
@@ -138,7 +138,7 @@ export const fakeData2 = {
         respuesta: [
             {
                 orden: 1,
-                plato_id: 4,
+                plato_id: 0,
                 nombreplato: "Ensalada de la casa",
                 imagen: null,
                 precio: "3.5000",
@@ -146,12 +146,36 @@ export const fakeData2 = {
             },
             {
                 orden: 2,
-                plato_id: 6,
+                plato_id: 1,
                 nombreplato: "Gazpacho Andaluz",
                 imagen: null,
                 precio: "4.5000",
                 observaciones: "Pimiento rojo, pimiento verde, tomate, cebolla, tomate."
-            }
+            },
+            {
+                orden: 3,
+                plato_id: 2,
+                nombreplato: "Arroz con alubias",
+                imagen: null,
+                precio: "14.5000",
+                observaciones: "Pimiento rojo, pimiento verde, tomate, cebolla, tomate."
+            },
+            {
+                orden: 4,
+                plato_id: 3,
+                nombreplato: "Lechón con patatas",
+                imagen: null,
+                precio: "24.5000",
+                observaciones: "Pimiento rojo, pimiento verde, tomate, cebolla, tomate."
+            },
+            {
+                orden: 5,
+                plato_id: 4,
+                nombreplato: "Fideuá",
+                imagen: null,
+                precio: "12.0000",
+                observaciones: "Pimiento rojo, pimiento verde, tomate, cebolla, tomate."
+            },
         ]
     }
 }

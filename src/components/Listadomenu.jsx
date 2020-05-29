@@ -45,6 +45,8 @@ const Listadomenu = ({ dataid, dataSliderHandler }) => {
   let url = "restaurante.comandaapp.es/api/ws/1/";
   let token = "cLzDdvFTJcl5cWg";
   //    http://restaurante.comandaapp.es/api/ws/1/cLzDdvFTJcl5cWg/6
+  // imagenes
+  // http://restaurante.comandaapp.es/storage/rest1/ensaladas-300.png
 
   const [products, getProducts] = useState({});
 
@@ -102,7 +104,7 @@ const Listadomenu = ({ dataid, dataSliderHandler }) => {
                   <Buttoninfo
                     dataSliderHandler={dataSliderHandler}
                     dataListaFull={products}
-                    dataIdSelf={item.plato_id}
+                    dataIdSelf={products.indexOf(item)}
                   />
                 </div>
               </div>

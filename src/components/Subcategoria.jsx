@@ -16,8 +16,7 @@ const Subcategorias = () => {
     const [isVisible, getIsVisible] = useState(false);
     const [isVisibleSlider, getIsVisibleSlider] = useState(false);
     const [dataSlider, getDataSlider] = useState([]);
-    const [dataProductId, getDataProductId] = useState([]);
-
+    const [dataProductId, getDataProductId] = useState(0);
     const visibleHandler = () => {
         !isVisible ? getIsVisible(true) : getIsVisible(false);
     };
@@ -41,6 +40,13 @@ const Subcategorias = () => {
     titles.price = "P.V.P";
     titles.info = "Info.";
 
+
+    // Receive status from carousel and update props sent to carousel.
+    // Update status of dataProductId to the last id seen in Carousel
+    const actualizaPropDataProductId = (value) => {
+        getDataProductId(value)
+    }
+
     return (
         <Fragment>
             <div className="subRoot">
@@ -52,6 +58,7 @@ const Subcategorias = () => {
                     data={dataSlider}
                     dataInicio={dataProductId}
                     buttonCloseSlidermodalHandler={buttonCloseSlidermodalHandler}
+                    actualizaPropDataProductId={actualizaPropDataProductId}
                 />
                 <Header/>
                 <div className="padre">
