@@ -1,7 +1,8 @@
-import React from "react";
+import React, {Fragment} from "react";
 import {Glide} from 'react-glide';
 // import 'react-glide/lib/reactGlide.css'
 import {useState, useEffect} from "react";
+import Spinner from './Spinner';
 import '../data/data'
 import {allergens} from "../data/data";
 
@@ -14,7 +15,7 @@ const Carousel = ({datas, dataInicios}) => {
         product: {
             marginBottom: '.5em',
         },
-        pvp : {
+        pvp: {
             fontVariant: 'small-caps',
         },
         datos: {
@@ -90,50 +91,59 @@ const Carousel = ({datas, dataInicios}) => {
 
     return (
         <div style={slide.column}>
-            <div style={slide.product}>
-                <h2>Nombre de producto</h2>
-            </div>
-            <div style={slide.datos}>
-                <div style={slide.price}>
-                    <p style={slide.p}>
-                        <span style={slide.pvp}>pvp:</span> 30 €<sup style={slide.sup}> + iva</sup></p>
-                </div>
-                <ul style={slide.ul}>
-                    {allergens.map((item, index) => {
-                        if (item.id < 7) {
-                            return (
-                                <li
-                                    style={slide.li}
-                                    className={
-                                        index === 0 ?
-                                            'paddingRighttAllergensModal'
-                                            :
-                                            'paddingAllergensModal'
-                                    }
-                                >
-                                    <img style={{width: '3em'}} src={item.imageUrl} alt={item.name}/>
-                                    <p>{item.name}</p>
-                                </li>
-                            )
-                        }
-                    })}
-                </ul>
-                <img
-                    style={slide.img}
-                    src="./assets/img/categorias/carne_categoria.png"
-                    alt="imagen"/>
-                <div style={slide.descrip}>
-                    <h3 style={{fontWeight: 'bolder',textDecoration: 'underline',marginBottom: '.5em'}}>Nombre de producto</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, doloremque, ipsa. Aut cum
-                        dolor dolore laboriosam nam quasi tenetur?.
-                    </p>
-                </div>
-                <div style={slide.divSpanButton}>
-                    <span style={slide.spanButton}>{'<< ANTERIOR'}</span>
-                    <span style={slide.spanButton}>{'SIGUIENTE >>'}</span>
-                </div>
-            </div>
+            {dataSlider.length > 0 ?
+                <Fragment>
+                    {console.log(dataSlider)}
+                    <div style={slide.product}>
+                        <h2>Nombre de producto</h2>
+                    </div>
+                    <div style={slide.datos}>
+                        <div style={slide.price}>
+                            <p style={slide.p}>
+                                <span style={slide.pvp}>pvp:</span> 30 €<sup style={slide.sup}> + iva</sup></p>
+                        </div>
+                        <ul style={slide.ul}>
+                            {allergens.map((item, index) => {
+                                if (item.id < 7) {
+                                    return (
+                                        <li key={item.id}
+                                            style={slide.li}
+                                            className={
+                                                index === 0 ?
+                                                    'paddingRighttAllergensModal'
+                                                    :
+                                                    'paddingAllergensModal'
+                                            }
+                                        >
+                                            <img style={{width: '3em'}} src={item.imageUrl} alt={item.name}/>
+                                            <p>{item.name}</p>
+                                        </li>
+                                    )
+                                }
+                            })}
+                        </ul>
+                        <img
+                            style={slide.img}
+                            src="./assets/img/categorias/carne_categoria.png"
+                            alt="imagen"/>
+                        <div style={slide.descrip}>
+                            <h3 style={{fontWeight: 'bolder', textDecoration: 'underline', marginBottom: '.5em'}}>Nombre
+                                de producto</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, doloremque, ipsa.
+                                Aut cum
+                                dolor dolore laboriosam nam quasi tenetur?.
+                            </p>
+                        </div>
+                        <div style={slide.divSpanButton}>
+                            <span style={slide.spanButton}>{'<< ANTERIOR'}</span>
+                            <span style={slide.spanButton}>{'SIGUIENTE >>'}</span>
+                        </div>
+                    </div>
+                </Fragment>
+                :
+                <Spinner />
+            }
         </div>
     );
 };
