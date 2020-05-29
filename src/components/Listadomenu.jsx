@@ -58,6 +58,9 @@ const Listadomenu = ({ dataid, dataSliderHandler }) => {
       }
     };
 
+    console.log(`${window.location.protocol}//${window.location.host}/storage/rest1/ensaladas-300.png`);
+
+
     const catIdtRequest = async (protocol, url, token, dataid) => {
       try {
         // Make a request

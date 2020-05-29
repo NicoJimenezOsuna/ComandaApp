@@ -64,9 +64,9 @@ const Subcategorias = () => {
                     verqr={verqr}
                     codigoqr={codigoqr}
                 />
-                {/*<Allergensmodal*/}
-                {/*    dataVisible={isVisible}*/}
-                {/*    visible={visibleHandler}/>*/}
+                <Allergensmodal
+                    dataVisible={isVisible}
+                    visible={visibleHandler}/>
                 <Slidermodal
                     isVisibleSlider={isVisibleSlider}
                     data={dataSlider}
@@ -83,14 +83,10 @@ const Subcategorias = () => {
                 <div className="padre">
                     <Migas data={subcategorias.nombre} visible={visibleHandler}/>
                     <Labelsubcategory data={titles}/>
-                    {
-                        <Fragment>
-                            <Listadomenu
-                                dataid={subcategorias.id}
-                                dataSliderHandler={dataSliderHandler}
-                            />
-                        </Fragment>
-                    }
+                        <Listadomenu
+                            dataid={subcategorias.id}
+                            dataSliderHandler={dataSliderHandler}
+                        />
                 </div>
             </div>
             <Footer/>
