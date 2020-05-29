@@ -12,7 +12,7 @@ const Mailmodal = ({verMailmodal, vermail}) => {
             height: "100%",
             //            maxWidth: '720px',
             //            height: '100%',
-            position: "fixed",
+            position: "absolute",
             top: 0,
             left: 0,
             backgroundColor: "rgba(0,0,0,.3)",
@@ -48,35 +48,42 @@ const Mailmodal = ({verMailmodal, vermail}) => {
             width: "calc(100%  - 75%)",
         },
         texto: {
-            padding: '10px 0 10px 20px',
+            padding: '0 0 10px 20px',
             fontSize: `1.3rem`,
             fontWeight: "bold"
         },
         cabecera: {
             display: "flex",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
+            alignItems: 'flex-start'
         },
         botonsi: {
             // width: 'auto',
             // height: '50px',
-            backgroundColor: 'rgba(156, 255, 242, 0.68)',
+            backgroundColor: `rgb(0,255,0,0.5)`,
             padding: `5px 25px 5px 25px`,
             alignItems: 'center',
             filter: 'drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.161))',
             borderRadius: `50px`,
             border: '2px solid  rgb(112, 112, 112)',
-            marginTop: `15px`
+            marginTop: `15px`,
+            textDecoration: 'none'
         },
         botonno: {
             // width: 'auto',
             // height: '50px',
-            backgroundColor: 'rgba(156, 255, 242, 0.68)',
+            backgroundColor: `rgb(255,0,0,0.5)`,
             padding: `5px 25px 5px 25px`,
             alignItems: 'center',
             filter: 'drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.161))',
             borderRadius: `50px`,
             border: '2px solid  rgb(112, 112, 112)',
-            marginTop: `15px`
+            marginTop: `15px`,
+            textDecoration: 'none',
+            color: 'black'
+        },
+        botonnoHover: {
+            color: 'black'
         }
     };
 

@@ -12,7 +12,7 @@ const Qrmodal = ({codigoqr, verqr}) => {
             height: "100%",
             //            maxWidth: '720px',
             //            height: '100%',
-            position: "fixed",
+            position: "absolute",
             top: 0,
             left: 0,
             backgroundColor: "rgba(0,0,0,.3)",
@@ -29,13 +29,15 @@ const Qrmodal = ({codigoqr, verqr}) => {
             border: "2px solid #000",
             borderRadius: "20px",
             padding: "10px",
-            overflow: "scroll"
+            overflow: "scroll",
+            display: "flex",
+            flexWrap: "wrap"
         },
         cont_data: {
             display: "flex",
-            justifyContent: "flex-start",
-            alignItems: "center",
-            flexWrap: "wrap"
+            justifyContent: "center",
+            flexWrap: "wrap",
+            width: `100%`
         },
         cont_qr: {
             display: "flex",
@@ -47,7 +49,15 @@ const Qrmodal = ({codigoqr, verqr}) => {
         h1: {
             padding: '10px 0 10px 20px',
             fontSize: `1.3rem`
-        }
+        },
+        qr:{
+            width:`300px`
+        },
+        cabecera: {
+            display: "flex",
+            justifyContent:"space-between",
+            alignItems: 'flex-start'
+        },
     };
 
     const [codigoqrState, getCodigoqr] = useState({});
@@ -67,15 +77,19 @@ const Qrmodal = ({codigoqr, verqr}) => {
             style={style.princ}
         >
             <div style={style.second}>
+                <div style={style.cabecera}>
                 <IconClose
                     className="close"
                     onClick={codigoqr}/>
                 <h1 style={style.h1}>
                     Este es el código Qr <br/>
-                    del establecimientos que utiliza este establecimiento.
+                    que utiliza este establecimiento. ¡Compártelo!
                 </h1>
+                </div>
                 <div style={style.cont_data}>
-                    <img src={codigoqrState.imageUrl} alt="Qr restaurante"/>
+                    <img
+                        style={style.qr}
+                        src={codigoqrState.imageUrl} alt="Qr restaurante"/>
                 </div>
             </div>
         </div>

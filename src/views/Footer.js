@@ -73,12 +73,9 @@ const Footer = () => {
                 vermail={vermail}
                 verMailmodal={verMailmodal}
             />
-            {/*<ModalMail*/}
-            {/*    verMail={verMail}*/}
-            {/*/>*/}
-
             <div style={style.contenedor}>
                 <img
+                 
                     style={style.boton}
                     src="./assets/img/footer/ico-back.svg"
                     alt="imagen de footer"

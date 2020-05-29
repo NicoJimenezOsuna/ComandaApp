@@ -7,16 +7,27 @@ import Footer from "../views/Footer";
 import Migas from "./Migas";
 import Labelsubcategory from "./Labelsubcategory";
 import Listadomenu from "./Listadomenu";
+import Alergenos from "./Alergenos";
 import Allergensmodal from "./Allergensmodal";
 import Slidermodal from "./Slidermodal";
+import NavUtils from "../views/NavUtils";
 import Qrmodal from "./Qrmodal";
+import Qr from '../components/Qr'
+
 
 const Subcategorias = () => {
     const [subcategorias, getSubcategorias] = useState({});
     const [isVisible, getIsVisible] = useState(false);
     const [isVisibleSlider, getIsVisibleSlider] = useState(false);
     const [dataSlider, getDataSlider] = useState([]);
+<<<<<<< HEAD
     const [dataProductId, getDataProductId] = useState(0);
+=======
+    const [dataProductId, getDataProductId] = useState([]);
+    const [verqr, getVerqr] = useState(false);
+
+
+>>>>>>> 96e6a3729abc88343c19721754ee698704343964
     const visibleHandler = () => {
         !isVisible ? getIsVisible(true) : getIsVisible(false);
     };
@@ -28,7 +39,11 @@ const Subcategorias = () => {
     };
     const buttonCloseSlidermodalHandler = () => {
         !isVisibleSlider ? getIsVisibleSlider(true) : getIsVisibleSlider(false);
-    }
+    };
+
+    const codigoqr = () => {
+        !verqr ? getVerqr(true) : getVerqr(false);
+    };//sirve para actualizar el estado
 
     useEffect(() => {
         getSubcategorias(JSON.parse(localStorage.getItem("categorySelected")));
@@ -50,9 +65,13 @@ const Subcategorias = () => {
     return (
         <Fragment>
             <div className="subRoot">
-                <Allergensmodal
-                    dataVisible={isVisible}
-                    visible={visibleHandler}/>
+                <Qrmodal
+                    verqr={verqr}
+                    codigoqr={codigoqr}
+                />
+                {/*<Allergensmodal*/}
+                {/*    dataVisible={isVisible}*/}
+                {/*    visible={visibleHandler}/>*/}
                 <Slidermodal
                     isVisibleSlider={isVisibleSlider}
                     data={dataSlider}
@@ -61,6 +80,11 @@ const Subcategorias = () => {
                     actualizaPropDataProductId={actualizaPropDataProductId}
                 />
                 <Header/>
+                <NavUtils
+                    codigoqr={codigoqr}
+                    dataVisible={isVisible}
+                    visible={visibleHandler}
+                />
                 <div className="padre">
                     <Migas data={subcategorias.nombre} visible={visibleHandler}/>
                     <Labelsubcategory data={titles}/>

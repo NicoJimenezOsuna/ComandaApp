@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import { ReactComponent as YourSvg } from '../icons/codigo-qr.svg';
+import { ReactComponent as YourSvg } from '../icons/qr-socialpymes.svg';
 
 const Qr = ({codigoqr}) => {
 

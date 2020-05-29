@@ -12,7 +12,7 @@ const Mapamodal = ({verMapamodal, vermapa}) => {
             height: "100%",
             //            maxWidth: '720px',
             //            height: '100%',
-            position: "fixed",
+            position: "absolute",
             top: 0,
             left: 0,
             backgroundColor: "rgba(0,0,0,.3)",
@@ -47,7 +47,7 @@ const Mapamodal = ({verMapamodal, vermapa}) => {
             width: "calc(100%  - 75%)"
         },
         h1: {
-            padding: '10px 0 10px 20px',
+            padding: '0 0 10px 20px',
             fontSize: `1.3rem`,
             fontWeight: "bold"
         },
@@ -61,7 +61,8 @@ const Mapamodal = ({verMapamodal, vermapa}) => {
         },
         cabecera: {
             display: "flex",
-            justifyContent:"space-between"
+            justifyContent:"space-between",
+            alignItems: 'flex-start'
         },
         texto: {
             width: `100%`,
