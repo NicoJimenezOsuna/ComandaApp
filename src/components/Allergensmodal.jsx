@@ -45,8 +45,14 @@ const Allergensmodal = ({ dataVisible, visible }) => {
             flex: 1
         },
         h1 : {
-            padding: '10px 0 10px 20px'
-        }
+            padding: '10px 0 10px 20px',
+            fontSize: `1.4rem`,
+        },
+        cabecera: {
+            display: "flex",
+            justifyContent:"space-between",
+            alignItems: 'flex-start'
+        },
     };
 
     const [allergensState, getAllergens] = useState([]);
@@ -61,6 +67,7 @@ const Allergensmodal = ({ dataVisible, visible }) => {
             style={aller.princ}
         >
             <div style={aller.second}>
+                <div style={aller.cabecera}>
                 <IconClose
                     className="close"
                     onClick={visible} />
@@ -68,6 +75,7 @@ const Allergensmodal = ({ dataVisible, visible }) => {
                     Estos son los alergenos <br />
                     que utiliza este establecimiento.
                 </h1>
+                </div>
                 <div style={aller.cont_data}>
                     {allergensState.map(item => {
                         return (
