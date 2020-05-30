@@ -24,6 +24,8 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    /*descomentar para pruebas de contenido máximo*/
+    /*background: yellow;*/
 }
 
 .close {
@@ -936,7 +938,6 @@ a:hover {
 }
 
 body {
-    /*background: yellow;*/
     position: relative;
 }
 
@@ -957,7 +958,7 @@ html {
 
     #root {
         width: 100%;
-        height: 100%
+        height: 100%;
     }
 }
 

@@ -2,16 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 /*
-* IMPORT COMPONENTS ans VIEWS
+* IMPORT COMPONENTS ans containers
  */
 import App from './containers/App';
-import Launcher from './containers/Launcher'
+import Launcher from './containers/Launcher';
+import Error404 from './containers/Error404';
 /*
 *
 *  IMPORT ROUTER
 *
 * */
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
 /*
 *
 *  IMPORT STYLES
@@ -29,16 +30,18 @@ import Subcategoria from './containers/Subcategoria';
 // import Footer from './containers/Footer'
 
 ReactDOM.render(
-  <BrowserRouter>
-  {/*<Header/>*/}
-    <Switch>
-      <Route path="/" exact component={Launcher}/>
-      <Route path="/categoria" component={App}/>
-      <Route path="/subcategoria" component={Subcategoria}/>
-    </Switch>
-    {/* <Footer /> */}
-  </BrowserRouter>,
-  document.getElementById('root')
+    <BrowserRouter>
+        {/*<Header/>*/}
+        <Switch>
+            <Route path="/" exact component={Launcher}/>
+            <Route path="/categoria" component={App}/>
+            <Route path="/subcategoria" component={Subcategoria}/>
+            <Route path="/404" component={Error404}/>
+            <Redirect to="/404"/>
+        </Switch>
+        {/* <Footer /> */}
+    </BrowserRouter>,
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
