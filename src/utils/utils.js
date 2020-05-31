@@ -9,11 +9,26 @@ export const dosDecim = (number, maxToFix) => {
     let toFix = parseInt(number);
     return toFix.toFixed(2);
 };
+/*
+ *
+ * Dinamic URL for elements
+ *
+ */
+export const urlComplete = (response) => {
+    // let urlActual = `${window.location.protocol}//${urlActual}/storage/`;
+    let urlActual = "http://restaurante.comandaapp.es/storage/"
 
-export const urlComplete = () => {
-        // let urlActual = window.location.host;
-    let urlActual = "restaurante.comandaapp.es"
-    console.log(`${window.location.protocol}//${urlActual}/storage/rest1/ensaladas-300.png`);
-    return `${window.location.protocol}//${urlActual}/storage/rest1/ensaladas-300.png`;
-
+    const ObjectWithNewUrlImage = response.map(item => {
+        let nuevo = urlActual + item.imagen
+        return item = {...item, imagen: nuevo}
+    })
+    return (ObjectWithNewUrlImage)
 };
+/*
+ *
+ * order data
+ *
+ */
+export const Ordena = (element) => {
+    element.sort((a, b) => a - b)
+}
