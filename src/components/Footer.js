@@ -1,11 +1,11 @@
 import React, { useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
-import Mapamodal from './Mapamodal';
-import Mailmodal from './Mailmodal';
+// import Mapamodal from './Mapamodal';
+// import Mailmodal from './Mailmodal';
 
 import {globalinfo} from "../data/data";
 
-const Footer = () => {
+const Footer = ({vermapa,vermail}) => {
 
     const style = {
         contenedor: {
@@ -48,31 +48,31 @@ const Footer = () => {
 
     }
 
-    const [verMapamodal, getMapamodal] = useState(false);
-    const [verMailmodal, getMailmodal] = useState(false);
-
-    let vermapa = () => {
-        !verMapamodal ? getMapamodal(true) : getMapamodal(false);
-    }//sirve para actualizar el estado
-     const vermail = () => {
-         !verMailmodal ? getMailmodal(true) : getMailmodal(false);
-     }//sirve para actualizar el estado
-
-    useEffect(() => {
-        getMapamodal(verMapamodal);
-        getMailmodal(verMailmodal);
-    }, []);
+    // const [verMapamodal, getMapamodal] = useState(false);
+    // const [verMailmodal, getMailmodal] = useState(false);
+    //
+    // let vermapa = () => {
+    //     !verMapamodal ? getMapamodal(true) : getMapamodal(false);
+    // }//sirve para actualizar el estado
+    //  const vermail = () => {
+    //      !verMailmodal ? getMailmodal(true) : getMailmodal(false);
+    //  }//sirve para actualizar el estado
+    //
+    // useEffect(() => {
+    //     getMapamodal(verMapamodal);
+    //     getMailmodal(verMailmodal);
+    // }, []);
 
     return (
         <div className="cont_footer_absolut">
-            <Mapamodal
-                vermapa={vermapa}
-                verMapamodal={verMapamodal}
-            />
-            <Mailmodal
-                vermail={vermail}
-                verMailmodal={verMailmodal}
-            />
+            {/*<Mapamodal*/}
+            {/*    vermapa={vermapa}*/}
+            {/*    verMapamodal={verMapamodal}*/}
+            {/*/>*/}
+            {/*<Mailmodal*/}
+            {/*    vermail={vermail}*/}
+            {/*    verMailmodal={verMailmodal}*/}
+            {/*/>*/}
             <div style={style.contenedor}>
                 <img
                  
