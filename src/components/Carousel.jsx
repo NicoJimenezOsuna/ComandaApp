@@ -110,8 +110,9 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId}) => {
         let position = 0;
         dataSlider.find(item => {
             if (item.plato_id === dataInicio) {
-                return position = dataSlider.indexOf(item)
+                position = dataSlider.indexOf(item)
             }
+            return position
         });
         console.log('pos', position)
         console.log('id', dataInicio)

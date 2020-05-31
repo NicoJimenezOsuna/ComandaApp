@@ -12,7 +12,9 @@ import Allergensmodal from "../components/Allergensmodal";
 import Slidermodal from "../components/Slidermodal";
 import NavUtils from "../components/NavUtils";
 import Qrmodal from "../components/Qrmodal";
-import Qr from '../components/Qr'
+import Qr from '../components/Qr';
+import Mapamodal from "../components/Mapamodal";
+import Mailmodal from "../components/Mailmodal";
 
 
 const Subcategorias = () => {
@@ -22,6 +24,17 @@ const Subcategorias = () => {
     const [dataSlider, getDataSlider] = useState([]);
     const [dataProductId, getDataProductId] = useState(0);
     const [verqr, getVerqr] = useState(false);
+    //Constantes de modales
+    const [verMapamodal, getMapamodal] = useState(false);
+    const [verMailmodal, getMailmodal] = useState(false);
+
+    //Variables para actualizar el estado de modales
+    let vermapa = () => {
+        !verMapamodal ? getMapamodal(true) : getMapamodal(false);
+    }//sirve para actualizar el estado
+    const vermail = () => {
+        !verMailmodal ? getMailmodal(true) : getMailmodal(false);
+    }//sirve para actualizar el estado
 
     const visibleHandler = () => {
         !isVisible ? getIsVisible(true) : getIsVisible(false);
@@ -42,6 +55,8 @@ const Subcategorias = () => {
 
     useEffect(() => {
         getSubcategorias(JSON.parse(localStorage.getItem("categorySelected")));
+        getMapamodal(verMapamodal);
+        getMailmodal(verMailmodal);
     }, []);
 
     //define y pasa por props los títulos
@@ -75,6 +90,14 @@ const Subcategorias = () => {
                     buttonCloseSlidermodalHandler={buttonCloseSlidermodalHandler}
                     actualizaPropDataProductId={actualizaPropDataProductId}
                 />
+                <Mapamodal
+                    vermapa={vermapa}
+                    verMapamodal={verMapamodal}
+                />
+                <Mailmodal
+                    vermail={vermail}
+                    verMailmodal={verMailmodal}
+                />
                 <Header/>
                 <NavUtils
                     codigoqr={codigoqr}
@@ -90,7 +113,10 @@ const Subcategorias = () => {
                     />
                 </div>
             </div>
-            <Footer/>
+            <Footer
+                vermail={vermail}
+                vermapa={vermapa}
+            />
         </Fragment>
     );
 };

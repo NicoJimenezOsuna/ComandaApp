@@ -24,6 +24,7 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
     /*descomentar para pruebas de contenido máximo*/
     /*background: yellow;*/
 }
