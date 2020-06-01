@@ -15,7 +15,7 @@ export const dosDecim = (number, maxToFix) => {
  *
  */
 export const urlComplete = (response) => {
-    // let urlActual = `${window.location.protocol}//${urlActual}/storage/`;
+    // let urlActual = `${window.location.protocol}//${window.location.host}/storage/`;
     let urlActual = "http://restaurante.comandaapp.es/storage/"
 
     const ObjectWithNewUrlImage = response.map(item => {
