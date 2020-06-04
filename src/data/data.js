@@ -93,39 +93,28 @@ export const globalinfo = {
 
 /* Fake data categorias */
 export const fakeData1 = {
+
     data: {
         codigo: 0,
         mensaje: "OK",
+        nombre_restaurante: "DEMO RESTAURANTE",
+        localizacion: "<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12326.307977168894!2d-0.48730538022460934!3d39.4336889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1590937333201!5m2!1ses!2ses\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0;\" allowfullscreen=\"\" aria-hidden=\"false\" tabindex=\"0\"></iframe>",
+        telefono: "656324206",
+        email: "fjtarrega@gmail.com",
+        logo: "rest0/menu03p.png",
+        codigoqr: "rest0/frame.png",
         respuesta: [
             {
-                orden: 1,
-                categoria_id: 6,
-                categoria: "Tapas",
-                imagen: null
+                id: 1,
+                nombrecarta: "Carta 1"
             },
             {
-                orden: 2,
-                categoria_id: 1,
-                categoria: "Entrantes",
-                imagen: null
+                id: 2,
+                nombrecarta: "Menú Infantil"
             },
             {
-                orden: 3,
-                categoria_id: 5,
-                categoria: "Ensaladas",
-                imagen: null
-            },
-            {
-                orden: 4,
-                categoria_id: 2,
-                categoria: "Entremeses",
-                imagen: null
-            },
-            {
-                orden: 5,
-                categoria_id: 3,
-                categoria: "Primeros Platos",
-                imagen: null
+                id: 3,
+                nombrecarta: "Menú Diario"
             }
         ]
     }

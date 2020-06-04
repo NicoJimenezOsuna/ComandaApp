@@ -3,6 +3,10 @@ import {useHistory} from "react-router-dom";
 import NavUtils from './NavUtils';
 import Allergensmodal from './Allergensmodal';
 import Qrmodal from './Qrmodal';
+import axios from "axios";
+import {CONNECT_TOKEN} from '../data/restaurante';
+import {protocol, urlImage} from '../utils/utils';
+import {fakeData1} from '../data/data';
 
 const Categorias = () => {
 
@@ -48,16 +52,32 @@ const Categorias = () => {
 
         },
         nom_cat: {
-            transform: 'rotate(-45deg)',
+            transform: 'rotate(-35deg)',
             position: 'absolute',
             whiteSpace: 'nowrap',
             textAlign: 'center',
             fontFamily: 'Papyrus',
             fontStyle: 'normal',
-            fontSize: '1.5em',
+            fontSize: '1em',
             fontWeight: 900,
             color: 'rgba(0,0,0,.61)',
             zIndex: '9'
+        },
+        select: {
+            width: '100%',
+            backgroundColor: '#f5f5f5',
+            display: 'flex',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            padding: '.5em 0',
+            fontSize: '1em',
+            borderBottom: '2px solid black'
+        },
+        span : {
+            fontFamily: 'Papyrus',
+            padding: '.2em 1em',
+            borderRadius: '20px',
         }
     }
 
@@ -65,17 +85,75 @@ const Categorias = () => {
     const [categorias, getCategorias] = useState([]);
     const [verqr, getVerqr] = useState(false);//sirve para darle un estado inicial
     const [isVisible, getIsVisible] = useState(false);
+    const [selected, getselected] = useState('menus');
+    const [carta, getCarta] = useState([])
+    let cartaOk = [];
+    if(Object.keys(categorias).length > 0){
+         cartaOk = categorias.respuesta.filter(item=>{return /carta/gi.test(item.nombrecarta)})
+    }
 
     useEffect(() => {
-        getCategorias(JSON.parse(localStorage.getItem('comandaApp')).data.respuesta);
+        getCategorias(JSON.parse(localStorage.getItem('comandaApp')).data);
+
     }, []);
+
+    useEffect(()=>{
+            // http://restaurante.comandaapp.es/api/ws/1/cLZDdvFTJcl5cWG/1
+            let url = "//restaurante.comandaapp.es/api/ws/1/";
+            const userHeader = {
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                    "Content-Type": "application/json"
+                }
+            };
+
+            const firstRequest = async (protocol, url, token) => {
+                try {
+                    // Make a request
+                    const response = await axios.get(`${protocol}${url}${token}/1`, userHeader);
+                    const toString = JSON.stringify(response.data);
+                    const toObject = JSON.parse(toString);
+                    //to Localstorage
+                    localStorage.setItem(
+                        "comandaAppCarta",
+                        JSON.stringify(response.data)
+                    );
+                    //to State
+                    // if (!toObject.data.respuesta > 0) {
+                    //     localStorage.setItem(
+                    //         "comandaAppCarta",
+                    //         JSON.stringify(fakeData1)
+                    //     );
+                    //     getCarta(fakeData1.data.respuesta)
+                    // } else {
+                        await getCarta(toObject.data.respuesta);
+                    // }
+
+                } catch (error) {
+                    // localStorage.setItem(
+                    //     "comandaAppCarta",
+                    //     JSON.stringify(fakeData1)
+                    // );
+                    // getCarta(fakeData1.data.respuesta)
+                    console.log("error", error);
+                }
+            };
+            //call to API
+            firstRequest(protocol, url, CONNECT_TOKEN)
+            console.log('request')
+        getCarta(JSON.parse(localStorage.getItem('comandaAppCarta')));
+    },[])
+
+    const selectedView = (e) => {
+        getselected(e.target.id)
+    }
 
     const visibleHandler = () => {
         !isVisible ? getIsVisible(true) : getIsVisible(false);
     };
 
-    const sendCategory = (item1, item2) => {
-        localStorage.setItem('categorySelected', JSON.stringify({id: item1, nombre: item2}));
+    const sendCategory = (item1, item2 , wordKey) => {
+        localStorage.setItem('categorySelected', JSON.stringify({id: item1, nombre: item2, wordKey: wordKey}));
         history.push("/subcategoria");
     };
 
@@ -100,32 +178,102 @@ const Categorias = () => {
             />
 
             <div className="padre">
-                {categorias ? (
-                        categorias.map(item => {
-                            return (
-                                <div
-                                    className="cont_childs"
-                                    onClick={() => sendCategory(item.categoria_id, item.categoria)}
-                                    id={item.categoria}
-                                    style={cat.cat_cont}
-                                    key={item.categoria + item.id}
-                                >
-                                    <div className="absolut"></div>
-                                    <img style={cat.plato_img} src={item.imagen}
-                                         alt={`Imagen de categoría ${item.categoria}`}/>
-                                    {/*<div style={cat.platos}>*/}
-                                    <p style={cat.nom_cat}>
-                                        {item.categoria}
-                                    </p>
-                                    {/*</div>*/}
-                                </div>
-                            )
+                <div style={cat.select}>
+                    <span
+                        className={selected === 'menus' ? 'opaco' : "color_span_select"}
+                        style={cat.span}
+                        id="carta"
+                        onClick={selectedView}
+                    >
+                        CARTA
+                    </span>
+                    <span
+                        className={selected === 'carta' ? 'opaco' : "color_span_select"}
+                        style={cat.span}
+                        id="menus"
+                        onClick={selectedView}
+                    >
+                        MENUS
+                    </span>
+                </div>
+                {selected === 'carta' && categorias.mensaje === 'OK' ? (
+                        carta.map(item => {
+                            // if(/carta/gi.test(item.nombrecarta)) {
+                                return (
+                                    <div
+                                        className="cont_childs"
+                                        onClick={() => sendCategory(item.categoria_id, item.categoria, 'carta')}
+                                        id={item.categoria}
+                                        style={cat.cat_cont}
+                                        key={item.categoria + item.categoria_id}
+                                    >
+                                        <div className="absolut"></div>
+                                        {item.imagen === undefined ?
+                                            <Fragment>
+                                                <img style={cat.plato_img}
+                                                     src="assets/img/menu.jpg"
+                                                     alt={`Imagen de categoría ${item.categoria}`}/>
+                                                <p style={cat.nom_cat}>
+                                                    {item.categoria}
+                                                </p>
+                                            </Fragment>
+                                            :
+                                            <Fragment>
+                                                <img style={cat.plato_img}
+                                                     src={urlImage() + item.imagen}
+                                                     alt={`Imagen de categoría ${item.categoria}`}/>
+                                                <p style={cat.nom_cat}>
+                                                    {item.categoria}
+                                                </p>
+                                            </Fragment>
+                                        }
+                                    </div>
+                                )
+                            // }
                         })
 
                     ) :
-                    <div>
-                        <img src="./assets/img/logo192.png" alt="algo"/>
-                    </div>
+                    null
+                }
+                {/*ESTO LO CAMBIAREMOS MÁS ADELANTE PARA OPTIMIZAR. sE CONVERTIRÁ EN COMPONENTECADA OPCIÓN*/}
+                {selected === 'menus' && categorias.mensaje === 'OK' ? (
+                        categorias.respuesta.map(item => {
+                            if(/menú/gi.test(item.nombrecarta)) {
+                                return (
+                                    <div
+                                        className="cont_childs"
+                                        onClick={() => sendCategory(item.id, item.nombrecarta, 'menu')}
+                                        id={item.id}
+                                        style={cat.cat_cont}
+                                        key={item.categoria + item.id}
+                                    >
+                                        <div className="absolut"></div>
+                                        {item.imagen === undefined ?
+                                            <Fragment>
+                                                <img style={cat.plato_img}
+                                                     src="assets/img/menu.jpg"
+                                                     alt={`Imagen de categoría ${item.nombrecarta}`}/>
+                                                <p style={cat.nom_cat}>
+                                                    {item.nombrecarta}
+                                                </p>
+                                            </Fragment>
+                                            :
+                                            <Fragment>
+                                                <img style={cat.plato_img}
+                                                     src={item.imagen}
+                                                     alt={`Imagen de categoría ${item.nombrecarta}`}/>
+                                                <p style={cat.nom_cat}>
+                                                    {item.nombrecarta}
+                                                </p>
+                                            </Fragment>
+                                        }
+                                    </div>
+                                )
+                            }
+                        })
+
+                    ) :
+                    null
                 }
             </div>
         </Fragment>

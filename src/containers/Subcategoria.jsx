@@ -5,7 +5,8 @@ import React, {Fragment, useEffect, useState} from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Migas from "../components/Migas";
-import Labelsubcategory from "../components/Labelsubcategory";
+import Labelscarta from "../components/Labelscarta";
+import Listadocarta from "../components/Listadocarta";
 import Listadomenu from "../components/Listadomenu";
 import Alergenos from "../components/Alergenos";
 import Allergensmodal from "../components/Allergensmodal";
@@ -24,6 +25,7 @@ const Subcategorias = () => {
     const [dataSlider, getDataSlider] = useState([]);
     const [dataProductId, getDataProductId] = useState(0);
     const [verqr, getVerqr] = useState(false);
+    const [datosrestaurante, getDatosRestaurante] = useState({})
     //Constantes de modales
     const [verMapamodal, getMapamodal] = useState(false);
     const [verMailmodal, getMailmodal] = useState(false);
@@ -57,7 +59,14 @@ const Subcategorias = () => {
         getSubcategorias(JSON.parse(localStorage.getItem("categorySelected")));
         getMapamodal(verMapamodal);
         getMailmodal(verMailmodal);
-    }, []);
+
+        let datosderetaurante = JSON.parse(localStorage.getItem('comandaApp')).data;
+        if (datosderetaurante) {
+            getDatosRestaurante(datosderetaurante)
+        } else {
+            //hacer algo si localstorage está vacío
+        }
+    }, [verMapamodal, verMailmodal]);
 
     //define y pasa por props los títulos
     const titles = {};
@@ -93,10 +102,12 @@ const Subcategorias = () => {
                 <Mapamodal
                     vermapa={vermapa}
                     verMapamodal={verMapamodal}
+                    datosrestaurante={datosrestaurante}
                 />
                 <Mailmodal
                     vermail={vermail}
                     verMailmodal={verMailmodal}
+                    datosrestaurante={datosrestaurante}
                 />
                 <Header/>
                 <NavUtils
@@ -106,16 +117,26 @@ const Subcategorias = () => {
                 />
                 <div className="padre">
                     <Migas data={subcategorias.nombre} visible={visibleHandler}/>
-                    <Labelsubcategory data={titles}/>
-                    <Listadomenu
-                        dataid={subcategorias.id}
-                        dataSliderHandler={dataSliderHandler}
-                    />
+                    {subcategorias.wordKey === 'carta' ?
+                        <Fragment>
+                            <Labelscarta data={titles}/>
+                            <Listadocarta
+                                dataid={subcategorias.id}
+                                dataSliderHandler={dataSliderHandler}
+                            />
+                        </Fragment>
+                        :
+                        <Listadomenu
+                            dataid={subcategorias.id}
+                            dataSliderHandler={dataSliderHandler}
+                        />
+                    }
                 </div>
             </div>
             <Footer
                 vermail={vermail}
                 vermapa={vermapa}
+                datosrestaurante={datosrestaurante}
             />
         </Fragment>
     );

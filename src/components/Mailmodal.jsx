@@ -1,17 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {ReactComponent as IconClose} from "../icons/times-circle-regular.svg";
-/*
- * IMPORT DATA FROM SRC/DATA/DATA.JSON
- */
-import {globalinfo} from "../data/data"
 
-const Mailmodal = ({verMailmodal, vermail}) => {
+
+const Mailmodal = ({verMailmodal, vermail, datosrestaurante}) => {
     const aller = {
         princ: {
             width: "100%",
             height: "100%",
-            //            maxWidth: '720px',
-            //            height: '100%',
             position: "absolute",
             top: 0,
             left: 0,
@@ -58,9 +53,7 @@ const Mailmodal = ({verMailmodal, vermail}) => {
             alignItems: 'flex-start'
         },
         botonsi: {
-            // width: 'auto',
-            // height: '50px',
-            backgroundColor: `rgb(0,255,0,0.5)`,
+            backgroundColor: `rgb(0, 255, 0, 0.5)`,
             padding: `5px 25px 5px 25px`,
             alignItems: 'center',
             filter: 'drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.161))',
@@ -70,9 +63,7 @@ const Mailmodal = ({verMailmodal, vermail}) => {
             textDecoration: 'none'
         },
         botonno: {
-            // width: 'auto',
-            // height: '50px',
-            backgroundColor: `rgb(255,0,0,0.5)`,
+            backgroundColor: `rgb(255, 0, 0, 0.5)`,
             padding: `5px 25px 5px 25px`,
             alignItems: 'center',
             filter: 'drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.161))',
@@ -87,16 +78,13 @@ const Mailmodal = ({verMailmodal, vermail}) => {
         }
     };
 
-    // const [vermapaState, getVermapa] = useState();
     const [mostrarmail, getMostrarmail] = useState(false);
-
-// console.log(mostrarmapa)
+    const [datosRestaurante, getDatosRestaurante] = useState(false);
 
     useEffect(() => {
-        // getVermapa(globalinfo);
         getMostrarmail(verMailmodal);
-    }, [verMailmodal]);
-    // console.log(globalinfo)
+        getDatosRestaurante(datosrestaurante)
+    }, [verMailmodal, datosrestaurante]);
 
     return (
         <div
@@ -109,11 +97,16 @@ const Mailmodal = ({verMailmodal, vermail}) => {
                         className="close"
                         onClick={vermail}/>
                     <p style={aller.texto}>¿Quieres mandar un correo
-                        a {globalinfo.name ? globalinfo.name : "este establecimiento"}?</p>
+                        a {datosRestaurante.nombre_restaurante ? datosRestaurante.nombre_restaurante : "este establecimiento"}?</p>
                 </div>
                 <div style={aller.cont_data}>
-                    <a style={aller.botonsi} href={`mailto:${globalinfo.mail}`}>Si!</a>
-                    <a style={aller.botonno}>No!</a>
+                    <a style={aller.botonsi} href={`mailto:${datosRestaurante.email}`}>Si!</a>
+                    <a href="#!"
+                       onClick={vermail}
+                       style={aller.botonno}
+                    >
+                        No!
+                    </a>
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@ import React, {Fragment, useState, useEffect} from "react";
 import Spinner from './Spinner';
 import '../data/data'
 import {allergens} from "../data/data";
-import {dosDecim} from "../utils/utils";
+import {dosDecim, urlImage} from "../utils/utils";
 
 const Carousel = ({datas, dataInicios, actualizaPropDataProductId}) => {
     const slide = {
@@ -102,7 +102,7 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId}) => {
         //     if (item.plato_id === dataInicio.id) return item;
         // })
         let productoSel = dataSlider[dataInicio];
-        console.log('productSel', productoSel)
+        // console.log('productSel', productoSel)
         return productoSel;
     }
 
@@ -114,8 +114,8 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId}) => {
             }
             return position
         });
-        console.log('pos', position)
-        console.log('id', dataInicio)
+        // console.log('pos', position)
+        // console.log('id', dataInicio)
         if (e.target.id === 'next') {
             if (position === dataSlider.length - 1) {
                 // getDataInicio(dataSlider[0].plato_id)
@@ -127,12 +127,14 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId}) => {
                 // again as props and not lose state between props and last item.id selected
                 actualizaPropDataProductId(dataInicio + 1)
             }
+            console.log('pos', position)
+            console.log('id', dataInicio)
         }
 
         if (e.target.id === 'previus') {
             if (position === 0) {
                 // getDataInicio(dataSlider[dataSlider.length - 1].plato_id)
-                getButtonPrevius(false)
+                // getButtonPrevius(false)
                 actualizaPropDataProductId(dataInicio - 1)
             } else {
                 getButtonNext(true)

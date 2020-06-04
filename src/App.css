@@ -3,22 +3,42 @@
 * CLASES PERSONALIZADAS
 *
 */
-.paddingLeftAllergensModal{
+.opaco {
+    opacity: .8;
+}
+
+.color_span_select {
+    background: rgba(255, 255, 255, 1);
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 23%, rgba(242, 242, 242, 1) 40%, rgba(156, 255, 242, 1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(23%, rgba(245, 245, 245, 1)), color-stop(40%, rgba(242, 242, 242, 1)), color-stop(100%, rgba(156, 255, 242, 1)));
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 23%, rgba(242, 242, 242, 1) 40%, rgba(156, 255, 242, 1) 100%);
+    background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 23%, rgba(242, 242, 242, 1) 40%, rgba(156, 255, 242, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 23%, rgba(242, 242, 242, 1) 40%, rgba(156, 255, 242, 1) 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 23%, rgba(242, 242, 242, 1) 40%, rgba(156, 255, 242, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#9cfff2', GradientType=0);
+    font-weight: bolder;
+}
+
+.paddingLeftAllergensModal {
     padding-left: 1.3em;
 }
-.paddingRighttAllergensModal{
+
+.paddingRighttAllergensModal {
     padding-right: 1.3em;
 }
-.paddingAllergensModal{
+
+.paddingAllergensModal {
     padding: 0 1.3em;
 }
-.subRoot{
+
+.subRoot {
     background-image: url(./comandApp_logo.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
     /*background-attachment: fixed;*/
 }
+
 .subRoot {
     height: 90%;
     flex-grow: 1;

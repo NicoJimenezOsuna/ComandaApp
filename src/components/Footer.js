@@ -1,11 +1,6 @@
-import React, { useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
-// import Mapamodal from './Mapamodal';
-// import Mailmodal from './Mailmodal';
+import React, {useEffect, useState} from 'react';
 
-import {globalinfo} from "../data/data";
-
-const Footer = ({vermapa,vermail}) => {
+const Footer = ({vermapa, vermail, datosrestaurante}) => {
 
     const style = {
         contenedor: {
@@ -20,83 +15,45 @@ const Footer = ({vermapa,vermail}) => {
             flexWrap: 'wrap',
             zIndex: 999,
             borderRadius: '20px'
-
         },
         boton: {
             width: '3em'
-            // position: 'relative',
-            // height: `105px`,
-            // width: `105px`,
-            // margin: 'auto',
-            //  },
-            // boton : {
-            //   filter: 'drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.161))',
-            //   position: 'relative',
-            //   overflow: 'visible',
-            //   width: `105px`,
-            //   height: `105px`,
-            //   // left: `0px`,
-            //   // top: `0px`,
-            //   // textAlign: 'center',
-            //   // fontFamily: 'Tahoma',
-            //   // fontSize: `40px`,
-            //   color: 'rgba(112, 112, 112, 1)',
-            //   borderRadius: `50px`,
-            //   // border: `2px rgba(112, 112, 112, 1) solid`,
-            //   backgroundColor: 'white'
         }
-
     }
 
-    // const [verMapamodal, getMapamodal] = useState(false);
-    // const [verMailmodal, getMailmodal] = useState(false);
-    //
-    // let vermapa = () => {
-    //     !verMapamodal ? getMapamodal(true) : getMapamodal(false);
-    // }//sirve para actualizar el estado
-    //  const vermail = () => {
-    //      !verMailmodal ? getMailmodal(true) : getMailmodal(false);
-    //  }//sirve para actualizar el estado
-    //
-    // useEffect(() => {
-    //     getMapamodal(verMapamodal);
-    //     getMailmodal(verMailmodal);
-    // }, []);
+    const [datosRestaurante, getDatosRestaurante] = useState({})
+
+    useEffect(() => {
+        getDatosRestaurante(datosrestaurante)
+    }, [datosrestaurante]);
 
     return (
         <div className="cont_footer_absolut">
-            {/*<Mapamodal*/}
-            {/*    vermapa={vermapa}*/}
-            {/*    verMapamodal={verMapamodal}*/}
-            {/*/>*/}
-            {/*<Mailmodal*/}
-            {/*    vermail={vermail}*/}
-            {/*    verMailmodal={verMailmodal}*/}
-            {/*/>*/}
             <div style={style.contenedor}>
                 <img
-                 
                     style={style.boton}
                     src="./assets/img/footer/ico-back.svg"
                     alt="imagen de footer"
                 />
-                <a href={`tel:${globalinfo.telefono}`}>
+                <a href={`tel:${datosRestaurante.telefono}`}>
                     <img
                         style={style.boton}
                         src="./assets/img/footer/ico-tel.svg"
-                        alt="imagen de footer"/>
+                        alt="imagen de footer"
+                    />
                 </a>
                 <img
                     onClick={vermapa}
                     style={style.boton}
                     src="./assets/img/footer/ico-gps.svg"
-                    alt="imagen de footer"/>
-                {/*<img style={style.boton} src="./assets/img/footer/ico-gps.svg" alt="imagen de footer"/>*/}
+                    alt="imagen de footer"
+                />
                 <img
                     onClick={vermail}
                     style={style.boton}
                     src="./assets/img/footer/ico-mail.svg"
-                    alt="imagen de footer"/>
+                    alt="imagen de footer"
+                />
             </div>
         </div>
     )

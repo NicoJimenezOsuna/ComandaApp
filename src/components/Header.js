@@ -21,6 +21,13 @@ const Header = () => {
             width: '100%',
             textAlign: 'right',
         },
+        cont_comanda_social_titulo: {
+            width: '100%',
+            textAlign: 'right',
+            display: 'flex',
+            justifyContent: 'flex-end',
+            flexWrap: 'wrap'
+        },
         grupo_12: {
             width: `45px`,
             height: `45px`
@@ -38,17 +45,17 @@ const Header = () => {
         },
         restaurante: {
             // backgroundColor:'red'
-            fontSize: `2em`,
+            fontSize: `1.3em`,
             fontFamily: 'Papyrus'
         },
-        cont_logo_comanda : {
+        cont_logo_comanda: {
             display: 'flex',
             justifyContent: 'flex-start',
         }
     };
 
     const [restaurante, getRestaurante] = useState("Restaurante");
-    let datosde = ''
+
     useEffect(() => {
         //        sustituir imagenes rotas
         setTimeout(function () {
@@ -66,12 +73,15 @@ const Header = () => {
                 }
             }
         }, 1000);
+        let nombre_restaurante = JSON.parse(localStorage.getItem('comandaApp')).data;
+        if (nombre_restaurante) {
+            getRestaurante(nombre_restaurante.nombre_restaurante)
+        } else {
+            //hacer algo si localstorage está vacío
+        }
 
-        datosde = JSON.parse(localStorage.getItem("comandaApp")).data.codigo
-        getRestaurante(
-            JSON.parse(datosde)
-        );
-    }, [restaurante, datosde]);
+    }, []);
+
 
     return (
         <Fragment>
@@ -94,8 +104,8 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
-                <div style={header.cont_comanda_social}>
-                    <span style={header.restaurante}>{isNaN(restaurante) ? restaurante : 'Mi restaurante'}</span>
+                <div style={header.cont_comanda_social_titulo}>
+                    <span style={header.restaurante}>{restaurante}</span>
                 </div>
             </div>
         </Fragment>

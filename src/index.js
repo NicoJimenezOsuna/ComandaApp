@@ -7,6 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import App from './containers/App';
 import Launcher from './containers/Launcher';
 import Error404 from './containers/Error404';
+import Subcategoria from './containers/Subcategoria';
 /*
 *
 *  IMPORT ROUTER
@@ -20,7 +21,6 @@ import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
 * */
 import './index.css';
 import "./App.css"
-import Subcategoria from './containers/Subcategoria';
 /*
 *
 *  IMPORT VIEWS

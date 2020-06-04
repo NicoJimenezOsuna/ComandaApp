@@ -6,6 +6,8 @@ import axios from "axios";
 import Spinner from "../components/Spinner";
 import Socialpymes from "../components/Socialpymes";
 import Launch from "../components/Launch";
+import {CONNECT_TOKEN} from '../data/restaurante';
+import {protocol} from '../utils/utils'
 
 import {fakeData1} from '../data/data';
 
@@ -41,15 +43,11 @@ const Launcher = () => {
         }
     };
 
-    let protocol = "http://";
-    let url = "restaurante.comandaapp.es/api/ws/0/";
-    let token = "cLZDdvFTJcl5cWG";
-
-
     const [datos, getDatos] = useState({});
 
     useEffect(() => {
-
+        // http://restaurante.comandaapp.es/api/ws/0/cLZDdvFTJcl5cWG
+        let url = "//restaurante.comandaapp.es/api/ws/0/";
         const userHeader = {
             headers: {
                 "X-Requested-With": "XMLHttpRequest",
@@ -69,29 +67,29 @@ const Launcher = () => {
                     JSON.stringify(response.data)
                 );
                 //to State
-                if(!toObject.data.respuesta > 0) {
-                    localStorage.setItem(
-                        "comandaApp",
-                        JSON.stringify(fakeData1)
-                    );
-                    getDatos(fakeData1.data.respuesta)
-                }else{
-                    await getDatos(toObject.data.respuesta);
-                }
+                // if (!toObject.data.respuesta > 0) {
+                //     localStorage.setItem(
+                //         "comandaApp",
+                //         JSON.stringify(fakeData1)
+                //     );
+                //     getDatos(fakeData1.data.respuesta)
+                // } else {
+                    await getDatos(toObject);
+                // }
 
             } catch (error) {
-                localStorage.setItem(
-                    "comandaApp",
-                    JSON.stringify(fakeData1)
-                );
-                getDatos(fakeData1.data.respuesta)
+                // localStorage.setItem(
+                //     "comandaApp",
+                //     JSON.stringify(fakeData1)
+                // );
+                // getDatos(fakeData1.data.respuesta)
                 console.log("error", error);
             }
         };
+        //call to API
+        firstRequest(protocol, url, CONNECT_TOKEN)
 
-        firstRequest(protocol, url, token)
-
-    }, [protocol, url, token]);
+    }, []);
 
     return (
         <Fragment>

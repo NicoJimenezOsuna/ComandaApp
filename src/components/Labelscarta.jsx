@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Labelsubcategory = ({ data }) => {
+const Labelscarta = ({ data }) => {
   const label = {
     cont_princ: {
       width: "100%",
@@ -51,4 +51,4 @@ const Labelsubcategory = ({ data }) => {
     </div>
   );
 };
-export default Labelsubcategory;
+export default Labelscarta;

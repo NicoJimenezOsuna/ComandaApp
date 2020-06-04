@@ -1,17 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {ReactComponent as IconClose} from "../icons/times-circle-regular.svg";
-/*
- * IMPORT DATA FROM SRC/DATA/DATA.JSON
- */
-import {globalinfo} from "../data/data"
+import Spinner from './Spinner';
+import {iframeSrcData} from '../utils/utils';
 
-const Mapamodal = ({verMapamodal, vermapa}) => {
+const Mapamodal = ({verMapamodal, vermapa, datosrestaurante}) => {
     const aller = {
         princ: {
             width: "100%",
             height: "100%",
-            //            maxWidth: '720px',
-            //            height: '100%',
             position: "absolute",
             top: 0,
             left: 0,
@@ -37,7 +33,9 @@ const Mapamodal = ({verMapamodal, vermapa}) => {
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
-            flexWrap: "wrap"
+            flexWrap: "wrap",
+            flex: 1,
+            minHeight: '50vh'
         },
         cont_aller: {
             display: "flex",
@@ -61,7 +59,7 @@ const Mapamodal = ({verMapamodal, vermapa}) => {
         },
         cabecera: {
             display: "flex",
-            justifyContent:"space-between",
+            justifyContent: "space-between",
             alignItems: 'flex-start'
         },
         texto: {
@@ -72,7 +70,7 @@ const Mapamodal = ({verMapamodal, vermapa}) => {
         },
         botonir: {
             width: 'auto',
-            height:  '50px',
+            height: '50px',
             backgroundColor: 'rgba(156, 255, 242, 0.68)',
             padding: `5px 25px 5px 25px`,
             alignItems: 'center',
@@ -83,18 +81,13 @@ const Mapamodal = ({verMapamodal, vermapa}) => {
         }
     };
 
-    // const [vermapaState, getVermapa] = useState();
     const [mostrarmapa, getMostrarmapa] = useState(false);
-    const iframe = globalinfo.localizacionmaps;
-
-// console.log(mostrarmapa)
+    const [datosRestaurante, getDatosRestaurante] = useState({})
 
     useEffect(() => {
-        // getVermapa(globalinfo);
         getMostrarmapa(verMapamodal);
-    }, [verMapamodal]);
-    // console.log(globalinfo)
-    
+        getDatosRestaurante(datosrestaurante)
+    }, [verMapamodal, datosrestaurante]);
 
     return (
         <div
@@ -106,23 +99,21 @@ const Mapamodal = ({verMapamodal, vermapa}) => {
                     <IconClose
                         className="close"
                         onClick={vermapa}/>
-                    {/*<h1 style={aller.h1}>*/}
-                    {/*    Esta es la localización GPS de {globalinfo.name ? globalinfo.name : "este establecimiento"}.*/}
-                    {/*</h1>*/}
-                    <p style={aller.h1}>¿Quieres ir al local {globalinfo.name}?</p>
+                    <p style={aller.h1}>¿Quieres ir al
+                        local {datosRestaurante ? datosRestaurante.nombre_restaurante : 'referenciado'}?</p>
                 </div>
-
-                {/*{iframe}*/}
                 <div style={aller.cont_data}>
                     <iframe
+                        title="localización-restaurante"
                         style={aller.iframe}
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d197294.47340645303!2d-0.5015954687885393!3d39.40770125212401!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd604f4cf0efb06f%3A0xb4a351011f7f1d39!2sValencia!5e0!3m2!1ses!2ses!4v1590518444632!5m2!1ses!2ses"
+                        src={datosRestaurante ? iframeSrcData(datosRestaurante.localizacion) : <Spinner/>}
                         // zoom="21"
                         allowFullScreen=""
-                        aria-hidden="false" tabIndex="0"></iframe>
+                        aria-hidden="false" tabIndex="0"/>
                     <div style={aller.texto}>
 
-                        <a style={aller.botonir} href={globalinfo.localizacionmaps}>Llévame!</a>
+                        {/*intentar utilizar botón mapa , si no, indicar uasar ampliar mapa de google*/}
+                        <a style={aller.botonir} href="#!">Llévame!</a>
                     </div>
 
                 </div>

@@ -15,6 +15,7 @@ function App() {
     //Constantes de modales
     const [verMapamodal, getMapamodal] = useState(false);
     const [verMailmodal, getMailmodal] = useState(false);
+    const [datosrestaurante, getDatosRestaurante] = useState({})
 
     //Variables para actualizar el estado de modales
     let vermapa = () => {
@@ -27,17 +28,26 @@ function App() {
     useEffect(() => {
         getMapamodal(verMapamodal);
         getMailmodal(verMailmodal);
-    }, []);
+
+        let datosderetaurante = JSON.parse(localStorage.getItem('comandaApp')).data;
+        if (datosderetaurante) {
+            getDatosRestaurante(datosderetaurante)
+        } else {
+            //hacer algo si localstorage está vacío
+        }
+    }, [verMailmodal, verMapamodal]);
 
     return (
         <Fragment>
             <Mailmodal
                 vermail={vermail}
                 verMailmodal={verMailmodal}
+                datosrestaurante={datosrestaurante}
             />
             <Mapamodal
                 vermapa={vermapa}
                 verMapamodal={verMapamodal}
+                datosrestaurante={datosrestaurante}
             />
             <div className="subRoot">
                 <Header/>
@@ -48,6 +58,7 @@ function App() {
             <Footer
                 vermail={vermail}
                 vermapa={vermapa}
+                datosrestaurante={datosrestaurante}
             />
         </Fragment>
     );
