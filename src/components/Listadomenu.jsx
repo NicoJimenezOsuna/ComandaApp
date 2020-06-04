@@ -1,5 +1,5 @@
 import React, {Fragment, useState, useEffect} from 'react';
-import Labelsmenus from './labelsmenus';
+import Labelsmenus from './Labelsmenus';
 import axios from "axios";
 import {fakeData1} from "../data/data";
 import {protocol} from "../utils/utils";

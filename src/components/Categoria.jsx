@@ -96,13 +96,13 @@ const Categorias = () => {
     const [selected, getselected] = useState('menus');
     const [carta, getCarta] = useState([])
     let cartaOk = [];
+
     if(Object.keys(categorias).length > 0){
          cartaOk = categorias.respuesta.filter(item=>{return /carta/gi.test(item.nombrecarta)})
     }
 
     useEffect(() => {
         getCategorias(JSON.parse(localStorage.getItem('comandaApp')).data);
-
     }, []);
 
     useEffect(()=>{
@@ -206,7 +206,6 @@ const Categorias = () => {
                 </div>
                 {selected === 'carta' && categorias.mensaje === 'OK' ? (
                         carta.map(item => {
-                            // if(/carta/gi.test(item.nombrecarta)) {
                                 return (
                                     <div
                                         className="cont_childs"
@@ -238,7 +237,6 @@ const Categorias = () => {
                                         }
                                     </div>
                                 )
-                            // }
                         })
 
                     ) :
