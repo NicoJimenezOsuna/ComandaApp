@@ -47,7 +47,7 @@ const Launcher = () => {
 
     useEffect(() => {
         // http://restaurante.comandaapp.es/api/ws/0/cLZDdvFTJcl5cWG
-        let url = "//restaurante.comandaapp.es/api/ws/0/";
+        let url = "//restaurante.comandapp.es/api/ws/0/";
         const userHeader = {
             headers: {
                 "X-Requested-With": "XMLHttpRequest",

@@ -43,7 +43,7 @@ const Listadocarta = ({dataid, dataSliderHandler}) => {
     };
 
     let protocol = "http://";
-    let url = "restaurante.comandaapp.es/api/ws/2/";
+    let url = "restaurante.comandapp.es/api/ws/2/";
     // let token = "cLzDdvFTJcl5cWg";
     //    http://restaurante.comandaapp.es/api/ws/1/cLzDdvFTJcl5cWg/6
     // imagenes

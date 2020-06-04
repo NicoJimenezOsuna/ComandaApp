@@ -105,7 +105,11 @@ const Header = () => {
                     </div>
                 </div>
                 <div style={header.cont_comanda_social_titulo}>
-                    <span style={header.restaurante}>{restaurante}</span>
+                    <span className="text-shadow"
+                        style={header.restaurante}
+                    >
+                        {restaurante}
+                    </span>
                 </div>
             </div>
         </Fragment>

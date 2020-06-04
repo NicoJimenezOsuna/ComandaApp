@@ -3,6 +3,11 @@
 * CLASES PERSONALIZADAS
 *
 */
+.text-shadow {
+    text-shadow: rgba(250, 250, 250, 0.3) 0px 1px 0px, rgba(0, 0, 0, 0.1) 0px 6px 1px, rgba(0, 0, 0, 0.1) 0px 0px 5px, rgba(0, 0, 0, 0.3) 0px 1px 3px, rgba(0, 0, 0, 0.2) 0px 3px 5px, rgba(0, 0, 0, 0.25) 0px 5px 10px, rgba(0, 0, 0, 0.2) 0px 10px 10px, rgba(0, 0, 0, 0.15) 0px 20px 20px;
+    font-weight: bolder;
+}
+
 .opaco {
     opacity: .8;
 }
@@ -71,9 +76,9 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: #fff;
+    background-color: #000;
     z-index: 9;
-    opacity: .31;
+    opacity: .51;
 }
 
 .cont_childs {
@@ -958,6 +963,38 @@ a:hover {
     overflow: visible;
 }
 
+/*
+*
+*MEDIAQUERIES FOR CATEGORY TITLES
+*
+*/
+.category_title {
+    font-size: .8em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 320px) {
+    .category_title {
+        font-size: .8em;
+        text-transform: uppercase;
+    }
+}
+
+@media (min-width: 320.2px) and (max-width: 425px) {
+    .category_title {
+        font-size: 1em;
+        text-transform: uppercase;
+    }
+}
+
+@media (min-width: 425.2px) and (max-width: 768px) {
+    .category_title {
+        font-size: 1.3em;
+        text-transform: uppercase;
+    }
+}
+
+/*--------------------------------*/
 body {
     position: relative;
 }

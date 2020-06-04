@@ -19,7 +19,8 @@ const Labelsmenu = ({ data }) => {
         },
         cont_name: {
             width: "60%",
-            textAlign: "center"
+            textAlign: "center",
+            fontWeight: 900
         },
         cont_price: {
             width: "20%",

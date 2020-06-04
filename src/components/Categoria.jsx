@@ -58,12 +58,20 @@ const Categorias = () => {
             textAlign: 'center',
             fontFamily: 'Papyrus',
             fontStyle: 'normal',
-            fontSize: '1em',
+            // fontSize: '1.2em',
             fontWeight: 900,
-            color: 'rgba(0,0,0,.61)',
-            zIndex: '9'
-        },
-        select: {
+            color: '#fff',
+            zIndex: '9',
+            textShadow: '0 1px 0 rgba(250, 250, 250, 0.3), ' +
+                '0 6px 1px rgba(0, 0, 0, 0.1), ' +
+                '0 0 5px rgba(0, 0, 0, 0.1), ' +
+                '0 1px 3px rgba(0, 0, 0, 0.3), ' +
+                '0 3px 5px rgba(0, 0, 0, 0.2), ' +
+                '0 5px 10px rgba(0, 0, 0, 0.25), ' +
+                '0 10px 10px rgba(0, 0, 0, 0.2), ' +
+                '0 20px 20px rgba(0, 0, 0, 0.15)'
+},
+    select: {
             width: '100%',
             backgroundColor: '#f5f5f5',
             display: 'flex',
@@ -99,7 +107,7 @@ const Categorias = () => {
 
     useEffect(()=>{
             // http://restaurante.comandaapp.es/api/ws/1/cLZDdvFTJcl5cWG/1
-            let url = "//restaurante.comandaapp.es/api/ws/1/";
+            let url = "//restaurante.comandapp.es/api/ws/1/";
             const userHeader = {
                 headers: {
                     "X-Requested-With": "XMLHttpRequest",
@@ -222,7 +230,8 @@ const Categorias = () => {
                                                 <img style={cat.plato_img}
                                                      src={urlImage() + item.imagen}
                                                      alt={`Imagen de categoría ${item.categoria}`}/>
-                                                <p style={cat.nom_cat}>
+                                                <p className="category_title"
+                                                    style={cat.nom_cat}>
                                                     {item.categoria}
                                                 </p>
                                             </Fragment>
@@ -237,15 +246,16 @@ const Categorias = () => {
                 }
                 {/*ESTO LO CAMBIAREMOS MÁS ADELANTE PARA OPTIMIZAR. sE CONVERTIRÁ EN COMPONENTECADA OPCIÓN*/}
                 {selected === 'menus' && categorias.mensaje === 'OK' ? (
-                        categorias.respuesta.map(item => {
+                        categorias.respuesta.map((item, index) => {
                             if(/menú/gi.test(item.nombrecarta)) {
+                                console.log('item de Categoria',item)
                                 return (
                                     <div
                                         className="cont_childs"
                                         onClick={() => sendCategory(item.id, item.nombrecarta, 'menu')}
                                         id={item.id}
                                         style={cat.cat_cont}
-                                        key={item.categoria + item.id}
+                                        key={1 + index}
                                     >
                                         <div className="absolut"></div>
                                         {item.imagen === undefined ?
@@ -253,7 +263,8 @@ const Categorias = () => {
                                                 <img style={cat.plato_img}
                                                      src="assets/img/menu.jpg"
                                                      alt={`Imagen de categoría ${item.nombrecarta}`}/>
-                                                <p style={cat.nom_cat}>
+                                                <p className="category_title"
+                                                    style={cat.nom_cat}>
                                                     {item.nombrecarta}
                                                 </p>
                                             </Fragment>

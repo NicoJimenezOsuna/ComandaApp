@@ -44,7 +44,7 @@ export const dosDecim = (number, maxToFix) => {
  */
 export const urlImage = () =>{
     // let urlActual = `${protocol}//${host}/storage/`;
-    let urlActual = "http://restaurante.comandaapp.es/storage/"
+    let urlActual = "http://restaurante.comandapp.es/storage/"
 
     return urlActual
 }
@@ -55,7 +55,7 @@ export const urlImage = () =>{
  */
 export const urlComplete = (response) => {
     // let urlActual = `${protocol}//${host}/storage/`;
-    let urlActual = "http://restaurante.comandaapp.es/storage/"
+    let urlActual = "http://restaurante.comandapp.es/storage/"
 console.log('response', response)
     const ObjectWithNewUrlImage = response.map(item => {
         let nuevo = urlActual + item.imagen

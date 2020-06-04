@@ -42,7 +42,7 @@ const Platosmenus = ({catid, seccid, dataSliderHandler}) => {
 
 useEffect(()=>{
     // http://restaurante.comandaapp.es/api/ws/1/cLZDdvFTJcl5cWG/5
-    let url = "//restaurante.comandaapp.es/api/ws/2/";
+    let url = "//restaurante.comandapp.es/api/ws/2/";
     const userHeader = {
         headers: {
             "X-Requested-With": "XMLHttpRequest",
