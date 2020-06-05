@@ -109,6 +109,7 @@ const Listadocarta = ({dataid, dataSliderHandler}) => {
                                     dataSliderHandler={dataSliderHandler}
                                     dataListaFull={products}
                                     dataIdSelf={products.indexOf(item)}
+                                    noprice = {true}
                                 />
                             </div>
                         </div>

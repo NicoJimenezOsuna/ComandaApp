@@ -106,6 +106,7 @@ useEffect(()=>{
                                         dataSliderHandler={dataSliderHandler}
                                         dataListaFull={platos}
                                         dataIdSelf={platos.indexOf(item)}
+                                        noprice = {false}
                                     />
                                 </div>
                             </div>

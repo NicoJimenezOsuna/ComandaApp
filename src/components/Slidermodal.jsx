@@ -11,7 +11,8 @@ const Slidermodal = ({
                          data,
                          dataInicio,
                          buttonCloseSlidermodalHandler,
-                         actualizaPropDataProductId
+                         actualizaPropDataProductId,
+                         nonprice
                      }) => {
 
     const slider = {
@@ -43,11 +44,13 @@ const Slidermodal = ({
 
     const [dataToCar, getDataToCar] = useState([]);
     const [dataInicioToCar, getDataInicioToCar] = useState(0);
+    const [noprice, getNoprice] = useState(false)
 
     useEffect(() => {
         getDataToCar(data)
         getDataInicioToCar(dataInicio)
-    }, [data, dataInicio])
+        getNoprice(nonprice)
+    }, [data, dataInicio, nonprice])
 
     return (
         <div
@@ -63,6 +66,7 @@ const Slidermodal = ({
                     datas={dataToCar}
                     dataInicios={dataInicioToCar}
                     actualizaPropDataProductId={actualizaPropDataProductId}
+                    noprice={noprice}
                 />
             </div>
         </div>

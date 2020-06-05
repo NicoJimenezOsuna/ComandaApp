@@ -25,7 +25,8 @@ const Subcategorias = () => {
     const [dataSlider, getDataSlider] = useState([]);
     const [dataProductId, getDataProductId] = useState(0);
     const [verqr, getVerqr] = useState(false);
-    const [datosrestaurante, getDatosRestaurante] = useState({})
+    const [datosrestaurante, getDatosRestaurante] = useState({});
+    const [nonprice, getNonprice] = useState(false)
     //Constantes de modales
     const [verMapamodal, getMapamodal] = useState(false);
     const [verMailmodal, getMailmodal] = useState(false);
@@ -42,9 +43,10 @@ const Subcategorias = () => {
         !isVisible ? getIsVisible(true) : getIsVisible(false);
     };
 
-    const dataSliderHandler = (dataFull, dataId) => {
+    const dataSliderHandler = (dataFull, dataId, nonprice) => {
         getDataSlider(dataFull);
         getDataProductId(dataId);
+        getNonprice(nonprice);
         !isVisibleSlider ? getIsVisibleSlider(true) : getIsVisibleSlider(false);
     };
     const buttonCloseSlidermodalHandler = () => {
@@ -67,6 +69,7 @@ const Subcategorias = () => {
             //hacer algo si localstorage está vacío
         }
     }, [verMapamodal, verMailmodal]);
+
 
     //define y pasa por props los títulos
     const titles = {};
@@ -98,6 +101,7 @@ const Subcategorias = () => {
                     dataInicio={dataProductId}
                     buttonCloseSlidermodalHandler={buttonCloseSlidermodalHandler}
                     actualizaPropDataProductId={actualizaPropDataProductId}
+                    nonprice={nonprice}
                 />
                 <Mapamodal
                     vermapa={vermapa}
@@ -137,6 +141,7 @@ const Subcategorias = () => {
                 vermail={vermail}
                 vermapa={vermapa}
                 datosrestaurante={datosrestaurante}
+                back={'/categoria'}
             />
         </Fragment>
     );

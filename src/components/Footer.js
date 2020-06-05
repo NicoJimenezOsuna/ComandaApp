@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
 
-const Footer = ({vermapa, vermail, datosrestaurante}) => {
+const Footer = ({vermapa, vermail, datosrestaurante, back}) => {
 
     const style = {
         contenedor: {
@@ -30,11 +31,13 @@ const Footer = ({vermapa, vermail, datosrestaurante}) => {
     return (
         <div className="cont_footer_absolut">
             <div style={style.contenedor}>
+                <Link to={back}>
                 <img
                     style={style.boton}
                     src="./assets/img/footer/ico-back.svg"
                     alt="imagen de footer"
                 />
+                </Link>
                 <a href={`tel:${datosRestaurante.telefono}`}>
                     <img
                         style={style.boton}

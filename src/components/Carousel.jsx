@@ -4,7 +4,7 @@ import '../data/data'
 import {allergens} from "../data/data";
 import {dosDecim, urlImage} from "../utils/utils";
 
-const Carousel = ({datas, dataInicios, actualizaPropDataProductId}) => {
+const Carousel = ({datas, dataInicios, actualizaPropDataProductId, noprice}) => {
     const slide = {
         column: {
             display: 'flex',
@@ -91,11 +91,13 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId}) => {
     const [dataInicio, getDataInicio] = useState(0);
     const [buttonNext, getButtonNext] = useState(true);
     const [buttonPrevius, getButtonPrevius] = useState(true);
+    const [nonprice, getNonprice] = useState(false)
 
     useEffect(() => {
         getDataSlider(datas);
         getDataInicio(dataInicios);
-    }, [datas, dataInicios]);
+        getNonprice(noprice)
+    }, [datas, dataInicios, noprice]);
 
     const renderSlider = () => {
         // let productoSel = dataSlider.find(item => {
@@ -157,12 +159,16 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId}) => {
                     <div style={slide.datos}>
                         {!isNaN(dataInicio) ?
                             <Fragment>
-                                <div style={slide.price}>
-                                    <p style={slide.p}>
+                                { nonprice ?
+                                    <div style={slide.price}>
+                                        <p style={slide.p}>
                                         <span style={slide.pvp}>
                                             pvp: </span>{dosDecim(renderSlider().precio, 2)} €
-                                        <sup style={slide.sup}> + iva</sup></p>
-                                </div>
+                                            <sup style={slide.sup}> + iva</sup></p>
+                                    </div>
+                                    :
+                                    null
+                                }
                                 <ul style={slide.ul}>
                                     {allergens.map((item, index) => {
                                         if (item.id < 7) {

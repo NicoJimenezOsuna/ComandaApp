@@ -59,6 +59,7 @@ function App() {
                 vermail={vermail}
                 vermapa={vermapa}
                 datosrestaurante={datosrestaurante}
+                back={'/'}
             />
         </Fragment>
     );
