@@ -65,7 +65,7 @@ const Listadomenu = ({dataid, dataSliderHandler}) => {
             {Object.keys(sectionsMenu).length > 0 ?
                 sectionsMenu.map(item => {
                     return (
-                        <Fragment>
+                        <Fragment key={item.categoria}>
                             <Labelsmenus data={item.categoria}/>
                             <Platosmenus
                                 catid={item.categoria_id}

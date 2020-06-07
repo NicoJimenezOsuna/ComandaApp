@@ -1,6 +1,7 @@
 import React, {Fragment, useEffect, useState} from "react";
 import axios from "axios";
 import Buttoninfo from "./Buttoninfo";
+import Spinner from '../components/Spinner';
 /*
  * IMPORT SUPPORT FUNCIONS
  */
@@ -115,7 +116,9 @@ const Listadocarta = ({dataid, dataSliderHandler}) => {
                         </div>
                     );
                 })
-                : "null"}
+                :
+            <Spinner/>
+            }
             {/*    Aqui se mete los spiners de carga    */}
         </Fragment>
     );

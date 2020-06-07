@@ -6,15 +6,27 @@ import axios from "axios";
 import Spinner from "../components/Spinner";
 import Socialpymes from "../components/Socialpymes";
 import Launch from "../components/Launch";
-import {CONNECT_TOKEN} from '../data/restaurante';
-import {protocol} from '../utils/utils'
+import {CONNECT_TOKEN, URL} from '../data/restaurante';
+import {protocol} from '../utils/utils';
+import {ReactComponent as LogoComanda} from "../icons/logo.svg";
+import Errormessage from "../components/Errormessage";
+import {firstRequest} from '../data/restaurante';
+import {ReactComponent as Refresh} from "../icons/refresh.svg";
 
 import {fakeData1} from '../data/data';
+import Spinnercircle from "../components/Spinnercircle";
 
 const Launcher = () => {
     const launcher = {
+        princ: {
+            height: '100%',
+            flexGrow: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            overflowY: 'scroll',
+            padding: '20px'
+        },
         ComandApp: {
-            position: "absolute",
             left: `153px`,
             top: `466px`,
             overflow: "visible",
@@ -28,13 +40,9 @@ const Launcher = () => {
             color: "rgba(112,112,112,1)"
         },
         Tu_carta_digital: {
-            position: "absolute",
-            left: `368px`,
-            top: `577px`,
             overflow: "visible",
-            width: `200px`,
             whiteSpace: "nowrap",
-            textAlign: "left",
+            textAlign: "right",
             fontFamily: "Papyrus",
             fontStyle: "normal",
             fontWeight: "normal",
@@ -44,76 +52,75 @@ const Launcher = () => {
     };
 
     const [datos, getDatos] = useState({});
+    const [mensaje, getMensaje] = useState('');
+    const [noconnection, getNoconnection] = useState(false);
+    const [isreload, getIsreload] = useState(false)
 
     useEffect(() => {
-        // http://restaurante.comandaapp.es/api/ws/0/cLZDdvFTJcl5cWG
-        let url = "//restaurante.comandapp.es/api/ws/0/";
-        const userHeader = {
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "Content-Type": "application/json"
-            }
-        };
+        firstRequest(protocol, URL, CONNECT_TOKEN, getMensaje, getDatos, getNoconnection)
+    }, [isreload]);
+    const a = (value) => setTimeout(value => {
+        getIsreload(false)
+    }, 3000)
 
-        const firstRequest = async (protocol, url, token) => {
-            try {
-                // Make a request
-                const response = await axios.get(`${protocol}${url}${token}`, userHeader);
-                const toString = JSON.stringify(response.data);
-                const toObject = JSON.parse(toString);
-                //to Localstorage
-                localStorage.setItem(
-                    "comandaApp",
-                    JSON.stringify(response.data)
-                );
-                //to State
-                // if (!toObject.data.respuesta > 0) {
-                //     localStorage.setItem(
-                //         "comandaApp",
-                //         JSON.stringify(fakeData1)
-                //     );
-                //     getDatos(fakeData1.data.respuesta)
-                // } else {
-                    await getDatos(toObject);
-                // }
-
-            } catch (error) {
-                // localStorage.setItem(
-                //     "comandaApp",
-                //     JSON.stringify(fakeData1)
-                // );
-                // getDatos(fakeData1.data.respuesta)
-                console.log("error", error);
-            }
-        };
-        //call to API
-        firstRequest(protocol, url, CONNECT_TOKEN)
-
-    }, []);
+    const reload = () => {
+        firstRequest(protocol, URL, CONNECT_TOKEN, getMensaje, getDatos, getNoconnection);
+        getIsreload(true)
+        a(true)
+    }
 
     return (
-        <Fragment>
-            {Object.keys(datos).length <= 0 && !localStorage.getItem("comandaApp") ? (
-                <div id="Pantalla_de_carga">
-                    <div id="Grupo_2">
-                        <img
-                            src="./assets/img/logo.svg"
-                            alt="imagen de presentación"
-                        />
+        <div style={launcher.princ}>
+            {mensaje !== 'OK' && !localStorage.getItem("comandaApp") ? (
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    height: '100%'
+                }}>
+                    <LogoComanda/>
+                    <div>
+                        <div style={launcher.ComandApp}>
+                            <span>ComandApp</span>
+                        </div>
+                        <div style={launcher.Tu_carta_digital}>
+                            <span>Tu carta digital</span>
+                        </div>
                     </div>
-                    <div style={launcher.ComandApp}>
-                        <span>ComandApp</span>
+                    <div style={{position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                        {noconnection === false ?
+                            mensaje !== 'OK' ?
+                                <Errormessage mensaje={mensaje}/>
+                                :
+                                <Spinner/>
+                            :
+                            isreload === false ?
+                                <Fragment>
+                                    <Errormessage mensaje={'No existe conexión a intenet. Revise su cobertura'}/>
+                                    <Refresh style={{width: '50%'}}
+                                             onClick={reload}
+                                    />
+                                    <h1>Click to reload</h1>
+                                </Fragment>
+                                :
+                                <Fragment>
+                                    <Errormessage
+                                        mensaje={'No existe conexión a intenet. Revise su cobertura'}/>
+                                    <Refresh className={isreload ? 'reload' : null}
+                                             style={{width: '50%'}}
+                                             onClick={reload}
+                                    />
+                                    <h1>Loading...</h1>
+                                </Fragment>
+                        }
                     </div>
-                    <div style={launcher.Tu_carta_digital}>
-                        <span>Tu carta digital</span>
-                    </div>
-                    <Spinner/>
-                    <Socialpymes/>
+                    <Socialpymes style={{alignSelf: 'start'}}/>
                 </div>
             ) : (
                 <Launch/>
             )}
-        </Fragment>
+        </div>
     );
 };
 

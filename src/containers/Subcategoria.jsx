@@ -1,4 +1,5 @@
 import React, {Fragment, useEffect, useState} from "react";
+import { Redirect } from 'react-router-dom'
 /*
  * IMPORT COMPONENTS
  */
@@ -67,6 +68,9 @@ const Subcategorias = () => {
             getDatosRestaurante(datosderetaurante)
         } else {
             //hacer algo si localstorage está vacío
+           return (
+               <Redirect to="/" />
+           )
         }
     }, [verMapamodal, verMailmodal]);
 
@@ -125,8 +129,8 @@ const Subcategorias = () => {
                         <Fragment>
                             <Labelscarta data={titles}/>
                             <Listadocarta
-                                dataid={subcategorias.id}
-                                dataSliderHandler={dataSliderHandler}
+                                dataid={ subcategorias.wordKey !== 'carta' ? null : subcategorias.id}
+                                dataSliderHandler={ subcategorias.wordKey !== 'carta' ? null : dataSliderHandler}
                             />
                         </Fragment>
                         :

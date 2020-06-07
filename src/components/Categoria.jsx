@@ -6,6 +6,7 @@ import Qrmodal from './Qrmodal';
 import axios from "axios";
 import {CONNECT_TOKEN} from '../data/restaurante';
 import {protocol, urlImage} from '../utils/utils';
+import Spinner from '../components/Slidermodal'
 import {fakeData1} from '../data/data';
 
 const Categorias = () => {
@@ -240,7 +241,7 @@ const Categorias = () => {
                         })
 
                     ) :
-                    null
+                    <Spinner/>
                 }
                 {/*ESTO LO CAMBIAREMOS MÁS ADELANTE PARA OPTIMIZAR. sE CONVERTIRÁ EN COMPONENTECADA OPCIÓN*/}
                 {selected === 'menus' && categorias.mensaje === 'OK' ? (

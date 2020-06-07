@@ -3,6 +3,7 @@ import {dosDecim, protocol, urlComplete} from "../utils/utils";
 import Buttoninfo from "./Buttoninfo";
 import axios from "axios";
 import {CONNECT_TOKEN} from "../data/restaurante";
+import Spinner from "./Spinner";
 
 const Platosmenus = ({catid, seccid, dataSliderHandler}) => {
     const listaplatos = {
@@ -112,7 +113,9 @@ useEffect(()=>{
                             </div>
                         );
                     })
-                    : "null"}
+                    :
+                <Spinner/>
+                }
                 {/*    Aqui se mete los spiners de carga    */}
             </Fragment>
         </Fragment>
