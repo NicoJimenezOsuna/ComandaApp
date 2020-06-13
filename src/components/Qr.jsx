@@ -5,10 +5,11 @@ const Qr = ({codigoqr}) => {
 
     const style = {
         alergenos : {
-            width: 'auto',
-            height:  '50px',
+            width: `100%`,
+            height:  `50px`,
             backgroundColor: 'rgba(156, 255, 242, 0.68)',
-            padding: `5px 25px 5px 25px`,
+            margin: '0 2.5px 0 5px',
+            padding: '5px',
             alignItems: 'center',
             filter: 'drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.161))',
             borderRadius: `50px`,

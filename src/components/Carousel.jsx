@@ -2,9 +2,11 @@ import React, {Fragment, useState, useEffect} from "react";
 import Spinner from './Spinner';
 import '../data/data'
 import {allergens} from "../data/data";
-import {dosDecim, urlImage} from "../utils/utils";
+import {dosDecim} from "../utils/utils";
+import Commandkeypad from './Commandkeypad'
+import {connect} from "react-redux";
 
-const Carousel = ({datas, dataInicios, actualizaPropDataProductId, noprice}) => {
+const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, products}) => {
     const slide = {
         column: {
             display: 'flex',
@@ -15,6 +17,7 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, noprice}) => 
         },
         pvp: {
             fontVariant: 'small-caps',
+            color: '#808080'
         },
         datos: {
             display: 'flex',
@@ -84,6 +87,11 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, noprice}) => 
             fontStyle: 'oblique',
             fontSize: 'large',
             color: '#3E5062'
+        },
+        between: {
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
         }
     }
 
@@ -91,13 +99,15 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, noprice}) => 
     const [dataInicio, getDataInicio] = useState(0);
     const [buttonNext, getButtonNext] = useState(true);
     const [buttonPrevius, getButtonPrevius] = useState(true);
-    const [nonprice, getNonprice] = useState(false)
+    const [stwordkey, getStWordkey] = useState('');
+    const [product, getProduct] = useState(false);
 
     useEffect(() => {
         getDataSlider(datas);
         getDataInicio(dataInicios);
-        getNonprice(noprice)
-    }, [datas, dataInicios, noprice]);
+        getStWordkey(wordkey)
+        getProduct(products)
+    }, [datas, dataInicios, wordkey, products]);
 
     const renderSlider = () => {
         // let productoSel = dataSlider.find(item => {
@@ -129,8 +139,6 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, noprice}) => 
                 // again as props and not lose state between props and last item.id selected
                 actualizaPropDataProductId(dataInicio + 1)
             }
-            console.log('pos', position)
-            console.log('id', dataInicio)
         }
 
         if (e.target.id === 'previus') {
@@ -146,8 +154,8 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, noprice}) => 
                 actualizaPropDataProductId(dataInicio - 1)
             }
         }
-
     }
+
 
     return (
         <div style={slide.column}>
@@ -159,15 +167,41 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, noprice}) => 
                     <div style={slide.datos}>
                         {!isNaN(dataInicio) ?
                             <Fragment>
-                                { nonprice ?
+                                {stwordkey === 'carta' ?
                                     <div style={slide.price}>
                                         <p style={slide.p}>
                                         <span style={slide.pvp}>
-                                            pvp: </span>{dosDecim(renderSlider().precio, 2)} €
+                                            pvp <span style={{fontVariant: 'normal', fontSize: '.7em'}}>ud:</span> </span>{dosDecim(renderSlider().precio, 2)} €
                                             <sup style={slide.sup}> + iva</sup></p>
                                     </div>
                                     :
                                     null
+                                }
+                                {stwordkey === 'menu' ?
+                                    null
+                                    :
+                                    <div style={slide.between}
+                                         className={stwordkey === 'carta' ? 'displayed' : 'displayed_none'}>
+                                        <p>HA PEDIDO: <span style={{fontSize: '1.5em', marginRight: '1em'}}>
+                                      {
+                                          product.map(item => {
+                                              if (item.plato_id === renderSlider().plato_id) {
+                                                  return item.cant
+                                              }
+                                          })
+                                      }
+                                  </span></p>
+                                        {stwordkey === 'carta' ?
+                                            <div>
+                                                <Commandkeypad
+                                                    data={datas[dataInicios]}
+                                                    wordkey={stwordkey}
+                                                />
+                                            </div>
+                                            :
+                                            null
+                                        }
+                                    </div>
                                 }
                                 <ul style={slide.ul}>
                                     {allergens.map((item, index) => {
@@ -182,7 +216,8 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, noprice}) => 
                                                             'paddingAllergensModal'
                                                     }
                                                 >
-                                                    <img style={{width: '3em'}} src={item.imageUrl} alt={item.name}/>
+                                                    <img style={{width: '3em'}} src={item.imageUrl}
+                                                         alt={item.name}/>
                                                     <p>{item.name}</p>
                                                 </li>
                                             )
@@ -236,4 +271,10 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, noprice}) => 
     );
 };
 
-export default Carousel;
+function mapStateToProps(state) {
+    return {
+        products: state.PedidosCarta.pedidoCarta
+    }
+}
+
+export default connect(mapStateToProps)(Carousel);

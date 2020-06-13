@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import {dosDecim, protocol, urlComplete} from "../utils/utils";
+import { protocol, urlComplete} from "../utils/utils";
 import Buttoninfo from "./Buttoninfo";
 import axios from "axios";
 import {CONNECT_TOKEN} from "../data/restaurante";
@@ -21,11 +21,11 @@ const Platosmenus = ({catid, seccid, dataSliderHandler}) => {
             width: "100%"
         },
         cont_name: {
-            width: "60%",
+            width: "55%",
             textAlign: "left"
         },
         cont_price: {
-            width: "20%",
+            width: "25%",
             textAlign: "center"
         },
         cont_button: {
@@ -52,6 +52,7 @@ useEffect(()=>{
     };
 
     const menusRequest = async (protocol, url, token, seccid, id) => {
+
         try {
             // Make a request
             const response = await axios.get(`${protocol}${url}${token}/${seccid}/${id}`, userHeader);

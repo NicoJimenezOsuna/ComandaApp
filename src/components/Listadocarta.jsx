@@ -25,11 +25,11 @@ const Listadocarta = ({dataid, dataSliderHandler}) => {
             width: "100%"
         },
         cont_name: {
-            width: "60%",
+            width: "55%",
             textAlign: "left"
         },
         cont_price: {
-            width: "20%",
+            width: "25%",
             textAlign: "center"
         },
         cont_button: {
@@ -90,6 +90,12 @@ const Listadocarta = ({dataid, dataSliderHandler}) => {
         console.log('request listadocarta')
     }, [dataid, protocol, url]);
 
+    if(!Object.keys(products).length > 0){
+        return (
+            <Spinner/>
+        )
+    }
+
     return (
         <Fragment>
             {products.length > 0
@@ -110,7 +116,7 @@ const Listadocarta = ({dataid, dataSliderHandler}) => {
                                     dataSliderHandler={dataSliderHandler}
                                     dataListaFull={products}
                                     dataIdSelf={products.indexOf(item)}
-                                    noprice = {true}
+                                    wordkey = {'carta'}
                                 />
                             </div>
                         </div>

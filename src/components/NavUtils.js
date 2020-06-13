@@ -1,11 +1,10 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, {Fragment} from "react";
 import Alergenos from './Alergenos';
-import Qr from './Qr'
+import Qr from './Qr';
+import {ReactComponent as Listicon} from "../icons/lista.svg";
 
-import { qr } from "../data/data.js";
 
-
-const NavUtils = ({visible, codigoqr}) => {
+const NavUtils = ({visible, codigoqr, pedidoViewHandler}) => {
     const style = {
         menu: {
             overflow: "visible",
@@ -21,23 +20,29 @@ const NavUtils = ({visible, codigoqr}) => {
             // justifyContent: 'flex-end',
             justifyContent: 'space-between',
             alignItems: 'flex-end'
+        },
+        list: {
+            width: `100%`,
+            height:  `50px`,
+            backgroundColor: 'rgba(156, 255, 242, 0.68)',
+            margin: '0 2.5px 0 2.5px',
+            padding: '5px',
+            alignItems: 'center',
+            filter: 'drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.161))',
+            borderRadius: `50px`,
+            border: '2px solid  rgb(112, 112, 112)'
         }
 
     };
 
-
-// console.log(codigoqr)
-
     return (
         <Fragment>
-            <div
-                style={style.menu}
-            >
-                <Qr 
-                    codigoqr={codigoqr}/>
-                <Alergenos
-                    visible={visible}
-                    />
+            <div style={style.menu}>
+                <Qr codigoqr={codigoqr}/>
+                <Alergenos visible={visible}/>
+                <Listicon
+                    style={style.list}
+                    onClick={pedidoViewHandler}/>
             </div>
         </Fragment>
     );

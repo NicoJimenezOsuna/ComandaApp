@@ -1,5 +1,4 @@
 import React, {Fragment, useEffect, useState} from "react";
-import axios from "axios";
 /*
  * IMPORT COMPONENTS
  */
@@ -12,9 +11,6 @@ import {ReactComponent as LogoComanda} from "../icons/logo.svg";
 import Errormessage from "../components/Errormessage";
 import {firstRequest} from '../data/restaurante';
 import {ReactComponent as Refresh} from "../icons/refresh.svg";
-
-import {fakeData1} from '../data/data';
-import Spinnercircle from "../components/Spinnercircle";
 
 const Launcher = () => {
     const launcher = {
@@ -50,15 +46,23 @@ const Launcher = () => {
             color: "rgba(112,112,112,1)"
         }
     };
-
+    //no tocar(usado en firstRequest función)
     const [datos, getDatos] = useState({});
+    //-----------
     const [mensaje, getMensaje] = useState('');
     const [noconnection, getNoconnection] = useState(false);
     const [isreload, getIsreload] = useState(false)
 
     useEffect(() => {
-        firstRequest(protocol, URL, CONNECT_TOKEN, getMensaje, getDatos, getNoconnection)
+        firstRequest(protocol, URL, CONNECT_TOKEN, getMensaje, getDatos)
+
+        //OBTENER TOKEN DE URL
+        let url = document.referrer;
+        let longToken = 15;
+        const token = url.substr(url.length - longToken);
+        alert(token)
     }, [isreload]);
+
     const a = (value) => setTimeout(value => {
         getIsreload(false)
     }, 3000)

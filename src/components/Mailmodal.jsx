@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {ReactComponent as IconClose} from "../icons/times-circle-regular.svg";
+import {connect} from 'react-redux';
 
 
-const Mailmodal = ({verMailmodal, vermail, datosrestaurante}) => {
+const Mailmodal = ({verMailmodal, vermail, restauranteData}) => {
     const aller = {
         princ: {
             width: "100%",
@@ -79,13 +80,10 @@ const Mailmodal = ({verMailmodal, vermail, datosrestaurante}) => {
     };
 
     const [mostrarmail, getMostrarmail] = useState(false);
-    const [datosRestaurante, getDatosRestaurante] = useState(false);
 
     useEffect(() => {
         getMostrarmail(verMailmodal);
-        getDatosRestaurante(datosrestaurante)
-    }, [verMailmodal, datosrestaurante]);
-
+    }, [verMailmodal]);
     return (
         <div
             className={mostrarmail ? "displayed" : "displayed_none"}
@@ -97,10 +95,11 @@ const Mailmodal = ({verMailmodal, vermail, datosrestaurante}) => {
                         className="close"
                         onClick={vermail}/>
                     <p style={aller.texto}>¿Quieres mandar un correo
-                        a {datosRestaurante.nombre_restaurante ? datosRestaurante.nombre_restaurante : "este establecimiento"}?</p>
+                        a {restauranteData.length > 0 ? restauranteData[0].nombre_restaurante : "este establecimiento"}?</p>
                 </div>
                 <div style={aller.cont_data}>
-                    <a style={aller.botonsi} href={`mailto:${datosRestaurante.email}`}>Si!</a>
+                    <a style={aller.botonsi}
+                       href={`mailto:${restauranteData.length > 0 ? restauranteData[0].email : null}`}>Si!</a>
                     <a href="#!"
                        onClick={vermail}
                        style={aller.botonno}
@@ -113,4 +112,10 @@ const Mailmodal = ({verMailmodal, vermail, datosrestaurante}) => {
     );
 };
 
-export default Mailmodal;
+function mapStateToProps(state){
+    return {
+        restauranteData: state.RestauranteData.RestauranteProfile
+    }
+}
+
+export default connect(mapStateToProps)(Mailmodal);

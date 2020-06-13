@@ -1,7 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {CONNECT_TOKEN, firstRequest, URL} from "../data/restaurante";
+import {protocol} from "../utils/utils";
 
-const Footer = ({vermapa, vermail, datosrestaurante, back}) => {
+const Footer = ({vermapa, vermail, restauranteData, back}) => {
 
     const style = {
         contenedor: {
@@ -22,11 +25,13 @@ const Footer = ({vermapa, vermail, datosrestaurante, back}) => {
         }
     }
 
-    const [datosRestaurante, getDatosRestaurante] = useState({})
+
 
     useEffect(() => {
-        getDatosRestaurante(datosrestaurante)
-    }, [datosrestaurante]);
+        if(!restauranteData){
+            firstRequest(protocol, URL, CONNECT_TOKEN)
+        }
+    }, [restauranteData]);
 
     return (
         <div className="cont_footer_absolut">
@@ -38,7 +43,7 @@ const Footer = ({vermapa, vermail, datosrestaurante, back}) => {
                     alt="imagen de footer"
                 />
                 </Link>
-                <a href={`tel:${datosRestaurante.telefono}`}>
+                <a href={`tel:${restauranteData.length > 0 ? restauranteData[0].telefono : null}`}>
                     <img
                         style={style.boton}
                         src="./assets/img/footer/ico-tel.svg"
@@ -61,4 +66,11 @@ const Footer = ({vermapa, vermail, datosrestaurante, back}) => {
         </div>
     )
 }
-export default Footer;
+
+function mapStateToProps(state){
+    return {
+        restauranteData: state.RestauranteData.RestauranteProfile
+    }
+}
+
+export default connect(mapStateToProps)(Footer);

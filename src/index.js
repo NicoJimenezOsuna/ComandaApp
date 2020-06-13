@@ -2,6 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 /*
+*
+* IMPORT STORE REDUX
+*
+* */
+import store from './redux/store';
+import {Provider} from "react-redux";
+/*
 * IMPORT COMPONENTS ans containers
  */
 import App from './containers/App';
@@ -30,17 +37,19 @@ import "./App.css"
 // import Footer from './containers/Footer'
 
 ReactDOM.render(
-    <BrowserRouter>
-        {/*<Header/>*/}
-        <Switch>
-            <Route path="/" exact component={Launcher}/>
-            <Route path="/categoria" component={App}/>
-            <Route path="/subcategoria" component={Subcategoria}/>
-            <Route path="/404" component={Error404}/>
-            <Redirect to="/404"/>
-        </Switch>
-        {/* <Footer /> */}
-    </BrowserRouter>,
+    <Provider store={store}>
+        <BrowserRouter>
+            {/*<Header/>*/}
+            <Switch>
+                <Route path="/" exact component={Launcher}/>
+                <Route path="/categoria" component={App}/>
+                <Route path="/subcategoria" component={Subcategoria}/>
+                <Route path="/404" component={Error404}/>
+                <Redirect to="/404"/>
+            </Switch>
+            {/* <Footer /> */}
+        </BrowserRouter>
+    </Provider>,
     document.getElementById('root')
 );
 

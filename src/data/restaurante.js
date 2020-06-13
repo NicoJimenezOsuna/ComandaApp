@@ -1,15 +1,17 @@
 //Profile data connecct and configuration
 import axios from "axios";
+//IMPORT ACTION REDUX
+import {addProfile} from "../redux/actions";
 
 export const CONNECT_TOKEN = "cLzDdvFTJcl5cWG";
 //URL CONNECTION
-export const URL= "//restaurante.comandapp.es/api/ws/0/";
+export const URL = "//restaurante.comandapp.es/api/ws/0/";
 /*
 *
 * FIRST CONNECT API FUNCTION
 *
 * */
-// http://restaurante.comandaapp.es/api/ws/0/cLZDdvFTJcl5cWG
+// http://restaurante.comandapp.es/api/ws/0/cLZDdvFTJcl5cWG
 
 
 export const firstRequest = async (
@@ -36,6 +38,7 @@ export const firstRequest = async (
         if (toObject.data.mensaje !== 'OK') {
             getMensaje(toObject.data.mensaje)
         } else {
+            addProfile(toObject.data)
             localStorage.setItem(
                 "comandaApp",
                 JSON.stringify(response.data)
@@ -53,14 +56,14 @@ export const firstRequest = async (
         // } else {
         await getDatos(toObject);
         // }
-        getNoconnection(false)
+        // getNoconnection(false)
     } catch (error) {
         // localStorage.setItem(
         //     "comandaApp",
         //     JSON.stringify(fakeData1)
         // );
         // getDatos(fakeData1.data.respuesta)
-        getNoconnection(true)
+        // getNoconnection(true)
         console.log("error", error);
     }
 };

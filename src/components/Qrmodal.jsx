@@ -1,11 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {ReactComponent as IconClose} from "../icons/times-circle-regular.svg";
-/*
- * IMPORT DATA FROM SRC/DATA/DATA.JSON
- */
-import {codigoqrimg} from "../data/data.js";
+import {connect} from 'react-redux';
+import {urlImage} from '../utils/utils'
 
-const Qrmodal = ({codigoqr, verqr}) => {
+const Qrmodal = ({codigoqr, verqr, restauranteData}) => {
     const style = {
         princ: {
             width: "100%",
@@ -60,17 +58,6 @@ const Qrmodal = ({codigoqr, verqr}) => {
         },
     };
 
-    const [codigoqrState, getCodigoqr] = useState({});
-    const [mostrarqr, getMostrarqr] = useState(false);
-
-
-    useEffect(() => {
-        getCodigoqr(codigoqrimg);
-        getMostrarqr(verqr);
-    }, [verqr, codigoqrimg]);
-
-    // console.log(qrState)
-
     return (
         <div
             className={verqr ? "displayed" : "displayed_none"}
@@ -89,7 +76,7 @@ const Qrmodal = ({codigoqr, verqr}) => {
                 <div style={style.cont_data}>
                     <img
                         style={style.qr}
-                        src={codigoqrState.imageUrl} alt="Qr restaurante"/>
+                        src={restauranteData.length > 0 ? (urlImage() + restauranteData[0].codigoqr) : null} alt="Qr restaurante"/>
                 </div>
             </div>
         </div>
@@ -98,4 +85,10 @@ const Qrmodal = ({codigoqr, verqr}) => {
 
 };
 
-export default Qrmodal;
+function mapStateToProps(state) {
+    return {
+        restauranteData: state.RestauranteData.RestauranteProfile
+    }
+}
+
+export default connect(mapStateToProps)(Qrmodal);

@@ -1,5 +1,4 @@
-import React, {Fragment, useEffect, useState} from "react";
-import { Redirect } from 'react-router-dom'
+import React, {Fragment, useEffect, useState, useCallback} from "react";
 /*
  * IMPORT COMPONENTS
  */
@@ -9,14 +8,13 @@ import Migas from "../components/Migas";
 import Labelscarta from "../components/Labelscarta";
 import Listadocarta from "../components/Listadocarta";
 import Listadomenu from "../components/Listadomenu";
-import Alergenos from "../components/Alergenos";
 import Allergensmodal from "../components/Allergensmodal";
 import Slidermodal from "../components/Slidermodal";
 import NavUtils from "../components/NavUtils";
 import Qrmodal from "../components/Qrmodal";
-import Qr from '../components/Qr';
 import Mapamodal from "../components/Mapamodal";
 import Mailmodal from "../components/Mailmodal";
+import Listcomandamodal from "../components/Listcomandamodal";
 
 
 const Subcategorias = () => {
@@ -27,10 +25,11 @@ const Subcategorias = () => {
     const [dataProductId, getDataProductId] = useState(0);
     const [verqr, getVerqr] = useState(false);
     const [datosrestaurante, getDatosRestaurante] = useState({});
-    const [nonprice, getNonprice] = useState(false)
+    const [wordkey, getwordKey] = useState('')
     //Constantes de modales
     const [verMapamodal, getMapamodal] = useState(false);
     const [verMailmodal, getMailmodal] = useState(false);
+    const [isVisiblePedido, getIsVisiblePedido] = useState(false)
 
     //Variables para actualizar el estado de modales
     let vermapa = () => {
@@ -43,13 +42,17 @@ const Subcategorias = () => {
     const visibleHandler = () => {
         !isVisible ? getIsVisible(true) : getIsVisible(false);
     };
+    const pedidoViewHandler = () => {
+        !isVisiblePedido ? getIsVisiblePedido(true) : getIsVisiblePedido(false);
+    }
 
-    const dataSliderHandler = (dataFull, dataId, nonprice) => {
+
+    const dataSliderHandler = useCallback((dataFull, dataId, wordkey) => {
         getDataSlider(dataFull);
         getDataProductId(dataId);
-        getNonprice(nonprice);
+        getwordKey(wordkey);
         !isVisibleSlider ? getIsVisibleSlider(true) : getIsVisibleSlider(false);
-    };
+    }, [isVisibleSlider])
     const buttonCloseSlidermodalHandler = () => {
         !isVisibleSlider ? getIsVisibleSlider(true) : getIsVisibleSlider(false);
     };
@@ -63,15 +66,15 @@ const Subcategorias = () => {
         getMapamodal(verMapamodal);
         getMailmodal(verMailmodal);
 
-        let datosderetaurante = JSON.parse(localStorage.getItem('comandaApp')).data;
-        if (datosderetaurante) {
-            getDatosRestaurante(datosderetaurante)
-        } else {
-            //hacer algo si localstorage está vacío
-           return (
-               <Redirect to="/" />
-           )
-        }
+
+            let datosderetaurante = JSON.parse(localStorage.getItem('comandaApp')).data;
+            if (datosderetaurante) {
+                getDatosRestaurante(datosderetaurante)
+            } else {
+                //hacer algo si localstorage está vacío
+            }
+
+
     }, [verMapamodal, verMailmodal]);
 
 
@@ -88,9 +91,36 @@ const Subcategorias = () => {
         getDataProductId(value)
     }
 
+    const renderCategory = () => {
+        if(subcategorias.wordKey === 'carta'){
+            return (
+                <Fragment>
+                    <Labelscarta data={titles}/>
+                    <Listadocarta
+                        dataid={subcategorias.id}
+                        dataSliderHandler={dataSliderHandler}
+                    />
+                </Fragment>
+            )
+        }else{
+            return (
+                <Listadomenu
+                             dataid={subcategorias.id}
+                             dataSliderHandler={dataSliderHandler}
+                             subcategorias={subcategorias}
+                />
+            )
+        }
+    }
+
     return (
         <Fragment>
             <div className="subRoot">
+                <Listcomandamodal
+                    onClick={pedidoViewHandler}
+                    isVisiblePedido={isVisiblePedido}
+                    pedidoViewHandler={pedidoViewHandler}
+                />
                 <Qrmodal
                     verqr={verqr}
                     codigoqr={codigoqr}
@@ -105,7 +135,7 @@ const Subcategorias = () => {
                     dataInicio={dataProductId}
                     buttonCloseSlidermodalHandler={buttonCloseSlidermodalHandler}
                     actualizaPropDataProductId={actualizaPropDataProductId}
-                    nonprice={nonprice}
+                    wordkey={wordkey}
                 />
                 <Mapamodal
                     vermapa={vermapa}
@@ -122,22 +152,25 @@ const Subcategorias = () => {
                     codigoqr={codigoqr}
                     dataVisible={isVisible}
                     visible={visibleHandler}
+                    pedidoViewHandler={pedidoViewHandler}
                 />
                 <div className="padre">
                     <Migas data={subcategorias.nombre} visible={visibleHandler}/>
-                    {subcategorias.wordKey === 'carta' ?
-                        <Fragment>
-                            <Labelscarta data={titles}/>
-                            <Listadocarta
-                                dataid={ subcategorias.wordKey !== 'carta' ? null : subcategorias.id}
-                                dataSliderHandler={ subcategorias.wordKey !== 'carta' ? null : dataSliderHandler}
-                            />
-                        </Fragment>
-                        :
-                        <Listadomenu
-                            dataid={subcategorias.id}
-                            dataSliderHandler={dataSliderHandler}
-                        />
+                    { renderCategory()
+                        // subcategorias.wordKey === 'carta' ?
+                        // <Fragment>
+                        //     <Labelscarta data={titles}/>
+                        //     <Listadocarta
+                        //         dataid={subcategorias.id}
+                        //         dataSliderHandler={dataSliderHandler}
+                        //     />
+                        // </Fragment>
+                        // :
+                        // <Listadomenu style={{display: 'none'}}
+                        //              dataid={subcategorias.id}
+                        //              dataSliderHandler={dataSliderHandler}
+                        //              subcategorias={subcategorias}
+                        // />
                     }
                 </div>
             </div>

@@ -2,8 +2,9 @@ import React, {useEffect, useState} from "react";
 import {ReactComponent as IconClose} from "../icons/times-circle-regular.svg";
 import Spinner from './Spinner';
 import {iframeSrcData} from '../utils/utils';
+import {connect} from 'react-redux';
 
-const Mapamodal = ({verMapamodal, vermapa, datosrestaurante}) => {
+const Mapamodal = ({verMapamodal, vermapa, restauranteData}) => {
     const aller = {
         princ: {
             width: "100%",
@@ -70,24 +71,22 @@ const Mapamodal = ({verMapamodal, vermapa, datosrestaurante}) => {
         },
         botonir: {
             width: 'auto',
-            height: '50px',
-            backgroundColor: 'rgba(156, 255, 242, 0.68)',
-            padding: `5px 25px 5px 25px`,
+            // height: '50px',
+            // backgroundColor: 'rgba(156, 255, 242, 0.68)',
+            // padding: `5px 25px 5px 25px`,
             alignItems: 'center',
             filter: 'drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.161))',
-            borderRadius: `50px`,
-            border: '2px solid  rgb(112, 112, 112)',
+            // borderRadius: `50px`,
+            // border: '2px solid  rgb(112, 112, 112)',
             marginTop: `15px`
         }
     };
 
     const [mostrarmapa, getMostrarmapa] = useState(false);
-    const [datosRestaurante, getDatosRestaurante] = useState({})
 
     useEffect(() => {
         getMostrarmapa(verMapamodal);
-        getDatosRestaurante(datosrestaurante)
-    }, [verMapamodal, datosrestaurante]);
+    }, [verMapamodal]);
 
     return (
         <div
@@ -100,20 +99,18 @@ const Mapamodal = ({verMapamodal, vermapa, datosrestaurante}) => {
                         className="close"
                         onClick={vermapa}/>
                     <p style={aller.h1}>¿Quieres ir al
-                        local {datosRestaurante ? datosRestaurante.nombre_restaurante : 'referenciado'}?</p>
+                        local {restauranteData.length > 0 ? restauranteData[0].nombre_restaurante : 'referenciado'}?</p>
                 </div>
                 <div style={aller.cont_data}>
                     <iframe
                         title="localización-restaurante"
                         style={aller.iframe}
-                        src={datosRestaurante ? iframeSrcData(datosRestaurante.localizacion) : <Spinner/>}
+                        src={restauranteData.length > 0 ? iframeSrcData(restauranteData[0].localizacion) : <Spinner/>}
                         // zoom="21"
                         allowFullScreen=""
                         aria-hidden="false" tabIndex="0"/>
                     <div style={aller.texto}>
-
-                        {/*intentar utilizar botón mapa , si no, indicar uasar ampliar mapa de google*/}
-                        <a style={aller.botonir} href="#!">Llévame!</a>
+                        <p style={aller.botonir} >Pulsa <span style={{color: '#3c7186'}}>"Ampliar el mapa"</span></p>
                     </div>
 
                 </div>
@@ -122,4 +119,10 @@ const Mapamodal = ({verMapamodal, vermapa, datosrestaurante}) => {
     );
 };
 
-export default Mapamodal;
+function mapStateToProps(state){
+    return {
+        restauranteData: state.RestauranteData.RestauranteProfile
+    }
+}
+
+export default connect(mapStateToProps)(Mapamodal);

@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {ReactComponent as IconClose} from "../icons/times-circle-regular.svg";
 import Carousel from './Carousel'
 /*
@@ -12,7 +12,7 @@ const Slidermodal = ({
                          dataInicio,
                          buttonCloseSlidermodalHandler,
                          actualizaPropDataProductId,
-                         nonprice
+                         wordkey
                      }) => {
 
     const slider = {
@@ -44,13 +44,13 @@ const Slidermodal = ({
 
     const [dataToCar, getDataToCar] = useState([]);
     const [dataInicioToCar, getDataInicioToCar] = useState(0);
-    const [noprice, getNoprice] = useState(false)
+    const [stwordkey, getStWordkey] = useState('')
 
     useEffect(() => {
         getDataToCar(data)
         getDataInicioToCar(dataInicio)
-        getNoprice(nonprice)
-    }, [data, dataInicio, nonprice])
+        getStWordkey(wordkey)
+    }, [data, dataInicio, wordkey])
 
     return (
         <div
@@ -66,7 +66,7 @@ const Slidermodal = ({
                     datas={dataToCar}
                     dataInicios={dataInicioToCar}
                     actualizaPropDataProductId={actualizaPropDataProductId}
-                    noprice={noprice}
+                    wordkey={stwordkey}
                 />
             </div>
         </div>

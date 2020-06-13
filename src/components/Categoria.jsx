@@ -1,15 +1,14 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import {useHistory} from "react-router-dom";
+import {Redirect, useHistory} from "react-router-dom";
 import NavUtils from './NavUtils';
 import Allergensmodal from './Allergensmodal';
 import Qrmodal from './Qrmodal';
 import axios from "axios";
 import {CONNECT_TOKEN} from '../data/restaurante';
 import {protocol, urlImage} from '../utils/utils';
-import Spinner from '../components/Slidermodal'
-import {fakeData1} from '../data/data';
+import {connect} from 'react-redux';
 
-const Categorias = () => {
+const Categorias = ({pedidoViewHandler, restauranteData}) => {
 
     const history = useHistory();
     const cat = {
@@ -99,7 +98,9 @@ const Categorias = () => {
     let cartaOk = [];
 
     if(Object.keys(categorias).length > 0){
-         cartaOk = categorias.respuesta.filter(item=>{return /carta/gi.test(item.nombrecarta)})
+         categorias.respuesta.filter(item => {
+             return /carta/gi.test(item.nombrecarta)
+         })
     }
 
     useEffect(() => {
@@ -154,6 +155,7 @@ const Categorias = () => {
     },[])
 
     const selectedView = (e) => {
+        e.preventDefault()
         getselected(e.target.id)
     }
 
@@ -170,6 +172,11 @@ const Categorias = () => {
         !verqr ? getVerqr(true) : getVerqr(false);
     }//sirve para actualizar el estado
 
+    if(restauranteData.length <= 0){
+        return <Redirect to='/'  />
+    }
+
+
     return (
         <Fragment>
             <Allergensmodal
@@ -183,6 +190,7 @@ const Categorias = () => {
                 codigoqr={codigoqr}
                 dataVisible={isVisible}
                 visible={visibleHandler}
+                pedidoViewHandler={pedidoViewHandler}
                 // codigoqr={qr}
             />
 
@@ -205,7 +213,7 @@ const Categorias = () => {
                         MENUS
                     </span>
                 </div>
-                {selected === 'carta' && categorias.mensaje === 'OK' ? (
+                {selected === 'carta' && categorias.mensaje === 'OK' && carta ? (
                         carta.map(item => {
                                 return (
                                     <div
@@ -241,13 +249,12 @@ const Categorias = () => {
                         })
 
                     ) :
-                    <Spinner/>
+                  null
                 }
                 {/*ESTO LO CAMBIAREMOS MÁS ADELANTE PARA OPTIMIZAR. sE CONVERTIRÁ EN COMPONENTECADA OPCIÓN*/}
-                {selected === 'menus' && categorias.mensaje === 'OK' ? (
+                {selected === 'menus' && categorias.mensaje === 'OK' && carta ? (
                         categorias.respuesta.map((item, index) => {
                             if(/menú/gi.test(item.nombrecarta)) {
-                                console.log('item de Categoria',item)
                                 return (
                                     <div
                                         className="cont_childs"
@@ -291,4 +298,10 @@ const Categorias = () => {
     )
 }
 
-export default Categorias;
+function mapStateToProps(state) {
+    return {
+        restauranteData: state.RestauranteData.RestauranteProfile
+    }
+}
+
+export default connect(mapStateToProps)(Categorias);

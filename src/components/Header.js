@@ -1,7 +1,8 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, {Fragment, useEffect} from "react";
 import {ReactComponent as LogoComanda} from "../icons/logo.svg";
+import {connect} from 'react-redux';
 
-const Header = () => {
+const Header = ({restauranteData}) => {
     const header = {
         grupo_17: {
             overflow: "visible",
@@ -54,31 +55,24 @@ const Header = () => {
         }
     };
 
-    const [restaurante, getRestaurante] = useState("Restaurante");
-
     useEffect(() => {
+
         //        sustituir imagenes rotas
-        setTimeout(function () {
-            let arrImg = document.getElementsByTagName("img");
-            for (let element of arrImg) {
-                // element.src = './assets/images/merca_dev.png';
-                if (
-                    !element.complete ||
-                    typeof element.naturalWidth === "undefined" ||
-                    element.naturalWidth === 0
-                ) {
-                    // image was broken, replace with your new image
-                    // element.src = './public/assets/images/merca_dev.png';
-                    element.src = "./assets/img/categorias/carne_categoria.png";
-                }
-            }
-        }, 1000);
-        let nombre_restaurante = JSON.parse(localStorage.getItem('comandaApp')).data;
-        if (nombre_restaurante) {
-            getRestaurante(nombre_restaurante.nombre_restaurante)
-        } else {
-            //hacer algo si localstorage está vacío
-        }
+        // setTimeout(function () {
+        //     let arrImg = document.getElementsByTagName("img");
+        //     for (let element of arrImg) {
+        //         // element.src = './assets/images/merca_dev.png';
+        //         if (
+        //             !element.complete ||
+        //             typeof element.naturalWidth === "undefined" ||
+        //             element.naturalWidth === 0
+        //         ) {
+        //             // image was broken, replace with your new image
+        //             // element.src = './public/assets/images/merca_dev.png';
+        //             element.src = "./assets/img/categorias/carne_categoria.png";
+        //         }
+        //     }
+        // }, 1000);
 
     }, []);
 
@@ -106,9 +100,9 @@ const Header = () => {
                 </div>
                 <div style={header.cont_comanda_social_titulo}>
                     <span className="text-shadow"
-                        style={header.restaurante}
+                          style={header.restaurante}
                     >
-                        {restaurante}
+                        {restauranteData.length > 0 ? restauranteData[0].nombre_restaurante : 'Restaurante'}
                     </span>
                 </div>
             </div>
@@ -116,4 +110,10 @@ const Header = () => {
     );
 };
 
-export default Header;
+function mapStateToProps(state) {
+    return {
+        restauranteData: state.RestauranteData.RestauranteProfile
+    }
+}
+
+export default connect(mapStateToProps)(Header);
