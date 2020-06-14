@@ -1,5 +1,6 @@
 import React from 'react';
 import {ReactComponent as LogoComanda} from "../icons/logo.svg";
+import {connect} from 'react-redux'
 
 /*
 *
@@ -8,8 +9,9 @@ import {ReactComponent as LogoComanda} from "../icons/logo.svg";
 * */
 import Socialpymes from "./Socialpymes";
 import Binicio from "./Binicio";
+import {urlImage} from "../utils/utils";
 
-const Launch = () => {
+const Launch = ({logo}) => {
 
     const styles = {
         princ: {
@@ -77,12 +79,21 @@ const Launch = () => {
                     <LogoComanda style={styles.image_logo} alt="Logo de ComandaApp"/>
                 </div>
             </div>
-            <img style={styles.image_princ} src="./assets/img/restaurant_691397_1280.png" alt="Imagen de inicio"/>
+            <img style={styles.image_princ} src={logo.length > 0 ? urlImage() + logo[0].logo : null}
+                 alt="Imagen de inicio"/>
             <Binicio/>
-            <Socialpymes/>
+            <a href="https://socialpymesvlc.es">
+                <Socialpymes/>
+            </a>
         </div>
     )
 };
 
-export default Launch;
+function mapStateToProps(state) {
+    return {
+        logo: state.RestauranteData.RestauranteProfile
+    }
+}
+
+export default connect(mapStateToProps)(Launch);
 

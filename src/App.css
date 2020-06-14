@@ -46,10 +46,10 @@
 }
 
 .subRoot {
-    background-image: url(./comandApp_logo.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
+    /*background-image: url(./comandApp_logo.png);*/
+    /*background-size: contain;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center center;*/
     /*background-attachment: fixed;*/
 }
 
