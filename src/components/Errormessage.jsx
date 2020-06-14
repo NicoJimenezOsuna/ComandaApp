@@ -19,9 +19,9 @@ const Errormessage = ({mensaje}) => {
 
     return (
         <div style={error.princ}>
-            <h1>ERROR: </h1>
+            <h3>ERROR: </h3>
             <br/>
-            <h3>{mensaje}</h3>
+            <h5>{mensaje}</h5>
         </div>
     )
 }

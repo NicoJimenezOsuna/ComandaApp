@@ -7,7 +7,7 @@ const spinnercir = {
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        height: '100%'
+        height: '70px'
     }
 }
 

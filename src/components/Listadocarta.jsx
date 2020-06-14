@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useState} from "react";
 import axios from "axios";
 import Buttoninfo from "./Buttoninfo";
-import Spinner from '../components/Spinner';
+import Spinnercircle from '../components/Spinnercircle';
 /*
  * IMPORT SUPPORT FUNCIONS
  */
@@ -92,7 +92,7 @@ const Listadocarta = ({dataid, dataSliderHandler}) => {
 
     if(!Object.keys(products).length > 0){
         return (
-            <Spinner/>
+            <Spinnercircle/>
         )
     }
 
@@ -116,6 +116,7 @@ const Listadocarta = ({dataid, dataSliderHandler}) => {
                                     dataSliderHandler={dataSliderHandler}
                                     dataListaFull={products}
                                     dataIdSelf={products.indexOf(item)}
+                                    //wordkey for display prices and buttons plus and substract in caroussel
                                     wordkey = {'carta'}
                                 />
                             </div>
@@ -123,7 +124,7 @@ const Listadocarta = ({dataid, dataSliderHandler}) => {
                     );
                 })
                 :
-            <Spinner/>
+            <Spinnercircle/>
             }
             {/*    Aqui se mete los spiners de carga    */}
         </Fragment>

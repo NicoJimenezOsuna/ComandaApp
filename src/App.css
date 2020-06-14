@@ -641,8 +641,16 @@ a:hover {
 *ESTILOS SPINNER
 *
 */
-#loadingProgressG {
+
+.Rect_ngulo_1 {
+    overflow: visible;
     width: 414px;
+    height: 50px;
+    left: 153px;
+    top: 872px;
+}
+#loadingProgressG {
+    width: 228px;
     height: 19px;
     overflow: hidden;
     background-color: #0dc5c1;
@@ -656,8 +664,8 @@ a:hover {
 
 .loadingProgressG {
     background-color: rgb(255, 255, 255);
-    margin-top: 0;
-    margin-left: -414px;
+    /*margin-top: 0;*/
+    /*margin-left: -414px;*/
     animation-name: bounce_loadingProgressG;
     -o-animation-name: bounce_loadingProgressG;
     -ms-animation-name: bounce_loadingProgressG;
@@ -678,7 +686,7 @@ a:hover {
     -ms-animation-timing-function: linear;
     -webkit-animation-timing-function: linear;
     -moz-animation-timing-function: linear;
-    width: 414px;
+    width: 428px;
     height: 19px;
 }
 
@@ -978,15 +986,6 @@ a:hover {
 #Componente_1___1 {
     /*font-size: 30px;*/
     color: rgba(112, 112, 112, 1);
-}
-
-.Rect_ngulo_1 {
-    position: absolute;
-    overflow: visible;
-    width: 414px;
-    height: 50px;
-    left: 153px;
-    top: 872px;
 }
 
 .Rect_ngulo_2 {

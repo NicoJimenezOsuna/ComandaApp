@@ -73,7 +73,7 @@ export const Ordena = (element) => {
 /*
 *
 *
-* ADD PRODUCT TO listcomanda
+* ADD PRODUCT TO listcomanda (  deprecated  )
 *
 * */
 export const addProduct = (product, cat) => {

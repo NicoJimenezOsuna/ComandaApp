@@ -32,7 +32,7 @@ const Launcher = () => {
             fontFamily: "Papyrus",
             fontStyle: "normal",
             fontWeight: "normal",
-            fontSize: `70px`,
+            fontSize: `50px`,
             color: "rgba(112,112,112,1)"
         },
         Tu_carta_digital: {
@@ -42,7 +42,7 @@ const Launcher = () => {
             fontFamily: "Papyrus",
             fontStyle: "normal",
             fontWeight: "normal",
-            fontSize: `30px`,
+            fontSize: `20px`,
             color: "rgba(112,112,112,1)"
         }
     };
@@ -55,23 +55,13 @@ const Launcher = () => {
 
     useEffect(() => {
         firstRequest(protocol, URL, CONNECT_TOKEN, getMensaje, getDatos)
-
+        // a()
         //OBTENER TOKEN DE URL
         let url = document.referrer;
         let longToken = 15;
         const token = url.substr(url.length - longToken);
         // alert(token)
     }, [isreload]);
-
-    const a = (value) => setTimeout(value => {
-        getIsreload(false)
-    }, 3000)
-
-    const reload = () => {
-        firstRequest(protocol, URL, CONNECT_TOKEN, getMensaje, getDatos, getNoconnection);
-        getIsreload(true)
-        a(true)
-    }
 
     return (
         <div style={launcher.princ}>
@@ -83,8 +73,8 @@ const Launcher = () => {
                     justifyContent: 'space-between',
                     height: '100%'
                 }}>
-                    <LogoComanda/>
-                    <div>
+                    <LogoComanda style={{height: '30%'}}/>
+                    <div style={{width: '100%'}}>
                         <div style={launcher.ComandApp}>
                             <span>ComandApp</span>
                         </div>
@@ -94,7 +84,7 @@ const Launcher = () => {
                     </div>
                     <div style={{position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                         {noconnection === false ?
-                            mensaje !== 'OK' ?
+                            mensaje === 'ERROR NO HAY RESTAURANTE O RESTAURANTE INACTIVO' ?
                                 <Errormessage mensaje={mensaje}/>
                                 :
                                 <Spinner/>

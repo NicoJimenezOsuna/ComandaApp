@@ -156,22 +156,7 @@ const Subcategorias = () => {
                 />
                 <div className="padre">
                     <Migas data={subcategorias.nombre} visible={visibleHandler}/>
-                    { renderCategory()
-                        // subcategorias.wordKey === 'carta' ?
-                        // <Fragment>
-                        //     <Labelscarta data={titles}/>
-                        //     <Listadocarta
-                        //         dataid={subcategorias.id}
-                        //         dataSliderHandler={dataSliderHandler}
-                        //     />
-                        // </Fragment>
-                        // :
-                        // <Listadomenu style={{display: 'none'}}
-                        //              dataid={subcategorias.id}
-                        //              dataSliderHandler={dataSliderHandler}
-                        //              subcategorias={subcategorias}
-                        // />
-                    }
+                    { renderCategory() }
                 </div>
             </div>
             <Footer

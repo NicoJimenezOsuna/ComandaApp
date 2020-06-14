@@ -4,8 +4,8 @@ const Spinner = () => {
 
     return (
         <Fragment>
-            <div id="loadingProgressG" className="Rect_ngulo_1">
-                <div id="loadingProgressG_1" className="loadingProgressG"></div>
+            <div id="loadingProgressG">
+                <div className="loadingProgressG"/>
             </div>
         </Fragment>
     )

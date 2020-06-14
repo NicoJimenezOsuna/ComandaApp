@@ -128,7 +128,7 @@ const Listadomenu = ({dataid, dataSliderHandler, subcategorias, productMenuSel})
                     )
                 })
                 :
-                <Spinner/>
+                <Spinnercircle/>
             }
             <div style={{
                 width: '100%',

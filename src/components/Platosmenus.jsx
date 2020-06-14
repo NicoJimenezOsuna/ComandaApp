@@ -3,7 +3,7 @@ import {protocol, urlComplete} from "../utils/utils";
 import Buttoninfo from "./Buttoninfo";
 import axios from "axios";
 import {CONNECT_TOKEN} from "../data/restaurante";
-import Spinner from "./Spinner";
+import Spinnercircle from "./Spinnercircle";
 
 const Platosmenus = ({catid, seccid, dataSliderHandler}) => {
     const listaplatos = {
@@ -75,7 +75,7 @@ const Platosmenus = ({catid, seccid, dataSliderHandler}) => {
                     //     getDatos(fakeData1.data.respuesta)
                     // } else {
                     if (isSubscribed) {
-                        await getPlatos(urlComplete(toObject.data.respuesta));
+                        getPlatos(urlComplete(toObject.data.respuesta));
                     }
                     // }
 
@@ -87,10 +87,9 @@ const Platosmenus = ({catid, seccid, dataSliderHandler}) => {
                     // getSectionsMenu(fakeData1.data.respuesta)
                     console.log("error", error);
                 }
-
-                //REQUEST
-                menusRequest(protocol, url, CONNECT_TOKEN, seccid, catid)
             }
+            //REQUEST
+            menusRequest(protocol, url, CONNECT_TOKEN, seccid, catid)
 
             //clean function: no update state if is unmount component
             return () => isSubscribed = false
@@ -126,7 +125,7 @@ const Platosmenus = ({catid, seccid, dataSliderHandler}) => {
                         );
                     })
                     :
-                    <Spinner/>
+                    <Spinnercircle/>
                 }
                 {/*    Aqui se mete los spiners de carga    */}
             </Fragment>
