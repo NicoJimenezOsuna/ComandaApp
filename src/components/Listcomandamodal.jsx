@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 import {ReactComponent as Nomenu} from "../icons/nocarta.svg";
 import {ReactComponent as Nocarta} from "../icons/notapas.svg";
 
-
 const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, productMenuSel}) => {
     const comanda = {
         cont_princ: {
