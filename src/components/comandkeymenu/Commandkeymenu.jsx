@@ -2,7 +2,9 @@ import React, {Fragment, useEffect, useState} from 'react';
 import Plusbuttonmenu from "./Plusbuttonmenu";
 import Subtrackbuttonmenu from "./Substrackbuttonmenu";
 import Deletebuttonmenu from "./Deletebuttonmenu";
+import Dischardbutton from "../Dischardbutton";
 import {connect} from "react-redux";
+import Dischardbuttonmenu from "./Dischardbuttonmenu";
 
 const Comamandkeymenu = ({data, productsmenu}) => {
 
@@ -77,6 +79,9 @@ const Comamandkeymenu = ({data, productsmenu}) => {
                 dataproduct={dataproduct}
                 // wordkey={stwordkey}
             />
+            <Dischardbuttonmenu
+                dataproduct={dataproduct}
+                />
         </Fragment>
     )
 }

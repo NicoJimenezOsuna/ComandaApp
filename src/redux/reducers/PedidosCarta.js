@@ -49,6 +49,28 @@ function PedidosCarta(state = initialState, action) {
                 }
             }
             // break;
+
+        case 'DISCHARD_PRODUCTS_CARTA':
+            if (action.payload.product.cant >= 1) {
+                const subs = state.pedidoCarta.map(item => {
+                    if (item.plato_id === action.payload.product.plato_id) {
+                        item.cant = item.cant - item.cant
+                        return item
+                    } else {
+                        return item
+                    }
+                })
+                const del = subs.filter(item => item.cant !== 0)
+                return {
+                    pedidoCarta: [...del]
+                }
+            } else {
+                const del = state.pedidoCarta.filter(item => item.plato_id !== action.payload.product.plato_id)
+                return {
+                    pedidoCarta: [...del]
+                }
+            }
+        // break;
         default:
             return state;
     }

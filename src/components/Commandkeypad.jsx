@@ -2,6 +2,7 @@ import React, {Fragment, useEffect, useState} from 'react';
 import Plusbutton from "./Plusbutton";
 import Subtrackbutton from "./Subtrackbutton";
 import Deletebutton from "./Deletebutton";
+import Dischardbutton from "./Dischardbutton";
 import {connect} from "react-redux";
 
 const Comamandkeymap = ({data, products, productsmenu, wordkey}) => {
@@ -70,12 +71,13 @@ const Comamandkeymap = ({data, products, productsmenu, wordkey}) => {
                         dataproduct={dataproduct}
                         // wordkey={stwordkey}
                     />
-
-
             }
             <Plusbutton
                 dataproduct={dataproduct}
                 // wordkey={stwordkey}
+            />
+            <Dischardbutton
+                dataproduct={dataproduct}
             />
         </Fragment>
     )

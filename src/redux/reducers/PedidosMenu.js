@@ -49,6 +49,29 @@ function PedidosMenu(state = initialState, action) {
                 }
             }
             // break;
+
+        case 'DISCHARD_PRODUCTS_MENU':
+            if (action.payload.product.cant >= 1) {
+                const subs = state.pedidoMenu.map(item => {
+                    if (item.id === action.payload.product.id) {
+                        item.cant = item.cant - item.cant
+                        return item
+                    } else {
+                        return item
+                    }
+                })
+                const del = subs.filter(item => item.cant !== 0)
+                return {
+                    pedidoMenu: [...del]
+                }
+            } else {
+                const del = state.pedidoMenu.filter(item => item.id !== action.payload.product.id)
+                return {
+                    pedidoMenu: [...del]
+                }
+            }
+        // break;
+
         default:
             return state;
     }
