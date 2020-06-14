@@ -71,6 +71,11 @@ function PedidosCarta(state = initialState, action) {
                 }
             }
         // break;
+
+        case 'DISCHARD_PRODUCTS_FULL_CARTA':
+            return {
+                pedidoCarta: []
+            }
         default:
             return state;
     }

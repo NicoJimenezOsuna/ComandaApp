@@ -81,7 +81,7 @@ const Micomandacarta = ({comandacarta}) => {
                             alignItems: 'center',
                             justifyContent: 'space-between'
                         }}>
-                            <p style={{fontSize: '1.3em'}}>{item.cant === 1 ? 'Unidad: ' : 'Unidades: '}<span>{item.cant}</span>
+                            <p style={{fontSize: '1.3em'}}>{item.cant === 1 ? 'Ud.: ' : 'Uds.: '}<span>{item.cant}</span>
                             </p>
                             <div>
                                 <Commandkeypad
