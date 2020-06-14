@@ -9,7 +9,10 @@ const Dischardbuttonmenu = ({dataproduct}) => {
             height: '2em',
             fill: '#000',
             margin: '.3em',
-            background: '#ff000045'
+            background: '#ff000045',
+            border: '1px solid black',
+            padding: '1px'
+
         }
     }
 
