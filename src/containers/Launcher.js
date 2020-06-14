@@ -63,6 +63,16 @@ const Launcher = () => {
         // alert(token)
     }, [isreload]);
 
+    const a = (value) => setTimeout(value => {
+        getIsreload(false)
+    }, 3000)
+
+    const reload = () => {
+        firstRequest(protocol, URL, CONNECT_TOKEN, getMensaje, getDatos, getNoconnection);
+        getIsreload(true)
+        a(true)
+    }
+
     return (
         <div style={launcher.princ}>
             {mensaje !== 'OK' && !localStorage.getItem("comandaApp") ? (
