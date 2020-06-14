@@ -5,6 +5,8 @@ import Micomandamenu from "./Micomandamenu";
 import {connect} from 'react-redux';
 import {ReactComponent as Nomenu} from "../icons/nocarta.svg";
 import {ReactComponent as Nocarta} from "../icons/notapas.svg";
+import DischardFullComanda from "./comandkeymenu/DischardFullComanda";
+import {dischardFull} from "../redux/actions";
 
 const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, productMenuSel}) => {
     const comanda = {
@@ -54,8 +56,19 @@ const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, product
             height: '1px',
             backgroundColor: 'grey',
             margin: '1em auto',
+        },
+        cont_x: {
+            position: 'sticky',
+            top: 0,
+            width: '100%',
+            zIndex: '9999',
+            backgroundColor: 'fff',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
         }
     };
+
 
     const [cartaproduct, getCartaProduct] = useState([]);
     const [menuproduct, getMenuProduct] = useState([]);
@@ -74,10 +87,19 @@ const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, product
             className={!isVisiblePedido ? "displayed_none" : "displayed"}
         >
             <div style={comanda.cont_slider}>
-                <IconClose
-                    className="close"
-                    onClick={pedidoViewHandler}
-                />
+                <div style={comanda.cont_x}>
+                    <IconClose
+                        style={{color:'rgba(0,0,0,.4',width:'3em'}}
+                        onClick={pedidoViewHandler}
+                    />
+
+                    <DischardFullComanda
+                        />
+
+
+                </div>
+
+
                 <div style={comanda.con_title}>
                     <h2 style={comanda.h2}>Mi comanda</h2>
                 </div>

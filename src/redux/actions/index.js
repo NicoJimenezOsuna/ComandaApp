@@ -10,6 +10,9 @@ export const ADD_PRODUCT_MENU = 'ADD_PRODUCT_MENU';
 export const DELETE_PRODUCT_MENU = 'DELETE_PRODUCT_MENU';
 export const DISCHARD_PRODUCTS_MENU = 'DISCHARD_PRODUCTS_MENU';
 export const DISCHARD_PRODUCTS_CARTA = 'DISCHARD_PRODUCTS_CARTA';
+export const DISCHARD_PRODUCTS_FULL_MENU = 'DISCHARD_PRODUCTS_FULL_MENU';
+export const DISCHARD_PRODUCTS_FULL_CARTA = 'DISCHARD_PRODUCTS_FULL_CARTA';
+
 
 /*
 *
@@ -41,6 +44,12 @@ export function dischardPedidoCarta(product) {
 
 export function dischardPedidoMenu(product) {
     store.dispatch({type: DISCHARD_PRODUCTS_MENU, payload: {product}})
+}
+
+export function dischardFull(){
+    store.dispatch( {type: DISCHARD_PRODUCTS_FULL_MENU, payload:[]})
+    store.dispatch( {type: DISCHARD_PRODUCTS_FULL_CARTA, payload:[]})
+    // alert('dispatch')
 }
 
 //RESTAURANTE ACTIONS

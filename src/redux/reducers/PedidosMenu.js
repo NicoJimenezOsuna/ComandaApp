@@ -72,6 +72,11 @@ function PedidosMenu(state = initialState, action) {
             }
         // break;
 
+        case 'DISCHARD_PRODUCTS_FULL_MENU':
+            return {
+                pedidoMenu: []
+            }
+
         default:
             return state;
     }
