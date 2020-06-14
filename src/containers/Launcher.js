@@ -60,7 +60,7 @@ const Launcher = () => {
         let url = document.referrer;
         let longToken = 15;
         const token = url.substr(url.length - longToken);
-        alert(token)
+        // alert(token)
     }, [isreload]);
 
     const a = (value) => setTimeout(value => {

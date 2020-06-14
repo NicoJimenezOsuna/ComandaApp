@@ -7,6 +7,7 @@ import Platosmenus from "./Platosmenus";
 import Spinner from "./Spinner";
 import Commandkeypadmenu from "./comandkeymenu/Commandkeymenu";
 import {connect} from 'react-redux';
+import Spinnercircle from './Spinnercircle'
 
 const Listadomenu = ({dataid, dataSliderHandler, subcategorias, productMenuSel}) => {
     const listado = {
@@ -24,60 +25,67 @@ const Listadomenu = ({dataid, dataSliderHandler, subcategorias, productMenuSel})
     const [fullmenu, getFullMenu] = useState({});
 
     useEffect(() => {
+        //clean call is not mounted
+        let isSubscribed = true
 
-            getSeccid(dataid);
-            getFullMenu(subcategorias)
 
-            // http://restaurante.comandaapp.es/api/ws/1/cLZDdvFTJcl5cWG/5
-            let url = "//restaurante.comandapp.es/api/ws/1/";
-            const userHeader = {
-                headers: {
-                    "X-Requested-With": "XMLHttpRequest",
-                    "Content-Type": "application/json"
-                }
-            };
+        getSeccid(dataid);
+        getFullMenu(subcategorias)
 
-            const menusRequest = async (protocol, url, token, id) => {
-                try {
-                    // Make a request
-                    const response = await axios.get(`${protocol}${url}${token}/${id}`, userHeader);
-                    const toString = JSON.stringify(response.data);
-                    const toObject = JSON.parse(toString);
-                    //to Localstorage
-                    // localStorage.setItem(
-                    //     "comandaApp",
-                    //     JSON.stringify(response.data)
-                    // );
-                    //to State
-                    // if (!toObject.data.respuesta > 0) {
-                    //     localStorage.setItem(
-                    //         "comandaApp",
-                    //         JSON.stringify(fakeData1)
-                    //     );
-                    //     getDatos(fakeData1.data.respuesta)
-                    // } else {
+        // http://restaurante.comandaapp.es/api/ws/1/cLZDdvFTJcl5cWG/5
+        let url = "//restaurante.comandapp.es/api/ws/1/";
+        const userHeader = {
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "Content-Type": "application/json"
+            }
+        };
+
+        const menusRequest = async (protocol, url, token, id) => {
+            try {
+                // Make a request
+                const response = await axios.get(`${protocol}${url}${token}/${id}`, userHeader);
+                const toString = JSON.stringify(response.data);
+                const toObject = JSON.parse(toString);
+                //to Localstorage
+                // localStorage.setItem(
+                //     "comandaApp",
+                //     JSON.stringify(response.data)
+                // );
+                //to State
+                // if (!toObject.data.respuesta > 0) {
+                //     localStorage.setItem(
+                //         "comandaApp",
+                //         JSON.stringify(fakeData1)
+                //     );
+                //     getDatos(fakeData1.data.respuesta)
+                // } else {
+                if (isSubscribed) {
                     localStorage.setItem('comandaAppmenu', JSON.stringify(toObject.data.respuesta))
                     getSectionsMenu(toObject.data.respuesta);
-                    // }
-
-                } catch (error) {
-                    // localStorage.setItem(
-                    //     "comandaApp",
-                    //     JSON.stringify(fakeData1)
-                    // );
-                    // getSectionsMenu(fakeData1.data.respuesta)
-                    console.log("error", error)
                 }
-            }
-            //REQUEST
-            menusRequest(protocol, url, CONNECT_TOKEN, dataid)
+                // }
 
+            } catch (error) {
+                // localStorage.setItem(
+                //     "comandaApp",
+                //     JSON.stringify(fakeData1)
+                // );
+                // getSectionsMenu(fakeData1.data.respuesta)
+                console.log("error", error)
+            }
+        }
+        //REQUEST
+        menusRequest(protocol, url, CONNECT_TOKEN, dataid)
+
+        //clean function: no update state if is unmount component
+        return () => isSubscribed = false
 
     }, [dataid, productMenuSel, subcategorias])
 
     if (!Object.keys(sectionsMenu).length > 0) {
         return (
-            <Spinner/>
+            <Spinnercircle/>
         )
     }
 

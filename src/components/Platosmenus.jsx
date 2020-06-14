@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import { protocol, urlComplete} from "../utils/utils";
+import {protocol, urlComplete} from "../utils/utils";
 import Buttoninfo from "./Buttoninfo";
 import axios from "axios";
 import {CONNECT_TOKEN} from "../data/restaurante";
@@ -41,51 +41,62 @@ const Platosmenus = ({catid, seccid, dataSliderHandler}) => {
 
     const [platos, getPlatos] = useState([])
 
-useEffect(()=>{
-    // http://restaurante.comandaapp.es/api/ws/1/cLZDdvFTJcl5cWG/5
-    let url = "//restaurante.comandapp.es/api/ws/2/";
-    const userHeader = {
-        headers: {
-            "X-Requested-With": "XMLHttpRequest",
-            "Content-Type": "application/json"
-        }
-    };
+    useEffect(() => {
+            //clean call is not mounted
+            let isSubscribed = true
 
-    const menusRequest = async (protocol, url, token, seccid, id) => {
+            // http://restaurante.comandaapp.es/api/ws/1/cLZDdvFTJcl5cWG/5
+            let url = "//restaurante.comandapp.es/api/ws/2/";
+            const userHeader = {
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                    "Content-Type": "application/json"
+                }
+            };
 
-        try {
-            // Make a request
-            const response = await axios.get(`${protocol}${url}${token}/${seccid}/${id}`, userHeader);
-            const toString = JSON.stringify(response.data);
-            const toObject = JSON.parse(toString);
-            //to Localstorage
-            // localStorage.setItem(
-            //     "comandaApp",
-            //     JSON.stringify(response.data)
-            // );
-            //to State
-            // if (!toObject.data.respuesta > 0) {
-            //     localStorage.setItem(
-            //         "comandaApp",
-            //         JSON.stringify(fakeData1)
-            //     );
-            //     getDatos(fakeData1.data.respuesta)
-            // } else {
-            await getPlatos(urlComplete(toObject.data.respuesta));
-            // }
+            const menusRequest = async (protocol, url, token, seccid, id) => {
 
-        } catch (error) {
-            // localStorage.setItem(
-            //     "comandaApp",
-            //     JSON.stringify(fakeData1)
-            // );
-            // getSectionsMenu(fakeData1.data.respuesta)
-            console.log("error", error);
-        }
-    }
-    //REQUEST
-    menusRequest(protocol, url, CONNECT_TOKEN, seccid, catid)
-}, [catid, seccid])
+                try {
+                    // Make a request
+                    const response = await axios.get(`${protocol}${url}${token}/${seccid}/${id}`, userHeader);
+                    const toString = JSON.stringify(response.data);
+                    const toObject = JSON.parse(toString);
+                    //to Localstorage
+                    // localStorage.setItem(
+                    //     "comandaApp",
+                    //     JSON.stringify(response.data)
+                    // );
+                    //to State
+                    // if (!toObject.data.respuesta > 0) {
+                    //     localStorage.setItem(
+                    //         "comandaApp",
+                    //         JSON.stringify(fakeData1)
+                    //     );
+                    //     getDatos(fakeData1.data.respuesta)
+                    // } else {
+                    if (isSubscribed) {
+                        await getPlatos(urlComplete(toObject.data.respuesta));
+                    }
+                    // }
+
+                } catch (error) {
+                    // localStorage.setItem(
+                    //     "comandaApp",
+                    //     JSON.stringify(fakeData1)
+                    // );
+                    // getSectionsMenu(fakeData1.data.respuesta)
+                    console.log("error", error);
+                }
+
+                //REQUEST
+                menusRequest(protocol, url, CONNECT_TOKEN, seccid, catid)
+            }
+
+            //clean function: no update state if is unmount component
+            return () => isSubscribed = false
+
+        }, [catid, seccid]
+    )
 
     return (
         <Fragment>
@@ -108,14 +119,14 @@ useEffect(()=>{
                                         dataSliderHandler={dataSliderHandler}
                                         dataListaFull={platos}
                                         dataIdSelf={platos.indexOf(item)}
-                                        noprice = {false}
+                                        noprice={false}
                                     />
                                 </div>
                             </div>
                         );
                     })
                     :
-                <Spinner/>
+                    <Spinner/>
                 }
                 {/*    Aqui se mete los spiners de carga    */}
             </Fragment>
