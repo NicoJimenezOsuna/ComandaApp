@@ -1,7 +1,7 @@
 import React, {Fragment, useState, useEffect} from 'react';
 import Labelsmenus from './Labelsmenus';
 import axios from "axios";
-import {protocol} from "../utils/utils";
+import {dosDecim, protocol} from "../utils/utils";
 import {CONNECT_TOKEN} from "../data/restaurante";
 import Platosmenus from "./Platosmenus";
 import Spinner from "./Spinner";
@@ -9,7 +9,7 @@ import Commandkeypadmenu from "./comandkeymenu/Commandkeymenu";
 import {connect} from 'react-redux';
 import Spinnercircle from './Spinnercircle'
 
-const Listadomenu = ({dataid, dataSliderHandler, subcategorias, productMenuSel}) => {
+const Listadomenu = ({dataid, dataSliderHandler, subcategorias, productMenuSel, restauranteData}) => {
     const listado = {
         between: {
             display: 'flex',
@@ -116,6 +116,7 @@ const Listadomenu = ({dataid, dataSliderHandler, subcategorias, productMenuSel})
             </div>
             {Object.keys(sectionsMenu).length > 0 ?
                 sectionsMenu.map(item => {
+                    // {console.log(sectionsMenu)}
                     return (
                         <Fragment key={item.categoria}>
                             <Labelsmenus data={item.categoria}/>
@@ -143,7 +144,23 @@ const Listadomenu = ({dataid, dataSliderHandler, subcategorias, productMenuSel})
             }}
             >
                 <span>Total</span>
-                <span>PVP: 15 €</span>
+                {/*Si restauranteData contiene datos, continua*/}
+                {Object.keys(restauranteData).length > 0 ?
+                    // Accedemos al array restauranteData y apuntamos al objeto "respuesta" dentro de la primera llamada
+                    restauranteData[0].respuesta.map(item => {
+                        //Se mapea el contenido de respuesta y apuntamos al objeto "id" dentro de "respuesta"
+                        if (item.id === seccid) {
+                            //Accedemos al objeto "precio" dentro de "id"
+                            return (
+                                <span>PVP: {dosDecim(item.precio, 2)} €</span>
+                            )
+                        }
+                    })
+                    :
+                    <Spinnercircle/>
+                }
+
+
             </div>
         </Fragment>
     )
@@ -151,7 +168,8 @@ const Listadomenu = ({dataid, dataSliderHandler, subcategorias, productMenuSel})
 
 function mapStateToProps(state) {
     return {
-        productMenuSel: state.PedidosMenu.pedidoMenu
+        productMenuSel: state.PedidosMenu.pedidoMenu,
+        restauranteData: state.RestauranteData.RestauranteProfile
     }
 }
 

@@ -34,7 +34,7 @@ export const iframeSrcData = iframe => {
  *
  */
 export const dosDecim = (number, maxToFix) => {
-    let toFix = parseInt(number);
+    let toFix = parseFloat(number);
     return toFix.toFixed(2);
 };
 /*
