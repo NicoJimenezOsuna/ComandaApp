@@ -11,12 +11,9 @@ import {ReactComponent as LogoComanda} from "../icons/logo.svg";
 import Errormessage from "../components/Errormessage";
 // import {firstRequest} from '../data/restaurante';
 import {ReactComponent as Refresh} from "../icons/refresh.svg";
-<<<<<<< HEAD
 import {connect} from 'react-redux';
-=======
 import axios from "axios";
 import {addProfile} from "../redux/actions";
->>>>>>> d316840210c01613d57fe2daf7590c252e71e31c
 
 const Launcher = ({restauranteData}) => {
     const launcher = {
@@ -88,10 +85,10 @@ const Launcher = ({restauranteData}) => {
                         getMensaje(toObject.data.mensaje)
                     } else {
                         addProfile(toObject.data)
-                        localStorage.setItem(
-                            "comandaApp",
-                            JSON.stringify(response.data)
-                        );
+                        // localStorage.setItem(
+                        //     "comandaApp",
+                        //     JSON.stringify(response.data)
+                        // );
                     }
                 }
 

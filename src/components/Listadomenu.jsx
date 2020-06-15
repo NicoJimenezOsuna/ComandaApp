@@ -142,6 +142,7 @@ const Listadomenu = ({dataid, dataSliderHandler, subcategorias, productMenuSel, 
                 margin: '0 10px'
 
             }}
+                 className="price_bg"
             >
                 <span>Total</span>
                 {/*Si restauranteData contiene datos, continua*/}

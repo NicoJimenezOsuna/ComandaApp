@@ -174,9 +174,9 @@ const Categorias = ({pedidoViewHandler, restauranteData}) => {
         !verqr ? getVerqr(true) : getVerqr(false);
     }//sirve para actualizar el estado
 
-    if(restauranteData.length <= 0){
-        return <Redirect to='/'  />
-    }
+    // if(restauranteData.length <= 0){
+    //     return <Redirect to='/'  />
+    // }
 
     return (
         <Fragment>

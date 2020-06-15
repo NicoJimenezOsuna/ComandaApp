@@ -3,7 +3,13 @@
 * CLASES PERSONALIZADAS
 *
 */
-
+.price_bg{
+    /*background-image: url(./icons/mosaico.svg);*/
+    /*background-size: contain;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center center;*/
+    /*background-attachment: fixed;*/
+}
 .reload {
     animation: reload 1.0s infinite ease-in-out both;
 }

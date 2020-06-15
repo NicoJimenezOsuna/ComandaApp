@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="512" height="512">
+    <g id="flat">
+        <rect x="3" y="3" width="58" height="58" style="fill:#bfbfbf"/>
+        <polygon points="21 61 7 61 9 47 23 47 21 61" style="fill:#cdeef6"/>
+        <polygon points="21 32 7 32 9 47 23 47 21 32" style="fill:#6b809b"/>
+        <polygon points="21 32 7 32 9 17 23 17 21 32" style="fill:#cdeef6"/>
+        <polygon points="21 3 7 3 9 17 23 17 21 3" style="fill:#6b809b"/>
+        <polygon points="43 61 57 61 55 47 41 47 43 61" style="fill:#cdeef6"/>
+        <polygon points="43 32 57 32 55 47 41 47 43 32" style="fill:#6b809b"/>
+        <polygon points="43 32 57 32 55 17 41 17 43 32" style="fill:#cdeef6"/>
+        <polygon points="43 3 57 3 55 17 41 17 43 3" style="fill:#6b809b"/>
+        <polygon points="37 45 27 45 25 32 27 19 37 19 39 32 37 45" style="fill:#cdeef6"/>
+        <polygon points="25 3 27 15 37 15 39 3 25 3" style="fill:#cdeef6"/>
+        <polygon points="39 61 37 49 27 49 25 61 39 61" style="fill:#cdeef6"/>
+        <rect x="11" y="6" width="2" height="2" style="fill:#bfbfbf"/>
+        <rect x="15" y="8" width="2" height="2" style="fill:#bfbfbf"/>
+        <rect x="51" y="35" width="2" height="2" style="fill:#bfbfbf"/>
+        <rect x="11" y="56" width="2" height="2" style="fill:#6b809b"/>
+    </g>
+</svg>

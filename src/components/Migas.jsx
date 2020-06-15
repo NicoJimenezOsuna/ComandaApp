@@ -39,14 +39,14 @@ const Migas = ({data, visible}) => {
         <div style={mig.Grupo_364}>
             {/*<div style={mig.around}>*/}
             <IconFlecha style={{width: '7%', marginRight: '.2em'}}/>
-            <a href={"/categoria"} style={{display: 'flex', alignItems: 'center'}}>
+            <Link to="/categoria" style={{display: 'flex', alignItems: 'center'}}>
 
                 Categorías
 
                 {/*<div style={{display: 'flex', alignItems: 'center'}}>*/}
                 <p style={{padding: " 0 10px"}}>>></p>
                 <p>{migas}</p>
-            </a>
+            </Link>
             {/*</div>*/}
             {/*</div>*/}
             {/*<span*/}
