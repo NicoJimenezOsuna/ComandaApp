@@ -9,9 +9,14 @@ import {CONNECT_TOKEN, URL} from '../data/restaurante';
 import {protocol} from '../utils/utils';
 import {ReactComponent as LogoComanda} from "../icons/logo.svg";
 import Errormessage from "../components/Errormessage";
-import {firstRequest} from '../data/restaurante';
+// import {firstRequest} from '../data/restaurante';
 import {ReactComponent as Refresh} from "../icons/refresh.svg";
+<<<<<<< HEAD
 import {connect} from 'react-redux';
+=======
+import axios from "axios";
+import {addProfile} from "../redux/actions";
+>>>>>>> d316840210c01613d57fe2daf7590c252e71e31c
 
 const Launcher = ({restauranteData}) => {
     const launcher = {
@@ -55,6 +60,67 @@ const Launcher = ({restauranteData}) => {
     const [isreload, getIsreload] = useState(false)
 
     useEffect(() => {
+        let isConnect = true
+
+        const firstRequest = async (
+            protocol,
+            url,
+            token,
+            getMensaje,
+            getDatos,
+            getNoconnection
+        ) => {
+            try {
+                // let url = "//restaurante.comandapp.es/api/ws/0/";
+                const userHeader = {
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest",
+                        "Content-Type": "application/json"
+                    }
+                };
+                // Make a request
+                const response = await axios.get(`${protocol}${url}${token}`, userHeader);
+                const toString = JSON.stringify(response.data);
+                const toObject = JSON.parse(toString);
+                //to Localstorage
+                if (isConnect){
+                    if (toObject.data.mensaje !== 'OK') {
+                        getMensaje(toObject.data.mensaje)
+                    } else {
+                        addProfile(toObject.data)
+                        localStorage.setItem(
+                            "comandaApp",
+                            JSON.stringify(response.data)
+                        );
+                    }
+                }
+
+
+
+                //to State
+                // if (!toObject.data.respuesta > 0) {
+                //     localStorage.setItem(
+                //         "comandaApp",
+                //         JSON.stringify(fakeData1)
+                //     );
+                //     getDatos(fakeData1.data.respuesta)
+                // } else {
+                await getDatos(toObject);
+                // }
+                // getNoconnection(false)
+            } catch (error) {
+                // localStorage.setItem(
+                //     "comandaApp",
+                //     JSON.stringify(fakeData1)
+                // );
+                // getDatos(fakeData1.data.respuesta)
+                // getNoconnection(true)
+                console.log("error", error);
+            }
+        };
+
+
+
         firstRequest(protocol, URL, CONNECT_TOKEN, getMensaje, getDatos)
         // a()
         //OBTENER TOKEN DE URL
@@ -62,6 +128,7 @@ const Launcher = ({restauranteData}) => {
         let longToken = 15;
         const token = url.substr(url.length - longToken);
         // alert(token)
+        return () => isConnect = false
     }, [isreload]);
 
     const a = (value) => setTimeout(value => {
@@ -69,7 +136,7 @@ const Launcher = ({restauranteData}) => {
     }, 3000)
 
     const reload = () => {
-        firstRequest(protocol, URL, CONNECT_TOKEN, getMensaje, getDatos, getNoconnection);
+        // firstRequest(protocol, URL, CONNECT_TOKEN, getMensaje, getDatos, getNoconnection);
         getIsreload(true)
         a(true)
     }

@@ -25,13 +25,13 @@ const Footer = ({vermapa, vermail, restauranteData, back}) => {
         }
     }
 
-
-
-    useEffect(() => {
-        if(!restauranteData){
-            firstRequest(protocol, URL, CONNECT_TOKEN)
-        }
-    }, [restauranteData]);
+    //
+    //
+    // useEffect(() => {
+    //     if(!restauranteData){
+    //         firstRequest(protocol, URL, CONNECT_TOKEN)
+    //     }
+    // }, [restauranteData]);
 
     return (
         <div className="cont_footer_absolut">

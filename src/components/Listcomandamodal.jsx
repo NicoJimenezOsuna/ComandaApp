@@ -92,13 +92,9 @@ const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, product
                         style={{color:'rgba(0,0,0,.4',width:'3em'}}
                         onClick={pedidoViewHandler}
                     />
-
                     <DischardFullComanda
                         />
-
-
                 </div>
-
 
                 <div style={comanda.con_title}>
                     <h2 style={comanda.h2}>Mi comanda</h2>

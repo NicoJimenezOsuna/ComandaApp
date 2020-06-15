@@ -165,8 +165,8 @@ const Categorias = ({pedidoViewHandler, restauranteData}) => {
         !isVisible ? getIsVisible(true) : getIsVisible(false);
     };
 
-    const sendCategory = (item1, item2 , wordKey) => {
-        localStorage.setItem('categorySelected', JSON.stringify({id: item1, nombre: item2, wordKey: wordKey}));
+    const sendCategory = (item1, item2, item3, wordKey) => {
+        localStorage.setItem('categorySelected', JSON.stringify({id: item1, nombre: item2, precio: item3, wordKey: wordKey}));
         history.push("/subcategoria");
     };
 
@@ -219,7 +219,7 @@ const Categorias = ({pedidoViewHandler, restauranteData}) => {
                                 return (
                                     <div
                                         className="cont_childs"
-                                        onClick={() => sendCategory(item.categoria_id, item.categoria, 'carta')}
+                                        onClick={() => sendCategory(item.categoria_id, item.categoria, null,'carta')}
                                         id={item.categoria}
                                         style={cat.cat_cont}
                                         key={item.categoria + item.categoria_id}
@@ -260,7 +260,7 @@ const Categorias = ({pedidoViewHandler, restauranteData}) => {
                                 return (
                                     <div
                                         className="cont_childs"
-                                        onClick={() => sendCategory(item.id, item.nombrecarta, 'menu')}
+                                        onClick={() => sendCategory(item.id, item.nombrecarta, item.precio, 'menu')}
                                         id={item.id}
                                         style={cat.cat_cont}
                                         key={1 + index}

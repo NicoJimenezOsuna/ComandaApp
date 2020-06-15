@@ -63,6 +63,7 @@ const Micomandamenu = ({comandamenu}) => {
     return (
         <Fragment>
             {comandamenulista.map(item => {
+                console.log(comandamenulista)
                 return (
                     <div style={com.cont} key={item.id}>
                         <div style={{display: 'flex'}}>
@@ -72,13 +73,10 @@ const Micomandamenu = ({comandamenu}) => {
                             <div style={com.cont_title}>
                                 <p style={com.title}>{item.nombre}</p>
                                 {/*PARA CUANDO EXISTA PREDIO DE MENU DESCOMENTAR*/}
-                                {/*<p style={com.price}>PVP ud.: <span style={{color: '#000'}}>{dosDecim(item.precio, 2)} €</span>*/}
-                                {/*    <sup style={com.sup}> + iva</sup>*/}
-                                {/*</p>*/}
-                                {/*<p style={com.price}>PVP: 15€</p>*/}
-                                <p style={com.price}>PVP ud.: <span style={{color: '#000'}}>15.00 €</span>
+                                <p style={com.price}>PVP ud.: <span style={{color: '#000'}}>{dosDecim(item.precio, 2)} €</span>
                                     <sup style={com.sup}> + iva</sup>
                                 </p>
+
                             </div>
                         </div>
                         <hr style={com.hr}/>
