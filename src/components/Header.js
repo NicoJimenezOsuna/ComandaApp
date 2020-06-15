@@ -10,7 +10,7 @@ const Header = ({restauranteData}) => {
             overflow: "visible",
             // position: "absolute",
             width: `100%`,
-            minHeight: `100px`,
+            // minHeight: `100px`,
             left: `0px`,
             top: `102px`,
             transform: "matrix(1, 0, 0, 1, 0, 0)",
@@ -24,14 +24,18 @@ const Header = ({restauranteData}) => {
             width: '100%',
             textAlign: 'right',
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent: 'flex-end',
+            flexWrap: 'wrap',
+            alignItems: 'center'
         },
         cont_comanda_social_titulo: {
             width: '100%',
             textAlign: 'right',
             display: 'flex',
-            justifyContent: 'flex-end',
-            flexWrap: 'wrap'
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            alignItems: 'center'
+
         },
         grupo_12: {
             width: `2em`,
@@ -87,14 +91,14 @@ const Header = ({restauranteData}) => {
         <Fragment>
             <div style={header.grupo_17}>
                 <div style={header.cont_comanda_social}>
-                    {restauranteData.length > 0 ?
-                        <img src={urlImage() + restauranteData[0].logo} alt="Logo de restaurante"
-                             style={{width: '25%'}}
-                        />
-                        :
-                        // <Logocomanda/>
-                        <img src={urlImage() + restauranteData[0].logo} alt=""/>
-                    }
+                    {/*{restauranteData.length > 0 ?*/}
+                    {/*    <img src={urlImage() + restauranteData[0].logo} alt="Logo de restaurante"*/}
+                    {/*         style={{width: '25%'}}*/}
+                    {/*    />*/}
+                    {/*    :*/}
+                    {/*    // <Logocomanda/>*/}
+                    {/*    <img src={urlImage() + restauranteData[0].logo} alt=""/>*/}
+                    {/*}*/}
                     <div style={header.cont_logo_comanda}>
                         <LogoComanda
                             style={header.grupo_12}
@@ -115,6 +119,14 @@ const Header = ({restauranteData}) => {
                     </div>
                 </div>
                 <div style={header.cont_comanda_social_titulo}>
+                    {restauranteData.length > 0 ?
+                        <img src={urlImage() + restauranteData[0].logo} alt="Logo de restaurante"
+                             style={{width: '25%'}}
+                        />
+                        :
+                        // <Logocomanda/>
+                        <img src={urlImage() + restauranteData[0].logo} alt=""/>
+                    }
                     <span className="text-shadow"
                           style={header.restaurante}
                     >

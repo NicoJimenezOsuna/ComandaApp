@@ -15,9 +15,11 @@ import Qrmodal from "../components/Qrmodal";
 import Mapamodal from "../components/Mapamodal";
 import Mailmodal from "../components/Mailmodal";
 import Listcomandamodal from "../components/Listcomandamodal";
+import {Redirect} from "react-router-dom";
+import {connect} from 'react-redux';
 
 
-const Subcategorias = () => {
+const Subcategorias = ({restauranteData}) => {
     const [subcategorias, getSubcategorias] = useState({});
     const [isVisible, getIsVisible] = useState(false);
     const [isVisibleSlider, getIsVisibleSlider] = useState(false);
@@ -67,12 +69,12 @@ const Subcategorias = () => {
         getMailmodal(verMailmodal);
 
 
-            let datosderetaurante = JSON.parse(localStorage.getItem('comandaApp')).data;
-            if (datosderetaurante) {
-                getDatosRestaurante(datosderetaurante)
-            } else {
-                //hacer algo si localstorage está vacío
-            }
+            // let datosderetaurante = JSON.parse(localStorage.getItem('comandaApp')).data;
+            // if (datosderetaurante) {
+                getDatosRestaurante(...restauranteData)
+            // } else {
+            //     //hacer algo si localstorage está vacío
+            // }
 
 
     }, [verMapamodal, verMailmodal]);
@@ -112,6 +114,10 @@ const Subcategorias = () => {
             )
         }
     }
+    if(restauranteData.length <= 0){
+        return <Redirect to='/'  />
+    }
+
 
     return (
         <Fragment>
@@ -169,4 +175,10 @@ const Subcategorias = () => {
     );
 };
 
-export default Subcategorias;
+function mapStateToProps(state){
+    return {
+        restauranteData: state.RestauranteData.RestauranteProfile
+    }
+}
+
+export default connect(mapStateToProps)(Subcategorias);

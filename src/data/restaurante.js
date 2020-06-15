@@ -39,10 +39,10 @@ export const firstRequest = async (
             getMensaje(toObject.data.mensaje)
         } else {
             addProfile(toObject.data)
-            localStorage.setItem(
-                "comandaApp",
-                JSON.stringify(response.data)
-            );
+            // localStorage.setItem(
+            //     "comandaApp",
+            //     JSON.stringify(response.data)
+            // );
         }
 
 

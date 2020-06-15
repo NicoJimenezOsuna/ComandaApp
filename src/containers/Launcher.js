@@ -11,8 +11,9 @@ import {ReactComponent as LogoComanda} from "../icons/logo.svg";
 import Errormessage from "../components/Errormessage";
 import {firstRequest} from '../data/restaurante';
 import {ReactComponent as Refresh} from "../icons/refresh.svg";
+import {connect} from 'react-redux';
 
-const Launcher = () => {
+const Launcher = ({restauranteData}) => {
     const launcher = {
         princ: {
             height: '100%',
@@ -75,7 +76,7 @@ const Launcher = () => {
 
     return (
         <div style={launcher.princ}>
-            {mensaje !== 'OK' && !localStorage.getItem("comandaApp") ? (
+            {mensaje !== 'OK' && !restauranteData ? (
                 <div style={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -128,4 +129,11 @@ const Launcher = () => {
     );
 };
 
-export default Launcher;
+
+function mapStateToProps(state) {
+    return {
+        restauranteData: state.RestauranteData.RestauranteProfile
+    }
+}
+
+export default connect(mapStateToProps)(Launcher);

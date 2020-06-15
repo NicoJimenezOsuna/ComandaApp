@@ -97,15 +97,17 @@ const Categorias = ({pedidoViewHandler, restauranteData}) => {
     const [carta, getCarta] = useState([])
     let cartaOk = [];
 
-    if(Object.keys(categorias).length > 0){
-         categorias.respuesta.filter(item => {
-             return /carta/gi.test(item.nombrecarta)
-         })
-    }
+    // if(Object.keys(categorias).length > 0){
+    //      categorias.respuesta.filter(item => {
+    //          // return /carta/gi.test(item.nombrecarta)
+    //          return item.esmenu === 1
+    //      })
+    // }
 
     useEffect(() => {
-        getCategorias(JSON.parse(localStorage.getItem('comandaApp')).data);
-    }, []);
+        // getCategorias(JSON.parse(localStorage.getItem('comandaApp')).data);
+        getCategorias(...restauranteData);
+    }, [restauranteData]);
 
     useEffect(()=>{
             // http://restaurante.comandaapp.es/api/ws/1/cLZDdvFTJcl5cWG/1
@@ -175,7 +177,6 @@ const Categorias = ({pedidoViewHandler, restauranteData}) => {
     if(restauranteData.length <= 0){
         return <Redirect to='/'  />
     }
-
 
     return (
         <Fragment>
@@ -254,7 +255,8 @@ const Categorias = ({pedidoViewHandler, restauranteData}) => {
                 {/*ESTO LO CAMBIAREMOS MÁS ADELANTE PARA OPTIMIZAR. sE CONVERTIRÁ EN COMPONENTECADA OPCIÓN*/}
                 {selected === 'menus' && categorias.mensaje === 'OK' && carta ? (
                         categorias.respuesta.map((item, index) => {
-                            if(/menú/gi.test(item.nombrecarta)) {
+                            // if(/menú/gi.test(item.nombrecarta)) {
+                            if(item.esmenu) {
                                 return (
                                     <div
                                         className="cont_childs"
