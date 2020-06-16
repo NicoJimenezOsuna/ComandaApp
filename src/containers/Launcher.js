@@ -15,7 +15,7 @@ import {connect} from 'react-redux';
 import axios from "axios";
 import {addProfile, addToken} from "../redux/actions";
 
-const Launcher = ({restauranteData}) => {
+const Launcher = ({restauranteData, reduxToken}) => {
     const launcher = {
         princ: {
             height: '100%',
@@ -60,13 +60,16 @@ const Launcher = ({restauranteData}) => {
         let isConnect = true
 
         //OBTENER TOKEN DE URL
-        let urlDocument = window.location.href;
-        let longToken = 15;
-        let token = urlDocument.substr(urlDocument.length - longToken);
-        // let token = CONNECT_TOKEN;
-        console.log('referrer', urlDocument)
-        console.log('token', token)
-        addToken(token)
+        if(reduxToken.length <=0){
+            let urlDocument = window.location.href;
+            let longToken = 15;
+            let token = urlDocument.substr(urlDocument.length - longToken);
+            // let token = CONNECT_TOKEN;
+            console.log('referrer', urlDocument)
+            console.log('token', token)
+            addToken(token)
+        }
+
         let url = "//restaurante.comandapp.es/api/ws/0/";
 
         const firstRequest = async (
@@ -110,10 +113,10 @@ const Launcher = ({restauranteData}) => {
 
 
 
-        firstRequest(protocol, url, token, getMensaje, getDatos)
+        firstRequest(protocol, url, reduxToken, getMensaje, getDatos)
 
         return () => isConnect = false
-    }, [isreload]);
+    }, [isreload, reduxToken]);
 
     const a = (value) => setTimeout(value => {
         getIsreload(false)
@@ -171,7 +174,8 @@ const Launcher = ({restauranteData}) => {
 
 function mapStateToProps(state) {
     return {
-        restauranteData: state.RestauranteData.RestauranteProfile
+        restauranteData: state.RestauranteData.RestauranteProfile,
+        reduxToken: state.Token.token
     }
 }
 
