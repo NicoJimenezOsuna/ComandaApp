@@ -4,8 +4,9 @@ import Buttoninfo from "./Buttoninfo";
 import axios from "axios";
 import {CONNECT_TOKEN} from "../data/restaurante";
 import Spinnercircle from "./Spinnercircle";
+import {connect} from "react-redux";
 
-const Platosmenus = ({catid, seccid, dataSliderHandler}) => {
+const Platosmenus = ({catid, seccid, dataSliderHandler, token}) => {
     const listaplatos = {
         cont_princ: {
             width: "100%",
@@ -89,12 +90,12 @@ const Platosmenus = ({catid, seccid, dataSliderHandler}) => {
                 }
             }
             //REQUEST
-            menusRequest(protocol, url, CONNECT_TOKEN, seccid, catid)
+            menusRequest(protocol, url, token, seccid, catid)
 
             //clean function: no update state if is unmount component
             return () => isSubscribed = false
 
-        }, [catid, seccid]
+        }, [token, catid, seccid]
     )
 
     return (
@@ -132,4 +133,9 @@ const Platosmenus = ({catid, seccid, dataSliderHandler}) => {
         </Fragment>
     )
 }
-export default Platosmenus;
+function mapStateToProps(state){
+    return {
+        token: state.Token.token
+    }
+}
+export default connect(mapStateToProps)(Platosmenus);

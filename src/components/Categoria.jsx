@@ -8,7 +8,7 @@ import {CONNECT_TOKEN} from '../data/restaurante';
 import {protocol, urlImage} from '../utils/utils';
 import {connect} from 'react-redux';
 
-const Categorias = ({pedidoViewHandler, restauranteData}) => {
+const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
 
     const history = useHistory();
     const cat = {
@@ -151,7 +151,7 @@ const Categorias = ({pedidoViewHandler, restauranteData}) => {
                 }
             };
             //call to API
-            firstRequest(protocol, url, CONNECT_TOKEN)
+            firstRequest(protocol, url, token)
             console.log('request')
         getCarta(JSON.parse(localStorage.getItem('comandaAppCarta')));
     },[])
@@ -302,7 +302,8 @@ const Categorias = ({pedidoViewHandler, restauranteData}) => {
 
 function mapStateToProps(state) {
     return {
-        restauranteData: state.RestauranteData.RestauranteProfile
+        restauranteData: state.RestauranteData.RestauranteProfile,
+        token: state.Token.token
     }
 }
 

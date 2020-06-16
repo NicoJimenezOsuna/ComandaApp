@@ -6,10 +6,9 @@ import Spinnercircle from '../components/Spinnercircle';
  * IMPORT SUPPORT FUNCIONS
  */
 import {dosDecim, urlComplete, protocol} from "../utils/utils";
-import {CONNECT_TOKEN} from '../data/restaurante';
-import {fakeData1, fakeData2} from "../data/data";
+import {connect} from "react-redux";
 
-const Listadocarta = ({dataid, dataSliderHandler}) => {
+const Listadocarta = ({dataid, dataSliderHandler, token}) => {
     const listmenu = {
         cont_princ: {
             width: "100%",
@@ -74,9 +73,9 @@ const Listadocarta = ({dataid, dataSliderHandler}) => {
                 // if (!toObject.data.respuesta > 0) {
                 //     getProducts(fakeData2.data.respuesta)
                 // } else {
-                    await getProducts(urlComplete(toObject.data.respuesta));
-                    // urlComplete(toObject.data.respuesta)
-                    // console.log(urlComplete(toObject.data.respuesta))
+                await getProducts(urlComplete(toObject.data.respuesta));
+                // urlComplete(toObject.data.respuesta)
+                // console.log(urlComplete(toObject.data.respuesta))
                 // }
 
             } catch (error) {
@@ -86,11 +85,11 @@ const Listadocarta = ({dataid, dataSliderHandler}) => {
         };
 
         //to State
-        catIdtRequest(protocol, url, CONNECT_TOKEN, dataid);
+        catIdtRequest(protocol, url, token, dataid);
         console.log('request listadocarta')
-    }, [dataid, protocol, url]);
+    }, [token, dataid, protocol, url]);
 
-    if(!Object.keys(products).length > 0){
+    if (!Object.keys(products).length > 0) {
         return (
             <Spinnercircle/>
         )
@@ -117,17 +116,24 @@ const Listadocarta = ({dataid, dataSliderHandler}) => {
                                     dataListaFull={products}
                                     dataIdSelf={products.indexOf(item)}
                                     //wordkey for display prices and buttons plus and substract in caroussel
-                                    wordkey = {'carta'}
+                                    wordkey={'carta'}
                                 />
                             </div>
                         </div>
                     );
                 })
                 :
-            <Spinnercircle/>
+                <Spinnercircle/>
             }
             {/*    Aqui se mete los spiners de carga    */}
         </Fragment>
     );
 };
-export default Listadocarta;
+
+function mapStateToProps(state) {
+    return {
+        token: state.Token.token
+    }
+}
+
+export default connect(mapStateToProps)(Listadocarta);

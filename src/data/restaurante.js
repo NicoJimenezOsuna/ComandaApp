@@ -5,14 +5,13 @@ import {addProfile} from "../redux/actions";
 
 export const CONNECT_TOKEN = "cLzDdvFTJcl5cWG";
 //URL CONNECTION
-export const URL = "//restaurante.comandapp.es/api/ws/0/";
+// export const URL = "//restaurante.comandapp.es/api/ws/0/";
 /*
 *
 * FIRST CONNECT API FUNCTION
 *
 * */
 // http://restaurante.comandapp.es/api/ws/0/cLZDdvFTJcl5cWG
-
 
 // export const firstRequest = async (
 //     protocol,
@@ -67,6 +66,4 @@ export const URL = "//restaurante.comandapp.es/api/ws/0/";
 //         console.log("error", error);
 //     }
 // };
-
-
 

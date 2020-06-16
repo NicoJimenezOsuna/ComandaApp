@@ -9,7 +9,14 @@ import Commandkeypadmenu from "./comandkeymenu/Commandkeymenu";
 import {connect} from 'react-redux';
 import Spinnercircle from './Spinnercircle'
 
-const Listadomenu = ({dataid, dataSliderHandler, subcategorias, productMenuSel, restauranteData}) => {
+const Listadomenu = ({
+                         dataid,
+                         dataSliderHandler,
+                         subcategorias,
+                         productMenuSel,
+                         restauranteData,
+                         token
+                     }) => {
     const listado = {
         between: {
             display: 'flex',
@@ -76,7 +83,7 @@ const Listadomenu = ({dataid, dataSliderHandler, subcategorias, productMenuSel, 
             }
         }
         //REQUEST
-        menusRequest(protocol, url, CONNECT_TOKEN, dataid)
+        menusRequest(protocol, url, token, dataid)
 
         //clean function: no update state if is unmount component
         return () => isSubscribed = false
@@ -170,7 +177,8 @@ const Listadomenu = ({dataid, dataSliderHandler, subcategorias, productMenuSel, 
 function mapStateToProps(state) {
     return {
         productMenuSel: state.PedidosMenu.pedidoMenu,
-        restauranteData: state.RestauranteData.RestauranteProfile
+        restauranteData: state.RestauranteData.RestauranteProfile,
+        token: state.Token.token
     }
 }
 

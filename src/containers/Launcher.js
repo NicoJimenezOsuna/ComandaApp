@@ -13,7 +13,7 @@ import Errormessage from "../components/Errormessage";
 import {ReactComponent as Refresh} from "../icons/refresh.svg";
 import {connect} from 'react-redux';
 import axios from "axios";
-import {addProfile} from "../redux/actions";
+import {addProfile, addToken} from "../redux/actions";
 
 const Launcher = ({restauranteData}) => {
     const launcher = {
@@ -59,6 +59,14 @@ const Launcher = ({restauranteData}) => {
     useEffect(() => {
         let isConnect = true
 
+        //OBTENER TOKEN DE URL
+        // let url = document.referrer;
+        // let longToken = 15;
+        // const token = url.substr(url.length - longToken);
+        let token = CONNECT_TOKEN;
+        addToken(token)
+        let url = "//restaurante.comandapp.es/api/ws/0/";
+
         const firstRequest = async (
             protocol,
             url,
@@ -68,7 +76,7 @@ const Launcher = ({restauranteData}) => {
             getNoconnection
         ) => {
             try {
-                // let url = "//restaurante.comandapp.es/api/ws/0/";
+
                 const userHeader = {
                     headers: {
                         "X-Requested-With": "XMLHttpRequest",
@@ -85,32 +93,11 @@ const Launcher = ({restauranteData}) => {
                         getMensaje(toObject.data.mensaje)
                     } else {
                         addProfile(toObject.data)
-                        // localStorage.setItem(
-                        //     "comandaApp",
-                        //     JSON.stringify(response.data)
-                        // );
                     }
                 }
-
-
-
-                //to State
-                // if (!toObject.data.respuesta > 0) {
-                //     localStorage.setItem(
-                //         "comandaApp",
-                //         JSON.stringify(fakeData1)
-                //     );
-                //     getDatos(fakeData1.data.respuesta)
-                // } else {
                 await getDatos(toObject);
-                // }
                 // getNoconnection(false)
             } catch (error) {
-                // localStorage.setItem(
-                //     "comandaApp",
-                //     JSON.stringify(fakeData1)
-                // );
-                // getDatos(fakeData1.data.respuesta)
                 // getNoconnection(true)
                 console.log("error", error);
             }
@@ -118,13 +105,8 @@ const Launcher = ({restauranteData}) => {
 
 
 
-        firstRequest(protocol, URL, CONNECT_TOKEN, getMensaje, getDatos)
-        // a()
-        //OBTENER TOKEN DE URL
-        let url = document.referrer;
-        let longToken = 15;
-        const token = url.substr(url.length - longToken);
-        // alert(token)
+        firstRequest(protocol, url, token, getMensaje, getDatos)
+
         return () => isConnect = false
     }, [isreload]);
 

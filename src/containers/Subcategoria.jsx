@@ -77,7 +77,7 @@ const Subcategorias = ({restauranteData}) => {
             // }
 
 
-    }, [verMapamodal, verMailmodal]);
+    }, [restauranteData, verMapamodal, verMailmodal]);
 
 
     //define y pasa por props los títulos

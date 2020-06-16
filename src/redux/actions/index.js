@@ -12,6 +12,7 @@ export const DISCHARD_PRODUCTS_MENU = 'DISCHARD_PRODUCTS_MENU';
 export const DISCHARD_PRODUCTS_CARTA = 'DISCHARD_PRODUCTS_CARTA';
 export const DISCHARD_PRODUCTS_FULL_MENU = 'DISCHARD_PRODUCTS_FULL_MENU';
 export const DISCHARD_PRODUCTS_FULL_CARTA = 'DISCHARD_PRODUCTS_FULL_CARTA';
+export const ADD_TOKEN = 'ADD_TOKEN';
 
 
 /*
@@ -55,4 +56,8 @@ export function dischardFull(){
 //RESTAURANTE ACTIONS
 export function addProfile(data){
     store.dispatch({type: ADD_RESTAURANTE_PROFILE, payload: {data}})
+}
+//TOKEN ACTIONS
+export function addToken(token){
+    store.dispatch({type: ADD_TOKEN, payload: token})
 }
