@@ -60,10 +60,12 @@ const Launcher = ({restauranteData}) => {
         let isConnect = true
 
         //OBTENER TOKEN DE URL
-        // let url = document.referrer;
-        // let longToken = 15;
-        // const token = url.substr(url.length - longToken);
-        let token = CONNECT_TOKEN;
+        let urlDocument = window.location.href;
+        let longToken = 15;
+        let token = urlDocument.substr(urlDocument.length - longToken);
+        // let token = CONNECT_TOKEN;
+        console.log('referrer', urlDocument)
+        console.log('token', token)
         addToken(token)
         let url = "//restaurante.comandapp.es/api/ws/0/";
 
@@ -80,14 +82,14 @@ const Launcher = ({restauranteData}) => {
                 const userHeader = {
                     headers: {
                         "X-Requested-With": "XMLHttpRequest",
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        'Access-Control-Allow-Origin': '*'
                     }
                 };
                 // Make a request
                 const response = await axios.get(`${protocol}${url}${token}`, userHeader);
                 const toString = JSON.stringify(response.data);
                 const toObject = JSON.parse(toString);
-                alert(toObject.data.mensaje)
                 //to Localstorage
                 if (isConnect){
                     if (toObject.data.mensaje !== 'OK') {
