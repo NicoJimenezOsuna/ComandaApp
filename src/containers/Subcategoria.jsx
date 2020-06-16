@@ -119,6 +119,7 @@ const Subcategorias = ({restauranteData}) => {
     }
 
 
+
     return (
         <Fragment>
             <div className="subRoot">

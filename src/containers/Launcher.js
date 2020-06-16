@@ -87,11 +87,13 @@ const Launcher = ({restauranteData}) => {
                 const response = await axios.get(`${protocol}${url}${token}`, userHeader);
                 const toString = JSON.stringify(response.data);
                 const toObject = JSON.parse(toString);
+                alert(toObject.data.mensaje)
                 //to Localstorage
                 if (isConnect){
                     if (toObject.data.mensaje !== 'OK') {
                         getMensaje(toObject.data.mensaje)
                     } else {
+                        getMensaje(toObject.data.mensaje)
                         addProfile(toObject.data)
                     }
                 }
@@ -99,6 +101,7 @@ const Launcher = ({restauranteData}) => {
                 // getNoconnection(false)
             } catch (error) {
                 // getNoconnection(true)
+                getMensaje('Error al conectar. Revise su conexión o token de acceso')
                 console.log("error", error);
             }
         };
@@ -122,7 +125,7 @@ const Launcher = ({restauranteData}) => {
 
     return (
         <div style={launcher.princ}>
-            {mensaje !== 'OK' && !restauranteData ? (
+            {mensaje !== 'OK' ? (
                 <div style={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -140,31 +143,19 @@ const Launcher = ({restauranteData}) => {
                         </div>
                     </div>
                     <div style={{position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                        {noconnection === false ?
-                            mensaje === 'ERROR NO HAY RESTAURANTE O RESTAURANTE INACTIVO' ?
-                                <Errormessage mensaje={mensaje}/>
-                                :
-                                <Spinner/>
+                        {mensaje === 'Error al conectar. Revise su conexión o token de acceso' ?
+                            // mensaje === 'ERROR NO HAY RESTAURANTE O RESTAURANTE INACTIVO' ?
+                            <Errormessage mensaje={mensaje}/>
                             :
-                            isreload === false ?
-                                <Fragment>
-                                    <Errormessage mensaje={'No existe conexión a intenet. Revise su cobertura'}/>
-                                    <Refresh style={{width: '50%'}}
-                                             onClick={reload}
-                                    />
-                                    <h1>Click to reload</h1>
-                                </Fragment>
-                                :
-                                <Fragment>
-                                    <Errormessage
-                                        mensaje={'No existe conexión a intenet. Revise su cobertura'}/>
-                                    <Refresh className={isreload ? 'reload' : null}
-                                             style={{width: '50%'}}
-                                             onClick={reload}
-                                    />
-                                    <h1>Loading...</h1>
-                                </Fragment>
+                            null
                         }
+                        {mensaje === 'ERROR NO HAY RESTAURANTE O RESTAURANTE INACTIVO' ?
+                            // mensaje === 'ERROR NO HAY RESTAURANTE O RESTAURANTE INACTIVO' ?
+                            <Errormessage mensaje={mensaje}/>
+                            :
+                            null
+                        }
+                        {mensaje === '' ?  <Spinner/> : null}
                     </div>
                     <Socialpymes style={{alignSelf: 'start'}}/>
                 </div>

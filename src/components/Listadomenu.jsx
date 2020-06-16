@@ -160,7 +160,7 @@ const Listadomenu = ({
                         if (item.id === seccid) {
                             //Accedemos al objeto "precio" dentro de "id"
                             return (
-                                <span>PVP: {dosDecim(item.precio, 2)} €</span>
+                                <span key={'id'+item.id}>PVP: {dosDecim(item.precio, 2)} €</span>
                             )
                         }
                     })

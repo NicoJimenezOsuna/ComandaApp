@@ -3,6 +3,10 @@
 * CLASES PERSONALIZADAS
 *
 */
+.migas_a:visited,
+.migas_a:link {
+    color: #000;
+}
 .price_bg{
     /*background-image: url(./icons/mosaico.svg);*/
     /*background-size: contain;*/

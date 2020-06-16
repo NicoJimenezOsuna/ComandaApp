@@ -39,7 +39,7 @@ const Migas = ({data, visible}) => {
         <div style={mig.Grupo_364}>
             {/*<div style={mig.around}>*/}
             <IconFlecha style={{width: '7%', marginRight: '.2em'}}/>
-            <Link to="/categoria" style={{display: 'flex', alignItems: 'center'}}>
+            <Link to="/categoria" style={{display: 'flex', alignItems: 'center'}} className="migas_a">
 
                 Categorías
 
