@@ -59,13 +59,11 @@ const Launcher = ({restauranteData, reduxToken}) => {
     useEffect(() => {
         let isConnect = true
 
+        let paramsNow = window.location.search
         //OBTENER TOKEN DE URL
-        if(reduxToken.length <=0){
-            let urlDocument = window.location.href;
-            let longToken = 15;
-            let token = urlDocument.substr(urlDocument.length - longToken);
-            // let token = CONNECT_TOKEN;
-            console.log('referrer', urlDocument)
+        if(reduxToken.length <=0 || paramsNow !== reduxToken){
+            let token = paramsNow.substr(1);
+            console.log('params', paramsNow)
             console.log('token', token)
             addToken(token)
         }
