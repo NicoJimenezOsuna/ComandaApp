@@ -88,7 +88,7 @@ const Listadomenu = ({
         //clean function: no update state if is unmount component
         return () => isSubscribed = false
 
-    }, [dataid, productMenuSel, subcategorias])
+    }, [token, dataid, productMenuSel, subcategorias])
 
     if (!Object.keys(sectionsMenu).length > 0) {
         return (
@@ -99,27 +99,29 @@ const Listadomenu = ({
     return (
         <Fragment>
             <div style={listado.between}>
-                <p>HA PEDIDO: <span style={{fontSize: '1.5em', marginRight: '1em'}}>
+                {/*<p>HA PEDIDO: <span style={{fontSize: '1.5em', marginRight: '1em'}}>*/}
 
-                                      {
-                                          productMenuSel.map(item => {
-                                              if (item.id === seccid) {
-                                                  return item.cant
-                                              }
-                                          })
-                                          // productMenuSel.id === seccid ?
-                                          //     productmenuselecc.cant
-                                          //     :
-                                          //     null
-                                      }
-                                  </span></p>
-                <div>
-                    <Commandkeypadmenu
-                        data={fullmenu}
-                        nonprice={false}
-                        wordkey={'menu'}
-                    />
-                </div>
+                {/*    {*/}
+                {/*        productMenuSel.map(item => {*/}
+                {/*            if (item.id === seccid) {*/}
+                {/*                return item.cant*/}
+                {/*            }*/}
+                {/*        })*/}
+                {/*        // productMenuSel.id === seccid ?*/}
+                {/*        //     productmenuselecc.cant*/}
+                {/*        //     :*/}
+                {/*        //     null*/}
+                {/*    }*/}
+                {/*                  </span>*/}
+                {/*</p>*/}
+                <p>aqui ponemos un mensaje cuando haya concluido la selección de los productos para confirmar. </p>
+                {/*<div>*/}
+                {/*    <Commandkeypadmenu*/}
+                {/*        data={fullmenu}*/}
+                {/*        nonprice={false}*/}
+                {/*        wordkey={'menu'}*/}
+                {/*    />*/}
+                {/*</div>*/}
             </div>
             {Object.keys(sectionsMenu).length > 0 ?
                 sectionsMenu.map(item => {
@@ -128,6 +130,7 @@ const Listadomenu = ({
                         <Fragment key={item.categoria}>
                             <Labelsmenus data={item.categoria}/>
                             <Platosmenus
+                                data={item.categoria}
                                 catid={item.categoria_id}
                                 seccid={seccid}
                                 dataSliderHandler={dataSliderHandler}
@@ -160,7 +163,7 @@ const Listadomenu = ({
                         if (item.id === seccid) {
                             //Accedemos al objeto "precio" dentro de "id"
                             return (
-                                <span key={'id'+item.id}>PVP: {dosDecim(item.precio, 2)} €</span>
+                                <span key={'id' + item.id}>PVP: {dosDecim(item.precio, 2)} €</span>
                             )
                         }
                     })

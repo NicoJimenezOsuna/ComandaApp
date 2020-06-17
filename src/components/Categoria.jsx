@@ -7,6 +7,7 @@ import axios from "axios";
 import {CONNECT_TOKEN} from '../data/restaurante';
 import {protocol, urlImage} from '../utils/utils';
 import {connect} from 'react-redux';
+import RestauranteData from "../redux/reducers/RestauranteData";
 
 const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
 
@@ -70,8 +71,8 @@ const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
                 '0 5px 10px rgba(0, 0, 0, 0.25), ' +
                 '0 10px 10px rgba(0, 0, 0, 0.2), ' +
                 '0 20px 20px rgba(0, 0, 0, 0.15)'
-},
-    select: {
+        },
+        select: {
             width: '100%',
             backgroundColor: '#f5f5f5',
             display: 'flex',
@@ -82,14 +83,13 @@ const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
             fontSize: '1em',
             borderBottom: '2px solid black'
         },
-        span : {
+        span: {
             fontFamily: 'Papyrus',
             padding: '.2em 1em',
             borderRadius: '20px',
         }
     }
-
-
+    const [idcarta, getIdcarta] = useState(0);
     const [categorias, getCategorias] = useState([]);
     const [verqr, getVerqr] = useState(false);//sirve para darle un estado inicial
     const [isVisible, getIsVisible] = useState(false);
@@ -109,52 +109,57 @@ const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
         getCategorias(...restauranteData);
     }, [restauranteData]);
 
-    useEffect(()=>{
-            // http://restaurante.comandaapp.es/api/ws/1/cLZDdvFTJcl5cWG/1
-            let url = "//restaurante.comandapp.es/api/ws/1/";
-            const userHeader = {
-                headers: {
-                    "X-Requested-With": "XMLHttpRequest",
-                    "Content-Type": "application/json"
-                }
-            };
+    useEffect(() => {
+        //capturar id de carta para enviar a subcategorias
+        if (restauranteData.length > 0) {
+            const carta = restauranteData[0].respuesta.find(item => item.esmenu === 0)
+            getIdcarta(carta.id)
+        }
+        // http://restaurante.comandaapp.es/api/ws/1/cLZDdvFTJcl5cWG/1
+        // http://restaurante.comandaapp.es/api/ws/1/4xpD2gLLNSSdrRZ/1
+        let url = "//restaurante.comandapp.es/api/ws/1/";
+        const userHeader = {
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "Content-Type": "application/json"
+            }
+        };
 
-            const firstRequest = async (protocol, url, token) => {
-                try {
-                    // Make a request
-                    const response = await axios.get(`${protocol}${url}${token}/1`, userHeader);
-                    const toString = JSON.stringify(response.data);
-                    const toObject = JSON.parse(toString);
-                    //to Localstorage
-                    localStorage.setItem(
-                        "comandaAppCarta",
-                        JSON.stringify(response.data)
-                    );
-                    //to State
-                    // if (!toObject.data.respuesta > 0) {
-                    //     localStorage.setItem(
-                    //         "comandaAppCarta",
-                    //         JSON.stringify(fakeData1)
-                    //     );
-                    //     getCarta(fakeData1.data.respuesta)
-                    // } else {
-                        await getCarta(toObject.data.respuesta);
-                    // }
+        const firstRequest = async (protocol, url, token, dataid) => {
+            try {
+                // Make a request
+                const response = await axios.get(`${protocol}${url}${token}/${dataid}`, userHeader);
+                const toString = JSON.stringify(response.data);
+                const toObject = JSON.parse(toString);
+                //to Localstorage
+                localStorage.setItem(
+                    "comandaAppCarta",
+                    JSON.stringify(response.data)
+                );
+                //to State
+                // if (!toObject.data.respuesta > 0) {
+                //     localStorage.setItem(
+                //         "comandaAppCarta",
+                //         JSON.stringify(fakeData1)
+                //     );
+                //     getCarta(fakeData1.data.respuesta)
+                // } else {
+                await getCarta(toObject.data.respuesta);
+                // }
 
-                } catch (error) {
-                    // localStorage.setItem(
-                    //     "comandaAppCarta",
-                    //     JSON.stringify(fakeData1)
-                    // );
-                    // getCarta(fakeData1.data.respuesta)
-                    console.log("error", error);
-                }
-            };
-            //call to API
-            firstRequest(protocol, url, token)
-            console.log('request')
+            } catch (error) {
+                // localStorage.setItem(
+                //     "comandaAppCarta",
+                //     JSON.stringify(fakeData1)
+                // );
+                // getCarta(fakeData1.data.respuesta)
+                console.log("error", error);
+            }
+        };
+        //call to API
+        firstRequest(protocol, url, token, idcarta)
         getCarta(JSON.parse(localStorage.getItem('comandaAppCarta')));
-    },[])
+    }, [getIdcarta, idcarta, token, restauranteData])
 
     const selectedView = (e) => {
         e.preventDefault()
@@ -165,8 +170,14 @@ const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
         !isVisible ? getIsVisible(true) : getIsVisible(false);
     };
 
-    const sendCategory = (item1, item2, item3, wordKey) => {
-        localStorage.setItem('categorySelected', JSON.stringify({id: item1, nombre: item2, precio: item3, wordKey: wordKey}));
+    const sendCategory = (item1, item2, item3, wordKey, idcarta) => {
+        localStorage.setItem('categorySelected', JSON.stringify({
+            id: item1,
+            nombre: item2,
+            precio: item3,
+            wordKey: wordKey,
+            idcarta: idcarta
+        }));
         history.push("/subcategoria");
     };
 
@@ -174,8 +185,8 @@ const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
         !verqr ? getVerqr(true) : getVerqr(false);
     }//sirve para actualizar el estado
 
-    if(restauranteData.length <= 0){
-        return <Redirect to='/'  />
+    if (restauranteData.length <= 0) {
+        return <Redirect to='/'/>
     }
 
     return (
@@ -216,51 +227,51 @@ const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
                 </div>
                 {selected === 'carta' && categorias.mensaje === 'OK' && carta ? (
                         carta.map(item => {
-                                return (
-                                    <div
-                                        className="cont_childs"
-                                        onClick={() => sendCategory(item.categoria_id, item.categoria, null,'carta')}
-                                        id={item.categoria}
-                                        style={cat.cat_cont}
-                                        key={item.categoria + item.categoria_id}
-                                    >
-                                        <div className="absolut"></div>
-                                        {item.imagen === undefined ?
-                                            <Fragment>
-                                                <img style={cat.plato_img}
-                                                     src="assets/img/menu.jpg"
-                                                     alt={`Imagen de categoría ${item.categoria}`}/>
-                                                <p style={cat.nom_cat}>
-                                                    {item.categoria}
-                                                </p>
-                                            </Fragment>
-                                            :
-                                            <Fragment>
-                                                <img style={cat.plato_img}
-                                                     src={urlImage() + item.imagen}
-                                                     alt={`Imagen de categoría ${item.categoria}`}/>
-                                                <p className="category_title"
-                                                    style={cat.nom_cat}>
-                                                    {item.categoria}
-                                                </p>
-                                            </Fragment>
-                                        }
-                                    </div>
-                                )
+                            return (
+                                <div
+                                    className="cont_childs"
+                                    onClick={() => sendCategory(item.categoria_id, item.categoria, null, 'carta', idcarta)}
+                                    id={item.categoria}
+                                    style={cat.cat_cont}
+                                    key={item.categoria + item.categoria_id}
+                                >
+                                    <div className="absolut"></div>
+                                    {item.imagen === undefined ?
+                                        <Fragment>
+                                            <img style={cat.plato_img}
+                                                 src="assets/img/menu.jpg"
+                                                 alt={`Imagen de categoría ${item.categoria}`}/>
+                                            <p style={cat.nom_cat}>
+                                                {item.categoria}
+                                            </p>
+                                        </Fragment>
+                                        :
+                                        <Fragment>
+                                            <img style={cat.plato_img}
+                                                 src={urlImage() + item.imagen}
+                                                 alt={`Imagen de categoría ${item.categoria}`}/>
+                                            <p className="category_title"
+                                               style={cat.nom_cat}>
+                                                {item.categoria}
+                                            </p>
+                                        </Fragment>
+                                    }
+                                </div>
+                            )
                         })
 
                     ) :
-                  null
+                    null
                 }
                 {/*ESTO LO CAMBIAREMOS MÁS ADELANTE PARA OPTIMIZAR. sE CONVERTIRÁ EN COMPONENTECADA OPCIÓN*/}
                 {selected === 'menus' && categorias.mensaje === 'OK' && carta ? (
                         categorias.respuesta.map((item, index) => {
                             // if(/menú/gi.test(item.nombrecarta)) {
-                            if(item.esmenu) {
+                            if (item.esmenu) {
                                 return (
                                     <div
                                         className="cont_childs"
-                                        onClick={() => sendCategory(item.id, item.nombrecarta, item.precio, 'menu')}
+                                        onClick={() => sendCategory(item.id, item.nombrecarta, item.precio, 'menu', null)}
                                         id={item.id}
                                         style={cat.cat_cont}
                                         key={1 + index}
@@ -272,7 +283,7 @@ const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
                                                      src="assets/img/menu.jpg"
                                                      alt={`Imagen de categoría ${item.nombrecarta}`}/>
                                                 <p className="category_title"
-                                                    style={cat.nom_cat}>
+                                                   style={cat.nom_cat}>
                                                     {item.nombrecarta}
                                                 </p>
                                             </Fragment>

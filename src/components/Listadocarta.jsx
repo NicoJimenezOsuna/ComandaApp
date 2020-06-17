@@ -46,12 +46,15 @@ const Listadocarta = ({dataid, dataSliderHandler, token}) => {
     let url = "restaurante.comandapp.es/api/ws/2/";
     // let token = "cLzDdvFTJcl5cWg";
     //    http://restaurante.comandaapp.es/api/ws/1/cLzDdvFTJcl5cWg/6
+    //    http://restaurante.comandaapp.es/api/ws/1/4xpD2gLLNSSdrRZ/6
     // imagenes
     // http://restaurante.comandaapp.es/storage/rest1/ensaladas-300.png
 
     const [products, getProducts] = useState({});
 
     useEffect(() => {
+        const idcarta = JSON.parse(localStorage.getItem('categorySelected')).idcarta
+
         const userHeader = {
             headers: {
                 "X-Requested-With": "XMLHttpRequest",
@@ -59,11 +62,13 @@ const Listadocarta = ({dataid, dataSliderHandler, token}) => {
             }
         };
 
-        const catIdtRequest = async (protocol, url, token, dataid) => {
+        // let idcarta = JSON.parse(localStorage.getItem('categorySelected')).idcarta
+
+        const catIdtRequest = async (protocol, url, token, dataid, idcarta) => {
             try {
                 // Make a request
                 const response = await axios.get(
-                    `${protocol}${url}${token}/1/${dataid}`,
+                    `${protocol}${url}${token}/${idcarta}/${dataid}`,
                     userHeader
                 );
 
@@ -85,7 +90,7 @@ const Listadocarta = ({dataid, dataSliderHandler, token}) => {
         };
 
         //to State
-        catIdtRequest(protocol, url, token, dataid);
+        catIdtRequest(protocol, url, token, dataid, idcarta);
         console.log('request listadocarta')
     }, [token, dataid, protocol, url]);
 

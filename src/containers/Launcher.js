@@ -59,13 +59,17 @@ const Launcher = ({restauranteData, reduxToken}) => {
     useEffect(() => {
         let isConnect = true
 
-        let paramsNow = window.location.search
-        //OBTENER TOKEN DE URL
-        if((reduxToken.length <=0) || (paramsNow !== reduxToken && paramsNow !== '')){
-            let token = paramsNow.substr(1);
-            console.log('params', paramsNow)
-            console.log('token', token)
-            addToken(token)
+        if(window.location.href === 'http://localhost:3000'){
+            addToken('cLzDdvFTJcl5cWG')
+        }else{
+            let paramsNow = window.location.search
+            //OBTENER TOKEN DE URL
+            if((reduxToken.length <=0) || (paramsNow !== reduxToken && paramsNow !== '')){
+                let token = paramsNow.substr(1);
+                console.log('params', paramsNow)
+                console.log('token', token)
+                addToken(token)
+            }
         }
 
         let url = "//restaurante.comandapp.es/api/ws/0/";

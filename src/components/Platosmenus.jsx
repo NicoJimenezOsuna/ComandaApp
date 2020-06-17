@@ -6,7 +6,7 @@ import {CONNECT_TOKEN} from "../data/restaurante";
 import Spinnercircle from "./Spinnercircle";
 import {connect} from "react-redux";
 
-const Platosmenus = ({catid, seccid, dataSliderHandler, token}) => {
+const Platosmenus = ({catid, seccid, dataSliderHandler, token, data}) => {
     const listaplatos = {
         cont_princ: {
             width: "100%",
@@ -40,7 +40,8 @@ const Platosmenus = ({catid, seccid, dataSliderHandler, token}) => {
         }
     };
 
-    const [platos, getPlatos] = useState([])
+    const [platos, getPlatos] = useState([]);
+    const [first, getFirst] = useState('o')
 
     useEffect(() => {
             //clean call is not mounted
@@ -98,6 +99,16 @@ const Platosmenus = ({catid, seccid, dataSliderHandler, token}) => {
         }, [token, catid, seccid]
     )
 
+    const getValue = (e) => {
+        switch(e.target.name){
+            case (/primeros platos/g).test(e.target.name):
+                getFirst(e.target.value);
+                break;
+            default:
+                return null;
+        }
+    }
+
     return (
         <Fragment>
             <Fragment>
@@ -114,6 +125,15 @@ const Platosmenus = ({catid, seccid, dataSliderHandler, token}) => {
                                 {/*        <span style={listaplatos.font}>€</span>*/}
                                 {/*    </p>*/}
                                 {/*</div>*/}
+                                <div>
+                                    <input
+                                        type="radio"
+                                        name={data}
+                                        id={item.nombreplato}
+                                        value={item.nombreplato}
+                                        onClick={(e)=>getValue(e)}
+                                    />
+                                </div>
                                 <div style={listaplatos.cont_button}>
                                     <Buttoninfo
                                         dataSliderHandler={dataSliderHandler}
