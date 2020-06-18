@@ -15,21 +15,56 @@ const Listadomenu = ({
                          subcategorias,
                          productMenuSel,
                          restauranteData,
-                         token
+                         token,
+                         getValue,
+                         completeddMemenu,
+                         okmessage,
+                         errormessage
                      }) => {
     const listado = {
         between: {
+            position: 'relativo',
             display: 'flex',
-            justifyContent: 'center',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
             alignItems: 'center',
             width: '100%',
-            backgroundColor: '#8080802e'
+            backgroundColor: '#8080802e',
+            padding: '.7em .7em'
+        },
+        buttonMenu: {
+            fontSize: '1.3em',
+            padding: '.5em 2em',
+            borderRadius: '25px',
+            border: '2px solid rgb(112, 112, 112)',
+            backgroundColor: 'rgba(156, 255, 242, 0.68)',
+            display:'inline-block',
+            cursor:'pointer',
+            textDecoration:'none',
+            textShadow:'0px 1px 0px #2f6627',
+            outline:'none'
+        },
+        error: {
+            color: 'white',
+            backgroundColor: '#e50e0e',
+            padding: '.8em',
+            borderRadius: '10px',
+            position: 'absolute'
+        },
+        ok: {
+            color: 'white',
+            backgroundColor: ' #5bbc5b',
+            padding: '.8em',
+            borderRadius: '10px',
+            position: 'absolute'
         }
     }
 
     const [sectionsMenu, getSectionsMenu] = useState([]);
     const [seccid, getSeccid] = useState([]);
     const [fullmenu, getFullMenu] = useState({});
+    const [menuselection, getMenuselection] = useState({});
+
 
     useEffect(() => {
         //clean call is not mounted
@@ -114,7 +149,24 @@ const Listadomenu = ({
                 {/*    }*/}
                 {/*                  </span>*/}
                 {/*</p>*/}
-                <p>aqui ponemos un mensaje cuando haya concluido la selección de los productos para confirmar. </p>
+                {/*className={displayError ? 'displayed' : 'displayed_none '}*/}
+                <button
+                    onClick={completeddMemenu}
+                    type="button"
+                    style={listado.buttonMenu}
+                    className="buttonMenu"
+                >
+                    Añadir
+                </button>
+                <p
+                    className={errormessage ? 'displayed' : 'displayed_none '}
+                    style={listado.error}>
+                    seleccione un producto de cada apartado.
+                </p>
+                <p
+                    className={okmessage ? 'displayed' : 'displayed_none '}
+                    style={listado.ok}
+                >Guardado en lista de pedidos.</p>
                 {/*<div>*/}
                 {/*    <Commandkeypadmenu*/}
                 {/*        data={fullmenu}*/}
@@ -130,10 +182,12 @@ const Listadomenu = ({
                         <Fragment key={item.categoria}>
                             <Labelsmenus data={item.categoria}/>
                             <Platosmenus
+                                // getMenu={getMenu}
                                 data={item.categoria}
                                 catid={item.categoria_id}
                                 seccid={seccid}
                                 dataSliderHandler={dataSliderHandler}
+                                getValue={getValue}
                             />
                         </Fragment>
                     )

@@ -17,9 +17,11 @@ import Mailmodal from "../components/Mailmodal";
 import Listcomandamodal from "../components/Listcomandamodal";
 import {Redirect} from "react-router-dom";
 import {connect} from 'react-redux';
+import {addPedidoMenu} from "../redux/actions";
+import {dosDecim} from "../utils/utils";
 
 
-const Subcategorias = ({restauranteData}) => {
+const Subcategorias = ({restauranteData, PedidosMenu}) => {
     const [subcategorias, getSubcategorias] = useState({});
     const [isVisible, getIsVisible] = useState(false);
     const [isVisibleSlider, getIsVisibleSlider] = useState(false);
@@ -69,12 +71,12 @@ const Subcategorias = ({restauranteData}) => {
         getMailmodal(verMailmodal);
 
 
-            // let datosderetaurante = JSON.parse(localStorage.getItem('comandaApp')).data;
-            // if (datosderetaurante) {
-                getDatosRestaurante(...restauranteData)
-            // } else {
-            //     //hacer algo si localstorage está vacío
-            // }
+        // let datosderetaurante = JSON.parse(localStorage.getItem('comandaApp')).data;
+        // if (datosderetaurante) {
+        getDatosRestaurante(...restauranteData)
+        // } else {
+        //     //hacer algo si localstorage está vacío
+        // }
 
 
     }, [restauranteData, verMapamodal, verMailmodal]);
@@ -93,8 +95,68 @@ const Subcategorias = ({restauranteData}) => {
         getDataProductId(value)
     }
 
+    const [errormessage, getErrormessage] = useState(false)
+    const [okmessage, getOkmessage] = useState(false)
+    const [valuRadio, getValueradio] = useState({
+        plato1: '',
+        plato2: '',
+        drink: '',
+        dessert: ''
+    })
+
+    const getValue = (e, catid) => {
+
+        let name = e.target.name
+        let value = e.target.value
+
+        if (/primer/gi.test(name)) {
+            getValueradio({...valuRadio, plato1: value});
+        }
+        if (/seg/gi.test(name)) {
+            getValueradio({...valuRadio, plato2: value});
+        }
+        if (/refres/gi.test(name) || /bebida/gi.test(name)) {
+            getValueradio({...valuRadio, drink: value});
+        }
+        if (/postre/gi.test(name)) {
+            getValueradio({...valuRadio, dessert: value});
+        }
+        console.log(valuRadio)
+    }
+
+    const completeddMemenu = () => {
+        if (
+            valuRadio.plato1.length > 0 &&
+            valuRadio.plato2.length > 0 &&
+            valuRadio.drink.length > 0 &&
+            valuRadio.dessert.length > 0
+        ) {
+            getOkmessage(true)
+            setTimeout(function () {
+                getOkmessage(false)
+            }, 2000)
+            //Buscamos los elementos del menú para guardar precio ye identificador
+
+            // id 5 nombre "MENÚ LUNES" precio "6.5000" wordKey "menu" idcarta
+            valuRadio.id = subcategorias.id;
+            valuRadio.nombre = subcategorias.nombre;
+            valuRadio.precio = parseFloat(dosDecim(subcategorias.precio, 2));
+            // definimos nuevo objeto para evitar referencia
+            // const newObject = {}
+            // console.log('valuradio', valuRadio)
+            // addPedidoMenu(Object.assign({}, valuRadio))
+            addPedidoMenu(valuRadio)
+        } else {
+            getErrormessage(true)
+            setTimeout(function () {
+                getErrormessage(false)
+            }, 2000)
+        }
+    }
+
+
     const renderCategory = () => {
-        if(subcategorias.wordKey === 'carta'){
+        if (subcategorias.wordKey === 'carta') {
             return (
                 <Fragment>
                     <Labelscarta data={titles}/>
@@ -104,20 +166,24 @@ const Subcategorias = ({restauranteData}) => {
                     />
                 </Fragment>
             )
-        }else{
+        } else {
             return (
                 <Listadomenu
-                             dataid={subcategorias.id}
-                             dataSliderHandler={dataSliderHandler}
-                             subcategorias={subcategorias}
+                    errormessage={errormessage}
+                    okmessage={okmessage}
+                    completeddMemenu={completeddMemenu}
+                    getValue={getValue}
+                    dataid={subcategorias.id}
+                    dataSliderHandler={dataSliderHandler}
+                    subcategorias={subcategorias}
                 />
             )
         }
     }
-    if(restauranteData.length <= 0){
-        return <Redirect to='/'  />
-    }
 
+    if (restauranteData.length <= 0) {
+        return <Redirect to='/'/>
+    }
 
 
     return (
@@ -163,7 +229,7 @@ const Subcategorias = ({restauranteData}) => {
                 />
                 <div className="padre">
                     <Migas data={subcategorias.nombre} visible={visibleHandler}/>
-                    { renderCategory() }
+                    {renderCategory()}
                 </div>
             </div>
             <Footer
@@ -176,9 +242,10 @@ const Subcategorias = ({restauranteData}) => {
     );
 };
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {
-        restauranteData: state.RestauranteData.RestauranteProfile
+        restauranteData: state.RestauranteData.RestauranteProfile,
+        PedidosMenu: state.PedidosMenu.pedidoMenu
     }
 }
 

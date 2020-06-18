@@ -6,7 +6,7 @@ import {CONNECT_TOKEN} from "../data/restaurante";
 import Spinnercircle from "./Spinnercircle";
 import {connect} from "react-redux";
 
-const Platosmenus = ({catid, seccid, dataSliderHandler, token, data}) => {
+const Platosmenus = ({catid, seccid, dataSliderHandler, token, data, getValue, getMenu}) => {
     const listaplatos = {
         cont_princ: {
             width: "100%",
@@ -41,7 +41,7 @@ const Platosmenus = ({catid, seccid, dataSliderHandler, token, data}) => {
     };
 
     const [platos, getPlatos] = useState([]);
-    const [first, getFirst] = useState('o')
+
 
     useEffect(() => {
             //clean call is not mounted
@@ -96,18 +96,7 @@ const Platosmenus = ({catid, seccid, dataSliderHandler, token, data}) => {
             //clean function: no update state if is unmount component
             return () => isSubscribed = false
 
-        }, [token, catid, seccid]
-    )
-
-    const getValue = (e) => {
-        switch(e.target.name){
-            case (/primeros platos/g).test(e.target.name):
-                getFirst(e.target.value);
-                break;
-            default:
-                return null;
-        }
-    }
+        }, [token, catid, seccid]);
 
     return (
         <Fragment>
@@ -131,7 +120,7 @@ const Platosmenus = ({catid, seccid, dataSliderHandler, token, data}) => {
                                         name={data}
                                         id={item.nombreplato}
                                         value={item.nombreplato}
-                                        onClick={(e)=>getValue(e)}
+                                        onChange={(e)=>getValue(e)}
                                     />
                                 </div>
                                 <div style={listaplatos.cont_button}>
@@ -153,9 +142,11 @@ const Platosmenus = ({catid, seccid, dataSliderHandler, token, data}) => {
         </Fragment>
     )
 }
-function mapStateToProps(state){
+
+function mapStateToProps(state) {
     return {
         token: state.Token.token
     }
 }
+
 export default connect(mapStateToProps)(Platosmenus);

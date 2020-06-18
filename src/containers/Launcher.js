@@ -59,18 +59,15 @@ const Launcher = ({restauranteData, reduxToken}) => {
     useEffect(() => {
         let isConnect = true
 
-        if(window.location.href === 'http://localhost:3000'){
-            addToken('cLzDdvFTJcl5cWG')
-        }else{
-            let paramsNow = window.location.search
-            //OBTENER TOKEN DE URL
-            if((reduxToken.length <=0) || (paramsNow !== reduxToken && paramsNow !== '')){
-                let token = paramsNow.substr(1);
-                console.log('params', paramsNow)
-                console.log('token', token)
-                addToken(token)
-            }
+        let paramsNow = window.location.search
+        //OBTENER TOKEN DE URL
+        if ((reduxToken.length <= 0) || (paramsNow !== reduxToken && paramsNow !== '')) {
+            let token = paramsNow.substr(1);
+            console.log('params', paramsNow)
+            console.log('token', token)
+            addToken(token)
         }
+
 
         let url = "//restaurante.comandapp.es/api/ws/0/";
 
@@ -96,7 +93,7 @@ const Launcher = ({restauranteData, reduxToken}) => {
                 const toString = JSON.stringify(response.data);
                 const toObject = JSON.parse(toString);
                 //to Localstorage
-                if (isConnect){
+                if (isConnect) {
                     if (toObject.data.mensaje !== 'OK') {
                         getMensaje(toObject.data.mensaje)
                     } else {
@@ -112,7 +109,6 @@ const Launcher = ({restauranteData, reduxToken}) => {
                 console.log("error", error);
             }
         };
-
 
 
         firstRequest(protocol, url, reduxToken, getMensaje, getDatos)
@@ -162,7 +158,7 @@ const Launcher = ({restauranteData, reduxToken}) => {
                             :
                             null
                         }
-                        {mensaje === '' ?  <Spinner/> : null}
+                        {mensaje === '' ? <Spinner/> : null}
                     </div>
                     <Socialpymes style={{alignSelf: 'start'}}/>
                 </div>

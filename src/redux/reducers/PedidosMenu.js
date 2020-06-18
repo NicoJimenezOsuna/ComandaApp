@@ -8,48 +8,60 @@ const initialState = {
 function PedidosMenu(state = initialState, action) {
     switch (action.type) {
         case 'ADD_PRODUCT_MENU':
+            // if (!action.payload.product.cant) {
+            //     action.payload.product.cant = 1
+            //     return {
+            //         pedidoMenu: [...state.pedidoMenu, action.payload.product]
+            //     }
+            // } else {
+            //     const sum = state.pedidoMenu.map(item => {
+            //         if (item.id === action.payload.product.id) {
+            //             item.cant = item.cant + 1
+            //             return item
+            //         } else {
+            //             return item
+            //         }
+            //     })
+            //     return {
+            //         pedidoMenu: [...sum]
+            //     }
+            // }
+            // break;
+
             if (!action.payload.product.cant) {
                 action.payload.product.cant = 1
+                action.payload.product.id_now = Math.floor(Math.random() * (100000 - 1)) + 1;
+                action.payload.product.key = Math.floor(Math.random() * (100000 - 1)) + 1;
+
                 return {
                     pedidoMenu: [...state.pedidoMenu, action.payload.product]
                 }
             } else {
                 const sum = state.pedidoMenu.map(item => {
-                    if (item.id === action.payload.product.id) {
+                    if (
+                        item.plato1 === action.payload.product.plato1 &&
+                        item.plato2 === action.payload.product.plato2 &&
+                        item.dessert === action.payload.product.dessert &&
+                        item.drink === action.payload.product.drink
+                    ) {
                         item.cant = item.cant + 1
                         return item
-                    } else {
-                        return item
+                    }
+                    if (
+                        (item.plato1 !== action.payload.product.plato1 ||
+                            item.plato2 !== action.payload.product.plato2 ||
+                            item.dessert !== action.payload.product.dessert ||
+                            item.drink !== action.payload.product.drink) &&
+                        (item.id === action.payload.product.id)
+                    ) {
+                        return {...action.payload.product}
                     }
                 })
                 return {
                     pedidoMenu: [...sum]
                 }
             }
-            // break;
-
-        case 'DELETE_PRODUCT_MENU':
-            if (action.payload.product.cant >= 1) {
-                const subs = state.pedidoMenu.map(item => {
-                    if (item.id === action.payload.product.id) {
-                        item.cant = item.cant - 1
-                        return item
-                    } else {
-                        return item
-                    }
-                })
-                const del = subs.filter(item => item.cant !== 0)
-                return {
-                    pedidoMenu: [...del]
-                }
-            } else {
-                const del = state.pedidoMenu.filter(item => item.id !== action.payload.product.id)
-                return {
-                    pedidoMenu: [...del]
-                }
-            }
-            // break;
-
+            break;
         case 'DISCHARD_PRODUCTS_MENU':
             if (action.payload.product.cant >= 1) {
                 const subs = state.pedidoMenu.map(item => {

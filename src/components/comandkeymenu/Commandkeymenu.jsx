@@ -59,26 +59,26 @@ const Comamandkeymenu = ({data, productsmenu}) => {
     return (
         <Fragment>
 
-            {Object.keys(cant).length === 0 ?
-                null
-                :
-                cant[0].cant === 1 ?
-                    <Deletebuttonmenu
-                        dataproduct={dataproduct}
-                        // wordkey={stwordkey}
-                    />
-                    :
-                    <Subtrackbuttonmenu
-                        dataproduct={dataproduct}
-                        // wordkey={stwordkey}
-                    />
+            {/*{Object.keys(cant).length === 0 ?*/}
+            {/*    null*/}
+            {/*    :*/}
+            {/*    cant[0].cant === 1 ?*/}
+            {/*        <Deletebuttonmenu*/}
+            {/*            dataproduct={dataproduct}*/}
+            {/*            // wordkey={stwordkey}*/}
+            {/*        />*/}
+            {/*        :*/}
+            {/*        <Subtrackbuttonmenu*/}
+            {/*            dataproduct={dataproduct}*/}
+            {/*            // wordkey={stwordkey}*/}
+            {/*        />*/}
 
 
-            }
-            <Plusbuttonmenu
-                dataproduct={dataproduct}
-                // wordkey={stwordkey}
-            />
+            {/*}*/}
+            {/*<Plusbuttonmenu*/}
+            {/*    dataproduct={dataproduct}*/}
+            {/*    // wordkey={stwordkey}*/}
+            {/*/>*/}
             <Dischardbuttonmenu
                 dataproduct={dataproduct}
                 />

@@ -19,27 +19,7 @@ const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
             width: `100%`,
             padding: `10px`
         },
-        // cat_cont: {
-        //   position: 'relative',
-        //   margin: `3.6px`,
-        //   // width: `32%`,
-        //     flex:' 1 0 40%',
-        //   height: `223px`,
-        //   // left: `482px`,
-        //   // top: `278px`,
-        //   overflow: 'visible',
-        //   // --web-animation: 'fadein 0.4s ease-out',
-        //   // --web-action-type: 'page',
-        //   // --web-action-target: 'Arroces.html',
-        //   cursor: 'pointer',
-        //   border: '2px solid black',
-        //   display: 'flex',
-        //   justifyContent: 'center',
-        //   alignItems: 'center',
-        //     flexWrap: 'wrap'
-        // },
         plato_img: {
-            // opacity: `0.4`,
             width: `100%`,
             height: `100%`,
             left: `0px`,
@@ -89,7 +69,7 @@ const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
             borderRadius: '20px',
         }
     }
-    const [idcarta, getIdcarta] = useState(0);
+    const [idcarta, getIdcarta] = useState(null);
     const [categorias, getCategorias] = useState([]);
     const [verqr, getVerqr] = useState(false);//sirve para darle un estado inicial
     const [isVisible, getIsVisible] = useState(false);
@@ -107,14 +87,13 @@ const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
     useEffect(() => {
         // getCategorias(JSON.parse(localStorage.getItem('comandaApp')).data);
         getCategorias(...restauranteData);
-    }, [restauranteData]);
-
-    useEffect(() => {
-        //capturar id de carta para enviar a subcategorias
         if (restauranteData.length > 0) {
             const carta = restauranteData[0].respuesta.find(item => item.esmenu === 0)
             getIdcarta(carta.id)
         }
+    }, [restauranteData]);
+
+    useEffect(() => {
         // http://restaurante.comandaapp.es/api/ws/1/cLZDdvFTJcl5cWG/1
         // http://restaurante.comandaapp.es/api/ws/1/4xpD2gLLNSSdrRZ/1
         let url = "//restaurante.comandapp.es/api/ws/1/";
@@ -127,6 +106,7 @@ const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
 
         const firstRequest = async (protocol, url, token, dataid) => {
             try {
+                // console.log('CategoriaRequest', `${protocol}${url}${token}/${dataid}`)
                 // Make a request
                 const response = await axios.get(`${protocol}${url}${token}/${dataid}`, userHeader);
                 const toString = JSON.stringify(response.data);
@@ -157,9 +137,13 @@ const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
             }
         };
         //call to API
-        firstRequest(protocol, url, token, idcarta)
-        getCarta(JSON.parse(localStorage.getItem('comandaAppCarta')));
-    }, [getIdcarta, idcarta, token, restauranteData])
+        if(idcarta !== null ){
+            firstRequest(protocol, url, token, idcarta)
+            getCarta(JSON.parse(localStorage.getItem('comandaAppCarta')));
+        }
+        // firstRequest(protocol, url, token, idcarta)
+        // getCarta(JSON.parse(localStorage.getItem('comandaAppCarta')));
+    }, [ idcarta, token, restauranteData])
 
     const selectedView = (e) => {
         e.preventDefault()

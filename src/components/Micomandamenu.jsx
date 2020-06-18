@@ -48,6 +48,25 @@ const Micomandamenu = ({comandamenu}) => {
             fontSize: 'large',
             color: '#3E5062'
         },
+        cont_platos: {
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center'
+        },
+        env_platos:{
+            width: '89%',
+            padding: '.5em',
+        },
+        platos: {
+            color: 'grey',
+
+        },
+        spanplatos: {
+            fontWeight: 'bolder',
+            color: '#000'
+        }
     }
 
     const [comandamenulista, getComandamenulista] = useState([])
@@ -56,7 +75,7 @@ const Micomandamenu = ({comandamenu}) => {
         getComandamenulista(comandamenu)
     }, [comandamenu])
 
-    if(!comandamenulista){
+    if (!comandamenulista) {
         return null
     }
 
@@ -73,10 +92,27 @@ const Micomandamenu = ({comandamenu}) => {
                             <div style={com.cont_title}>
                                 <p style={com.title}>{item.nombre}</p>
                                 {/*PARA CUANDO EXISTA PREDIO DE MENU DESCOMENTAR*/}
-                                <p style={com.price}>PVP ud.: <span style={{color: '#000'}}>{dosDecim(item.precio, 2)} €</span>
+                                <p style={com.price}>PVP ud.: <span
+                                    style={{color: '#000'}}>{dosDecim(item.precio, 2)} €</span>
                                     <sup style={com.sup}> + iva</sup>
                                 </p>
-
+                            </div>
+                        </div>
+                        <hr style={com.hr}/>
+                        <div style={com.cont_platos}>
+                            <div style={com.env_platos}>
+                                <p style={com.platos}>
+                                    PRIMER PLATO: <span style={com.spanplatos}>{item.plato1}</span>
+                                </p>
+                                <p style={com.platos}>
+                                    SEGUNDO PLATO: <span style={com.spanplatos}>{item.plato2}</span>
+                                </p>
+                                <p style={com.platos}>
+                                    BEBIDA: <span style={com.spanplatos}>{item.drink}</span>
+                                </p>
+                                <p style={com.platos}>
+                                    POSTRE: <span style={com.spanplatos}>{item.dessert}</span>
+                                </p>
                             </div>
                         </div>
                         <hr style={com.hr}/>

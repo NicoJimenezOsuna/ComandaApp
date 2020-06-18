@@ -22,35 +22,37 @@ export const ADD_TOKEN = 'ADD_TOKEN';
 * */
 export const ADD_RESTAURANTE_PROFILE = 'ADD_RESTAURANTE_PROFILE';
 
-//PRODUCTS ACTIONS
+//PRODUCTS ACTIONS ( CARTA )
 export function addPedidoCarta(product) {
     store.dispatch({type: ADD_PRODUCT_CARTA, payload: {product}})
-}
-
-export function addPedidoMenu(product) {
-    store.dispatch({type: ADD_PRODUCT_MENU, payload: {product}})
 }
 
 export function substractPedidoCarta(product) {
     store.dispatch({type: DELETE_PRODUCT_CARTA, payload: {product}})
 }
 
-export function substractPedidoMenu(product) {
-    store.dispatch({type: DELETE_PRODUCT_MENU, payload: {product}})
-}
-
 export function dischardPedidoCarta(product) {
     store.dispatch({type: DISCHARD_PRODUCTS_CARTA, payload: {product}})
+}
+
+
+//PRODUCTS ACTIONS ( MENU )
+export function addPedidoMenu(product) {
+    store.dispatch({type: ADD_PRODUCT_MENU, payload: {product}})
+}
+
+export function substractPedidoMenu(product) {
+    store.dispatch({type: DELETE_PRODUCT_MENU, payload: {product}})
 }
 
 export function dischardPedidoMenu(product) {
     store.dispatch({type: DISCHARD_PRODUCTS_MENU, payload: {product}})
 }
 
+//PRODUCTS ACTIONS ( MENU && CARTA)
 export function dischardFull(){
     store.dispatch( {type: DISCHARD_PRODUCTS_FULL_MENU, payload:[]})
     store.dispatch( {type: DISCHARD_PRODUCTS_FULL_CARTA, payload:[]})
-    // alert('dispatch')
 }
 
 //RESTAURANTE ACTIONS
