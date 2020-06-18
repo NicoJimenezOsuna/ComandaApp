@@ -18,7 +18,8 @@ const Listadocarta = ({dataid, dataSliderHandler, token}) => {
             paddingTop: "5px",
             paddingBottom: "5px",
             fontSize: "20px",
-            padding: "10px 10px"
+            padding: "10px 10px",
+            fontFamily: "Sriracha"
         },
         cont_item: {
             width: "100%"
