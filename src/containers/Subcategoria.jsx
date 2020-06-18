@@ -188,7 +188,7 @@ const Subcategorias = ({restauranteData, PedidosMenu}) => {
 
     return (
         <Fragment>
-            <div className="subRoot">
+            <div className="<subRoot>">
                 <Listcomandamodal
                     onClick={pedidoViewHandler}
                     isVisiblePedido={isVisiblePedido}

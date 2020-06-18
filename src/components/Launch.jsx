@@ -35,7 +35,7 @@ const Launch = ({logo}) => {
         cont_logo_text: {
             position: 'absolute',
             left: '6em',
-            top: '4em',
+            top: '6.3em',
             overflow: 'visible',
             display: 'flex',
             flexDirection: 'column',
@@ -77,6 +77,8 @@ const Launch = ({logo}) => {
                         <span style={styles.span_comanda_text}>ComandApp</span>
                     </div>
                     <LogoComanda style={styles.image_logo} alt="Logo de ComandaApp"/>
+                    {/*<img style={styles.image_princ} src={logo.length > 0 ? urlImage() + logo[0].logo : null}
+                         alt="Imagen de inicio"/>*/}
                 </div>
             </div>
             <img style={styles.image_princ} src={logo.length > 0 ? urlImage() + logo[0].logo : null}
