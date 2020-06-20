@@ -60,7 +60,7 @@ const Header = ({restauranteData}) => {
         cont_logo_comanda: {
             display: 'flex',
             // marginRight: '4em',
-            marginTop: '-.5em',
+            marginTop: '0.2em',
             width: '100%'
         },
         cont_logo_comanda_sp: {
@@ -72,28 +72,6 @@ const Header = ({restauranteData}) => {
             width: '100%'
         }
     };
-
-    useEffect(() => {
-
-        //        sustituir imagenes rotas
-        // setTimeout(function () {
-        //     let arrImg = document.getElementsByTagName("img");
-        //     for (let element of arrImg) {
-        //         // element.src = './assets/images/merca_dev.png';
-        //         if (
-        //             !element.complete ||
-        //             typeof element.naturalWidth === "undefined" ||
-        //             element.naturalWidth === 0
-        //         ) {
-        //             // image was broken, replace with your new image
-        //             // element.src = './public/assets/images/merca_dev.png';
-        //             element.src = "./assets/img/categorias/carne_categoria.png";
-        //         }
-        //     }
-        // }, 3000);
-
-    }, []);
-
 
     return (
         <Fragment>

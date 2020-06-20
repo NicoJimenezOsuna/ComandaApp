@@ -5,12 +5,15 @@ import {allergens} from "../data/data";
 import {dosDecim} from "../utils/utils";
 import Commandkeypad from './Commandkeypad'
 import {connect} from "react-redux";
+import "../App.css"
 
 const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, products}) => {
     const slide = {
         column: {
             display: 'flex',
             flexDirection: 'column',
+            fontFamily: 'Dosis',
+            marginTop: '-.5em'
         },
         product: {
             marginBottom: '.5em',
@@ -43,7 +46,7 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
             justifyContent: 'flex-start',
             alignItems: 'center',
             overflowX: 'scroll',
-            padding: '1em'
+            padding: '.5em'
         },
         li: {
             display: 'flex',
@@ -54,7 +57,8 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
         img: {
             width: '100%',
             borderRadius: '50px',
-            margin: '1em 0'
+            margin: '1em 0',
+            maxHeight:'168.75px'
         },
         descrip: {
             padding: '10px',
@@ -92,6 +96,9 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center'
+        },
+        title : {
+            textAlign: 'center'
         }
     }
 
@@ -162,7 +169,9 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
             {dataSlider.length > 0 ?
                 <Fragment>
                     <div style={slide.product}>
-                        <h2>{renderSlider().nombreplato}</h2>
+                        <h2
+                            style={slide.title}
+                        >{renderSlider().nombreplato}</h2>
                     </div>
                     <div style={slide.datos}>
                         {!isNaN(dataInicio) ?
@@ -224,18 +233,21 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
                                         }
                                     })}
                                 </ul>
-                                <img
-                                    style={slide.img}
-                                    src={renderSlider().imagen}
-                                    alt={renderSlider().nombreplato}/>
+                                <figure>
+                                    <img
+                                        style={slide.img}
+                                        src={renderSlider().imagen}
+                                        alt={renderSlider().nombreplato}/>
+                                        <figcaption>{renderSlider().nombreplato}</figcaption>
+                                </figure>
                                 <div style={slide.descrip}>
-                                    <h3 style={{
-                                        fontWeight: 'bolder',
-                                        textDecoration: 'underline',
-                                        marginBottom: '.5em'
-                                    }}>
-                                        {renderSlider().nombreplato}
-                                    </h3>
+                                    {/*<h3 style={{*/}
+                                    {/*    fontWeight: 'bolder',*/}
+                                    {/*    textDecoration: 'underline',*/}
+                                    {/*    marginBottom: '.5em'*/}
+                                    {/*}}>*/}
+                                    {/*    {renderSlider().nombreplato}*/}
+                                    {/*</h3>*/}
                                     <p>
                                         {renderSlider().observaciones}
                                     </p>

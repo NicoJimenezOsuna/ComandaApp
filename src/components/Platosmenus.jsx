@@ -16,7 +16,8 @@ const Platosmenus = ({catid, seccid, dataSliderHandler, token, data, getValue, g
             paddingTop: "5px",
             paddingBottom: "5px",
             fontSize: "20px",
-            padding: "10px 10px"
+            padding: "10px 10px",
+            fontFamily: 'Dosis'
         },
         cont_item: {
             width: "100%"
