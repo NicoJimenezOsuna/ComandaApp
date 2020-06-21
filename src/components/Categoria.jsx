@@ -36,9 +36,10 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
 
         },
         nom_cat: {
-            transform: 'rotate(-35deg)',
+            // transform: 'rotate(-35deg)',
+            transform: 'rotate(-22deg)',
             position: 'absolute',
-            whiteSpace: 'nowrap',
+            // whiteSpace: 'nowrap',
             textAlign: 'center',
             fontFamily: 'Papyrus',
             fontStyle: 'normal',
@@ -53,7 +54,10 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
                 '0 3px 5px rgba(0, 0, 0, 0.2), ' +
                 '0 5px 10px rgba(0, 0, 0, 0.25), ' +
                 '0 10px 10px rgba(0, 0, 0, 0.2), ' +
-                '0 20px 20px rgba(0, 0, 0, 0.15)'
+                '0 20px 20px rgba(0, 0, 0, 0.15)',
+            whiteSpace: 'break-spaces',
+            lineHeight: 'normal',
+            wordSpacing: '.5em'
         },
         select: {
             width: '100%',
@@ -255,7 +259,8 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
                                                     <img style={cat.plato_img}
                                                          src="assets/img/carta.jpg"
                                                          alt={`Imagen de categoría ${item.categoria}`}/>
-                                                    <p style={cat.nom_cat}>
+                                                    <p className="category_title"
+                                                        style={cat.nom_cat}>
                                                         {item.nombrecarta}
                                                     </p>
                                                 </Fragment>
@@ -314,7 +319,8 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
                                                 <img style={cat.plato_img}
                                                      src={item.imagen}
                                                      alt={`Imagen de categoría ${item.nombrecarta}`}/>
-                                                <p style={cat.nom_cat}>
+                                                <p className="category_title"
+                                                    style={cat.nom_cat}>
                                                     {item.nombrecarta}
                                                 </p>
                                             </Fragment>
