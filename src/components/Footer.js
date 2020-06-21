@@ -21,7 +21,8 @@ const Footer = ({vermapa, vermail, restauranteData, back, changesubcat, changedV
             borderRadius: '20px'
         },
         boton: {
-            width: '3em'
+            width: '3em',
+            height: '3em'
         }
     }
 
@@ -37,7 +38,7 @@ const Footer = ({vermapa, vermail, restauranteData, back, changesubcat, changedV
         <div className="cont_footer_absolut">
             <div style={style.contenedor}>
                 {changesubcat === false ?
-                    <Link to={back}>
+                    <Link style={style.boton} to={back}>
                         <img
                             style={style.boton}
                             src="./assets/img/footer/ico-back.svg"
@@ -52,7 +53,7 @@ const Footer = ({vermapa, vermail, restauranteData, back, changesubcat, changedV
                         alt="imagen de footer"
                     />
                 }
-                <a href={`tel:${restauranteData.length > 0 ? restauranteData[0].telefono : null}`}>
+                <a style={style.boton} href={`tel:${restauranteData.length > 0 ? restauranteData[0].telefono : null}`}>
                     <img
                         style={style.boton}
                         src="./assets/img/footer/ico-tel.svg"
