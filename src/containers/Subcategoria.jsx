@@ -149,7 +149,7 @@ const Subcategorias = ({restauranteData, PedidosMenu}) => {
 //EVALUAR KEYS DE MANERA DINAMICA
             const pedidoenredux = PedidosMenu.filter(item => item.id === valuRadio.id)
             const pedidoredux = pedidoenredux[0]
-console.log('pedidoenredux',pedidoredux)
+
             function compareObj(pedidoredux, keysofpedido) {
                 var aKeys = Object.keys(pedidoredux)
                 var bKeys = Object.keys(keysofpedido)
@@ -222,7 +222,7 @@ console.log('pedidoenredux',pedidoredux)
 
     return (
         <Fragment>
-            <div className="<subRoot>">
+            <div className="subRoot">
                 <Listcomandamodal
                     onClick={pedidoViewHandler}
                     isVisiblePedido={isVisiblePedido}
