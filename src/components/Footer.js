@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {CONNECT_TOKEN, firstRequest, URL} from "../data/restaurante";
 import {protocol} from "../utils/utils";
 
-const Footer = ({vermapa, vermail, restauranteData, back}) => {
+const Footer = ({vermapa, vermail, restauranteData, back, changesubcat, changedView}) => {
 
     const style = {
         contenedor: {
@@ -36,13 +36,22 @@ const Footer = ({vermapa, vermail, restauranteData, back}) => {
     return (
         <div className="cont_footer_absolut">
             <div style={style.contenedor}>
-                <Link to={back}>
-                <img
-                    style={style.boton}
-                    src="./assets/img/footer/ico-back.svg"
-                    alt="imagen de footer"
-                />
-                </Link>
+                {changesubcat === false ?
+                    <Link to={back}>
+                        <img
+                            style={style.boton}
+                            src="./assets/img/footer/ico-back.svg"
+                            alt="imagen de footer"
+                        />
+                    </Link>
+                    :
+                    <img
+                        onClick={changedView}
+                        style={style.boton}
+                        src="./assets/img/footer/ico-back.svg"
+                        alt="imagen de footer"
+                    />
+                }
                 <a href={`tel:${restauranteData.length > 0 ? restauranteData[0].telefono : null}`}>
                     <img
                         style={style.boton}
@@ -67,7 +76,7 @@ const Footer = ({vermapa, vermail, restauranteData, back}) => {
     )
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {
         restauranteData: state.RestauranteData.RestauranteProfile
     }

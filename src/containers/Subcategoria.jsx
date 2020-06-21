@@ -95,57 +95,89 @@ const Subcategorias = ({restauranteData, PedidosMenu}) => {
         getDataProductId(value)
     }
 
+    const [warningmessage, getWarningmessage] = useState(false)
     const [errormessage, getErrormessage] = useState(false)
     const [okmessage, getOkmessage] = useState(false)
-    const [valuRadio, getValueradio] = useState({
-        plato1: '',
-        plato2: '',
-        drink: '',
-        dessert: ''
-    })
+    const [valuRadio, getValueradio] = useState({})
+    const [numberOfsectionsforRadios, getNumberOfsectionsforRadios] = useState(null);
+    const [keysofpedido, getkeysofpedido] = useState({})
 
-    const getValue = (e, catid) => {
+    const getValue = (e, labelsLength) => {
 
         let name = e.target.name
         let value = e.target.value
 
-        if (/primer/gi.test(name)) {
-            getValueradio({...valuRadio, plato1: value});
-        }
-        if (/seg/gi.test(name)) {
-            getValueradio({...valuRadio, plato2: value});
-        }
-        if (/refres/gi.test(name) || /bebida/gi.test(name)) {
-            getValueradio({...valuRadio, drink: value});
-        }
-        if (/postre/gi.test(name)) {
-            getValueradio({...valuRadio, dessert: value});
-        }
-        console.log(valuRadio)
+        getkeysofpedido({...keysofpedido, [name]: value})
+        getValueradio({...valuRadio, [name]: value});
+        getNumberOfsectionsforRadios(labelsLength)
     }
 
     const completeddMemenu = () => {
+
+
         if (
-            valuRadio.plato1.length > 0 &&
-            valuRadio.plato2.length > 0 &&
-            valuRadio.drink.length > 0 &&
-            valuRadio.dessert.length > 0
+            valuRadio !== null && Object.keys(keysofpedido).length === numberOfsectionsforRadios
         ) {
-            getOkmessage(true)
-            setTimeout(function () {
-                getOkmessage(false)
-            }, 2000)
+
             //Buscamos los elementos del menú para guardar precio ye identificador
 
-            // id 5 nombre "MENÚ LUNES" precio "6.5000" wordKey "menu" idcarta
+            // // // id 5 nombre "MENÚ LUNES" precio "6.5000" wordKey "menu" idcarta
             valuRadio.id = subcategorias.id;
             valuRadio.nombre = subcategorias.nombre;
             valuRadio.precio = parseFloat(dosDecim(subcategorias.precio, 2));
+            valuRadio.cant = 1
+
             // definimos nuevo objeto para evitar referencia
             // const newObject = {}
             // console.log('valuradio', valuRadio)
+
+            //BUSCAMOS EL PEDIDO EN REDUCER MENUS Y SI EXISTE LANZAMOS WARNING
+            const exist = PedidosMenu.filter(item => {
+                if(item.id === valuRadio.id){
+                    return item
+                }
+            });
+
+            if (exist.length <= 0) {
+                getOkmessage(true)
+                setTimeout(function () {
+                    getOkmessage(false)
+                }, 2000)
+                return addPedidoMenu(valuRadio)
+            }
+
+//EVALUAR KEYS DE MANERA DINAMICA
+            const pedidoenredux = PedidosMenu.filter(item => item.id === valuRadio.id)
+            const pedidoredux = pedidoenredux[0]
+console.log('pedidoenredux',pedidoredux)
+            function compareObj(pedidoredux, keysofpedido) {
+                var aKeys = Object.keys(pedidoredux)
+                var bKeys = Object.keys(keysofpedido)
+
+                for (var i = 0; i < bKeys.length; i++) {
+                    if (pedidoredux[aKeys[i]] !== keysofpedido[bKeys[i]]) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            if (exist && compareObj(pedidoredux,keysofpedido)) {
+                getWarningmessage(true)
+                setTimeout(function () {
+                    getWarningmessage(false)
+                }, 2000)
+            } else {
+                getOkmessage(true)
+                setTimeout(function () {
+                    getOkmessage(false)
+                }, 2000)
+
+                addPedidoMenu(valuRadio)
+            }
+
             // addPedidoMenu(Object.assign({}, valuRadio))
-            addPedidoMenu(valuRadio)
+            // addPedidoMenu(valuRadio)
         } else {
             getErrormessage(true)
             setTimeout(function () {
@@ -161,7 +193,8 @@ const Subcategorias = ({restauranteData, PedidosMenu}) => {
                 <Fragment>
                     <Labelscarta data={titles}/>
                     <Listadocarta
-                        dataid={subcategorias.id}
+                        // dataid={subcategorias.idcarta}
+                        dataid={subcategorias}
                         dataSliderHandler={dataSliderHandler}
                     />
                 </Fragment>
@@ -169,6 +202,7 @@ const Subcategorias = ({restauranteData, PedidosMenu}) => {
         } else {
             return (
                 <Listadomenu
+                    warningmessage={warningmessage}
                     errormessage={errormessage}
                     okmessage={okmessage}
                     completeddMemenu={completeddMemenu}
@@ -233,6 +267,7 @@ const Subcategorias = ({restauranteData, PedidosMenu}) => {
                 </div>
             </div>
             <Footer
+                changesubcat={false}
                 vermail={vermail}
                 vermapa={vermapa}
                 datosrestaurante={datosrestaurante}

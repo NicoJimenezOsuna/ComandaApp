@@ -53,7 +53,8 @@ const Listadocarta = ({dataid, dataSliderHandler, token}) => {
     const [products, getProducts] = useState({});
 
     useEffect(() => {
-        const idcarta = JSON.parse(localStorage.getItem('categorySelected')).idcarta
+        // const idcarta = JSON.parse(localStorage.getItem('categorySelected')).idcarta
+
 
         const userHeader = {
             headers: {
@@ -90,8 +91,8 @@ const Listadocarta = ({dataid, dataSliderHandler, token}) => {
         };
 
         //to State
-        catIdtRequest(protocol, url, token, dataid, idcarta);
-        console.log('request listadocarta')
+        catIdtRequest(protocol, url, token, dataid.id, dataid.idcarta);
+
     }, [token, dataid, protocol, url]);
 
     if (!Object.keys(products).length > 0) {

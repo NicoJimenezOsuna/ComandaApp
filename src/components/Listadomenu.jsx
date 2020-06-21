@@ -19,11 +19,12 @@ const Listadomenu = ({
                          getValue,
                          completeddMemenu,
                          okmessage,
-                         errormessage
+                         errormessage,
+                         warningmessage
                      }) => {
     const listado = {
         between: {
-            position: 'relativo',
+            position: 'relative',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
@@ -54,6 +55,13 @@ const Listadomenu = ({
         ok: {
             color: 'white',
             backgroundColor: ' #5bbc5b',
+            padding: '.8em',
+            borderRadius: '10px',
+            position: 'absolute'
+        },
+        warning:{
+            color: 'white',
+            backgroundColor: ' #FF5733',
             padding: '.8em',
             borderRadius: '10px',
             position: 'absolute'
@@ -159,6 +167,11 @@ const Listadomenu = ({
                     Añadir
                 </button>
                 <p
+                    className={warningmessage ? 'displayed' : 'displayed_none '}
+                    style={listado.warning}>
+                    Ya tiene selecionado ese menú.
+                </p>
+                <p
                     className={errormessage ? 'displayed' : 'displayed_none '}
                     style={listado.error}>
                     seleccione un producto de cada apartado.
@@ -183,6 +196,7 @@ const Listadomenu = ({
                             <Labelsmenus data={item.categoria}/>
                             <Platosmenus
                                 // getMenu={getMenu}
+                                labelsLength={sectionsMenu.length}
                                 data={item.categoria}
                                 catid={item.categoria_id}
                                 seccid={seccid}

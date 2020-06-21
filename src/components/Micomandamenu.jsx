@@ -55,7 +55,7 @@ const Micomandamenu = ({comandamenu}) => {
             justifyContent: 'center',
             alignItems: 'center'
         },
-        env_platos:{
+        env_platos: {
             width: '89%',
             padding: '.5em',
         },
@@ -81,10 +81,13 @@ const Micomandamenu = ({comandamenu}) => {
 
     return (
         <Fragment>
-            {comandamenulista.map(item => {
-                console.log(comandamenulista)
+            {comandamenulista.map((item, index, key) => {
+
+                let keys = Object.keys(item)
+                let validkeys = keys.filter(key => key !== 'id' && key !== 'nombre' && key !== 'precio' && key !== 'cant')
+
                 return (
-                    <div style={com.cont} key={item.id}>
+                    <div style={com.cont} key={item.id + index}>
                         <div style={{display: 'flex'}}>
                             <div style={com.img}>
                                 <img style={{width: '100%'}} src="./assets/img/menu.jpg" alt={item.nombre}/>
@@ -101,18 +104,29 @@ const Micomandamenu = ({comandamenu}) => {
                         <hr style={com.hr}/>
                         <div style={com.cont_platos}>
                             <div style={com.env_platos}>
-                                <p style={com.platos}>
-                                    PRIMER PLATO: <span style={com.spanplatos}>{item.plato1}</span>
-                                </p>
-                                <p style={com.platos}>
-                                    SEGUNDO PLATO: <span style={com.spanplatos}>{item.plato2}</span>
-                                </p>
-                                <p style={com.platos}>
-                                    BEBIDA: <span style={com.spanplatos}>{item.drink}</span>
-                                </p>
-                                <p style={com.platos}>
-                                    POSTRE: <span style={com.spanplatos}>{item.dessert}</span>
-                                </p>
+                                {/*<p style={com.platos}>*/}
+                                {/*    PRIMER PLATO: <span style={com.spanplatos}>{item.plato1}</span>*/}
+                                {/*</p>*/}
+                                {/*<p style={com.platos}>*/}
+                                {/*    SEGUNDO PLATO: <span style={com.spanplatos}>{item.plato2}</span>*/}
+                                {/*</p>*/}
+                                {/*<p style={com.platos}>*/}
+                                {/*    BEBIDA: <span style={com.spanplatos}>{item.drink}</span>*/}
+                                {/*</p>*/}
+                                {/*<p style={com.platos}>*/}
+                                {/*    POSTRE: <span style={com.spanplatos}>{item.dessert}</span>*/}
+                                {/*</p>*/}
+                                {/*<p>{Object.keys(item)[index]  + ': ' + item[Object.keys(item)[index]]}</p>*/}
+                                {validkeys.map((prop, index) => {
+                                    return (
+                                        <ul key={Math.random()}>
+                                            <li style={{fontWeight: 'bolder', color: 'grey'}}>{prop + ':'}</li>
+                                            <li style={{listStyle: 'none', fontWeight: 'bolder'}}>{item[prop]}</li>
+                                        </ul>
+                                    )
+                                })}
+
+
                             </div>
                         </div>
                         <hr style={com.hr}/>

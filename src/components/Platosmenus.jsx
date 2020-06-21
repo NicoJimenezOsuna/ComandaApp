@@ -6,7 +6,7 @@ import {CONNECT_TOKEN} from "../data/restaurante";
 import Spinnercircle from "./Spinnercircle";
 import {connect} from "react-redux";
 
-const Platosmenus = ({catid, seccid, dataSliderHandler, token, data, getValue, getMenu}) => {
+const Platosmenus = ({catid, seccid, dataSliderHandler, token, data, getValue, labelsLength, getMenu}) => {
     const listaplatos = {
         cont_princ: {
             width: "100%",
@@ -120,7 +120,8 @@ const Platosmenus = ({catid, seccid, dataSliderHandler, token, data, getValue, g
                                         name={data}
                                         id={item.nombreplato}
                                         value={item.nombreplato}
-                                        onChange={(e)=>getValue(e)}
+                                        onChange={(e)=>getValue(e, labelsLength)}
+                                        key={item.nombreplato}
                                     />
                                 </div>
                                 <div style={listaplatos.cont_button}>

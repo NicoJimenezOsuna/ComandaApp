@@ -28,37 +28,59 @@ function PedidosMenu(state = initialState, action) {
             // }
             // break;
 
-            if (!action.payload.product.cant) {
-                action.payload.product.cant = 1
-                action.payload.product.id_now = Math.floor(Math.random() * (100000 - 1)) + 1;
-                action.payload.product.key = Math.floor(Math.random() * (100000 - 1)) + 1;
-
+            // if (!action.payload.product.cant) {
+            //     action.payload.product.cant = 1
+            //     // action.payload.product.id_now = Math.floor(Math.random() * (100000 - 1)) + 1;
+            //     // action.payload.product.key = Math.floor(Math.random() * (100000 - 1)) + 1;
+            //
+            //     return {
+            //         pedidoMenu: [...state.pedidoMenu, action.payload.product]
+            //     }
+            // } else {
+            //     const sum = state.pedidoMenu.map(item => {
+            //         if (
+            //             item.plato1 === action.payload.product.plato1 &&
+            //             item.plato2 === action.payload.product.plato2 &&
+            //             item.dessert === action.payload.product.dessert &&
+            //             item.drink === action.payload.product.drink
+            //         ) {
+            //             item.cant = item.cant + 1
+            //             return item
+            //         }
+            //         if (
+            //             (item.plato1 !== action.payload.product.plato1 ||
+            //                 item.plato2 !== action.payload.product.plato2 ||
+            //                 item.dessert !== action.payload.product.dessert ||
+            //                 item.drink !== action.payload.product.drink) &&
+            //             (item.id === action.payload.product.id)
+            //         ) {
+            //             return {...action.payload.product}
+            //         }
+            //     })
+            //     return {
+            //         pedidoMenu: [...sum]
+            //     }
+            // }
+            // console.log(action.payload.product)
+            if (state.pedidoMenu.length === 0) {
+                return {
+                    pedidoMenu: [action.payload.product]
+                }
+            }
+            const exist = state.pedidoMenu.map(item => item.id === action.payload.product.id);
+            if (exist) {
+                // alert('exist')
+                const updateElement = state.pedidoMenu.filter(item => item.id !== action.payload.product.id)
+                updateElement.push(action.payload.product)
+                // alert('update')
+                console.log(updateElement)
+                return {
+                    pedidoMenu: [...updateElement]
+                }
+            }else{
+                // alert('else')
                 return {
                     pedidoMenu: [...state.pedidoMenu, action.payload.product]
-                }
-            } else {
-                const sum = state.pedidoMenu.map(item => {
-                    if (
-                        item.plato1 === action.payload.product.plato1 &&
-                        item.plato2 === action.payload.product.plato2 &&
-                        item.dessert === action.payload.product.dessert &&
-                        item.drink === action.payload.product.drink
-                    ) {
-                        item.cant = item.cant + 1
-                        return item
-                    }
-                    if (
-                        (item.plato1 !== action.payload.product.plato1 ||
-                            item.plato2 !== action.payload.product.plato2 ||
-                            item.dessert !== action.payload.product.dessert ||
-                            item.drink !== action.payload.product.drink) &&
-                        (item.id === action.payload.product.id)
-                    ) {
-                        return {...action.payload.product}
-                    }
-                })
-                return {
-                    pedidoMenu: [...sum]
                 }
             }
             break;

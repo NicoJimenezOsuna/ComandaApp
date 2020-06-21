@@ -8,8 +8,11 @@ import {CONNECT_TOKEN} from '../data/restaurante';
 import {protocol, urlImage} from '../utils/utils';
 import {connect} from 'react-redux';
 import RestauranteData from "../redux/reducers/RestauranteData";
+import Spinnercircle from "./Spinnercircle";
+import Subcarta from './Subcarta';
+import Spinner from "./Spinner";
 
-const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
+const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCategory, changesubcat, token}) => {
 
     const history = useHistory();
     const cat = {
@@ -73,7 +76,7 @@ const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
     const [categorias, getCategorias] = useState([]);
     const [verqr, getVerqr] = useState(false);//sirve para darle un estado inicial
     const [isVisible, getIsVisible] = useState(false);
-    const [selected, getselected] = useState('menus');
+    const [selected, getselected] = useState('carta');
     const [carta, getCarta] = useState([])
     let cartaOk = [];
 
@@ -88,62 +91,63 @@ const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
         // getCategorias(JSON.parse(localStorage.getItem('comandaApp')).data);
         getCategorias(...restauranteData);
         if (restauranteData.length > 0) {
-            const carta = restauranteData[0].respuesta.find(item => item.esmenu === 0)
-            getIdcarta(carta.id)
+            const carta = restauranteData[0].respuesta.filter(item => item.esmenu === 0)
+            const cartasid = restauranteData[0].respuesta.map(item => item.id)
+            getIdcarta(cartasid)
         }
     }, [restauranteData]);
 
-    useEffect(() => {
-        // http://restaurante.comandaapp.es/api/ws/1/cLZDdvFTJcl5cWG/1
-        // http://restaurante.comandaapp.es/api/ws/1/4xpD2gLLNSSdrRZ/1
-        let url = "//restaurante.comandapp.es/api/ws/1/";
-        const userHeader = {
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "Content-Type": "application/json"
-            }
-        };
-
-        const firstRequest = async (protocol, url, token, dataid) => {
-            try {
-                // console.log('CategoriaRequest', `${protocol}${url}${token}/${dataid}`)
-                // Make a request
-                const response = await axios.get(`${protocol}${url}${token}/${dataid}`, userHeader);
-                const toString = JSON.stringify(response.data);
-                const toObject = JSON.parse(toString);
-                //to Localstorage
-                localStorage.setItem(
-                    "comandaAppCarta",
-                    JSON.stringify(response.data)
-                );
-                //to State
-                // if (!toObject.data.respuesta > 0) {
-                //     localStorage.setItem(
-                //         "comandaAppCarta",
-                //         JSON.stringify(fakeData1)
-                //     );
-                //     getCarta(fakeData1.data.respuesta)
-                // } else {
-                await getCarta(toObject.data.respuesta);
-                // }
-
-            } catch (error) {
-                // localStorage.setItem(
-                //     "comandaAppCarta",
-                //     JSON.stringify(fakeData1)
-                // );
-                // getCarta(fakeData1.data.respuesta)
-                console.log("error", error);
-            }
-        };
-        //call to API
-        if(idcarta !== null ){
-            firstRequest(protocol, url, token, idcarta)
-            getCarta(JSON.parse(localStorage.getItem('comandaAppCarta')));
-        }
-        // firstRequest(protocol, url, token, idcarta)
-        // getCarta(JSON.parse(localStorage.getItem('comandaAppCarta')));
-    }, [ idcarta, token, restauranteData])
+//     useEffect(() => {
+//         // http://restaurante.comandaapp.es/api/ws/1/cLZDdvFTJcl5cWG/1
+//         // http://restaurante.comandaapp.es/api/ws/1/4xpD2gLLNSSdrRZ/1
+//         let url = "//restaurante.comandapp.es/api/ws/1/";
+//         const userHeader = {
+//             headers: {
+//                 "X-Requested-With": "XMLHttpRequest",
+//                 "Content-Type": "application/json"
+//             }
+//         };
+//
+//         const firstRequest = async (protocol, url, token, dataid) => {
+//         try {
+//             // console.log('CategoriaRequest', `${protocol}${url}${token}/${dataid}`)
+//             // Make a request
+//             const response = await axios.get(`${protocol}${url}${token}/${dataid}`, userHeader);
+//             const toString = JSON.stringify(response.data);
+//             const toObject = JSON.parse(toString);
+//             //to Localstorage
+//             localStorage.setItem(
+//                 "comandaAppCarta",
+//                 JSON.stringify(response.data)
+//             );
+//             //to State
+//             // if (!toObject.data.respuesta > 0) {
+//             //     localStorage.setItem(
+//             //         "comandaAppCarta",
+//             //         JSON.stringify(fakeData1)
+//             //     );
+//             //     getCarta(fakeData1.data.respuesta)
+//             // } else {
+//             await getCarta(toObject.data.respuesta);
+//             // }
+//
+//         } catch (error) {
+//             // localStorage.setItem(
+//             //     "comandaAppCarta",
+//             //     JSON.stringify(fakeData1)
+//             // );
+//             // getCarta(fakeData1.data.respuesta)
+//             console.log("error", error);
+//         }
+//     };
+//     //call to API
+//     if (idcarta !== null) {
+//         firstRequest(protocol, url, token, idcarta)
+//         getCarta(JSON.parse(localStorage.getItem('comandaAppCarta')));
+//     }
+//     // firstRequest(protocol, url, token, idcarta)
+//     // getCarta(JSON.parse(localStorage.getItem('comandaAppCarta')));
+// }, [idcarta, token, restauranteData])
 
     const selectedView = (e) => {
         e.preventDefault()
@@ -154,20 +158,33 @@ const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
         !isVisible ? getIsVisible(true) : getIsVisible(false);
     };
 
-    const sendCategory = (item1, item2, item3, wordKey, idcarta) => {
-        localStorage.setItem('categorySelected', JSON.stringify({
-            id: item1,
-            nombre: item2,
-            precio: item3,
-            wordKey: wordKey,
-            idcarta: idcarta
-        }));
-        history.push("/subcategoria");
-    };
+
+    // const sendCategory = (item1, item2, item3, wordKey, idcarta, seccat) => {
+    //     localStorage.setItem('categorySelected', JSON.stringify({
+    //         id: item1,
+    //         nombre: item2,
+    //         precio: item3,
+    //         wordKey: wordKey,
+    //         idcarta: idcarta,
+    //         seccat: null
+    //     }));
+    //     if (seccat === true || seccat === false) {
+    //         changesubcat === false ? getChangesubcat(true) : getChangesubcat(false)
+    //     } else {
+    //         history.push("/subcategoria");
+    //     }
+    // };
+    // const [changesubcat, getChangesubcat] = useState(false)
+
+// //cambiar vista de categoria a subcategoria sin perder vista
+//     const changedView = () => {
+//         changesubcat === false ? getChangesubcat(true) : getChangesubcat(false)
+//     }
 
     const codigoqr = () => {
         !verqr ? getVerqr(true) : getVerqr(false);
     }//sirve para actualizar el estado
+
 
     if (restauranteData.length <= 0) {
         return <Redirect to='/'/>
@@ -210,39 +227,60 @@ const Categorias = ({pedidoViewHandler, restauranteData, token}) => {
                     </span>
                 </div>
                 {selected === 'carta' && categorias.mensaje === 'OK' && carta ? (
-                        carta.map(item => {
-                            return (
-                                <div
-                                    className="cont_childs"
-                                    onClick={() => sendCategory(item.categoria_id, item.categoria, null, 'carta', idcarta)}
-                                    id={item.categoria}
-                                    style={cat.cat_cont}
-                                    key={item.categoria + item.categoria_id}
-                                >
-                                    <div className="absolut"></div>
-                                    {item.imagen === undefined ?
-                                        <Fragment>
-                                            <img style={cat.plato_img}
-                                                 src="assets/img/menu.jpg"
-                                                 alt={`Imagen de categoría ${item.categoria}`}/>
-                                            <p style={cat.nom_cat}>
-                                                {item.categoria}
-                                            </p>
-                                        </Fragment>
-                                        :
-                                        <Fragment>
-                                            <img style={cat.plato_img}
-                                                 src={urlImage() + item.imagen}
-                                                 alt={`Imagen de categoría ${item.categoria}`}/>
-                                            <p className="category_title"
-                                               style={cat.nom_cat}>
-                                                {item.categoria}
-                                            </p>
-                                        </Fragment>
-                                    }
-                                </div>
-                            )
-                        })
+                        //changesubcat establece el cambio de vista a subcategoría para
+                        changesubcat === false ?
+                            categorias.respuesta.map(item => {
+                                if (!item.esmenu) {
+                                    return (
+                                        // <Fragment>
+                                        // <Carta
+                                        //     sendCategory={sendCategory}
+                                        //     senditem={item}
+                                        //     styles={cat}
+                                        //     idcarta={item.id}
+                                        //     changesubcat={changesubcat}
+                                        //     changedView={changedView}
+                                        // />
+
+                                        <div
+                                            className="cont_childs"
+                                            onClick={() => sendCategory(item.categoria_id, item.categoria, null, 'carta', item.id, true)}
+                                            id={item.categoria}
+                                            style={cat.cat_cont}
+                                            key={item.id}
+                                        >
+                                            <div className="absolut"></div>
+                                            {item.imagen === undefined ?
+                                                <Fragment>
+                                                    <img style={cat.plato_img}
+                                                         src="assets/img/carta.jpg"
+                                                         alt={`Imagen de categoría ${item.categoria}`}/>
+                                                    <p style={cat.nom_cat}>
+                                                        {item.nombrecarta}
+                                                    </p>
+                                                </Fragment>
+                                                :
+                                                <Fragment>
+                                                    <img style={cat.plato_img}
+                                                         src={urlImage() + item.imagen}
+                                                         alt={`Imagen de categoría ${item.categoria}`}/>
+                                                    <p className="category_title"
+                                                       style={cat.nombrecarta}>
+                                                        {item.categoria}
+                                                    </p>
+                                                </Fragment>
+                                            }
+                                        </div>
+                                    )
+                                }
+                            })
+                            :
+                            // <Spinner/>
+                            <Subcarta
+                                sendCategory={sendCategory}
+                                changedView={changedView}
+                                styles={cat}
+                            />
 
                     ) :
                     null

@@ -11,12 +11,15 @@ import Mapamodal from "../components/Mapamodal";
 import Listcomandamodal from "../components/Listcomandamodal";
 import {connect} from 'react-redux';
 import  { Redirect } from 'react-router-dom'
+import {useHistory} from "react-router-dom";
 
 function App({restauranteData}) {
+    const history = useHistory();
     //Constantes de modales
     const [verMapamodal, getMapamodal] = useState(false);
     const [verMailmodal, getMailmodal] = useState(false);
-    const [isVisiblePedido, getIsVisiblePedido] = useState(false)
+    const [isVisiblePedido, getIsVisiblePedido] = useState(false);
+    const [changesubcat, getChangesubcat] = useState(false)
 
     const pedidoViewHandler = () => {
         !isVisiblePedido ? getIsVisiblePedido(true) : getIsVisiblePedido(false);
@@ -29,6 +32,26 @@ function App({restauranteData}) {
     const vermail = () => {
         !verMailmodal ? getMailmodal(true) : getMailmodal(false);
     }//sirve para actualizar el estado
+
+    //cambiar vista de categoria a subcategoria sin perder vista
+    const changedView = () => {
+        changesubcat === false ? getChangesubcat(true) : getChangesubcat(false)
+    }
+    const sendCategory = (item1, item2, item3, wordKey, idcarta, seccat) => {
+        localStorage.setItem('categorySelected', JSON.stringify({
+            id: item1,
+            nombre: item2,
+            precio: item3,
+            wordKey: wordKey,
+            idcarta: idcarta,
+            seccat: null
+        }));
+        if (seccat === true || seccat === false) {
+            changesubcat === false ? getChangesubcat(true) : getChangesubcat(false)
+        } else {
+            history.push("/subcategoria");
+        }
+    };
 
     useEffect(() => {
         getMapamodal(verMapamodal);
@@ -55,11 +78,18 @@ function App({restauranteData}) {
             />
             <div className="subRoot">
                 <Header/>
-                <Categoria pedidoViewHandler={pedidoViewHandler}/>
+                <Categoria
+                    pedidoViewHandler={pedidoViewHandler}
+                    changedView={changedView}
+                    sendCategory={sendCategory}
+                    changesubcat={changesubcat}
+                />
                 {/* <h1>Hola, Aqui irán los componentes y el enrutado o un Wrapper. Luego te explico que es ;)</h1> */}
 
             </div>
             <Footer
+                changesubcat={changesubcat}
+                changedView={changedView}
                 vermail={vermail}
                 vermapa={vermapa}
                 back={'/'}
