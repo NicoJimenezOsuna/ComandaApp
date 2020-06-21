@@ -120,7 +120,8 @@
 
 .cont_childs {
     position: relative;
-    width: calc(100% - 52%);
+    /*width: calc(100% - 52%);*/
+    width: 100%;
     margin: 1%;
     text-align: center;
     line-height: 75px;
@@ -133,7 +134,8 @@
 @media (orientation: landscape) {
     .cont_childs {
         position: relative;
-        width: calc(100% - 68.7%);
+        /*width: calc(100% - 68.7%);*/
+        width: 48%;
         margin: 1%;
         text-align: center;
         line-height: 75px;
@@ -1064,20 +1066,23 @@ a:hover {
 *
 */
 .category_title {
-    font-size: .8em;
+    /*font-size: .8em;*/
+    font-size: 1.3em;
     text-transform: uppercase;
 }
 
 @media (max-width: 320px) {
     .category_title {
-        font-size: .8em;
+        /*font-size: .8em;*/
+        font-size: 1.3em;
         text-transform: uppercase;
     }
 }
 
 @media (min-width: 320.2px) and (max-width: 425px) {
     .category_title {
-        font-size: 1em;
+        /*font-size: 1em;*/
+        font-size: 1.3em;
         text-transform: uppercase;
     }
 }
