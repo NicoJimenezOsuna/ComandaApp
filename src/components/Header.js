@@ -34,7 +34,7 @@ const Header = ({restauranteData}) => {
             display: 'flex',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
-            alignItems: 'center'
+            alignItems: 'end'
 
         },
         grupo_12: {
@@ -59,80 +59,77 @@ const Header = ({restauranteData}) => {
         },
         cont_logo_comanda: {
             display: 'flex',
-            justifyContent: 'flex-start',
+            // marginRight: '4em',
+            marginTop: '0.2em',
+            width: '100%'
+        },
+        cont_logo_comanda_sp: {
+            paddingTop: '5px',
+            display: 'flex',
+            justifyContent: 'flex-end',
             marginRight: '4em',
-            marginTop: '-.5em'
+            marginTop: '-.5em',
+            width: '100%'
         }
     };
-
-    useEffect(() => {
-
-        //        sustituir imagenes rotas
-        // setTimeout(function () {
-        //     let arrImg = document.getElementsByTagName("img");
-        //     for (let element of arrImg) {
-        //         // element.src = './assets/images/merca_dev.png';
-        //         if (
-        //             !element.complete ||
-        //             typeof element.naturalWidth === "undefined" ||
-        //             element.naturalWidth === 0
-        //         ) {
-        //             // image was broken, replace with your new image
-        //             // element.src = './public/assets/images/merca_dev.png';
-        //             element.src = "./assets/img/categorias/carne_categoria.png";
-        //         }
-        //     }
-        // }, 3000);
-
-    }, []);
-
 
     return (
         <Fragment>
             <div style={header.grupo_17}>
                 <div style={header.cont_comanda_social}>
-                    {/*{restauranteData.length > 0 ?*/}
-                    {/*    <img src={urlImage() + restauranteData[0].logo} alt="Logo de restaurante"*/}
-                    {/*         style={{width: '25%'}}*/}
-                    {/*    />*/}
-                    {/*    :*/}
-                    {/*    // <Logocomanda/>*/}
-                    {/*    <img src={urlImage() + restauranteData[0].logo} alt=""/>*/}
-                    {/*}*/}
-                    <div style={header.cont_logo_comanda}>
-                        <LogoComanda
-                            style={header.grupo_12}
-                            alt="Logo de comandaApp"
-                        />
-                        <a href="https://socialpymesvlc.es">
-                            <div style={header.relativo}>
-                                <div id="powered_by">
-                                    <span style={{fontSize: '.6em'}}>powered by</span>
-                                </div>
-                                <img
-                                    style={header.img_tipo}
-                                    src="./assets/img/socialPymes_Imagotipo.png"
-                                    alt="Logo de socialpymes"
-                                />
+                    <div style={header.cont_logo_comanda_sp}>
+                    <LogoComanda
+                        style={header.grupo_12}
+                        alt="Logo de comandaApp"
+                    />
+                    <a href="https://socialpymesvlc.es">
+                        <div style={header.relativo}>
+                            <div id="powered_by">
+                                <span style={{fontSize: '.6em'}}>powered by</span>
                             </div>
-                        </a>
-                    </div>
+                            <img
+                                style={header.img_tipo}
+                                src="./assets/img/socialPymes_Imagotipo.png"
+                                alt="Logo de socialpymes"
+                            />
+                        </div>
+                    </a>
                 </div>
-                <div style={header.cont_comanda_social_titulo}>
-                    {restauranteData.length > 0 ?
-                        <img src={urlImage() + restauranteData[0].logo} alt="Logo de restaurante"
-                             style={{width: '25%'}}
-                        />
-                        :
-                        // <Logocomanda/>
-                        <img src={urlImage() + restauranteData[0].logo} alt=""/>
-                    }
-                    <span className="text-shadow"
-                          style={header.restaurante}
-                    >
+                </div>
+                    <div style={header.cont_logo_comanda}>
+                        <div style={header.cont_comanda_social_titulo}>
+                            {restauranteData.length > 0 ?
+                                <img src={urlImage() + restauranteData[0].logo} alt="Logo de restaurante"
+                                     style={{width: '25%'}}
+                                />
+                                :
+                                // <Logocomanda/>
+                                <img src={urlImage() + restauranteData[0].logo} alt=""/>
+                            }
+                            <span className="text-shadow"
+                                  style={header.restaurante}
+                            >
                         {restauranteData.length > 0 ? restauranteData[0].nombre_restaurante : 'Restaurante'}
-                    </span>
-                </div>
+                            </span>
+                        </div>
+                    </div>
+
+
+                {/*<div style={header.cont_comanda_social_titulo}>*/}
+                {/*    {restauranteData.length > 0 ?*/}
+                {/*        <img src={urlImage() + restauranteData[0].logo} alt="Logo de restaurante"*/}
+                {/*             style={{width: '25%'}}*/}
+                {/*        />*/}
+                {/*        :*/}
+                {/*        // <Logocomanda/>*/}
+                {/*        <img src={urlImage() + restauranteData[0].logo} alt=""/>*/}
+                {/*    }*/}
+                {/*    <span className="text-shadow"*/}
+                {/*          style={header.restaurante}*/}
+                {/*    >*/}
+                {/*        {restauranteData.length > 0 ? restauranteData[0].nombre_restaurante : 'Restaurante'}*/}
+                {/*    </span>*/}
+                {/*</div>*/}
             </div>
         </Fragment>
     );

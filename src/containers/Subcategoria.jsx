@@ -222,7 +222,7 @@ console.log('pedidoenredux',pedidoredux)
 
     return (
         <Fragment>
-            <div className="subRoot">
+            <div className="<subRoot>">
                 <Listcomandamodal
                     onClick={pedidoViewHandler}
                     isVisiblePedido={isVisiblePedido}
