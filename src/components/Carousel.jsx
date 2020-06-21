@@ -58,7 +58,6 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
             width: '100%',
             borderRadius: '50px',
             margin: '1em 0',
-            maxHeight:'168.75px'
         },
         descrip: {
             padding: '10px',
