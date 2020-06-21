@@ -34,7 +34,7 @@ const Header = ({restauranteData}) => {
             display: 'flex',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
-            alignItems: 'end'
+            alignItems: 'flex-end'
 
         },
         grupo_12: {

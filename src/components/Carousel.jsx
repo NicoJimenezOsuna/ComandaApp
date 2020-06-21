@@ -58,6 +58,10 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
             width: '100%',
             borderRadius: '50px',
             margin: '1em 0',
+<<<<<<< HEAD
+=======
+            // maxHeight:'337,5px'
+>>>>>>> 1cd0703f8a42ad585b3ebc429309c0210b7df599
         },
         descrip: {
             padding: '10px',
@@ -232,7 +236,7 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
                                         }
                                     })}
                                 </ul>
-                                <figure>
+                                <figure style={slide.img}>
                                     <img
                                         style={slide.img}
                                         src={renderSlider().imagen}
