@@ -2,12 +2,13 @@ import React, {Fragment, useState, useEffect} from "react";
 import Spinner from './Spinner';
 import '../data/data'
 import {allergens} from "../data/data";
-import {dosDecim} from "../utils/utils";
+import {dosDecim, protocol, urlImage, urlComplete} from "../utils/utils";
 import Commandkeypad from './Commandkeypad'
 import {connect} from "react-redux";
 import "../App.css"
+import axios from "axios";
 
-const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, products}) => {
+const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, products, token}) => {
     const slide = {
         column: {
             display: 'flex',
@@ -46,7 +47,8 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
             justifyContent: 'flex-start',
             alignItems: 'center',
             overflowX: 'scroll',
-            padding: '.5em'
+            padding: '.5em',
+            width: '100%'
         },
         li: {
             display: 'flex',
@@ -96,7 +98,7 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
             justifyContent: 'space-between',
             alignItems: 'center'
         },
-        title : {
+        title: {
             textAlign: 'center'
         }
     }
@@ -107,13 +109,60 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
     const [buttonPrevius, getButtonPrevius] = useState(true);
     const [stwordkey, getStWordkey] = useState('');
     const [product, getProduct] = useState(false);
+    const [lallergens, getAllergens] = useState([])
+    const [idplato, getIdplato] = useState(null)
 
     useEffect(() => {
         getDataSlider(datas);
         getDataInicio(dataInicios);
         getStWordkey(wordkey)
         getProduct(products)
+
     }, [datas, dataInicios, wordkey, products]);
+
+    useEffect(() => {
+        if (datas && dataInicios) {
+            getIdplato(datas[dataInicios].plato_id)
+        }
+    }, [datas, dataInicios])
+
+    useEffect(() => {
+        // let isSubscribed = true;
+
+        if (datas.length > 0) {
+
+            // http://restaurante.comandapp.es/storage/rest0/pescado.png
+            // http://restaurante.comandapp.es/api/ws/3/ypOoSpbC97phxCx/56
+            let url = "//restaurante.comandapp.es/api/ws/3/";
+            const userHeader = {
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                    "Content-Type": "application/json"
+                }
+            };
+
+            const firstRequest = async (protocol, url, token, idplato) => {
+                try {
+                    console.log('CategoriaRequest', `${protocol}${url}${token}/${idplato}`)
+                    // Make a request
+                    const response = await axios.get(`${protocol}${url}${token}/${idplato}`, userHeader);
+                    const toString = JSON.stringify(response.data);
+                    const toObject = JSON.parse(toString);
+
+                    // if (isSubscribed) {
+                    await getAllergens(toObject.data.respuesta);
+                    // }
+
+                } catch (error) {
+                    console.log("error", error);
+                }
+            };
+            firstRequest(protocol, url, token, datas[dataInicios].plato_id)
+
+
+        }
+        // return () => isSubscribed = false
+    }, [datas, idplato, dataInicios, dataSlider, token,])
 
     const renderSlider = () => {
         // let productoSel = dataSlider.find(item => {
@@ -179,7 +228,10 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
                                     <div style={slide.price}>
                                         <p style={slide.p}>
                                         <span style={slide.pvp}>
-                                            pvp <span style={{fontVariant: 'normal', fontSize: '.7em'}}>ud:</span> </span>{dosDecim(renderSlider().precio, 2)} €
+                                            pvp <span style={{
+                                            fontVariant: 'normal',
+                                            fontSize: '.7em'
+                                        }}>ud:</span> </span>{dosDecim(renderSlider().precio, 2)} €
                                             <sup style={slide.sup}> + iva</sup></p>
                                     </div>
                                     :
@@ -212,8 +264,8 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
                                     </div>
                                 }
                                 <ul style={slide.ul}>
-                                    {allergens.map((item, index) => {
-                                        if (item.id < 7) {
+                                    {lallergens.length > 0 ?
+                                        lallergens.map((item, index) => {
                                             return (
                                                 <li key={item.id}
                                                     style={slide.li}
@@ -224,20 +276,22 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
                                                             'paddingAllergensModal'
                                                     }
                                                 >
-                                                    <img style={{width: '3em'}} src={item.imageUrl}
-                                                         alt={item.name}/>
-                                                    <p>{item.name}</p>
+                                                    <img style={{width: '3em'}} src={urlImage()+item.imagen}
+                                                         alt={item.nombrealergeno}/>
+                                                    <p>{item.nombrealergeno}</p>
                                                 </li>
                                             )
-                                        }
-                                    })}
+                                    })
+                                    :
+                                    'Alergenos no disponibles'
+                                    }
                                 </ul>
                                 <figure style={slide.img}>
                                     <img
                                         style={slide.img}
                                         src={renderSlider().imagen}
                                         alt={renderSlider().nombreplato}/>
-                                        <figcaption>{renderSlider().nombreplato}</figcaption>
+                                    <figcaption>{renderSlider().nombreplato}</figcaption>
                                 </figure>
                                 <div style={slide.descrip}>
                                     {/*<h3 style={{*/}
@@ -247,7 +301,7 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
                                     {/*}}>*/}
                                     {/*    {renderSlider().nombreplato}*/}
                                     {/*</h3>*/}
-                                    <p>
+                                    <p style={{fontWeight: 'bolder'}}>
                                         {renderSlider().observaciones}
                                     </p>
                                 </div>
@@ -284,7 +338,8 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
 
 function mapStateToProps(state) {
     return {
-        products: state.PedidosCarta.pedidoCarta
+        products: state.PedidosCarta.pedidoCarta,
+        token: state.Token.token
     }
 }
 

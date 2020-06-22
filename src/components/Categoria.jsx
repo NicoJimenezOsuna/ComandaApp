@@ -12,7 +12,7 @@ import Spinnercircle from "./Spinnercircle";
 import Subcarta from './Subcarta';
 import Spinner from "./Spinner";
 
-const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCategory, changesubcat, token}) => {
+const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCategory, changesubcat, getChangeColor, token}) => {
 
     const history = useHistory();
     const cat = {
@@ -156,6 +156,9 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
     const selectedView = (e) => {
         e.preventDefault()
         getselected(e.target.id)
+        if(e.target.id === 'menus'){
+            getChangeColor()
+        }
     }
 
     const visibleHandler = () => {

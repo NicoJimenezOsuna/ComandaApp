@@ -53,6 +53,10 @@ function App({restauranteData}) {
         }
     };
 
+    const getChangeColor = () =>{
+        getChangesubcat(false)
+    }
+
     useEffect(() => {
         getMapamodal(verMapamodal);
         getMailmodal(verMailmodal);
@@ -79,6 +83,7 @@ function App({restauranteData}) {
             <div className="subRoot">
                 <Header/>
                 <Categoria
+                    getChangeColor={getChangeColor}
                     pedidoViewHandler={pedidoViewHandler}
                     changedView={changedView}
                     sendCategory={sendCategory}

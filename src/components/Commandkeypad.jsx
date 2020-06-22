@@ -76,9 +76,9 @@ const Comamandkeymap = ({data, products, productsmenu, wordkey}) => {
                 dataproduct={dataproduct}
                 // wordkey={stwordkey}
             />
-            <Dischardbutton
-                dataproduct={dataproduct}
-            />
+            {/*<Dischardbutton*/}
+            {/*    dataproduct={dataproduct}*/}
+            {/*/>*/}
         </Fragment>
     )
 }

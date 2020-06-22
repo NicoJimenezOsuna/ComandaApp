@@ -38,6 +38,7 @@ const Footer = ({vermapa, vermail, restauranteData, back, changesubcat, changedV
         <div className="cont_footer_absolut">
             <div style={style.contenedor}>
                 {changesubcat === false ?
+                    back === '/categoria' ?
                     <Link style={style.boton} to={back}>
                         <img
                             style={style.boton}
@@ -45,6 +46,14 @@ const Footer = ({vermapa, vermail, restauranteData, back, changesubcat, changedV
                             alt="imagen de footer"
                         />
                     </Link>
+                        :
+                        <Link style={style.boton} to={back}>
+                            <img
+                                style={style.boton}
+                                src="./assets/img/footer/ico-back_red.svg"
+                                alt="imagen de footer"
+                            />
+                        </Link>
                     :
                     <img
                         onClick={changedView}
