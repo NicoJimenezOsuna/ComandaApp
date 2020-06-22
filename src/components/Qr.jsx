@@ -4,7 +4,7 @@ import { ReactComponent as YourSvg } from '../icons/qr-socialpymes.svg';
 const Qr = ({codigoqr}) => {
 
     const style = {
-        alergenos : {
+        qr : {
             width: `100%`,
             height:  `50px`,
             backgroundColor: 'rgba(156, 255, 242, 0.68)',
@@ -21,7 +21,7 @@ const Qr = ({codigoqr}) => {
     return (
         <Fragment>
             <YourSvg 
-                style={style.alergenos}
+                style={style.qr}
                 onClick={codigoqr}
                 />
         </Fragment>
