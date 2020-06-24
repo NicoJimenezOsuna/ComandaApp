@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import {connect} from "react-redux";
 
-const Labelscarta = ({ data }) => {
+const Labelscarta = ({ data, restauranteData }) => {
   const label = {
     cont_princ: {
       width: "100%",
@@ -45,10 +46,23 @@ const Labelscarta = ({ data }) => {
       <div style={label.cont_price}>
         <span>{titles.price}</span>
       </div>
-      <div style={label.cont_button}>
-        <span>{titles.info}</span>
-      </div>
+      {restauranteData[0].tpsuscrip === 1 || restauranteData[0].tpsuscrip === 6 ?
+          <div style={label.cont_button}>
+            <span>{titles.info}</span>
+          </div>
+          :
+          null
+      }
     </div>
   );
 };
-export default Labelscarta;
+
+function mapStateToProps(state){
+  return {
+    restauranteData: state.RestauranteData.RestauranteProfile
+  }
+}
+
+export default connect(mapStateToProps)(Labelscarta);
+
+

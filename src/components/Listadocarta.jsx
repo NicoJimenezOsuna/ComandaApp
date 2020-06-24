@@ -8,7 +8,7 @@ import Spinnercircle from '../components/Spinnercircle';
 import {dosDecim, urlComplete, protocol} from "../utils/utils";
 import {connect} from "react-redux";
 
-const Listadocarta = ({dataid, dataSliderHandler, token}) => {
+const Listadocarta = ({dataid, dataSliderHandler, token, restauranteData}) => {
     const listmenu = {
         cont_princ: {
             width: "100%",
@@ -117,15 +117,19 @@ const Listadocarta = ({dataid, dataSliderHandler, token}) => {
                                     <span style={listmenu.font}>€</span>
                                 </p>
                             </div>
-                            <div style={listmenu.cont_button}>
-                                <Buttoninfo
-                                    dataSliderHandler={dataSliderHandler}
-                                    dataListaFull={products}
-                                    dataIdSelf={products.indexOf(item)}
-                                    //wordkey for display prices and buttons plus and substract in caroussel
-                                    wordkey={'carta'}
-                                />
-                            </div>
+                            {restauranteData[0].tpsuscrip === 1 || restauranteData[0].tpsuscrip === 6 ?
+                                <div style={listmenu.cont_button}>
+                                    <Buttoninfo
+                                        dataSliderHandler={dataSliderHandler}
+                                        dataListaFull={products}
+                                        dataIdSelf={products.indexOf(item)}
+                                        //wordkey for display prices and buttons plus and substract in caroussel
+                                        wordkey={'carta'}
+                                    />
+                                </div>
+                                :
+                                null
+                            }
                         </div>
                     );
                 })
@@ -139,6 +143,7 @@ const Listadocarta = ({dataid, dataSliderHandler, token}) => {
 
 function mapStateToProps(state) {
     return {
+        restauranteData: state.RestauranteData.RestauranteProfile,
         token: state.Token.token
     }
 }

@@ -6,7 +6,7 @@ import {CONNECT_TOKEN} from "../data/restaurante";
 import Spinnercircle from "./Spinnercircle";
 import {connect} from "react-redux";
 
-const Platosmenus = ({catid, seccid, dataSliderHandler, token, data, getValue, labelsLength, getMenu}) => {
+const Platosmenus = ({catid, seccid, dataSliderHandler, token, data, getValue, labelsLength, getMenu, restauranteData}) => {
     const listaplatos = {
         cont_princ: {
             width: "100%",
@@ -115,24 +115,31 @@ const Platosmenus = ({catid, seccid, dataSliderHandler, token, data, getValue, l
                                 {/*        <span style={listaplatos.font}>€</span>*/}
                                 {/*    </p>*/}
                                 {/*</div>*/}
-                                <div>
-                                    <input
-                                        type="radio"
-                                        name={data}
-                                        id={item.nombreplato}
-                                        value={item.nombreplato}
-                                        onChange={(e)=>getValue(e, labelsLength)}
-                                        key={item.nombreplato}
-                                    />
-                                </div>
-                                <div style={listaplatos.cont_button}>
-                                    <Buttoninfo
-                                        dataSliderHandler={dataSliderHandler}
-                                        dataListaFull={platos}
-                                        dataIdSelf={platos.indexOf(item)}
-                                        noprice={false}
-                                    />
-                                </div>
+                                {restauranteData[0].tpsuscrip === 1 || restauranteData[0].tpsuscrip === 6 ?
+                                    <Fragment>
+                                        <div>
+                                            <input
+                                                type="radio"
+                                                name={data}
+                                                id={item.nombreplato}
+                                                value={item.nombreplato}
+                                                onChange={(e)=>getValue(e, labelsLength)}
+                                                key={item.nombreplato}
+                                            />
+                                        </div>
+
+                                        <div style={listaplatos.cont_button}>
+                                            <Buttoninfo
+                                                dataSliderHandler={dataSliderHandler}
+                                                dataListaFull={platos}
+                                                dataIdSelf={platos.indexOf(item)}
+                                                noprice={false}
+                                            />
+                                        </div>
+                                    </Fragment>
+                                    :
+                                    null
+                                    }
                             </div>
                         );
                     })
@@ -147,6 +154,7 @@ const Platosmenus = ({catid, seccid, dataSliderHandler, token, data, getValue, l
 
 function mapStateToProps(state) {
     return {
+        restauranteData: state.RestauranteData.RestauranteProfile,
         token: state.Token.token
     }
 }

@@ -2,9 +2,10 @@ import React, {Fragment} from "react";
 import Alergenos from './Alergenos';
 import Qr from './Qr';
 import {ReactComponent as Listicon} from "../icons/lista.svg";
+import {connect} from "react-redux"
 
 
-const NavUtils = ({visible, codigoqr, pedidoViewHandler}) => {
+const NavUtils = ({visible, codigoqr, pedidoViewHandler, restauranteData}) => {
     const style = {
         menu: {
             overflow: "visible",
@@ -40,12 +41,22 @@ const NavUtils = ({visible, codigoqr, pedidoViewHandler}) => {
             <div style={style.menu}>
                 <Qr codigoqr={codigoqr}/>
                 <Alergenos visible={visible}/>
-                <Listicon
-                    style={style.list}
-                    onClick={pedidoViewHandler}/>
+                {restauranteData[0].tpsuscrip === 1 || restauranteData[0].tpsuscrip === 6 ?
+                    <Listicon
+                        style={style.list}
+                        onClick={pedidoViewHandler}/>
+                    :
+                    null
+                }
             </div>
         </Fragment>
     );
 };
 
-export default NavUtils;
+function mapStateToProps(state){
+    return{
+        restauranteData: state.RestauranteData.RestauranteProfile
+    }
+}
+
+export default connect (mapStateToProps)(NavUtils);
