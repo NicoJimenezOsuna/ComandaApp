@@ -34,16 +34,16 @@ const Listadomenu = ({
 			padding: '.7em .7em'
 		},
 		buttonMenu: {
-			fontSize: '1.3em',
-			padding: '.5em 2em',
-			borderRadius: '25px',
-			border: '2px solid rgb(112, 112, 112)',
-			backgroundColor: 'rgba(156, 255, 242, 0.68)',
-			display: 'inline-block',
-			cursor: 'pointer',
-			textDecoration: 'none',
-			textShadow: '0px 1px 0px #2f6627',
-			outline: 'none'
+			// fontSize: '1.3em',
+			// padding: '.5em 2em',
+			// borderRadius: '25px',
+			// border: '2px solid rgb(112, 112, 112)',
+			// backgroundColor: 'rgba(156, 255, 242, 0.68)',
+			// display: 'inline-block',
+			// cursor: 'pointer',
+			// textDecoration: 'none',
+			// textShadow: '0px 1px 0px #2f6627',
+			// outline: 'none'
 		},
 		error: {
 			color: 'white',
@@ -163,7 +163,7 @@ const Listadomenu = ({
 						onClick={completeddMemenu}
 						type="button"
 						style={listado.buttonMenu}
-						className="buttonMenu"
+						className="button_comanda"
 					>
 						Añadir
 					</button>
@@ -225,7 +225,7 @@ const Listadomenu = ({
 				margin: '0 10px'
 
 			}}
-				 className="price_bg"
+				 className="price_bg label_menu_price"
 			>
 				<span>Total</span>
 				{/*Si restauranteData contiene datos, continua*/}

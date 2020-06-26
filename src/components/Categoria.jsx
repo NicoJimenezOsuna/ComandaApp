@@ -71,9 +71,9 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
             borderBottom: '2px solid black'
         },
         span: {
-            fontFamily: 'Papyrus',
-            padding: '.2em 1em',
-            borderRadius: '20px',
+        //     fontFamily: 'Papyrus',
+        //     padding: '.2em 1em',
+        //     borderRadius: '20px',
         }
     }
     const [idcarta, getIdcarta] = useState(null);
@@ -216,22 +216,36 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
 
             <div className="padre">
                 <div style={cat.select}>
-                    <span
-                        className={selected === 'menus' ? 'opaco' : "color_span_select"}
-                        style={cat.span}
-                        id="carta"
-                        onClick={selectedView}
+                    <span className={selected === 'menus' ? 'span_no_select button' : "span_select button"}
+                         style={cat.span}
+                         id="carta"
+                         onClick={selectedView}
                     >
                         CARTA
                     </span>
-                    <span
-                        className={selected === 'carta' ? 'opaco' : "color_span_select"}
-                        style={cat.span}
-                        id="menus"
-                        onClick={selectedView}
+                    {/*<span*/}
+                    {/*    className={selected === 'menus' ? 'span_no_select' : "span_select"}*/}
+                    {/*    style={cat.span}*/}
+                    {/*    id="carta"*/}
+                    {/*    onClick={selectedView}*/}
+                    {/*>*/}
+                    {/*    CARTA*/}
+                    {/*</span>*/}
+                    <span className={selected === 'carta' ? 'span_no_select button' : "span_select button"}
+                         style={cat.span}
+                         id="menus"
+                         onClick={selectedView}
                     >
-                        MENUS
+                        MENU
                     </span>
+                    {/*<span*/}
+                    {/*    className={selected === 'carta' ? 'span_no_select' : "span_select"}*/}
+                    {/*    style={cat.span}*/}
+                    {/*    id="menus"*/}
+                    {/*    onClick={selectedView}*/}
+                    {/*>*/}
+                    {/*    MENUS*/}
+                    {/*</span>*/}
                 </div>
                 {selected === 'carta' && categorias.mensaje === 'OK' && carta ? (
                         //changesubcat establece el cambio de vista a subcategoría para

@@ -97,7 +97,7 @@ const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, product
                 </div>
 
                 <div style={comanda.con_title}>
-                    <h2 style={comanda.h2}>Mi comanda</h2>
+                    <h2 className="label_carta-menu" style={comanda.h2}>Mi comanda</h2>
                 </div>
                 <div style={comanda.cont_sec}>
                     <h3 style={comanda.h3}>CARTA: </h3>

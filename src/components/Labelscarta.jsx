@@ -39,7 +39,7 @@ const Labelscarta = ({ data, restauranteData }) => {
   }, [titles, data]);
 
   return (
-    <div style={label.cont_princ}>
+    <div style={label.cont_princ} className="label_carta-menu">
       <div style={label.cont_name}>
         <span>{titles.product}</span>
       </div>

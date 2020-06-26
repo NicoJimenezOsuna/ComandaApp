@@ -105,36 +105,46 @@ const Listadocarta = ({dataid, dataSliderHandler, token, restauranteData}) => {
     return (
         <Fragment>
             {products.length > 0
-                ? products.map(item => {
+                ? products.map((item, index) => {
                     return (
-                        <div style={listmenu.cont_princ} key={item.nombreplato}>
-                            <div style={listmenu.cont_name}>
-                                <p>{item.nombreplato}</p>
-                            </div>
-                            <div style={listmenu.cont_price}>
-                                <p>
-                                    {dosDecim(item.precio, 2)}{" "}
-                                    <span style={listmenu.font}>€</span>
-                                </p>
-                            </div>
-                            {restauranteData[0].tpsuscrip === 1 || restauranteData[0].tpsuscrip === 6 ?
-                                <div style={listmenu.cont_button}>
-                                    <Buttoninfo
-                                        dataSliderHandler={dataSliderHandler}
-                                        dataListaFull={products}
-                                        dataIdSelf={products.indexOf(item)}
-                                        //wordkey for display prices and buttons plus and substract in caroussel
-                                        wordkey={'carta'}
-                                    />
+                        <Fragment>
+                            <div style={listmenu.cont_princ} key={item.nombreplato}>
+                                <div style={listmenu.cont_name}>
+                                    <p>{item.nombreplato}</p>
                                 </div>
+                                <div style={listmenu.cont_price}>
+                                    <p>
+                                        {dosDecim(item.precio, 2)}{" "}
+                                        <span style={listmenu.font}>€</span>
+                                    </p>
+                                </div>
+                                {restauranteData[0].tpsuscrip === 1 || restauranteData[0].tpsuscrip === 6 ?
+                                    <div style={listmenu.cont_button}>
+                                        <Buttoninfo
+                                            dataSliderHandler={dataSliderHandler}
+                                            dataListaFull={products}
+                                            dataIdSelf={products.indexOf(item)}
+                                            //wordkey for display prices and buttons plus and substract in caroussel
+                                            wordkey={'carta'}
+                                        />
+                                    </div>
+                                    :
+                                    null
+                                }
+                            </div>
+                            {index < (products.length - 1) ?
+                                <hr style={{
+                                    width: '80%',
+                                    border: '1px solid #d3d3d3',
+                                    margin: '0px auto'
+                                }}/>
                                 :
-                                null
-                            }
-                        </div>
+                                null}
+                        </Fragment>
                     );
                 })
-                :
-                <Spinnercircle/>
+            :
+            <Spinnercircle/>
             }
             {/*    Aqui se mete los spiners de carga    */}
         </Fragment>

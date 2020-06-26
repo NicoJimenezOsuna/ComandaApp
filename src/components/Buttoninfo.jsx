@@ -1,12 +1,14 @@
 import React, {useState} from "react";
-import {ReactComponent as YourSvg} from "../icons/search-plus-solid.svg";
+import {ReactComponent as YourSvg} from "../icons/navutils/informacion.svg";
 
 const Buttoninfo = ({dataSliderHandler, dataListaFull, dataIdSelf, wordkey}) => {
     const icon = {
         search_ico: {
             width: "30px",
-            color: "#404448",
-            cursor: "pointer"
+            height: '30px',
+            // color: "#404448",
+            // cursor: "pointer",
+            fill: 'rgb(110, 104, 104)'
         }
     };
 

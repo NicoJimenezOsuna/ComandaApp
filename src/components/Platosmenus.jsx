@@ -45,102 +45,117 @@ const Platosmenus = ({catid, seccid, dataSliderHandler, token, data, getValue, l
 
 
     useEffect(() => {
-            //clean call is not mounted
-            let isSubscribed = true
+        //clean call is not mounted
+        let isSubscribed = true
 
-            // http://restaurante.comandaapp.es/api/ws/1/cLZDdvFTJcl5cWG/5
-            let url = "//restaurante.comandapp.es/api/ws/2/";
-            const userHeader = {
-                headers: {
-                    "X-Requested-With": "XMLHttpRequest",
-                    "Content-Type": "application/json"
-                }
-            };
-
-            const menusRequest = async (protocol, url, token, seccid, id) => {
-
-                try {
-                    // Make a request
-                    const response = await axios.get(`${protocol}${url}${token}/${seccid}/${id}`, userHeader);
-                    const toString = JSON.stringify(response.data);
-                    const toObject = JSON.parse(toString);
-                    //to Localstorage
-                    // localStorage.setItem(
-                    //     "comandaApp",
-                    //     JSON.stringify(response.data)
-                    // );
-                    //to State
-                    // if (!toObject.data.respuesta > 0) {
-                    //     localStorage.setItem(
-                    //         "comandaApp",
-                    //         JSON.stringify(fakeData1)
-                    //     );
-                    //     getDatos(fakeData1.data.respuesta)
-                    // } else {
-                    if (isSubscribed) {
-                        getPlatos(urlComplete(toObject.data.respuesta));
-                    }
-                    // }
-
-                } catch (error) {
-                    // localStorage.setItem(
-                    //     "comandaApp",
-                    //     JSON.stringify(fakeData1)
-                    // );
-                    // getSectionsMenu(fakeData1.data.respuesta)
-                    console.log("error", error);
-                }
+        // http://restaurante.comandaapp.es/api/ws/1/cLZDdvFTJcl5cWG/5
+        let url = "//restaurante.comandapp.es/api/ws/2/";
+        const userHeader = {
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "Content-Type": "application/json"
             }
-            //REQUEST
-            menusRequest(protocol, url, token, seccid, catid)
+        };
 
-            //clean function: no update state if is unmount component
-            return () => isSubscribed = false
+        const menusRequest = async (protocol, url, token, seccid, id) => {
 
-        }, [token, catid, seccid]);
+            try {
+                // Make a request
+                const response = await axios.get(`${protocol}${url}${token}/${seccid}/${id}`, userHeader);
+                const toString = JSON.stringify(response.data);
+                const toObject = JSON.parse(toString);
+                //to Localstorage
+                // localStorage.setItem(
+                //     "comandaApp",
+                //     JSON.stringify(response.data)
+                // );
+                //to State
+                // if (!toObject.data.respuesta > 0) {
+                //     localStorage.setItem(
+                //         "comandaApp",
+                //         JSON.stringify(fakeData1)
+                //     );
+                //     getDatos(fakeData1.data.respuesta)
+                // } else {
+                if (isSubscribed) {
+                    getPlatos(urlComplete(toObject.data.respuesta));
+                }
+                // }
+
+            } catch (error) {
+                // localStorage.setItem(
+                //     "comandaApp",
+                //     JSON.stringify(fakeData1)
+                // );
+                // getSectionsMenu(fakeData1.data.respuesta)
+                console.log("error", error);
+            }
+        }
+        //REQUEST
+        menusRequest(protocol, url, token, seccid, catid)
+
+        //clean function: no update state if is unmount component
+        return () => isSubscribed = false
+
+    }, [token, catid, seccid]);
 
     return (
         <Fragment>
             <Fragment>
                 {platos.length > 0
-                    ? platos.map(item => {
+                    ? platos.map((item, index) => {
                         return (
-                            <div style={listaplatos.cont_princ} key={item.nombreplato}>
-                                <div style={listaplatos.cont_name}>
-                                    <p>{item.nombreplato}</p>
-                                </div>
-                                {/*<div style={listaplatos.cont_price}>*/}
-                                {/*    <p>*/}
-                                {/*        {dosDecim(item.precio, 2)}{" "}*/}
-                                {/*        <span style={listaplatos.font}>€</span>*/}
-                                {/*    </p>*/}
-                                {/*</div>*/}
-                                {restauranteData[0].tpsuscrip === 1 || restauranteData[0].tpsuscrip === 6 ?
-                                    <Fragment>
-                                        <div>
-                                            <input
-                                                type="radio"
-                                                name={data}
-                                                id={item.nombreplato}
-                                                value={item.nombreplato}
-                                                onChange={(e)=>getValue(e, labelsLength)}
-                                                key={item.nombreplato}
-                                            />
-                                        </div>
+                            <Fragment>
+                                <div style={listaplatos.cont_princ} key={item.nombreplato}>
+                                    <div style={listaplatos.cont_name}>
+                                        <p>{item.nombreplato}</p>
+                                    </div>
+                                    {/*<div style={listaplatos.cont_price}>*/}
+                                    {/*    <p>*/}
+                                    {/*        {dosDecim(item.precio, 2)}{" "}*/}
+                                    {/*        <span style={listaplatos.font}>€</span>*/}
+                                    {/*    </p>*/}
+                                    {/*</div>*/}
+                                    {restauranteData[0].tpsuscrip === 1 || restauranteData[0].tpsuscrip === 6 ?
+                                        <Fragment>
+                                            <div className="wrapper">
+                                                <input style={{display: 'none'}}
+                                                    type="radio"
+                                                    name={data}
+                                                    id={item.nombreplato}
+                                                    value={item.nombreplato}
+                                                    onChange={(e) => getValue(e, labelsLength)}
+                                                    key={item.nombreplato}
+                                                       className="state"
+                                                />
+                                                <label className="label" htmlFor={item.nombreplato}>
+                                                    <div className="indicator"></div>
+                                                    {/*<span className="text">a) close</span>*/}
+                                                </label>
+                                            </div>
 
-                                        <div style={listaplatos.cont_button}>
-                                            <Buttoninfo
-                                                dataSliderHandler={dataSliderHandler}
-                                                dataListaFull={platos}
-                                                dataIdSelf={platos.indexOf(item)}
-                                                noprice={false}
-                                            />
-                                        </div>
-                                    </Fragment>
-                                    :
-                                    null
+                                            <div style={listaplatos.cont_button}>
+                                                <Buttoninfo
+                                                    dataSliderHandler={dataSliderHandler}
+                                                    dataListaFull={platos}
+                                                    dataIdSelf={platos.indexOf(item)}
+                                                    noprice={false}
+                                                />
+                                            </div>
+                                        </Fragment>
+                                        :
+                                        null
                                     }
-                            </div>
+                                </div>
+                                {index < (platos.length - 1) ?
+                                    <hr style={{
+                                        width: '80%',
+                                        border: '1px solid #d3d3d3',
+                                        margin: '0px auto'
+                                    }}/>
+                                    :
+                                    null}
+                            </Fragment>
                         );
                     })
                     :

@@ -14,7 +14,7 @@ const Labelsmenu = ({ data }) => {
             paddingBottom: "5px",
             fontSize: "20px",
             padding: "20px 0",
-            background: 'rgba(156, 255, 242, 0.18)',
+            // background: 'rgba(156, 255, 242, 0.18)',
             fontFamily: 'Papyrus'
         },
         cont_name: {
@@ -41,7 +41,7 @@ const Labelsmenu = ({ data }) => {
     }, [titles, data]);
 
     return (
-        <div style={label.cont_princ}>
+        <div style={label.cont_princ} className="label_carta-menu">
             <div style={label.cont_name}>
                 <span>{data}</span>
             </div>

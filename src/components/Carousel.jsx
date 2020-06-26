@@ -45,7 +45,7 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
             listStyleType: 'none',
             display: 'flex',
             justifyContent: 'flex-start',
-            alignItems: 'center',
+            alignItems: 'baseline',
             overflowX: 'scroll',
             padding: '.5em',
             width: '100%'
