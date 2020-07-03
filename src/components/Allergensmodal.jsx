@@ -37,7 +37,7 @@ const Allergensmodal = ({
             backgroundColor: "#fff",
             border: "2px solid #000",
             borderRadius: "20px",
-            padding: "10px",
+            padding: "0px 10px 10px 10px",
             overflow: "scroll"
         },
         cont_data: {
@@ -60,7 +60,11 @@ const Allergensmodal = ({
         cabecera: {
             display: "flex",
             justifyContent:"space-between",
-            alignItems: 'flex-start'
+            alignItems: 'flex-start',
+            position: 'sticky',
+            top: 0,
+            paddingTop: '10px',
+            backgroundColor: 'white'
         },
     };
 
