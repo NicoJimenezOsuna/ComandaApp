@@ -62,9 +62,8 @@ const Launcher = ({restauranteData, reduxToken}) => {
         let paramsNow = window.location.search
         //OBTENER TOKEN DE URL
         if ((reduxToken.length <= 0) || (paramsNow !== reduxToken && paramsNow !== '')) {
+            localStorage.clear();
             let token = paramsNow.substr(1);
-            console.log('params', paramsNow)
-            console.log('token', token)
             addToken(token)
         }
 
