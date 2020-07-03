@@ -57,9 +57,18 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
             alignContent: 'start',
         },
         img: {
-            width: '100%',
             borderRadius: '50px',
             margin: '1em 0',
+            maxWidth: '100%',
+            maxHeight: '300px',
+        },
+        figure: {
+            width: '100%',
+            borderRadius: '50px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
         },
         descrip: {
             padding: '10px',
@@ -286,7 +295,7 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
                                     'Alergenos no disponibles'
                                     }
                                 </ul>
-                                <figure style={slide.img}>
+                                <figure style={slide.figure}>
                                     <img
                                         style={slide.img}
                                         src={renderSlider().imagen}

@@ -333,6 +333,8 @@
     width: 3em;
     z-index: 99999;
     color: rgba(0, 0, 0, .4);
+    background-color: #fff;
+    border-radius: 50%;
 }
 
 .cont_footer_absolut {
