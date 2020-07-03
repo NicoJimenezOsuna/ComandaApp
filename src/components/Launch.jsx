@@ -30,7 +30,7 @@ const Launch = ({logo}) => {
             justifyContent: 'center',
             alignItems: 'center',
             padding: '1em',
-            marginBottom: '2em'
+            marginBottom: '5em'
         },
         cont_logo_text: {
             position: 'absolute',

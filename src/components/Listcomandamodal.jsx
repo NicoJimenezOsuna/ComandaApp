@@ -31,7 +31,7 @@ const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, product
             backgroundColor: "#fff",
             border: "2px solid #000",
             borderRadius: "20px",
-            padding: "10px",
+            padding: "0 10px 10px 10px;",
             overflow: "scroll"
         },
         con_title: {
@@ -60,9 +60,10 @@ const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, product
         cont_x: {
             position: 'sticky',
             top: 0,
+            right: '0',
             width: '100%',
             zIndex: '9999',
-            backgroundColor: 'fff',
+            backgroundColor: '#fff',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center'
