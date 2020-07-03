@@ -8,6 +8,7 @@ const Binicio = () => {
 const styles = {
   boton : {
     filter: 'drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.161))',
+    WebkitFilter: 'drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.161))',
     // position: 'relative',
     overflow: 'visible',
     // width: `313px`,

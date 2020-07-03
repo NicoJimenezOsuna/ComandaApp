@@ -35,6 +35,21 @@ import "./App.css"
 * */
 // import Header from './containers/Header'
 // import Footer from './containers/Footer'
+//------------------------------------------------------------------------------------------------------------------------
+/*
+*
+*  GOOGLE ANALITICS :
+*
+* */
+import ReactGA from 'react-ga';
+
+//COMMENT THIS FUNCTION IN ENTERPRISES PRODUCTION SERVER
+function initializeReactGA() {
+    ReactGA.initialize('UA-170329558-1');
+    ReactGA.pageview('/');
+}
+
+//-------------------------------------------------------------------------------------------------------------------------
 
 ReactDOM.render(
     <Provider store={store}>
