@@ -49,7 +49,8 @@ const Qrmodal = ({codigoqr, verqr, restauranteData}) => {
             fontSize: `1.3rem`
         },
         qr:{
-            width:`300px`
+            maxWidth:`100%`,
+            maxHeight: '250px'
         },
         cabecera: {
             display: "flex",

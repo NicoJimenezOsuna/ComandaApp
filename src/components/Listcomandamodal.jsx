@@ -3,8 +3,8 @@ import {ReactComponent as IconClose} from "../icons/times-circle-regular.svg";
 import Micomandacarta from "./Micomandacarta";
 import Micomandamenu from "./Micomandamenu";
 import {connect} from 'react-redux';
-import {ReactComponent as Nomenu} from "../icons/nocarta.svg";
-import {ReactComponent as Nocarta} from "../icons/notapas.svg";
+import {ReactComponent as Nomenu} from "../icons/nutricion.svg";
+import {ReactComponent as Nocarta} from "../icons/cocina.svg";
 import DischardFullComanda from "./comandkeymenu/DischardFullComanda";
 import {dischardFull} from "../redux/actions";
 
@@ -27,7 +27,7 @@ const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, product
             minWidth: "90%",
             maxWidth: "90%",
             maxHeight: "90%",
-            minHeight: "90%",
+            // minHeight: "90%",
             backgroundColor: "#fff",
             border: "2px solid #000",
             borderRadius: "20px",
@@ -67,6 +67,17 @@ const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, product
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center'
+        },
+        text: {
+            textAlign: 'center',
+            fontSize: '2.3em',
+            // color: 'rgba(255, 0, 0, 0.53)',
+            color: '#808080',
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+            WebkitTransform: 'translate(-50%, -50%)'
         }
     };
 
@@ -90,11 +101,11 @@ const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, product
             <div style={comanda.cont_slider}>
                 <div style={comanda.cont_x}>
                     <IconClose
-                        style={{color:'rgba(0,0,0,.4',width:'3em'}}
+                        style={{color: 'rgba(0,0,0,.4', width: '3em'}}
                         onClick={pedidoViewHandler}
                     />
                     <DischardFullComanda
-                        />
+                    />
                 </div>
 
                 <div style={comanda.con_title}>
@@ -103,9 +114,9 @@ const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, product
                 <div style={comanda.cont_sec}>
                     <h3 style={comanda.h3}>CARTA: </h3>
                     {Object.keys(cartaproduct).length <= 0 ?
-                        <div style={{width: '100%'}}>
-                            <h2 style={{textAlign: 'center', color: 'rgba(255,0,0,0.43)'}}>no hay productos</h2>
-                            <Nocarta style={{width: '100%', height: '150px'}}/>
+                        <div style={{width: '100%', position: 'relative'}}>
+                            <h2 style={comanda.text}>sin selección</h2>
+                            <Nocarta style={{width: '100%', height: '150px', fill: 'rgb(110, 104, 104, .2)'}}/>
                         </div>
                         :
                         <Micomandacarta comandacarta={products}/>
@@ -115,9 +126,9 @@ const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, product
                 <div style={comanda.cont_sec}>
                     <h3 style={comanda.h3}>MENÚ: </h3>
                     {Object.keys(menuproduct).length <= 0 ?
-                        <div style={{width: '100%'}}>
-                            <h2 style={{textAlign: 'center', color: '#ff00006e'}}>no hay productos</h2>
-                            <Nomenu style={{width: '100%', height: '150px'}}/>
+                        <div style={{width: '100%', position: 'relative'}}>
+                            <h2 style={comanda.text}>sin selección</h2>
+                            <Nomenu style={{width: '100%', height: '150px', fill: 'rgb(110, 104, 104, .2)'}}/>
                         </div>
                         :
                         <Micomandamenu comandamenu={productMenuSel}/>

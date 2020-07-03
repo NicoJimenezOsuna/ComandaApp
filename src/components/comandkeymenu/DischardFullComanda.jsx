@@ -21,7 +21,8 @@ const DischardFullComanda = () => {
             padding: '5px',
             backgroundColor: 'rgba(153, 153, 153, 0.19)',
             borderRadius: '15px',
-            marginBottom: '10px'
+            marginBottom: '10px',
+            marginTop: '10px'
         }
     }
 

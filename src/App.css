@@ -229,8 +229,8 @@
     font-family: Papyrus;
     font-weight: bold;
     text-align: center;
-    background-color: #478fc7;
-    color: transparent;
+    /*background-color: #478fc7;*/
+    color: #478fc7;
     text-shadow: 2px 2px 3px rgba(250, 250, 250, 0.5);
     -webkit-background-clip: text;
     -moz-background-clip: text;
@@ -1416,6 +1416,9 @@ html {
         width: 100vw;
         height: 100vh;
         justify-content: center;
+    }
+    ::-webkit-scrollbar{
+        display: none;
     }
 
     #root {
