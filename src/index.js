@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 /*
@@ -20,7 +20,8 @@ import Subcategoria from './containers/Subcategoria';
 *  IMPORT ROUTER
 *
 * */
-import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
+import {BrowserRouter, Router, Route, Switch, Redirect} from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory'
 /*
 *
 *  IMPORT STYLES
@@ -41,27 +42,31 @@ import "./App.css"
 *  GOOGLE ANALITICS :
 *
 * */
-import ReactGA from 'react-ga';
-
 //COMMENT THIS FUNCTION IN ENTERPRISES PRODUCTION SERVER
-function initializeReactGA() {
-    ReactGA.initialize('UA-170329558-1');
-    ReactGA.pageview('/');
-}
+import { createBrowserHistory } from 'history';
+import ReactGA from "react-ga"
 
+ReactGA.initialize('UA-170329558-1');
+
+function logPageView() {
+    ReactGA.set({ page: window.location.pathname + window.location.search });
+    ReactGA.pageview(window.location.pathname + window.location.search);
+}
 //-------------------------------------------------------------------------------------------------------------------------
 
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            {/*<Header/>*/}
-            <Switch>
-                <Route path="/" exact component={Launcher}/>
-                <Route path="/categoria" component={App}/>
-                <Route path="/subcategoria" component={Subcategoria}/>
-                <Route path="/404" component={Error404}/>
-                <Redirect to="/404"/>
-            </Switch>
+            <Router history={createBrowserHistory()} onUpdate={logPageView}>
+                {/*<Header/>*/}
+                <Switch>
+                    <Route path="/" exact component={Launcher}/>
+                    <Route path="/categoria" component={App}/>
+                    <Route path="/subcategoria" component={Subcategoria}/>
+                    <Route path="/404" component={Error404}/>
+                    <Redirect to="/404"/>
+                </Switch>
+            </Router>
             {/* <Footer /> */}
         </BrowserRouter>
     </Provider>,

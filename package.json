@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "hide-scrollbar-react": "^1.1.6",
+    "history": "^5.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-ga": "^3.0.0",
