@@ -11,6 +11,7 @@ import RestauranteData from "../redux/reducers/RestauranteData";
 import Spinnercircle from "./Spinnercircle";
 import Subcarta from './Subcarta';
 import Spinner from "./Spinner";
+import Emptymessage from "./Emptymessage";
 
 const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCategory, changesubcat, getChangeColor, token}) => {
 
@@ -71,9 +72,9 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
             borderBottom: '2px solid black'
         },
         span: {
-        //     fontFamily: 'Papyrus',
-        //     padding: '.2em 1em',
-        //     borderRadius: '20px',
+            //     fontFamily: 'Papyrus',
+            //     padding: '.2em 1em',
+            //     borderRadius: '20px',
         }
     }
     const [idcarta, getIdcarta] = useState(null);
@@ -156,7 +157,7 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
     const selectedView = (e) => {
         e.preventDefault()
         getselected(e.target.id)
-        if(e.target.id === 'menus'){
+        if (e.target.id === 'menus') {
             getChangeColor()
         }
     }
@@ -217,9 +218,9 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
             <div className="padre">
                 <div style={cat.select}>
                     <span className={selected === 'menus' ? 'span_no_select button' : "span_select button"}
-                         style={cat.span}
-                         id="carta"
-                         onClick={selectedView}
+                          style={cat.span}
+                          id="carta"
+                          onClick={selectedView}
                     >
                         CARTA
                     </span>
@@ -232,9 +233,9 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
                     {/*    CARTA*/}
                     {/*</span>*/}
                     <span className={selected === 'carta' ? 'span_no_select button' : "span_select button"}
-                         style={cat.span}
-                         id="menus"
-                         onClick={selectedView}
+                          style={cat.span}
+                          id="menus"
+                          onClick={selectedView}
                     >
                         MENU
                     </span>
@@ -277,7 +278,7 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
                                                          src="assets/img/carta.jpg"
                                                          alt={`Imagen de categoría ${item.categoria}`}/>
                                                     <p className="category_title"
-                                                        style={cat.nom_cat}>
+                                                       style={cat.nom_cat}>
                                                         {item.nombrecarta}
                                                     </p>
                                                 </Fragment>
@@ -294,6 +295,10 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
                                             }
                                         </div>
                                     )
+                                }else{
+                                    return (
+                                        <Emptymessage/>
+                                    )
                                 }
                             })
                             :
@@ -305,7 +310,10 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
                             />
 
                     ) :
-                    null
+                    selected === 'carta' ?
+                        <Emptymessage/>
+                        :
+                        null
                 }
                 {/*ESTO LO CAMBIAREMOS MÁS ADELANTE PARA OPTIMIZAR. sE CONVERTIRÁ EN COMPONENTECADA OPCIÓN*/}
                 {selected === 'menus' && categorias.mensaje === 'OK' && carta ? (
@@ -320,7 +328,7 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
                                         style={cat.cat_cont}
                                         key={1 + index}
                                     >
-                                        <div className="absolut"></div>
+                                        <div className="absolut"/>
                                         {item.imagen === undefined ?
                                             <Fragment>
                                                 <img style={cat.plato_img}
@@ -337,18 +345,25 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
                                                      src={item.imagen}
                                                      alt={`Imagen de categoría ${item.nombrecarta}`}/>
                                                 <p className="category_title"
-                                                    style={cat.nom_cat}>
+                                                   style={cat.nom_cat}>
                                                     {item.nombrecarta}
                                                 </p>
                                             </Fragment>
                                         }
                                     </div>
                                 )
+                            }else{
+                                return (
+                                    <Emptymessage/>
+                                )
                             }
                         })
 
                     ) :
-                    null
+                    selected === 'menus' ?
+                        <Emptymessage/>
+                        :
+                        null
                 }
             </div>
         </Fragment>
