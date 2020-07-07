@@ -91,6 +91,10 @@ const Launcher = ({restauranteData, reduxToken}) => {
                 const response = await axios.get(`${protocol}${url}${token}`, userHeader);
                 const toString = JSON.stringify(response.data);
                 const toObject = JSON.parse(toString);
+                //MOSTRAR DEMO BÁSICA EN DICHO HOST
+                if(window.location.hash === 'democappbasica.socialpymes.com'){
+                    toObject.data.tpsuscrip = 2
+                }
                 //to Localstorage
                 if (isConnect) {
                     if (toObject.data.mensaje !== 'OK') {

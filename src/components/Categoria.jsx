@@ -295,10 +295,6 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
                                             }
                                         </div>
                                     )
-                                }else{
-                                    return (
-                                        <Emptymessage/>
-                                    )
                                 }
                             })
                             :
@@ -310,9 +306,6 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
                             />
 
                     ) :
-                    selected === 'carta' ?
-                        <Emptymessage/>
-                        :
                         null
                 }
                 {/*ESTO LO CAMBIAREMOS MÁS ADELANTE PARA OPTIMIZAR. sE CONVERTIRÁ EN COMPONENTECADA OPCIÓN*/}
@@ -351,10 +344,6 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
                                             </Fragment>
                                         }
                                     </div>
-                                )
-                            }else{
-                                return (
-                                    <Emptymessage/>
                                 )
                             }
                         })
