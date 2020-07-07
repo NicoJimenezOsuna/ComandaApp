@@ -92,7 +92,7 @@ const Launcher = ({restauranteData, reduxToken}) => {
                 const toString = JSON.stringify(response.data);
                 const toObject = JSON.parse(toString);
                 //MOSTRAR DEMO BÁSICA EN DICHO HOST
-                if(window.location.hash === 'democappbasica.socialpymes.com'){
+                if(window.location.host === 'democappbasica.socialpymes.com'){
                     toObject.data.tpsuscrip = 2
                 }
                 //to Localstorage
