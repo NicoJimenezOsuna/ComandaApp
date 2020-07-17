@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {ReactComponent as Nomenu} from "../icons/nutricion.svg";
 import {ReactComponent as Nocarta} from "../icons/cocina.svg";
 import DischardFullComanda from "./comandkeymenu/DischardFullComanda";
+import {ReactComponent as Botonhome} from "../icons/homecomanda/comandapp_home_300.jpg";
 import {dischardFull} from "../redux/actions";
 
 const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, productMenuSel}) => {
@@ -78,6 +79,28 @@ const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, product
             top: '50%',
             transform: 'translate(-50%, -50%)',
             WebkitTransform: 'translate(-50%, -50%)'
+        },
+        cont_boton_home: {
+            width: '100%',
+            height: '6em',
+            backgroundColor: '#fff',
+            position: 'sticky',
+            bottom: 0,
+            left: 0,
+            padding: '.5em'
+
+        },
+        cont_boton: {
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+        },
+        boton_home: {
+            maxWidth: '8em',
+            maxHeight: '4em',
+            padding: '.5em',
+            border: '1px solid lightslategrey'
         }
     };
 
@@ -133,6 +156,16 @@ const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, product
                         :
                         <Micomandamenu comandamenu={productMenuSel}/>
                     }
+                </div>
+                <div style={comanda.cont_boton_home}>
+                    <h3 style={{fontFamily: 'Dosis', paddingBottom: '.3em'}}>Realiza tu pedido desde casa:</h3>
+                    <div style={comanda.cont_boton}>
+                        <a href='https://google.es'>
+                            <img
+                                style={comanda.boton_home}
+                                src="./assets/img/homecomanda/comandapp_home_300.jpg" alt=""/>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

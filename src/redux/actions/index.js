@@ -13,6 +13,8 @@ export const DISCHARD_PRODUCTS_CARTA = 'DISCHARD_PRODUCTS_CARTA';
 export const DISCHARD_PRODUCTS_FULL_MENU = 'DISCHARD_PRODUCTS_FULL_MENU';
 export const DISCHARD_PRODUCTS_FULL_CARTA = 'DISCHARD_PRODUCTS_FULL_CARTA';
 export const ADD_TOKEN = 'ADD_TOKEN';
+export const SET_COUNT = 'SET_COUNT';
+// export const ADD_ENTERPRISES = 'ADD_ENTERPRISES';
 
 
 /*
@@ -63,3 +65,12 @@ export function addProfile(data){
 export function addToken(token){
     store.dispatch({type: ADD_TOKEN, payload: token})
 }
+
+//PUBLICIDAD
+export function setCount(count){
+    store.dispatch({type: SET_COUNT, payload: count});
+}
+
+// export function addArrPubli(arrEnterprises){
+//     store.dispatch({type: ADD_ENTERPRISES, payload: arrEnterprises})
+// }

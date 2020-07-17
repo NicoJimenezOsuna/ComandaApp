@@ -2,7 +2,8 @@ import React, {Fragment, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {CONNECT_TOKEN, firstRequest, URL} from "../data/restaurante";
-import {protocol} from "../utils/utils";
+import {protocol, urlImage} from "../utils/utils";
+import Publibanner from "./publicidad/Publibanner";
 
 const Footer = ({vermapa, vermail, restauranteData, back, changesubcat, changedView}) => {
 
@@ -23,6 +24,14 @@ const Footer = ({vermapa, vermail, restauranteData, back, changesubcat, changedV
 		boton: {
 			width: '3em',
 			height: '3em'
+		},
+		cont_logo_basica_footer: {
+			// maxWidth: '80%',
+			maxHeight: '3em',
+		},
+		logo_basica_footer: {
+			maxHeight: '3em',
+			maxWidth: '100%'
 		}
 	}
 
@@ -86,7 +95,13 @@ const Footer = ({vermapa, vermail, restauranteData, back, changesubcat, changedV
 						/>
 					</Fragment>
 					:
-					null
+					// null
+					// <div style={style.cont_logo_basica_footer}>
+					// 	<img style={style.logo_basica_footer} src={urlImage() + restauranteData[0].logo} alt=""/>
+					// </div>
+					<div style={style.cont_logo_basica_footer}>
+						<Publibanner/>
+					</div>
 				}
 			</div>
 		</div>

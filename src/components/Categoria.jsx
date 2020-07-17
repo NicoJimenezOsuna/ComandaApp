@@ -12,6 +12,7 @@ import Spinnercircle from "./Spinnercircle";
 import Subcarta from './Subcarta';
 import Spinner from "./Spinner";
 import Emptymessage from "./Emptymessage";
+import Publibanner from "./publicidad/Publibanner";
 
 const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCategory, changesubcat, getChangeColor, token}) => {
 
@@ -77,6 +78,7 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
             //     borderRadius: '20px',
         }
     }
+
     const [idcarta, getIdcarta] = useState(null);
     const [categorias, getCategorias] = useState([]);
     const [verqr, getVerqr] = useState(false);//sirve para darle un estado inicial
@@ -214,7 +216,6 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
                 pedidoViewHandler={pedidoViewHandler}
                 // codigoqr={qr}
             />
-
             <div className="padre">
                 <div style={cat.select}>
                     <span className={selected === 'menus' ? 'span_no_select button' : "span_select button"}
@@ -248,6 +249,19 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
                     {/*    MENUS*/}
                     {/*</span>*/}
                 </div>
+                {/*********************/}
+                {/*********************/}
+                {/*********************/}
+                {/*IMPORTANTE: ESTABLECER SEMÁFORO CUANDO EL BACK MANDE ARRAY CON IMÁGENES*/}
+                {
+                    restauranteData[0].tpsuscrip === 1 || restauranteData[0].tpsuscrip === 6 ?
+                        <Publibanner background={true}/>
+                        :
+                        null
+                }
+                {/*********************/}
+                {/*********************/}
+                {/*********************/}
                 {selected === 'carta' && categorias.mensaje === 'OK' && carta ? (
                         //changesubcat establece el cambio de vista a subcategoría para
                         changesubcat === false ?

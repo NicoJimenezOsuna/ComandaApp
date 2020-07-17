@@ -107,7 +107,7 @@ const Listadocarta = ({dataid, dataSliderHandler, token, restauranteData}) => {
             {products.length > 0
                 ? products.map((item, index) => {
                     return (
-                        <Fragment>
+                        <Fragment key={index}>
                             <div style={listmenu.cont_princ} key={item.nombreplato}>
                                 <div style={listmenu.cont_name}>
                                     <p>{item.nombreplato}</p>

@@ -410,7 +410,27 @@ a:hover {
     width: 100%;
     height: 100%;
 }
-
+/*
+*
+*PUBLI COMPONENT
+*
+**/
+.patrocinadores{
+    /*font-family: 'Fontdiner Swanky';*/
+    font-family: 'Dosis';
+    color: dimgrey;
+}
+@media(orientation: portrait){
+    .patrocinadores{
+        display: none;
+    }
+}
+@media(orientation: landscape){
+    .cont_publi{
+        justify-content: space-around!important;
+        align-items: center!important;
+    }
+}
 /*
 *
 * ESTILOS HEADER

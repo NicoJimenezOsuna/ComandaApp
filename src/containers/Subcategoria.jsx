@@ -19,6 +19,7 @@ import {Redirect} from "react-router-dom";
 import {connect} from 'react-redux';
 import {addPedidoMenu} from "../redux/actions";
 import {dosDecim} from "../utils/utils";
+import Publibanner from "../components/publicidad/Publibanner";
 
 
 const Subcategorias = ({restauranteData, PedidosMenu}) => {
@@ -261,6 +262,19 @@ const Subcategorias = ({restauranteData, PedidosMenu}) => {
                     visible={visibleHandler}
                     pedidoViewHandler={pedidoViewHandler}
                 />
+                {/*********************/}
+                {/*********************/}
+                {/*********************/}
+                {/*IMPORTANTE: ESTABLECER SEMÁFORO CUANDO EL BACK MANDE ARRAY CON IMÁGENES*/}
+                {
+                    restauranteData[0].tpsuscrip === 1 || restauranteData[0].tpsuscrip === 6 ?
+                        <Publibanner background={true}/>
+                        :
+                        null
+                }
+                {/*********************/}
+                {/*********************/}
+                {/*********************/}
                 <div className="padre">
                     <Migas data={subcategorias.nombre} visible={visibleHandler}/>
                     {renderCategory()}
