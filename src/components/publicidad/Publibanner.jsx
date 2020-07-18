@@ -46,6 +46,10 @@ const Publibanner = ({background, publiCount, advertisement}) => {
         img_publi_main: {
             maxWidth: '100%',
             maxHeight: '70px',
+        },
+        contenedor: {
+            width: '50%',
+            textAlign: 'center'
         }
     }
 
@@ -66,7 +70,7 @@ const Publibanner = ({background, publiCount, advertisement}) => {
     return (
         <div style={background ? publi.banner_main : publi.banner_footer} className="cont_publi">
             <h2 style={publi.h3} className="patrocinadores text-shadow">Patrocinado por: </h2>
-            <div>
+            <div style={publi.contenedor}>
                 <img style={background ? publi.img_publi_main : publi.img_publi_footer} src={advertisement[publiCount]}
                      alt=""/>
             </div>
