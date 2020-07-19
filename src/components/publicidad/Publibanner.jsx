@@ -37,7 +37,9 @@ const Publibanner = ({background, publiCount, advertisement}) => {
             paddingTop: '3px'
         },
         h3: {
-            marginRight: '1em'
+            marginRight: '1em',
+            width: "50%",
+            textAlign: 'center'
         },
         img_publi_footer: {
             maxWidth: '100%',
