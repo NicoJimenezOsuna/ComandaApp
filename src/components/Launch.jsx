@@ -10,6 +10,7 @@ import {connect} from 'react-redux'
 import Socialpymes from "./Socialpymes";
 import Binicio from "./Binicio";
 import {urlImage} from "../utils/utils";
+import Seo from "./Seo/Seo";
 
 const Launch = ({logo}) => {
 
@@ -70,6 +71,7 @@ const Launch = ({logo}) => {
 
     return (
         <div style={styles.princ}>
+            <Seo/>
             <div style={styles.cont_logo}>
                 <div style={styles.logo_size}>
                     <div style={styles.cont_logo_text}>

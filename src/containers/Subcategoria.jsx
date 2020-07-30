@@ -20,6 +20,7 @@ import {connect} from 'react-redux';
 import {addPedidoMenu} from "../redux/actions";
 import {dosDecim} from "../utils/utils";
 import Publibanner from "../components/publicidad/Publibanner";
+import Login from "../components/homecomandapp/Login";
 
 
 const Subcategorias = ({restauranteData, PedidosMenu}) => {
@@ -35,7 +36,18 @@ const Subcategorias = ({restauranteData, PedidosMenu}) => {
     const [verMapamodal, getMapamodal] = useState(false);
     const [verMailmodal, getMailmodal] = useState(false);
     const [isVisiblePedido, getIsVisiblePedido] = useState(false)
+    const [viewloginmodal, getViewclosemodal] = useState(false);
 
+    const closeLoginModal = () => {
+        !viewloginmodal ? getViewclosemodal(true) : getViewclosemodal(false);
+
+        let styleBodyTag = document.body.style
+        if(styleBodyTag.position === "fixed"){
+            styleBodyTag.position = 'inherit';
+        }else{
+            styleBodyTag.position = "fixed"
+        }
+    };
     //Variables para actualizar el estado de modales
     let vermapa = () => {
         !verMapamodal ? getMapamodal(true) : getMapamodal(false);
@@ -228,6 +240,7 @@ const Subcategorias = ({restauranteData, PedidosMenu}) => {
                     onClick={pedidoViewHandler}
                     isVisiblePedido={isVisiblePedido}
                     pedidoViewHandler={pedidoViewHandler}
+                    closeloginmodal={closeLoginModal}
                 />
                 <Qrmodal
                     verqr={verqr}
@@ -287,6 +300,9 @@ const Subcategorias = ({restauranteData, PedidosMenu}) => {
                 datosrestaurante={datosrestaurante}
                 back={'/categoria'}
             />
+            <div className={viewloginmodal ? 'login_home displayed' : 'displayed_none'}>
+                <Login closeloginmodal={closeLoginModal}/>
+            </div>
         </Fragment>
     );
 };

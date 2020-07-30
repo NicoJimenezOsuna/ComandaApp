@@ -15,6 +15,7 @@ import App from './containers/App';
 import Launcher from './containers/Launcher';
 import Error404 from './containers/Error404';
 import Subcategoria from './containers/Subcategoria';
+import ClientProfile from "./containers/homecomanda/ClientProfile";
 /*
 *
 *  IMPORT ROUTER
@@ -53,6 +54,7 @@ ReactDOM.render(
                 <Route path="/" exact component={Launcher}/>
                 <Route path="/categoria" component={App}/>
                 <Route path="/subcategoria" component={Subcategoria}/>
+                <Route path="/datos-cliente" component={ClientProfile}/>
                 <Route path="/404" component={Error404}/>
                 <Redirect to="/404"/>
             </Switch>

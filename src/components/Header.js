@@ -19,7 +19,11 @@ const Header = ({restauranteData}) => {
             justifyContent: 'space-between',
             flexWrap: 'wrap',
             padding: '10px',
-            backgroundImage: 'url(https://cdn.pixabay.com/photo/2017/08/30/17/25/restaurant-2697945_960_720.jpg)',
+            // backgroundImage: 'url(https://cdn.pixabay.com/photo/2017/08/30/17/25/restaurant-2697945_960_720.jpg)',
+            backgroundImage: restauranteData[0].imagen_restaurante ?
+                `url(${urlImage() + restauranteData[0].imagen_restaurante})`
+                :
+                'url(https://cdn.pixabay.com/photo/2017/08/30/17/25/restaurant-2697945_960_720.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center'
         },
@@ -74,7 +78,7 @@ const Header = ({restauranteData}) => {
             // marginRight: '4em',
             // marginTop: '-.5em',
             // width: '100%',
-            position:'absolute',
+            position: 'absolute',
             top: '0',
             right: '5em'
         }
@@ -85,59 +89,42 @@ const Header = ({restauranteData}) => {
             <div style={header.grupo_17}>
                 <div style={header.cont_comanda_social}>
                     <div style={header.cont_logo_comanda_sp}>
-                    <LogoComanda
-                        style={header.grupo_12}
-                        alt="Logo de comandaApp"
-                    />
-                    <a href="https://socialpymesvlc.es">
-                        <div style={header.relativo}>
-                            <div id="powered_by">
-                                <span style={{fontSize: '.6em'}}>powered by</span>
-                            </div>
-                            <img
-                                style={header.img_tipo}
-                                src="./assets/img/socialPymes_Imagotipo.png"
-                                alt="Logo de socialpymes"
-                            />
-                        </div>
-                    </a>
-                </div>
-                </div>
-                    <div style={header.cont_logo_comanda}>
-                        <div style={header.cont_comanda_social_titulo}>
-                            {restauranteData.length > 0 ?
-                                <img src={urlImage() + restauranteData[0].logo}
-                                     alt="Logo de restaurante"
-                                     style={{width: '30%'}}
+                        <LogoComanda
+                            style={header.grupo_12}
+                            alt="Logo de comandaApp"
+                        />
+                        <a href="https://socialpymesvlc.es">
+                            <div style={header.relativo}>
+                                <div id="powered_by">
+                                    <span style={{fontSize: '.6em'}}>powered by</span>
+                                </div>
+                                <img
+                                    style={header.img_tipo}
+                                    src="./assets/img/socialPymes_Imagotipo.png"
+                                    alt="Logo de socialpymes"
                                 />
-                                :
-                                // <Logocomanda/>
-                                <img src={urlImage() + restauranteData[0].logo} alt=""/>
-                            }
-                            <span className="text-shadow"
-                                  style={header.restaurante}
-                            >
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div style={header.cont_logo_comanda}>
+                    <div style={header.cont_comanda_social_titulo}>
+                        {restauranteData.length > 0 ?
+                            <img src={urlImage() + restauranteData[0].logo}
+                                 alt="Logo de restaurante"
+                                 style={{width: '30%'}}
+                            />
+                            :
+                            // <Logocomanda/>
+                            <img src={urlImage() + restauranteData[0].logo} alt=""/>
+                        }
+                        <span className="text-shadow"
+                              style={header.restaurante}
+                        >
                         {restauranteData.length > 0 ? restauranteData[0].nombre_restaurante : 'Restaurante'}
                             </span>
-                        </div>
                     </div>
-
-
-                {/*<div style={header.cont_comanda_social_titulo}>*/}
-                {/*    {restauranteData.length > 0 ?*/}
-                {/*        <img src={urlImage() + restauranteData[0].logo} alt="Logo de restaurante"*/}
-                {/*             style={{width: '25%'}}*/}
-                {/*        />*/}
-                {/*        :*/}
-                {/*        // <Logocomanda/>*/}
-                {/*        <img src={urlImage() + restauranteData[0].logo} alt=""/>*/}
-                {/*    }*/}
-                {/*    <span className="text-shadow"*/}
-                {/*          style={header.restaurante}*/}
-                {/*    >*/}
-                {/*        {restauranteData.length > 0 ? restauranteData[0].nombre_restaurante : 'Restaurante'}*/}
-                {/*    </span>*/}
-                {/*</div>*/}
+                </div>
                 <div style={{
                     position: 'absolute',
                     width: '100%',
@@ -147,8 +134,10 @@ const Header = ({restauranteData}) => {
                     // backgroundColor: 'rgba(0,0,0,.6)',
                     zIndex: '-1',
                 }}
-                className="fondo_head"
-                ></div>
+                     className="fondo_head"
+                >
+                    {null}
+                </div>
             </div>
         </Fragment>
     );

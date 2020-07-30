@@ -14,6 +14,7 @@ export const DISCHARD_PRODUCTS_FULL_MENU = 'DISCHARD_PRODUCTS_FULL_MENU';
 export const DISCHARD_PRODUCTS_FULL_CARTA = 'DISCHARD_PRODUCTS_FULL_CARTA';
 export const ADD_TOKEN = 'ADD_TOKEN';
 export const SET_COUNT = 'SET_COUNT';
+export const ADD_CLIENT_PROFILE = 'ADD_CLIENT_PROFILE';
 // export const ADD_ENTERPRISES = 'ADD_ENTERPRISES';
 
 
@@ -52,25 +53,31 @@ export function dischardPedidoMenu(product) {
 }
 
 //PRODUCTS ACTIONS ( MENU && CARTA)
-export function dischardFull(){
-    store.dispatch( {type: DISCHARD_PRODUCTS_FULL_MENU, payload:[]})
-    store.dispatch( {type: DISCHARD_PRODUCTS_FULL_CARTA, payload:[]})
+export function dischardFull() {
+    store.dispatch({type: DISCHARD_PRODUCTS_FULL_MENU, payload: []})
+    store.dispatch({type: DISCHARD_PRODUCTS_FULL_CARTA, payload: []})
 }
 
 //RESTAURANTE ACTIONS
-export function addProfile(data){
+export function addProfile(data) {
     store.dispatch({type: ADD_RESTAURANTE_PROFILE, payload: {data}})
 }
+
 //TOKEN ACTIONS
-export function addToken(token){
+export function addToken(token) {
     store.dispatch({type: ADD_TOKEN, payload: token})
 }
 
 //PUBLICIDAD
-export function setCount(count){
+export function setCount(count) {
     store.dispatch({type: SET_COUNT, payload: count});
 }
 
 // export function addArrPubli(arrEnterprises){
 //     store.dispatch({type: ADD_ENTERPRISES, payload: arrEnterprises})
 // }
+
+//CLIENT_PROFILE
+export function addClientProfile(profile) {
+    store.dispatch({type: ADD_CLIENT_PROFILE, payload: profile})
+}

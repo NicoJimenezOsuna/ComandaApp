@@ -6,10 +6,20 @@ import {connect} from 'react-redux';
 import {ReactComponent as Nomenu} from "../icons/nutricion.svg";
 import {ReactComponent as Nocarta} from "../icons/cocina.svg";
 import DischardFullComanda from "./comandkeymenu/DischardFullComanda";
-import {ReactComponent as Botonhome} from "../icons/homecomanda/comandapp_home_300.jpg";
+import {ReactComponent as Iconbutton} from "../icons/homecomanda/fuego.svg";
 import {dischardFull} from "../redux/actions";
+import {Link} from 'react-router-dom';
 
-const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, productMenuSel}) => {
+const Listcomandamodal = (
+    {
+        pedidoViewHandler,
+        isVisiblePedido,
+        products,
+        productMenuSel,
+        closeloginmodal,
+        clientProfile
+    }
+) => {
     const comanda = {
         cont_princ: {
             width: "100%",
@@ -87,20 +97,42 @@ const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, product
             position: 'sticky',
             bottom: 0,
             left: 0,
-            padding: '.5em'
+            padding: '.5em',
+            borderTop: '1px solid #6e6868'
 
         },
         cont_boton: {
             width: '100%',
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent: 'space-around',
             alignItems: 'center'
+        },
+        boton_img: {
+            maxWidth: '8em',
+            maxHeight: '4em',
+            padding: '.5em',
         },
         boton_home: {
             maxWidth: '8em',
             maxHeight: '4em',
             padding: '.5em',
-            border: '1px solid lightslategrey'
+            margin: '0px 2.5px',
+            alignItems: 'center',
+            filter: 'drop-shadow(rgba(0, 0, 0, 0.16) 3px 3px 6px)',
+            borderRadius: '8px',
+            border: '2px solid #ECECEC',
+            boxShadow: '-6px -6px 10px rgba(255, 255, 255, 0.8), 6px 6px 10px rgba(0, 0, 0, 0.2)',
+            backgroundColor: '#fff',
+            outline: 'none',
+            display: 'flex',
+            justifyContent: 'space-around',
+            alignitems: 'center'
+        },
+        icon_button: {
+            maxHidth: '2.5em',
+            maxHeight: '2.5em',
+            fill: '#6e6868',
+            marginRight: '.6em'
         }
     };
 
@@ -159,12 +191,29 @@ const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, product
                 </div>
                 <div style={comanda.cont_boton_home}>
                     <h3 style={{fontFamily: 'Dosis', paddingBottom: '.3em'}}>Realiza tu pedido desde casa:</h3>
-                    <div style={comanda.cont_boton}>
-                        <a href='https://google.es'>
-                            <img
-                                style={comanda.boton_home}
-                                src="./assets/img/homecomanda/comandapp_home_300.jpg" alt=""/>
-                        </a>
+                    <div style={comanda.cont_boton} id="cont_boton_home">
+                        <img id="img_boton_comanda"
+                             style={comanda.boton_img}
+                             src="./assets/img/homecomanda/comandapp_home_300.jpg" alt=""/>
+                        {clientProfile.telefono.length === 0 ?
+                            <button style={comanda.boton_home}
+                                    onClick={closeloginmodal}
+                            >
+                                <Iconbutton style={comanda.icon_button}
+                                />
+                                Realizar pedido
+                            </button>
+                            :
+                            <Link to="/datos-cliente">
+                                <button style={comanda.boton_home}
+                                        onClick={closeloginmodal}
+                                >
+                                    <Iconbutton style={comanda.icon_button}
+                                    />
+                                    Realizar pedido
+                                </button>
+                            </Link>
+                        }
                     </div>
                 </div>
             </div>
@@ -175,7 +224,8 @@ const Listcomandamodal = ({pedidoViewHandler, isVisiblePedido, products, product
 function mapStateToProps(state) {
     return {
         products: state.PedidosCarta.pedidoCarta,
-        productMenuSel: state.PedidosMenu.pedidoMenu
+        productMenuSel: state.PedidosMenu.pedidoMenu,
+        clientProfile: state.ClientProfile.clientProfile
     }
 }
 

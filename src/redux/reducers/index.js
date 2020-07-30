@@ -4,13 +4,15 @@ import PedidosMenu from './PedidosMenu';
 import RestauranteData from './RestauranteData';
 import Token from './Token';
 import Publicidad from './Publicidad';
+import ClientProfile from './ClientProfile';
 
 let reducers = combineReducers({
     PedidosCarta,
     PedidosMenu,
     RestauranteData,
     Token,
-    Publicidad
+    Publicidad,
+    ClientProfile
 });
 
 export default reducers;

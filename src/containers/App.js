@@ -10,8 +10,10 @@ import Mailmodal from "../components/Mailmodal";
 import Mapamodal from "../components/Mapamodal";
 import Listcomandamodal from "../components/Listcomandamodal";
 import {connect} from 'react-redux';
-import  { Redirect } from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import {useHistory} from "react-router-dom";
+import Login from '../components/homecomandapp/Login'
+import Seo from "../components/Seo/Seo";
 
 function App({restauranteData}) {
     const history = useHistory();
@@ -19,7 +21,18 @@ function App({restauranteData}) {
     const [verMapamodal, getMapamodal] = useState(false);
     const [verMailmodal, getMailmodal] = useState(false);
     const [isVisiblePedido, getIsVisiblePedido] = useState(false);
-    const [changesubcat, getChangesubcat] = useState(false)
+    const [changesubcat, getChangesubcat] = useState(false);
+    const [viewloginmodal, getViewclosemodal] = useState(false);
+
+    const closeLoginModal = () => {
+        !viewloginmodal ? getViewclosemodal(true) : getViewclosemodal(false);
+        let styleBodyTag = document.body.style
+        if(styleBodyTag.position === "fixed"){
+            styleBodyTag.position = 'inherit';
+        }else{
+            styleBodyTag.position = "fixed";
+        }
+    };
 
     const pedidoViewHandler = () => {
         !isVisiblePedido ? getIsVisiblePedido(true) : getIsVisiblePedido(false);
@@ -53,24 +66,26 @@ function App({restauranteData}) {
         }
     };
 
-    const getChangeColor = () =>{
+    const getChangeColor = () => {
         getChangesubcat(false)
     }
 
     useEffect(() => {
         getMapamodal(verMapamodal);
         getMailmodal(verMailmodal);
-    }, [verMailmodal, verMapamodal, restauranteData]);
+    }, [verMailmodal, verMapamodal, restauranteData, viewloginmodal]);
 
-  if(restauranteData.length <= 0) {
-      return <Redirect to='/'/>
-  }
+    if (restauranteData.length <= 0) {
+        return <Redirect to='/'/>
+    }
 
     return (
         <Fragment>
+            <Seo/>
             <Listcomandamodal
                 isVisiblePedido={isVisiblePedido}
                 pedidoViewHandler={pedidoViewHandler}
+                closeloginmodal={closeLoginModal}
             />
             <Mailmodal
                 vermail={vermail}
@@ -97,8 +112,12 @@ function App({restauranteData}) {
                 changedView={changedView}
                 vermail={vermail}
                 vermapa={vermapa}
+                closeloginmodal={closeLoginModal}
                 back={'/'}
             />
+            <div className={viewloginmodal ? 'login_home displayed' : 'displayed_none'}>
+                <Login closeloginmodal={closeLoginModal}/>
+            </div>
         </Fragment>
     );
 }

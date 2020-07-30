@@ -14,6 +14,7 @@ import {ReactComponent as Refresh} from "../icons/refresh.svg";
 import {connect} from 'react-redux';
 import axios from "axios";
 import {addProfile, addToken} from "../redux/actions";
+import Seo from "../components/Seo/Seo";
 
 const Launcher = ({restauranteData, reduxToken}) => {
     const launcher = {
