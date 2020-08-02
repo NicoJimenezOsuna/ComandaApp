@@ -30,10 +30,10 @@ const MenuHome = ({expandMenuHome, expandmenu}) => {
             <Menusquare style={menu.icon_menu}/>
             {/*<div>*/}
             <ul className="uloptionsmenuhome">
-                <li className="lioptionsmenuhome">datos contacto</li>
-                <li className="lioptionsmenuhome">mi ultimo pedido</li>
+                <li className="lioptionsmenuhome">Datos de envío</li>
+                <li className="lioptionsmenuhome">Envíar pedido</li>
                 <li className="lioptionsmenuhome">estado de pedido</li>
-                <li className="lioptionsmenuhome">pedido actual</li>
+                <li className="lioptionsmenuhome">Histórico pedidos</li>
             </ul>
             {/*</div>*/}
         </div>
