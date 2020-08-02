@@ -334,6 +334,15 @@
     /*background: yellow;*/
 }
 
+.subRootHome {
+    height: 100% !important;
+    flex-grow: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /*descomentar para pruebas de contenido máximo*/
+    background: #75bdd121;
+}
+
 .close {
     position: sticky;
     top: 0;
@@ -527,6 +536,72 @@ a:hover {
 
 /*
 *
+*   FORM USERPROFILE COMANDAHOME
+*
+*/
+#submit_login {
+    display: block;
+    width: 60%;
+    background: white;
+    border-bottom: 1px solid white;
+    text-align: center;
+    color: #707070;
+    padding: .5em 0;
+    margin: 2em auto;
+    /*margin-bottom: 2em;*/
+    /*margin-top: 2em;*/
+    font-size: 1.3em;
+    border: 2px solid rgb(177, 216, 226);
+    color: rgb(177, 216, 226);
+    border-radius: 10px;
+}
+
+.smallrequired {
+    display: flex;
+    justify-content: flex-end;
+    width: 80%;
+    margin-left: 10%;
+}
+
+div.alturatextarea {
+    height: 6.9em;
+    background: rgb(177, 216, 226);
+    border-radius: 10px 0px 0px 10px;
+}
+
+textarea.alturatextarea {
+    max-height: 6em;
+    min-height: 6em;
+}
+
+#userprofile textarea,
+#userprofile input {
+    width: 80%;
+}
+
+@media (orientation: landscape) {
+    #userprofile textarea,
+    #userprofile input {
+        width: 60%;
+    }
+
+    .smallrequired {
+        width: 60%;
+        margin-left: 20%;
+    }
+
+    .smallrequired > p {
+        margin-right: 0 !important;
+    }
+
+    textarea.alturatextarea {
+        max-width: 60%;
+        min-width: 60%;
+    }
+}
+
+/*
+*
 * ESTILOS HEADER
 *
 */
@@ -667,36 +742,80 @@ a:hover {
     top: 28.5px;
     overflow: visible;
 }
+
 /*
 *
 * ESTILOS CLIENTPROFILE
 *
 */
-.nav-comandhome{
+
+.reduce {
+    height: 0px;
+    overflow: hidden;
+}
+
+.normal {
+    height: auto;
 
 }
-.nav-comandhome_expand{
-    animation: expand_menu_home .2s both linear;
+
+.cont_menuhome {
+    background-position: bottom;
+    /*background: rgba(247, 247, 247, 1);*/
+    /*background: -moz-linear-gradient(top, rgba(247, 247, 247, 1) 0%, rgba(247, 247, 247, 1) 52%, rgba(117, 189, 209, 1) 93%, rgba(73, 165, 191, 1) 100%);*/
+    /*background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(247, 247, 247, 1)), color-stop(52%, rgba(247, 247, 247, 1)), color-stop(93%, rgba(117, 189, 209, 1)), color-stop(100%, rgba(73, 165, 191, 1)));*/
+    /*background: -webkit-linear-gradient(top, rgba(247, 247, 247, 1) 0%, rgba(247, 247, 247, 1) 52%, rgba(117, 189, 209, 1) 93%, rgba(73, 165, 191, 1) 100%);*/
+    /*background: -o-linear-gradient(top, rgba(247, 247, 247, 1) 0%, rgba(247, 247, 247, 1) 52%, rgba(117, 189, 209, 1) 93%, rgba(73, 165, 191, 1) 100%);*/
+    /*background: -ms-linear-gradient(top, rgba(247, 247, 247, 1) 0%, rgba(247, 247, 247, 1) 52%, rgba(117, 189, 209, 1) 93%, rgba(73, 165, 191, 1) 100%);*/
+    /*background: linear-gradient(to bottom, rgba(247, 247, 247, 1) 0%, rgba(247, 247, 247, 1) 52%, rgba(117, 189, 209, 1) 93%, rgba(73, 165, 191, 1) 100%);*/
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f7f7', endColorstr='#49a5bf', GradientType=0);
+    background: #B1D8E2;
 }
-@keyframes expand_menu_home {
-    25%{
-        width: 25%;
-        height: 25%;
-    }
-    50%{
-        width: 50%;
-        height: 50%;
-    }
-    75%{
-        width: 75%;
-        height: 75%;
-        border-radius: 0 0 50%;
-    }
-    100%{
-        width: 100%;
-        height: 100%;
-        border-radius: 0;
-    }
+
+.nav-comandhome {
+    width: 5em;
+    height: 5em;
+    border-radius: 0 0 90px;
+    transition-duration: .3s;
+}
+
+.nav-comandhome_expand {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    transition-duration: .3s;
+    display: flex;
+    overflow: auto;
+    padding: 1em;
+}
+
+ul.uloptionsmenuhome {
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+li.lioptionsmenuhome {
+    font-size: 2em;
+    padding: 1em 0 0 0;
+    /*border-bottom: 2px solid white;*/
+    /*background: whitesmoke;*/
+    text-align: center;
+    font-family: 'Papyrus';
+    opacity: 0;
+}
+
+.nav-comandhome li.lioptionsmenuhome {
+    opacity: 0;
+}
+
+.nav-comandhome_expand li.lioptionsmenuhome {
+    opacity: 1;
+    transition-delay: .3s;
+    transition-duration: .7s;
 }
 
 
@@ -712,7 +831,8 @@ a:hover {
 
 .opacity_none {
     opacity: 0;
-    bottom: -33em;
+    left: -3333em;
+    bottom: 2.9em;
 }
 
 ul {
@@ -795,6 +915,7 @@ ul {
     -o-transition-delay: .1s !important;
     transition-delay: .1s !important;
 }
+
 .child_2 {
     -webkit-transition-delay: .3s !important;
     -moz-transition-delay: .3s !important;
@@ -810,6 +931,7 @@ ul {
     -o-transition-delay: .5s !important;
     transition-delay: .5s !important;
 }
+
 .child_4 {
     -webkit-transition-delay: .7s !important;
     -moz-transition-delay: .7s !important;
@@ -817,6 +939,7 @@ ul {
     -o-transition-delay: .7s !important;
     transition-delay: .7s !important;
 }
+
 /*---*/
 
 #Grupo_455 {
@@ -1651,10 +1774,16 @@ html, body, #root {
 
 html {
     margin: 0 auto;
-    overflow: hidden;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    /*scroll-behavior: smooth;*/
+    /*overflow: hidden;*/
 }
 
-@media (max-width: 900px) and (orientation: portrait) {
+/*@media (max-width: 900px) and (orientation: portrait) {*/
+@media (max-width: 900px) {
     html, body {
         width: 100vw;
         height: 100vh;
@@ -1665,6 +1794,7 @@ html {
         height: 100%;
     }
 }
+
 
 @media (min-width: 901px) {
     body, #root {
@@ -1686,5 +1816,9 @@ html {
     #root {
         width: 100%;
         height: 100%
+    }
+
+    .subRootHome {
+        height: 100vh;
     }
 }

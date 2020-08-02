@@ -27,11 +27,11 @@ function App({restauranteData}) {
     const closeLoginModal = () => {
         !viewloginmodal ? getViewclosemodal(true) : getViewclosemodal(false);
         let styleBodyTag = document.body.style
-        if(styleBodyTag.position === "fixed"){
-            styleBodyTag.position = 'inherit';
-        }else{
-            styleBodyTag.position = "fixed";
-        }
+        // if(styleBodyTag.overflow === "hidden"){
+        //     styleBodyTag.overflow = 'inherit';
+        // }else{
+        //     styleBodyTag.overflow = "hidden";
+        // }
     };
 
     const pedidoViewHandler = () => {

@@ -15,7 +15,7 @@ import App from './containers/App';
 import Launcher from './containers/Launcher';
 import Error404 from './containers/Error404';
 import Subcategoria from './containers/Subcategoria';
-import ClientProfile from "./containers/homecomanda/ClientProfile";
+import ComandappHome from "./containers/homecomanda/ComandappHome";
 /*
 *
 *  IMPORT ROUTER
@@ -29,6 +29,7 @@ import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
 * */
 import './index.css';
 import "./App.css"
+
 /*
 *
 *  IMPORT VIEWS
@@ -54,7 +55,7 @@ ReactDOM.render(
                 <Route path="/" exact component={Launcher}/>
                 <Route path="/categoria" component={App}/>
                 <Route path="/subcategoria" component={Subcategoria}/>
-                <Route path="/datos-cliente" component={ClientProfile}/>
+                <Route path="/comandappHome" component={ComandappHome}/>
                 <Route path="/404" component={Error404}/>
                 <Redirect to="/404"/>
             </Switch>

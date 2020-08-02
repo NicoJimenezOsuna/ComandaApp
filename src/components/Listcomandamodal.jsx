@@ -204,7 +204,7 @@ const Listcomandamodal = (
                                 Realizar pedido
                             </button>
                             :
-                            <Link to="/datos-cliente">
+                            <Link to="/comandappHome">
                                 <button style={comanda.boton_home}
                                         onClick={closeloginmodal}
                                 >
