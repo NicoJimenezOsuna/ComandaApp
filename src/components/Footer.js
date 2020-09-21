@@ -72,7 +72,7 @@ const Footer = ({vermapa, vermail, restauranteData, back, changesubcat, changedV
         comanda_home_cont_button: {
             width: '6em',
             height: '3em',
-            padding: '.3em',
+            padding: '.4em',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',

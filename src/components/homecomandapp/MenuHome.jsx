@@ -32,7 +32,7 @@ const MenuHome = ({expandMenuHome, expandmenu}) => {
             <ul className="uloptionsmenuhome">
                 <li className="lioptionsmenuhome">Datos de envío</li>
                 <li className="lioptionsmenuhome">Envíar pedido</li>
-                <li className="lioptionsmenuhome">estado de pedido</li>
+                <li className="lioptionsmenuhome">Estado de pedido</li>
                 <li className="lioptionsmenuhome">Histórico pedidos</li>
             </ul>
             {/*</div>*/}

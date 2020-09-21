@@ -16,12 +16,14 @@ const Login = ({closeloginmodal}) => {
             height: 'auto',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+
 
         },
         img: {
             width: '10em',
-            height: '5em'
+            // height: '5em',
+            marginBottom: '30px'
         }
 
     }
@@ -29,7 +31,7 @@ const Login = ({closeloginmodal}) => {
     return (
         <Fragment>
             <IconClose
-                style={{color: 'rgba(0,0,0,.4', width: '3em'}}
+                style={{color: 'rgba(0,0,0,.4', width: '3em', margin: '-5px 0px 0px -20px'}}
                 onClick={closeloginmodal}
             />
             <div style={login.cont_img}>

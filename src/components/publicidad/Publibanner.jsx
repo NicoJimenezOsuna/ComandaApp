@@ -50,7 +50,7 @@ const Publibanner = ({background, publiCount, advertisement}) => {
             maxHeight: '70px',
         },
         contenedor: {
-            width: '50%',
+            // width: '50%',
             textAlign: 'center'
         }
     }

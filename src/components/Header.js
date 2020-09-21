@@ -24,7 +24,8 @@ const Header = ({restauranteData}) => {
                 `url(${urlImage() + restauranteData[0].imagen_restaurante})`
                 :
                 'url(https://cdn.pixabay.com/photo/2017/08/30/17/25/restaurant-2697945_960_720.jpg)',
-            backgroundSize: 'cover',
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center'
         },
         cont_comanda_social: {
@@ -63,7 +64,9 @@ const Header = ({restauranteData}) => {
             // backgroundColor:'red'
             fontSize: `1.3em`,
             fontFamily: 'Papyrus',
-            color: '#fff'
+            color: '#fff',
+            marginLeft: 'auto',
+            marginRight: 'auto'
         },
         cont_logo_comanda: {
             display: 'flex',
