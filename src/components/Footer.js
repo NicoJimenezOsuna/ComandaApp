@@ -286,7 +286,7 @@ const Footer = ({vermapa, vermail, restauranteData, back, changesubcat, changedV
                                     alt="imagen de footer"
                                 />
                             }
-                            <ul className={viewshare ? 'opacity cont_extra submenu' : 'opacity_none submenu'}>
+                            <ul style={style.botonera} className={viewshare ? 'opacity cont_extra submenu' : 'opacity_none submenu'}>
                                 <li className={viewshare ? 'child_1 no_opa_trans' : null}>
                                     <img
                                         // onClick={vermail}
