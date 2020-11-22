@@ -55,13 +55,13 @@ const SendComanda = ({
     const enviaPedido = async () => {
 
         const userBody = {
-            "nombre": clientProfile.nombre ? clientProfile.nombre : '',
-            "direccion": clientProfile.direccion ? clientProfile.direccion : '',
-            "telefono": clientProfile.telefono ? clientProfile.telefono : '',
-            "cp": clientProfile.cp ? clientProfile.cp : '',
-            "poblacion": clientProfile.poblacion ? clientProfile.poblacion : '',
-            "email": clientProfile.email ? clientProfile.email : '',
-            "observpedido": !textValue ? '' : textValue,
+            "nombre": clientProfile.nombre ? clientProfile.nombre : null,
+            "direccion": clientProfile.direccion ? clientProfile.direccion : null,
+            "telefono": clientProfile.telefono ? clientProfile.telefono : null,
+            "cp": clientProfile.cp ? clientProfile.cp : null,
+            "poblacion": clientProfile.poblacion ? clientProfile.poblacion : null,
+            "email": clientProfile.email ? clientProfile.email : null,
+            "observpedido": !textValue ? null : textValue,
             "pedido": ''
         }
         // 0:
@@ -95,17 +95,19 @@ const SendComanda = ({
         //     return item;
         // })
         // userBody.pedido = {...defCarta, ...defMenu}
-        userBody.pedido = JSON.stringify(defCarta)
-
+        // userBody.pedido = JSON.stringify(defCarta)
+console.log('uswerBody length', defCarta.length)
+console.log('userbody content', defCarta)
         if (
             !userBody.nombre ||
             !userBody.direccion ||
             !userBody.telefono
         ) {
             getErrorMessage('Completa los datos necesarios en perfil de usuario');
-        } else if (userBody.pedido.length === 0) {
+        } else if (defCarta.length === 0) {
             getErrorMessage('No has seleccionado ningún producto');
         } else {
+            userBody.pedido = JSON.stringify({...defCarta})
             getCompleteOrder(userBody)
             getConfirmBox(true)
         }
