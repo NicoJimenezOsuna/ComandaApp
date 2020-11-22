@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import Commandkeypadmenu from './comandkeymenu/Commandkeymenu'
+import Commandkeymenu from './comandkeymenu/Commandkeymenu'
 import {dosDecim} from "../utils/utils";
 
 const Micomandamenu = ({comandamenu}) => {
@@ -84,7 +84,7 @@ const Micomandamenu = ({comandamenu}) => {
             {comandamenulista.map((item, index, key) => {
 
                 let keys = Object.keys(item)
-                let validkeys = keys.filter(key => key !== 'id' && key !== 'nombre' && key !== 'precio' && key !== 'cant')
+                let validkeys = keys.filter(key => key !== 'id' && key !== 'nombre' && key !== 'precio' && key !== 'cant' && key !== 'internalID')
 
                 return (
                     <div style={com.cont} key={item.id + index}>
@@ -140,7 +140,7 @@ const Micomandamenu = ({comandamenu}) => {
                             <p style={{fontSize: '1.3em'}}>{item.cant === 1 ? 'Ud.: ' : 'Uds.: '}<span>{item.cant}</span>
                             </p>
                             <div>
-                                <Commandkeypadmenu
+                                <Commandkeymenu
                                     //pasamos el producto
                                     data={item}
                                     //si es carta true, si es menu false

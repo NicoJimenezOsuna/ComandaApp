@@ -16,7 +16,11 @@ const Input = ({
                    setname,
                    icontype,
                    coloricon,
-                   required
+                   required,
+                   handleChange,
+                   errorsProfile,
+                   defaultValue,
+                   login
                }) => {
 
     const renderIconInput = () => {
@@ -43,6 +47,9 @@ const Input = ({
                 return <Phoneicon style={input.icon}/>
         }
 
+    }
+    if (errorsProfile) {
+        console.log(errorsProfile)
     }
 
     const input = {
@@ -83,29 +90,45 @@ const Input = ({
             paddingRight: '1em',
             paddingLeft: '1em'
         },
-        parrafo: {
+        parrafo_required: {
             fontSize: '80%',
             fontWeight: '400',
             color: 'cornflowerblue',
             opacity: '.7',
-            zIndex: '-1'
+            zIndex: '-1',
+            alignSelf: 'flex-end'
         }
     }
+
     return (
         <Fragment>
-            <label style={input.label} htmlFor="phone">{textlabel !== null > 0 ? textlabel : null}</label>
+            <label style={input.label} htmlFor={setid}>{textlabel !== null ? textlabel : null}</label>
             <div style={input.cont_input}>
                 {/*<Phoneicon style={phone.icon}/>*/}
                 {renderIconInput()}
                 <input style={input.input}
+                       defaultValue={defaultValue}
                        type={settype}
                        id={setid}
                        placeholder={setplaceholder}
                        name={setname}
+                       onBlur={(e) => handleChange(e)}
                 />
             </div>
             <div className="smallrequired" style={required ? null : {marginBottom: '15px'}}>
-                <p style={input.parrafo}>{required ? 'requerido' : null}</p>
+                {errorsProfile ?
+                    errorsProfile[setname].length > 0 ?
+                        <p className={errorsProfile[setname].length > 0 ? 'displayed' : 'displayed_none'}
+                           style={{
+                               color: 'red',
+                               textAlign: login ? 'center' : 'inherit'
+                           }}
+                        >{errorsProfile[setname].length > 0 ? errorsProfile[setname] : null}</p>
+                        :
+                        <p style={input.parrafo_required}>{required ? 'requerido' : null}</p>
+                    :
+                    null
+                }
             </div>
         </Fragment>
 

@@ -9,7 +9,10 @@ const Textarea = ({
                       setname,
                       icontype,
                       coloricon,
-                      required
+                      required,
+                      maxlength,
+                      valueText,
+                      errormessage
                   }) => {
     const renderIconInput = () => {
         switch (icontype) {
@@ -81,7 +84,21 @@ const Textarea = ({
                           id={setid}
                           placeholder={setplaceholder}
                           name={setname}
+                          maxLength={maxlength}
+                          autoComplete="off"
+                          onKeyUp={(e) => valueText(e)}
                 />
+                <p style={{
+                    color: 'red',
+                    fontSize: '.9rem',
+                    textAlign: 'center',
+                    width: '60%',
+                    lineBreak: 'normal'
+                }}
+                   className={errormessage.length === 0 ? 'hidden' : null}
+                >
+                    {errormessage}
+                </p>
             </div>
             <div className="smallrequired" style={required ? null : {marginBottom: '15px'}}>
                 <p style={input.parrafo}>{required ? 'requerido' : null}</p>

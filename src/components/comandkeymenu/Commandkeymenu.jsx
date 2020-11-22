@@ -9,17 +9,17 @@ import Dischardbuttonmenu from "./Dischardbuttonmenu";
 const Comamandkeymenu = ({data, productsmenu}) => {
 
     const [dataproduct, getDataproduct] = useState({});
-    // const [stwordkey, getStWordkey] = useState('');
-    // const [product, getProduct] = useState({});
+    const [stwordkey, getStWordkey] = useState('');
+    const [product, getProduct] = useState({});
     const [cant, getCant] = useState(0);
-    // const [productmenus, getProductsMenu] = useState({})
+    const [productmenus, getProductsMenu] = useState({})
 
 
     useEffect(() => {
         getDataproduct(data)
         // getStWordkey(wordkey)
         // getProduct(products)
-        // getProductsMenu(productsmenu)
+        getProductsMenu(productsmenu)
         // const quantityProduct = useCallback((data, products) => {
         //     if (wordkey === 'menu') {
         //         if (Object.keys(productsmenu).length === 0) {
@@ -41,7 +41,7 @@ const Comamandkeymenu = ({data, productsmenu}) => {
                 if (Object.keys(productsmenu).length === 0) {
                     getCant({})
                 } else {
-                    getCant(productsmenu.filter(item => item.id === data.id))
+                    getCant(productsmenu.filter(item => item.internalID === data.internalID))
                 }
             // }
             // else {
@@ -59,29 +59,32 @@ const Comamandkeymenu = ({data, productsmenu}) => {
     return (
         <Fragment>
 
-            {/*{Object.keys(cant).length === 0 ?*/}
-            {/*    null*/}
-            {/*    :*/}
-            {/*    cant[0].cant === 1 ?*/}
-            {/*        <Deletebuttonmenu*/}
-            {/*            dataproduct={dataproduct}*/}
-            {/*            // wordkey={stwordkey}*/}
-            {/*        />*/}
-            {/*        :*/}
-            {/*        <Subtrackbuttonmenu*/}
-            {/*            dataproduct={dataproduct}*/}
-            {/*            // wordkey={stwordkey}*/}
-            {/*        />*/}
+            {Object.keys(cant).length === 0 ?
+                null
+                :
+                cant[0].cant === 1 ?
+                    <Deletebuttonmenu
+                        dataproduct={dataproduct}
+                        // wordkey={stwordkey}
+                    />
+                    :
+                    <Subtrackbuttonmenu
+                        dataproduct={dataproduct}
+                        // wordkey={stwordkey}
+                    />
 
 
-            {/*}*/}
-            {/*<Plusbuttonmenu*/}
-            {/*    dataproduct={dataproduct}*/}
-            {/*    // wordkey={stwordkey}*/}
-            {/*/>*/}
-            <Dischardbuttonmenu
+            }
+            <Plusbuttonmenu
                 dataproduct={dataproduct}
-                />
+                // wordkey={stwordkey}
+            />
+
+            {/*// MENÚ ÚNICO CODE--------------------------------*/}
+            {/*<Dischardbuttonmenu*/}
+            {/*    dataproduct={dataproduct}*/}
+            {/*    />*/}
+            {/*// END MENÚ ÚNICO CODE--------------------------------*/}
         </Fragment>
     )
 }

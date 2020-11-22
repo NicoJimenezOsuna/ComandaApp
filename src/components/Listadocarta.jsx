@@ -76,11 +76,16 @@ const Listadocarta = ({dataid, dataSliderHandler, token, restauranteData}) => {
 
                 const toString = JSON.stringify(response.data);
                 const toObject = JSON.parse(toString);
+                //Incorporamos una key a la lista de productos con el id de la carta
+                const toObjectWithIdOfCarta = toObject.data.respuesta.map(item=>{
+                    item.carta_id = idcarta;
+                    return item;
+                })
 
                 // if (!toObject.data.respuesta > 0) {
                 //     getProducts(fakeData2.data.respuesta)
                 // } else {
-                await getProducts(urlComplete(toObject.data.respuesta));
+                await getProducts(urlComplete(toObjectWithIdOfCarta));
                 // urlComplete(toObject.data.respuesta)
                 // console.log(urlComplete(toObject.data.respuesta))
                 // }

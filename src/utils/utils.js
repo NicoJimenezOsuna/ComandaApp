@@ -1,4 +1,3 @@
-
 // Support functions
 /*
 *
@@ -105,4 +104,40 @@ export const addProduct = (product, cat) => {
 
     console.log('xxxxx', local[category])
     localStorage.setItem('pedidosModal', JSON.stringify(local));
+}
+/**
+ *
+ * REQUEST HEADERS
+ *
+ * */
+export const userHeader = {
+    headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        "Content-Type": "application/json",
+        'Access-Control-Allow-Origin': '*'
+    }
+}
+/**
+ *
+ * TOTAL PRICE
+ *
+ * */
+export const TotalComanda = (arrCarta, arrMenu) => {
+    let totalCarta = 0;
+    let totalMenu = 0;
+    arrCarta.forEach(item => {
+        if (item.cant > 1) {
+            totalCarta = totalCarta + parseFloat(item.cant * item.precio)
+        } else {
+            totalCarta = totalCarta + parseFloat(item.precio)
+        }
+    });
+    arrMenu.forEach(item => {
+        if (item.cant > 1) {
+            return totalMenu = totalMenu + parseFloat(item.cant * item.precio)
+        } else {
+            return totalMenu = totalMenu + parseFloat(item.precio)
+        }
+    });
+    return (totalCarta + totalMenu).toFixed(2);
 }

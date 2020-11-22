@@ -6,7 +6,17 @@ import {protocol, urlImage} from "../utils/utils";
 import Publibanner from "./publicidad/Publibanner";
 import {ReactComponent as Close} from "../icons/footer/cerrar.svg";
 
-const Footer = ({vermapa, vermail, restauranteData, back, changesubcat, changedView, closeloginmodal, token}) => {
+const Footer = ({
+                    vermapa,
+                    vermail,
+                    restauranteData,
+                    back,
+                    changesubcat,
+                    changedView,
+                    closeloginmodal,
+                    token,
+                    clientProfile
+                }) => {
 
     const style = {
         contenedor: {
@@ -111,7 +121,7 @@ const Footer = ({vermapa, vermail, restauranteData, back, changesubcat, changedV
         })
     })
 
-    let link = 'whatsapp://send?text='+ restauranteData[0].nombre_restaurante + ' ' + window.location.protocol + '//' + window.location.host + '?' + token;
+    let link = 'whatsapp://send?text=' + restauranteData[0].nombre_restaurante + ' ' + window.location.protocol + '//' + window.location.host + '?' + token;
 
     return (
         <div className="cont_footer_absolut">
@@ -243,12 +253,23 @@ const Footer = ({vermapa, vermail, restauranteData, back, changesubcat, changedV
                                 </li>
                             </ul>
                         </div>
-                        <div style={style.comanda_home_cont_button}
-                             onClick={closeloginmodal}
-                        >
-                            <img style={style.comanda_home_img}
-                                 src="./assets/img/homecomanda/comandapp_home_300.png" alt=""/>
-                        </div>
+                        {clientProfile.telefono.length === 0 ?
+                            <div style={style.comanda_home_cont_button}
+                                 onClick={closeloginmodal}
+                            >
+                                <img style={style.comanda_home_img}
+                                     src="./assets/img/homecomanda/comandapp_home_300.png" alt=""/>
+                            </div>
+                            :
+                            <Link to="/comandappHome">
+                                <div style={style.comanda_home_cont_button}
+                                     onClick={closeloginmodal}
+                                >
+                                    <img style={style.comanda_home_img}
+                                         src="./assets/img/homecomanda/comandapp_home_300.png" alt=""/>
+                                </div>
+                            </Link>
+                        }
                     </Fragment>
                     :
                     // null
@@ -267,7 +288,8 @@ const Footer = ({vermapa, vermail, restauranteData, back, changesubcat, changedV
 function mapStateToProps(state) {
     return {
         restauranteData: state.RestauranteData.RestauranteProfile,
-        token: state.Token.token
+        token: state.Token.token,
+        clientProfile: state.ClientProfile.clientProfile
     }
 }
 

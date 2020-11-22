@@ -105,7 +105,7 @@ const Platosmenus = ({catid, seccid, dataSliderHandler, token, data, getValue, l
                 {platos.length > 0
                     ? platos.map((item, index) => {
                         return (
-                            <Fragment>
+                            <Fragment key={item.nombreplato}>
                                 <div style={listaplatos.cont_princ} key={item.nombreplato}>
                                     <div style={listaplatos.cont_name}>
                                         <p>{item.nombreplato}</p>
@@ -120,12 +120,12 @@ const Platosmenus = ({catid, seccid, dataSliderHandler, token, data, getValue, l
                                         <Fragment>
                                             <div className="wrapper">
                                                 <input style={{display: 'none'}}
-                                                    type="radio"
-                                                    name={data}
-                                                    id={item.nombreplato}
-                                                    value={item.nombreplato}
-                                                    onChange={(e) => getValue(e, labelsLength)}
-                                                    key={item.nombreplato}
+                                                       type="radio"
+                                                       name={data}
+                                                       id={item.nombreplato}
+                                                       value={item.nombreplato}
+                                                       onChange={(e) => getValue(e, labelsLength)}
+                                                       key={item.nombreplato}
                                                        className="state"
                                                 />
                                                 <label className="label" htmlFor={item.nombreplato}>

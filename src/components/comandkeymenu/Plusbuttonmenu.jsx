@@ -1,6 +1,6 @@
 import React, {useState, useEffect, Fragment} from 'react';
 import {ReactComponent as Buttonplus} from "../../icons/mas.svg";
-import {addPedidoMenu} from "../../redux/actions";
+import {sumProductsMenu} from "../../redux/actions";
 
 const Plusbuttonmenu = ({dataproduct}) => {
     const plus = {
@@ -21,7 +21,7 @@ const Plusbuttonmenu = ({dataproduct}) => {
         <Fragment>
                 <Buttonplus
                     style={plus.svg}
-                    onClick={() => addPedidoMenu(product)}
+                    onClick={() => sumProductsMenu(product.internalID)}
                 />
         </Fragment>
     )

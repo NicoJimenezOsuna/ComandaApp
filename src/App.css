@@ -3,6 +3,15 @@
 * CLASES PERSONALIZADAS
 *
 */
+.hidden {
+    visibility: hidden;
+}
+
+button:active,
+button:focus {
+    outline: none;
+}
+
 /*LABEL PRECIO MENÚ*/
 .label_menu_price {
     background: rgba(210, 255, 82, 1);
@@ -317,13 +326,13 @@
     padding: 0 1.3em;
 }
 
-.subRoot {
-    /*background-image: url(./comandApp_logo.png);*/
-    /*background-size: contain;*/
-    /*background-repeat: no-repeat;*/
-    /*background-position: center center;*/
-    /*background-attachment: fixed;*/
-}
+/*.subRoot {*/
+/*    !*background-image: url(./comandApp_logo.png);*!*/
+/*    !*background-size: contain;*!*/
+/*    !*background-repeat: no-repeat;*!*/
+/*    !*background-position: center center;*!*/
+/*    !*background-attachment: fixed;*!*/
+/*}*/
 
 .subRoot {
     height: 90% !important;
@@ -547,7 +556,7 @@ a:hover {
     text-align: center;
     color: #707070;
     padding: .5em 0;
-    margin: 2em auto;
+    margin: 2em auto 5em auto;
     /*margin-bottom: 2em;*/
     /*margin-top: 2em;*/
     font-size: 1.3em;
@@ -558,7 +567,7 @@ a:hover {
 
 .smallrequired {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
     width: 80%;
     margin-left: 10%;
 }
@@ -598,6 +607,46 @@ textarea.alturatextarea {
         max-width: 60%;
         min-width: 60%;
     }
+}
+
+/*
+*
+* SENDCOMANDA STYLES
+*
+*/
+
+.absolute_medium {
+    position: absolute;
+    top: 50%; /* position the top edge of the element at the middle of the parent */
+    left: 50%; /* position the left edge of the element at the middle of the parent */
+    transform: translate(-50%, -50%); /* This is a shorthand of translateX(-50%) and translateY(-50%)*/
+    z-index: 9999999999;
+    width: calc(100% - 20%);
+    height: auto;
+    border: 3px solid dimgrey;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
+}
+
+.confirm_box {
+    background-color: white;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.confirmbox_button {
+    padding: 1em 2em;
+    border: 2px solid #69696996;
+    background-color: #75bdd121;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
+}
+.exit_button{
+    padding: 1em 2em;
+    border: 2px solid red;
+    background-color: white;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
 }
 
 /*
@@ -755,8 +804,7 @@ textarea.alturatextarea {
 }
 
 .normal {
-    height: auto;
-
+    height: inherit;
 }
 
 .cont_menuhome {
@@ -777,6 +825,14 @@ textarea.alturatextarea {
     height: 5em;
     border-radius: 0 0 90px;
     transition-duration: .3s;
+}
+
+.nav-comandhome ul.uloptionsmenuhome {
+    margin-left: -1000px;
+}
+
+.nav-comandhome_expand ul.uloptionsmenuhome {
+    margin-left: 0px;
 }
 
 .nav-comandhome_expand {
@@ -818,6 +874,152 @@ li.lioptionsmenuhome {
     transition-duration: .7s;
 }
 
+/*
+*
+*   SEND COMANDA TABLE
+*
+*/
+.pos-abs-selectmenu {
+    margin-left: 50%;
+    margin-top: -3%;
+}
+
+.triangulo {
+    width: 0;
+    height: 0;
+    border-left: 10px solid darkorange;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    position: absolute;
+    right: -1em;
+    top: 1.5em;
+}
+
+.triangulo_menu {
+    width: 0;
+    height: 0;
+    border-right: 10px solid darkorange;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    position: absolute;
+    left: -1em;
+    top: 0.5em;
+}
+
+.pos-abs-command {
+    position: absolute;
+    width: 3em;
+    height: 6em;
+    z-index: 1;
+    top: 50%;
+    left: -3em;
+    transform: translate(-50%, -50%);
+    background: white;
+    /* top: -4em; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid darkorange;
+    border-radius: 5px;
+}
+
+.pos-abs-right {
+    margin-left: 50%;
+}
+
+.pos-abs-left {
+    margin-right: 50%;
+}
+
+table {
+    border-radius: 20px;
+}
+
+.tg {
+    border-collapse: collapse;
+    border-color: #ccc;
+    border-spacing: 0;
+    border-radius: 50px;
+    width: 100%;
+}
+
+.tg td {
+    background-color: #fff;
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 1px;
+    color: #333;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+}
+
+.tg th {
+    background-color: #f0f0f0;
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 1px;
+    color: #333;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+    text-align: center;
+}
+
+.tg .tg-buh4 {
+    background-color: #f9f9f9;
+    text-align: left;
+    vertical-align: middle;
+    /*position: relative;*/
+    overflow: visible;
+}
+
+.tg .tg-0lax {
+    vertical-align: top
+}
+
+.tg td,
+.tg th {
+    height: 3em;
+}
+
+.w5 {
+    width: 5% !important;
+}
+
+.w10 {
+    width: 10% !important;
+}
+
+.w15 {
+    width: 15% !important;
+}
+
+.w20 {
+    width: 20% !important;
+}
+
+.w55 {
+    width: 55% !important;
+}
+
+.w65 {
+    width: 65% !important;
+}
+
+.tg tg {
+    text-align: left;
+}
+
+.center {
+    text-align: center !important;
+}
 
 /*
 *
@@ -1767,7 +1969,7 @@ body {
     position: relative;
 }
 
-html, body, #root {
+body, #root {
     max-width: 900px !important;
     max-height: 1280px !important;
 }

@@ -1,6 +1,6 @@
 import React, {useState, useEffect, Fragment} from 'react';
 import {ReactComponent as Buttonsubtrackmenu} from "../../icons/letra-x.svg";
-import {substractPedidoMenu} from '../../redux/actions';
+import {dischardPedidoMenu} from '../../redux/actions';
 
 const Deletebuttonmenu = ({dataproduct}) => {
     const del = {
@@ -22,7 +22,7 @@ const Deletebuttonmenu = ({dataproduct}) => {
     return (
         <Fragment>
                 <Buttonsubtrackmenu
-                    onClick={() => substractPedidoMenu(product)}
+                    onClick={() => dischardPedidoMenu(product.internalID)}
                     style={del.svg}/>
         </Fragment>
     )

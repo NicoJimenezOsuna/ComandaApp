@@ -32,6 +32,7 @@ function App({restauranteData}) {
         // }else{
         //     styleBodyTag.overflow = "hidden";
         // }
+
     };
 
     const pedidoViewHandler = () => {

@@ -19,10 +19,10 @@ const Subtrackbuttonmenu = ({dataproduct}) => {
 
     return (
         <Fragment>
-                <Buttonsubtrackmenu
-                    style={sub.svg}
-                    onClick={() => substractPedidoMenu(product)}
-                />
+            <Buttonsubtrackmenu
+                style={sub.svg}
+                onClick={() => substractPedidoMenu(product.internalID)}
+            />
         </Fragment>
     )
 }

@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState, useCallback} from "react";
+import React, {Fragment, useCallback, useEffect, useState} from "react";
 /*
  * IMPORT COMPONENTS
  */
@@ -17,13 +17,20 @@ import Mailmodal from "../components/Mailmodal";
 import Listcomandamodal from "../components/Listcomandamodal";
 import {Redirect} from "react-router-dom";
 import {connect} from 'react-redux';
-import {addPedidoMenu} from "../redux/actions";
+import {
+    addPedidoMenu,
+    sumProductsMenu
+} from "../redux/actions";
 import {dosDecim} from "../utils/utils";
 import Publibanner from "../components/publicidad/Publibanner";
 import Login from "../components/homecomandapp/Login";
+import {useId} from "react-id-generator";
 
 
 const Subcategorias = ({restauranteData, PedidosMenu}) => {
+
+    const [htmlId] = useId();
+
     const [subcategorias, getSubcategorias] = useState({});
     const [isVisible, getIsVisible] = useState(false);
     const [isVisibleSlider, getIsVisibleSlider] = useState(false);
@@ -94,6 +101,14 @@ const Subcategorias = ({restauranteData, PedidosMenu}) => {
 
     }, [restauranteData, verMapamodal, verMailmodal]);
 
+    useEffect(() => {
+        getValueradio({
+            ...valuRadio,
+            id: subcategorias.id,
+            nombre: subcategorias.nombre,
+            precio: parseFloat(dosDecim(subcategorias.precio, 2))
+        })
+    }, [subcategorias.id, subcategorias.nombre, subcategorias.precio])
 
     //define y pasa por props los títulos
     const titles = {};
@@ -124,82 +139,141 @@ const Subcategorias = ({restauranteData, PedidosMenu}) => {
         getValueradio({...valuRadio, [name]: value});
         getNumberOfsectionsforRadios(labelsLength)
     }
+//MENÚ ÚNICO CODE -----------------------------------------------------------
+//     const completeddMemenu = () => {
+//
+//
+//         if (
+//             valuRadio !== null && Object.keys(keysofpedido).length === numberOfsectionsforRadios
+//         ) {
+//
+//             //Buscamos los elementos del menú para guardar precio e identificador
+//
+//             // // // id 5 nombre "MENÚ LUNES" precio "6.5000" wordKey "menu" idcarta
+//             valuRadio.id = subcategorias.id;
+//             valuRadio.nombre = subcategorias.nombre;
+//             valuRadio.precio = parseFloat(dosDecim(subcategorias.precio, 2));
+//             valuRadio.cant = 1
+//
+//             // definimos nuevo objeto para evitar referencia
+//             // const newObject = {}
+//             // console.log('valuradio', valuRadio)
+//
+//             //BUSCAMOS EL PEDIDO EN REDUCER MENUS Y SI EXISTE LANZAMOS WARNING
+//             const exist = PedidosMenu.filter(item => {
+//                 if (item.id === valuRadio.id) {
+//                     return item
+//                 }
+//             });
+//
+//             if (exist.length <= 0) {
+//                 getOkmessage(true)
+//                 setTimeout(function () {
+//                     getOkmessage(false)
+//                 }, 2000)
+//                 return addPedidoMenu(valuRadio)
+//             }
+//
+// //EVALUAR KEYS DE MANERA DINAMICA
+//             const pedidoenredux = PedidosMenu.filter(item => item.id === valuRadio.id)
+//             const pedidoredux = pedidoenredux[0]
+//
+//             function compareObj(pedidoredux, keysofpedido) {
+//                 var aKeys = Object.keys(pedidoredux)
+//                 var bKeys = Object.keys(keysofpedido)
+//
+//                 for (var i = 0; i < bKeys.length; i++) {
+//                     if (pedidoredux[aKeys[i]] !== keysofpedido[bKeys[i]]) {
+//                         return false;
+//                     }
+//                 }
+//                 return true;
+//             }
+//
+//             if (exist && compareObj(pedidoredux, keysofpedido)) {
+//                 getWarningmessage(true)
+//                 setTimeout(function () {
+//                     getWarningmessage(false)
+//                 }, 2000)
+//             } else {
+//                 getOkmessage(true)
+//                 setTimeout(function () {
+//                     getOkmessage(false)
+//                 }, 2000)
+//
+//                 addPedidoMenu(valuRadio)
+//             }
+//
+//             // addPedidoMenu(Object.assign({}, valuRadio))
+//             // addPedidoMenu(valuRadio)
+//         } else {
+//             getErrormessage(true)
+//             setTimeout(function () {
+//                 getErrormessage(false)
+//             }, 2000)
+//         }
+//     }
+// END MENÚ ÚNICO CODE--------------------------------
 
-    const completeddMemenu = () => {
-
-
+    const multimenu = () => {
+        var getProductInternalID = undefined;
+        //si selección está o no vacía
         if (
             valuRadio !== null && Object.keys(keysofpedido).length === numberOfsectionsforRadios
         ) {
-
-            //Buscamos los elementos del menú para guardar precio ye identificador
-
-            // // // id 5 nombre "MENÚ LUNES" precio "6.5000" wordKey "menu" idcarta
-            valuRadio.id = subcategorias.id;
-            valuRadio.nombre = subcategorias.nombre;
-            valuRadio.precio = parseFloat(dosDecim(subcategorias.precio, 2));
-            valuRadio.cant = 1
-
-            // definimos nuevo objeto para evitar referencia
-            // const newObject = {}
-            // console.log('valuradio', valuRadio)
-
+            //selección está completa:
             //BUSCAMOS EL PEDIDO EN REDUCER MENUS Y SI EXISTE LANZAMOS WARNING
-            const exist = PedidosMenu.filter(item => {
-                if(item.id === valuRadio.id){
-                    return item
-                }
-            });
+            const exist = PedidosMenu.filter(item => item.id === valuRadio.id);
 
-            if (exist.length <= 0) {
+            //si existe
+            if (exist.length > 0) {
+                let isEqual = 0;
+                for (let i = 0; i < exist.length; i++) {
+                    for (let j = 0; j < numberOfsectionsforRadios; j++) {
+                        if (exist[i][Object.keys(keysofpedido)[j]] === valuRadio[Object.keys(keysofpedido)[j]]) {
+                            console.log('res', valuRadio[Object.keys(keysofpedido)[j]]);
+                            isEqual++;
+                        } else {
+                            isEqual = 0;
+                        }
+                        if (isEqual === numberOfsectionsforRadios) {
+                            //consultaremos si posee id interno.
+                            getProductInternalID = exist[i].internalID
+                            isEqual = 0;
+                        }
+                    }
+                }
+            }
+
+            if (getProductInternalID === undefined) {
+                //si es undefined poner id interno y enviar a redux
+                const nuevoObjeto = {...valuRadio}
+                nuevoObjeto.internalID = Math.floor(Math.random() * 60000000000) + 1;
+                nuevoObjeto.cant = 1;
+
+                addPedidoMenu(nuevoObjeto)
+
                 getOkmessage(true)
                 setTimeout(function () {
                     getOkmessage(false)
                 }, 2000)
-                return addPedidoMenu(valuRadio)
-            }
-
-//EVALUAR KEYS DE MANERA DINAMICA
-            const pedidoenredux = PedidosMenu.filter(item => item.id === valuRadio.id)
-            const pedidoredux = pedidoenredux[0]
-
-            function compareObj(pedidoredux, keysofpedido) {
-                var aKeys = Object.keys(pedidoredux)
-                var bKeys = Object.keys(keysofpedido)
-
-                for (var i = 0; i < bKeys.length; i++) {
-                    if (pedidoredux[aKeys[i]] !== keysofpedido[bKeys[i]]) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-
-            if (exist && compareObj(pedidoredux,keysofpedido)) {
+            } else {
+                //enviar id interno y sumar producto
                 getWarningmessage(true)
                 setTimeout(function () {
                     getWarningmessage(false)
                 }, 2000)
-            } else {
-                getOkmessage(true)
-                setTimeout(function () {
-                    getOkmessage(false)
-                }, 2000)
-
-                addPedidoMenu(valuRadio)
+                sumProductsMenu(getProductInternalID)
             }
 
-            // addPedidoMenu(Object.assign({}, valuRadio))
-            // addPedidoMenu(valuRadio)
         } else {
+            //si selección está vacía
             getErrormessage(true)
             setTimeout(function () {
                 getErrormessage(false)
             }, 2000)
         }
     }
-
-
     const renderCategory = () => {
         if (subcategorias.wordKey === 'carta') {
             return (
@@ -214,11 +288,23 @@ const Subcategorias = ({restauranteData, PedidosMenu}) => {
             )
         } else {
             return (
+                // MENÚ ÚNICO CODE
+                // <Listadomenu
+                //     warningmessage={warningmessage}
+                //     errormessage={errormessage}
+                //     okmessage={okmessage}
+                //     completeddMemenu={completeddMemenu}
+                //     getValue={getValue}
+                //     dataid={subcategorias.id}
+                //     dataSliderHandler={dataSliderHandler}
+                //     subcategorias={subcategorias}
+                // />
+                //FIN MENÚ ÚNICO CODE
                 <Listadomenu
                     warningmessage={warningmessage}
                     errormessage={errormessage}
                     okmessage={okmessage}
-                    completeddMemenu={completeddMemenu}
+                    completeddMemenu={multimenu}
                     getValue={getValue}
                     dataid={subcategorias.id}
                     dataSliderHandler={dataSliderHandler}
@@ -299,6 +385,7 @@ const Subcategorias = ({restauranteData, PedidosMenu}) => {
                 vermapa={vermapa}
                 datosrestaurante={datosrestaurante}
                 back={'/categoria'}
+                closeloginmodal={closeLoginModal}
             />
             <div className={viewloginmodal ? 'login_home displayed' : 'displayed_none'}>
                 <Login closeloginmodal={closeLoginModal}/>

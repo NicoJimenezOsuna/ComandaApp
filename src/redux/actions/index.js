@@ -8,13 +8,14 @@ export const ADD_PRODUCT_CARTA = 'ADD_PRODUCT_CARTA';
 export const DELETE_PRODUCT_CARTA = 'DELETE_PRODUCT_CARTA';
 export const ADD_PRODUCT_MENU = 'ADD_PRODUCT_MENU';
 export const DELETE_PRODUCT_MENU = 'DELETE_PRODUCT_MENU';
-export const DISCHARD_PRODUCTS_MENU = 'DISCHARD_PRODUCTS_MENU';
+export const SUBSTRACT_PRODUCTS_MENU = 'SUBSTRACT_PRODUCTS_MENU';
 export const DISCHARD_PRODUCTS_CARTA = 'DISCHARD_PRODUCTS_CARTA';
 export const DISCHARD_PRODUCTS_FULL_MENU = 'DISCHARD_PRODUCTS_FULL_MENU';
 export const DISCHARD_PRODUCTS_FULL_CARTA = 'DISCHARD_PRODUCTS_FULL_CARTA';
 export const ADD_TOKEN = 'ADD_TOKEN';
 export const SET_COUNT = 'SET_COUNT';
 export const ADD_CLIENT_PROFILE = 'ADD_CLIENT_PROFILE';
+export const SUM_PRODUCTS_MENU = 'SUM_PRODUCTS_MENU';
 // export const ADD_ENTERPRISES = 'ADD_ENTERPRISES';
 
 
@@ -44,12 +45,16 @@ export function addPedidoMenu(product) {
     store.dispatch({type: ADD_PRODUCT_MENU, payload: {product}})
 }
 
-export function substractPedidoMenu(product) {
-    store.dispatch({type: DELETE_PRODUCT_MENU, payload: {product}})
+export function substractPedidoMenu(internalID) {
+    store.dispatch({type: SUBSTRACT_PRODUCTS_MENU, payload: internalID})
 }
 
 export function dischardPedidoMenu(product) {
-    store.dispatch({type: DISCHARD_PRODUCTS_MENU, payload: {product}})
+    store.dispatch({type: DELETE_PRODUCT_MENU, payload: {product}})
+}
+
+export function sumProductsMenu(internalID) {
+    store.dispatch({type: SUM_PRODUCTS_MENU, payload: internalID})
 }
 
 //PRODUCTS ACTIONS ( MENU && CARTA)

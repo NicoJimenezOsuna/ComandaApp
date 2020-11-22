@@ -142,7 +142,7 @@ const Launcher = ({restauranteData, reduxToken}) => {
                     height: '100%'
                 }}>
                     <LogoComanda style={{height: '30%'}}/>
-                    <div style={{width: '100%'}}>
+                    <div>
                         <div style={launcher.ComandApp}>
                             <span>ComandApp</span>
                         </div>

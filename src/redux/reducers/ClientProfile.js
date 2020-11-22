@@ -1,6 +1,6 @@
 const initialState = {
     clientProfile: {
-        telefono: 6666666666,
+        telefono: "",
         nombre: "",
         direccion: "",
         cp: "",
@@ -13,7 +13,7 @@ function ClientProfile(state = initialState, action) {
     switch (action.type) {
         case 'ADD_CLIENT_PROFILE':
             return {
-                clientProfile: {...action.payload}
+                clientProfile: {...state.clientProfile, ...action.payload}
             }
         // break;
         default:

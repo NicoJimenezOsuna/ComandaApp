@@ -58,9 +58,9 @@ const Micomandacarta = ({comandacarta}) => {
 
     return (
         <Fragment>
-            {comandacartalista.map(item => {
+            {comandacartalista.map((item, index) => {
                 return (
-                    <div style={com.cont} key={item.nombreplato}>
+                    <div style={com.cont} key={item.nombreplato + index}>
                         <div style={{display: 'flex'}}>
                             <div style={com.img}>
                                 <img style={{width: '100%'}} src={item.imagen} alt={item.nombreplato}/>
