@@ -95,7 +95,8 @@ const Footer = ({
             // border: '1.5px solid #707070',
             // background: 'white',
             background: 'linear-gradient(225deg, #e6e6e6, #ffffff)',
-            boxShadow: 'rgb(191, 191, 191) -10px 10px 20px, rgb(255, 255, 255) 10px -10px 20px'
+            // boxShadow: 'rgb(191, 191, 191) -10px 10px 20px, rgb(255, 255, 255) 10px -10px 20px'
+            boxShadow: 'rgb(191, 191, 191) -10px 10px 20px'
         },
         cont_logo_basica_footer: {
             // maxWidth: '80%',
@@ -116,7 +117,8 @@ const Footer = ({
             // border: '1.5px solid #707070',
             // background: 'white',
             background: 'linear-gradient(225deg, #e6e6e6, #ffffff)',
-            boxShadow:  '-10px 10px 20px #bfbfbf, 10px -10px 20px #ffffff',
+            // boxShadow:  '-10px 10px 20px #bfbfbf, 10px -10px 20px #ffffff',
+            boxShadow:  '-10px 10px 20px #bfbfbf',
         },
         img_div_info_rest: {
             width: '2.2em',
@@ -156,14 +158,16 @@ const Footer = ({
 
             position: 'relative',
             background: 'linear-gradient(225deg, #e6e6e6, #ffffff)',
-            boxShadow:  '-10px 10px 20px #bfbfbf, 10px -10px 20px #ffffff',
+            // boxShadow:  '-10px 10px 20px #bfbfbf, 10px -10px 20px #ffffff',
+            boxShadow:  '-10px 10px 20px #bfbfbf',
         },
         comanda_home_img: {
             width: '100%',
             // height: '100%'
         },
         botonera : {
-            boxShadow:  '5px 5px 10px #e0e0e0, 0px 0px 10px #ffffff',
+            // boxShadow:  '5px 5px 10px #e0e0e0, 0px 0px 10px #ffffff',
+            // boxShadow:  '5px 5px 10px #e0e0e0',
         }
 
     }

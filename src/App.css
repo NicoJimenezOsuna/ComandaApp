@@ -365,7 +365,7 @@ button:focus {
 .cont_footer_absolut {
     position: sticky;
     width: 100%;
-    height: 10%;
+    /*height: 10%;*/
     background-color: #fff;
     z-index: 9;
     bottom: 0;
