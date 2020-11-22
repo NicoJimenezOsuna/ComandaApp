@@ -21,20 +21,81 @@ const Footer = ({
     const style = {
         contenedor: {
             position: 'sticky',
-            // border: '2px solid rgba(112,112,112,1)',
-            backgroundColor: `rgba(230, 230, 230, 1)`,
-            bottom: 0,
-            width: `100%`,
+            // // border: '2px solid rgba(112,112,112,1)',
+            // // backgroundColor: `rgba(230, 230, 230, 1)`,
+            // backgroundColor: '#ffffff',
+            // boxShadow: 'inset -10px 10px 20px #bfbfbf, inset 10px -10px 20px #ffffff',
+            // bottom: 0,
+            // width: `100%`,
+            // height: '80px',
             display: 'flex',
             justifyContent: 'space-around',
             alignItems: 'center',
             flexWrap: 'wrap',
             zIndex: 999,
-            borderRadius: '20px'
+            // borderRadius: '20px'
         },
         boton: {
-            width: '3em',
-            height: '3em'
+            // width: '3.5em',
+            // height: '3.5em',
+            border: 'none !important',
+            position: 'relative',
+            width: '3.5em',
+            height: '3.5em',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: '50%',
+            // border: '1.5px solid #707070',
+            // background: 'white',
+            background: 'linear-gradient(225deg, #e6e6e6, #ffffff)',
+            boxShadow:  '-5px 5px 10px #bfbfbf, 5px -5px 10px #ffffff',
+
+        },
+        boton2: {
+            // width: '3.5em',
+            // height: '3.5em',
+            border: 'none !important',
+            position: 'relative',
+            width: '3.5em',
+            height: '3.5em',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: '50%',
+            // border: '1.5px solid #707070',
+            // background: 'white',
+            background: 'linear-gradient(225deg, #e6e6e6, #ffffff)',
+            boxShadow:  '5px 5px 10px #e0e0e0, -5px -5px 10px #ffffff',
+
+        },
+        boton_retroceso: {
+            border: 'none !important',
+            position: 'relative',
+            width: '3.5em',
+            height: '3.5em',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: '50%',
+            // border: '1.5px solid #707070',
+            // background: 'white',
+            background: 'linear-gradient(225deg, #e6e6e6, #ffffff)',
+            boxShadow: 'rgb(255 0 0) 0px 0px 10px, rgb(226 226 226) 5px 5px 10px'
+        },
+        link_boton : {
+            border: 'none !important',
+            position: 'relative',
+            width: '3.5em',
+            height: '3.5em',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: '50%',
+            // border: '1.5px solid #707070',
+            // background: 'white',
+            background: 'linear-gradient(225deg, #e6e6e6, #ffffff)',
+            boxShadow: 'rgb(191, 191, 191) -10px 10px 20px, rgb(255, 255, 255) 10px -10px 20px'
         },
         cont_logo_basica_footer: {
             // maxWidth: '80%',
@@ -46,14 +107,16 @@ const Footer = ({
         },
         div_boton: {
             position: 'relative',
-            width: '3em',
-            height: '3em',
+            width: '3.5em',
+            height: '3.5em',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: '50%',
-            border: '1.5px solid #707070',
-            background: 'white',
+            // border: '1.5px solid #707070',
+            // background: 'white',
+            background: 'linear-gradient(225deg, #e6e6e6, #ffffff)',
+            boxShadow:  '-10px 10px 20px #bfbfbf, 10px -10px 20px #ffffff',
         },
         img_div_info_rest: {
             width: '2.2em',
@@ -80,21 +143,29 @@ const Footer = ({
             margin: '0 auto'
         },
         comanda_home_cont_button: {
-            width: '6em',
-            height: '3em',
-            padding: '.3em',
+            width: '6.5em',
+            height: '3.5em',
+            padding: '.4em',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            border: '2px solid grey',
+            // border: '2px solid grey',
             borderRadius: '20px',
-            background: 'white',
-            overflow: 'hidden'
+            // background: 'white',
+            overflow: 'hidden',
+
+            position: 'relative',
+            background: 'linear-gradient(225deg, #e6e6e6, #ffffff)',
+            boxShadow:  '-10px 10px 20px #bfbfbf, 10px -10px 20px #ffffff',
         },
         comanda_home_img: {
             width: '100%',
-            height: '100%'
+            // height: '100%'
+        },
+        botonera : {
+            boxShadow:  '5px 5px 10px #e0e0e0, 0px 0px 10px #ffffff',
         }
+
     }
 
     const [viewinfo, getViewinfo] = useState(false)
@@ -128,25 +199,26 @@ const Footer = ({
             <div style={style.contenedor}>
                 {changesubcat === false ?
                     back === '/categoria' ?
-                        <Link style={style.boton} to={back}>
+                        <Link to={back}>
                             <img
-                                style={style.boton}
+                                style={style.link_boton}
                                 src="./assets/img/footer/ico-back.svg"
                                 alt="imagen de footer"
                             />
                         </Link>
                         :
-                        <Link style={style.boton} to={back}>
+                        <Link style={style.link_boton} to={back}>
                             <img
-                                style={style.boton}
-                                src="./assets/img/footer/ico-back_red.svg"
+                                style={style.boton_retroceso}
+                                src="./assets/img/footer/ico-back.svg"
+                                /*ico-back-red.svg*/
                                 alt="imagen de footer"
                             />
                         </Link>
                     :
                     <img
                         onClick={changedView}
-                        style={style.boton}
+                        style={style.link_boton}
                         src="./assets/img/footer/ico-back.svg"
                         alt="imagen de footer"
                     />
@@ -171,12 +243,12 @@ const Footer = ({
                                 />
                             }
 
-                            <ul className={viewinfo ? 'opacity cont_extra submenu' : 'opacity_none submenu'}>
+                            <ul style={style.botonera} className={viewinfo ? 'opacity cont_extra submenu' : 'opacity_none submenu'}>
                                 <li className={viewinfo ? 'child_1 no_opa_trans' : null}>
-                                    <a style={style.boton}
+                                    <a style={style.boton2}
                                        href={`tel:${restauranteData.length > 0 ? restauranteData[0].telefono : null}`}>
                                         <img
-                                            style={style.boton}
+                                            style={style.boton2}
                                             src="./assets/img/footer/ico-tel.svg"
                                             alt="imagen de footer"
                                         />
@@ -185,7 +257,7 @@ const Footer = ({
                                 <li className={viewinfo ? 'child_2 no_opa_trans' : null}>
                                     <img
                                         onClick={vermapa}
-                                        style={style.boton}
+                                        style={style.boton2}
                                         src="./assets/img/footer/ico-gps.svg"
                                         alt="imagen de footer"
                                     />
@@ -193,7 +265,7 @@ const Footer = ({
                                 <li className={viewinfo ? 'child_3 no_opa_trans' : null}>
                                     <img
                                         onClick={vermail}
-                                        style={style.boton}
+                                        style={style.boton2}
                                         src="./assets/img/footer/ico-mail.svg"
                                         alt="imagen de footer"
                                     />
@@ -224,10 +296,11 @@ const Footer = ({
                                     alt="imagen de footer"
                                 />
                             }
-                            <ul className={viewshare ? 'opacity cont_extra submenu' : 'opacity_none submenu'}>
+                            <ul style={style.botonera} className={viewshare ? 'opacity cont_extra submenu' : 'opacity_none submenu'}>
                                 <li className={viewshare ? 'child_1 no_opa_trans' : null}>
                                     <img
                                         // onClick={vermail}
+                                        className={'telegram'}
                                         style={style.boton}
                                         src="./assets/img/footer/telegrama.svg"
                                         alt="icono de Telegram"

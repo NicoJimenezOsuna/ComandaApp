@@ -24,7 +24,8 @@ const Login = ({
             height: 'auto',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+
 
         },
         img: {
@@ -41,8 +42,10 @@ const Login = ({
             transform: 'translateX(-50%)',
             padding: '.5em 0',
             background: '#fe4949',
-            borderRadius: '10px'
+            borderRadius: '10px',
 
+            // height: '5em',
+            marginBottom: '30px'
         }
     }
     const [messageErrorConection, getMessageErrorConection] = useState('');
@@ -131,7 +134,7 @@ const Login = ({
     return (
         <Fragment>
             <IconClose
-                style={{color: 'rgba(0,0,0,.4', width: '3em'}}
+                style={{color: 'rgba(0,0,0,.4', width: '3em', margin: '-5px 0px 0px -20px'}}
                 onClick={closeloginmodal}
             />
             <div style={login.cont_img}>

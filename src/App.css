@@ -1063,10 +1063,16 @@ ul {
 .cont_extra {
     position: absolute;
     flex-direction: column;
-    background-color: #E5E5E5;
+    background-color: white; /*#E5E5E5;*/
+    border: 2px solid lightgray;
     bottom: 2.9em;
     padding: .5em;
-    border-radius: 20px 20px 0 0;
+    border-radius: 20px 20px;
+}
+
+/*NEW*/
+.telegram {
+    padding: 0.3em;
 }
 
 .submenu {
@@ -1075,6 +1081,7 @@ ul {
     /*position: absolute;*/
     /*top: 100%;*/
     /*z-index: 0;*/
+    margin-bottom: 15px; /*NEW*/
     position: absolute;
     -webkit-perspective: 400px;
     -moz-perspective: 400px;
