@@ -8,7 +8,7 @@ import Spinnercircle from '../components/Spinnercircle';
 import {dosDecim, urlComplete, protocol} from "../utils/utils";
 import {connect} from "react-redux";
 
-const Listadocarta = ({dataid, dataSliderHandler, token, restauranteData}) => {
+const Listadocarta = ({dataid, dataSliderHandler, token, restauranteData, productsCarta}) => {
     const listmenu = {
         cont_princ: {
             width: "100%",
@@ -77,7 +77,7 @@ const Listadocarta = ({dataid, dataSliderHandler, token, restauranteData}) => {
                 const toString = JSON.stringify(response.data);
                 const toObject = JSON.parse(toString);
                 //Incorporamos una key a la lista de productos con el id de la carta
-                const toObjectWithIdOfCarta = toObject.data.respuesta.map(item=>{
+                const toObjectWithIdOfCarta = toObject.data.respuesta.map(item => {
                     item.carta_id = idcarta;
                     return item;
                 })
@@ -106,11 +106,19 @@ const Listadocarta = ({dataid, dataSliderHandler, token, restauranteData}) => {
             <Spinnercircle/>
         )
     }
+    const MiniatureOrder = (item) => {
 
+        const element = productsCarta.filter(itempedido => itempedido.plato_id === item && itempedido.cant > 0)
+        console.log(element)
+        if (element.length > 0) {
+            return element[0].cant
+        }
+    }
     return (
         <Fragment>
             {products.length > 0
                 ? products.map((item, index) => {
+                    let number = MiniatureOrder(item.plato_id)
                     return (
                         <Fragment key={index}>
                             <div style={listmenu.cont_princ} key={item.nombreplato}>
@@ -137,19 +145,32 @@ const Listadocarta = ({dataid, dataSliderHandler, token, restauranteData}) => {
                                     null
                                 }
                             </div>
-                            {index < (products.length - 1) ?
-                                <hr style={{
-                                    width: '80%',
-                                    border: '1px solid #d3d3d3',
-                                    margin: '0px auto'
-                                }}/>
-                                :
-                                null}
+                            <div style={{width: '100%'}}>
+                                {number > 0 ?
+                                    <p style={{paddingLeft: '20px', color: 'green'}}>
+                                        {number === 1 ?
+                                            number + '  unidad'
+                                            :
+                                            number + '  unidades'
+                                        }
+                                    </p>
+                                    :
+                                    null
+                                }
+                                {index < (products.length - 1) ?
+                                    <hr style={{
+                                        width: '80%',
+                                        border: '1px solid #d3d3d3',
+                                        margin: '0px auto'
+                                    }}/>
+                                    :
+                                    null}
+                            </div>
                         </Fragment>
                     );
                 })
-            :
-            <Spinnercircle/>
+                :
+                <Spinnercircle/>
             }
             {/*    Aqui se mete los spiners de carga    */}
         </Fragment>
@@ -159,7 +180,8 @@ const Listadocarta = ({dataid, dataSliderHandler, token, restauranteData}) => {
 function mapStateToProps(state) {
     return {
         restauranteData: state.RestauranteData.RestauranteProfile,
-        token: state.Token.token
+        token: state.Token.token,
+        productsCarta: state.PedidosCarta.pedidoCarta,
     }
 }
 
