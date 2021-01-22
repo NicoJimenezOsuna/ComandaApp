@@ -3,10 +3,16 @@ import { ReactComponent as IconClose } from "../icons/times-circle-regular.svg";
 /*
  * IMPORT DATA FROM SRC/DATA/DATA.JSON
  */
+import {
+    HTTP_PROTOCOL,
+    URL_MAIN,
+    USER_HEADERS,
+    PATH_API
+} from '../data/connect_data_restaurantes';
 import { allergens } from "../data/data.js";
 import {connect} from "react-redux";
 import axios from "axios";
-import {protocol, urlImage} from "../utils/utils";
+import {urlImage} from "../utils/utils";
 import Spinnercircle from "./Spinnercircle";
 
 const Allergensmodal = ({
@@ -19,8 +25,6 @@ const Allergensmodal = ({
         princ: {
             width: "100%",
             height: "100%",
-            //            maxWidth: '720px',
-            //            height: '100%',
             position: "absolute",
             top: 0,
             left: 0,
@@ -82,16 +86,14 @@ const Allergensmodal = ({
         }
     };
 
-    const allergensRequest = async (protocol, url, token, id) => {
+    const allergensRequest = async (protocol, url, pathAPI, token, id, header) => {
         try {
             // Make a request
-            const response = await axios.get(`${protocol}${url}${token}/${id}`, userHeader);
-            const toString = JSON.stringify(response.data);
-            const toObject = JSON.parse(toString);
+            const response = await axios.get(`${protocol}${url}${pathAPI}4/${token}/${id}`, header);
+            console.log('response allergens', response.data.data.respuesta)
 
             if (isSubscribed) {
-                localStorage.setItem('comandaAppmenu', JSON.stringify(toObject.data.respuesta))
-                getAllergens(toObject.data.respuesta);
+                getAllergens(response.data.data.respuesta);
             }
 
         } catch (error) {
@@ -99,7 +101,7 @@ const Allergensmodal = ({
         }
     }
     //REQUEST
-    allergensRequest(protocol, url, token, id)
+    allergensRequest(HTTP_PROTOCOL, URL_MAIN, PATH_API, token, id, USER_HEADERS)
 
     //clean function: no update state if is unmount component
     return () => isSubscribed = false
@@ -111,7 +113,6 @@ if (!Object.keys(allergens).length > 0) {
         <Spinnercircle/>
     )
 }
-// console.log("alergenos", allergensState)
 
     return (
         <div

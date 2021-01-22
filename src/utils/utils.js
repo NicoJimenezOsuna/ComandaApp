@@ -1,16 +1,24 @@
 // Support functions
+
+import {
+    HTTP_PROTOCOL,
+    URL_MAIN,
+    USER_HEADERS,
+    PATH_API,
+    FOLDER_STORAGE
+} from '../data/connect_data_restaurantes';
 /*
 *
 * GET PROTOCOL
 *
 */
-export const protocol = window.location.protocol;
+// export const protocol = window.location.protocol;
 /*
 *
 * GET HOST
 *
 */
-export const host = window.location.host;
+// export const host = window.location.host;
 /*
 *
 * GET URL MAP FOR IFRAME
@@ -27,54 +35,51 @@ export const iframeSrcData = iframe => {
         return firstString.split('"')[0];
     }
 }
-/*
+/**
  *
  * toFixed()
  *
  */
-export const dosDecim = (number, maxToFix) => {
+export const dosDecim = (number, maxToFix = 2) => {
     let toFix = parseFloat(number);
-    return toFix.toFixed(2);
+    return toFix.toFixed(maxToFix);
 };
-/*
+/**
  *
- * Dinamic URL for one image
+ * URL for one image
  *
  */
 export const urlImage = () => {
-    // let urlActual = `${protocol}//${host}/storage/`;
-    let urlActual = "http://restaurante.comandapp.es/storage/"
-
-    return urlActual
+    // let urlActual = HTTP_PROTOCOL + URL_MAIN + "http://restaurante.comandapp.es/storage/"
+    return HTTP_PROTOCOL + URL_MAIN + FOLDER_STORAGE
 }
-/*
+/**
  *
- * Dinamic URL for object iteration
+ * URL IMAGE FOLDER FOR OBJECT ITERATION
  *
  */
 export const urlComplete = (response) => {
-    // let urlActual = `${protocol}//${host}/storage/`;
-    let urlActual = "http://restaurante.comandapp.es/storage/"
+    //"http://restaurante.comandapp.es/storage/" + image
     const ObjectWithNewUrlImage = response.map(item => {
-        let nuevo = urlActual + item.imagen
+        let nuevo = HTTP_PROTOCOL + URL_MAIN + FOLDER_STORAGE + item.imagen
         return item = {...item, imagen: nuevo}
     })
     return (ObjectWithNewUrlImage)
 };
-/*
+/**
  *
- * order data
+ * ORDER DATA
  *
  */
 export const Ordena = (element) => {
     element.sort((a, b) => a - b)
 }
-/*
-*
-*
-* ADD PRODUCT TO listcomanda (  deprecated  )
-*
-* */
+/**
+ *
+ *
+ * ADD PRODUCT TO listcomanda (  deprecated  )
+ *
+ * */
 export const addProduct = (product, cat) => {
     const local = {...JSON.parse(localStorage.getItem('pedidosModal'))}
     let category = cat;
@@ -107,18 +112,6 @@ export const addProduct = (product, cat) => {
 }
 /**
  *
- * REQUEST HEADERS
- *
- * */
-export const userHeader = {
-    headers: {
-        "X-Requested-With": "XMLHttpRequest",
-        "Content-Type": "application/json",
-        'Access-Control-Allow-Origin': '*'
-    }
-}
-/**
- *
  * TOTAL PRICE
  *
  * */
@@ -140,4 +133,13 @@ export const TotalComanda = (arrCarta, arrMenu) => {
         }
     });
     return (totalCarta + totalMenu).toFixed(2);
+}
+/**
+ *
+ * FORMAT AND CAPITALIZE STRINGS
+ *
+ * */
+export const capitalizeString = (string) => {
+    let convert = string.toLowerCase();
+    return convert.charAt(0).toUpperCase() + convert.slice(1)
 }

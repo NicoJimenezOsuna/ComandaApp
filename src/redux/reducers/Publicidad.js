@@ -3,11 +3,7 @@ import SET_COUNT from '../actions'
 
 const initialState = {
     count: 0,
-    arrEnterprises: [
-        './assets/img/publi.jpg',
-        './assets/img/estrella_galicia.jpg',
-        './assets/img/murviedro.jpg',
-    ]
+    arrEnterprises: []
 };
 
 function Publicidad(state = initialState, action) {
@@ -23,7 +19,7 @@ function Publicidad(state = initialState, action) {
                 count: action.payload,
                 arrEnterprises: state.arrEnterprises
             }
-            // break;
+        // break;
         default:
             return state;
     }

@@ -6,8 +6,6 @@ const ModalTable = ({modaltable, imagen, modalid, ident}) => {
             position: 'absolute',
             width: '10em',
             height: '10em',
-            // bottom: '-10em',
-            // right: '-10em',
             zIndex: 1
         }
     }

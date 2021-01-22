@@ -14,7 +14,6 @@ const Labelsmenu = ({ data }) => {
             paddingBottom: "5px",
             fontSize: "20px",
             padding: "20px 0",
-            // background: 'rgba(156, 255, 242, 0.18)',
             fontFamily: 'Papyrus'
         },
         cont_name: {

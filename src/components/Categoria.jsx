@@ -3,18 +3,22 @@ import {Redirect, useHistory} from "react-router-dom";
 import NavUtils from './NavUtils';
 import Allergensmodal from './Allergensmodal';
 import Qrmodal from './Qrmodal';
-import axios from "axios";
-import {CONNECT_TOKEN} from '../data/restaurante';
 import {protocol, urlImage} from '../utils/utils';
 import {connect} from 'react-redux';
-import RestauranteData from "../redux/reducers/RestauranteData";
-import Spinnercircle from "./Spinnercircle";
 import Subcarta from './Subcarta';
-import Spinner from "./Spinner";
 import Emptymessage from "./Emptymessage";
 import Publibanner from "./publicidad/Publibanner";
+import {addNewStateSubcarta} from '../redux/actions'
 
-const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCategory, changesubcat, getChangeColor, token}) => {
+const Categorias = ({
+                        pedidoViewHandler,
+                        restauranteData,
+                        changedView,
+                        sendCategory,
+                        getChangeColor,
+                        subcarta,
+                        dataProductSel
+                    }) => {
 
     const history = useHistory();
     const cat = {
@@ -79,88 +83,30 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
         }
     }
 
-    const [idcarta, getIdcarta] = useState(null);
+    // const [idcarta, getIdcarta] = useState(null);
     const [categorias, getCategorias] = useState([]);
     const [verqr, getVerqr] = useState(false);//sirve para darle un estado inicial
     const [isVisible, getIsVisible] = useState(false);
     const [selected, getselected] = useState('carta');
-    const [carta, getCarta] = useState([])
-    let cartaOk = [];
-
-    // if(Object.keys(categorias).length > 0){
-    //      categorias.respuesta.filter(item => {
-    //          // return /carta/gi.test(item.nombrecarta)
-    //          return item.esmenu === 1
-    //      })
-    // }
 
     useEffect(() => {
-        // getCategorias(JSON.parse(localStorage.getItem('comandaApp')).data);
-        getCategorias(...restauranteData);
-        if (restauranteData.length > 0) {
-            const carta = restauranteData[0].respuesta.filter(item => item.esmenu === 0)
-            const cartasid = restauranteData[0].respuesta.map(item => item.id)
-            getIdcarta(cartasid)
+        //   -- LOGIC FOR ACTION BUTTON BACK ---
+        // TO RETURN OF MENU SUBCATEGORY, SET VIEW OF MENU.
+        if (dataProductSel.wordKey === 'menu') {
+            getselected('menus')
         }
-    }, [restauranteData]);
 
-//     useEffect(() => {
-//         // http://restaurante.comandaapp.es/api/ws/1/cLZDdvFTJcl5cWG/1
-//         // http://restaurante.comandaapp.es/api/ws/1/4xpD2gLLNSSdrRZ/1
-//         let url = "//restaurante.comandapp.es/api/ws/1/";
-//         const userHeader = {
-//             headers: {
-//                 "X-Requested-With": "XMLHttpRequest",
-//                 "Content-Type": "application/json"
-//             }
-//         };
-//
-//         const firstRequest = async (protocol, url, token, dataid) => {
-//         try {
-//             // console.log('CategoriaRequest', `${protocol}${url}${token}/${dataid}`)
-//             // Make a request
-//             const response = await axios.get(`${protocol}${url}${token}/${dataid}`, userHeader);
-//             const toString = JSON.stringify(response.data);
-//             const toObject = JSON.parse(toString);
-//             //to Localstorage
-//             localStorage.setItem(
-//                 "comandaAppCarta",
-//                 JSON.stringify(response.data)
-//             );
-//             //to State
-//             // if (!toObject.data.respuesta > 0) {
-//             //     localStorage.setItem(
-//             //         "comandaAppCarta",
-//             //         JSON.stringify(fakeData1)
-//             //     );
-//             //     getCarta(fakeData1.data.respuesta)
-//             // } else {
-//             await getCarta(toObject.data.respuesta);
-//             // }
-//
-//         } catch (error) {
-//             // localStorage.setItem(
-//             //     "comandaAppCarta",
-//             //     JSON.stringify(fakeData1)
-//             // );
-//             // getCarta(fakeData1.data.respuesta)
-//             console.log("error", error);
-//         }
-//     };
-//     //call to API
-//     if (idcarta !== null) {
-//         firstRequest(protocol, url, token, idcarta)
-//         getCarta(JSON.parse(localStorage.getItem('comandaAppCarta')));
-//     }
-//     // firstRequest(protocol, url, token, idcarta)
-//     // getCarta(JSON.parse(localStorage.getItem('comandaAppCarta')));
-// }, [idcarta, token, restauranteData])
+        getCategorias(...restauranteData);
+    }, [restauranteData, dataProductSel]);
 
     const selectedView = (e) => {
-        e.preventDefault()
-        getselected(e.target.id)
+        //RESET THE 'SUBCARTA' STATUS TO FALSE BY CLICKING ON BUTTON MENU OR CARD
+        addNewStateSubcarta(false)
+
+        e.preventDefault();
+        getselected(e.target.id);
         if (e.target.id === 'menus') {
-            getChangeColor()
+            getChangeColor();
         }
     }
 
@@ -168,33 +114,9 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
         !isVisible ? getIsVisible(true) : getIsVisible(false);
     };
 
-
-    // const sendCategory = (item1, item2, item3, wordKey, idcarta, seccat) => {
-    //     localStorage.setItem('categorySelected', JSON.stringify({
-    //         id: item1,
-    //         nombre: item2,
-    //         precio: item3,
-    //         wordKey: wordKey,
-    //         idcarta: idcarta,
-    //         seccat: null
-    //     }));
-    //     if (seccat === true || seccat === false) {
-    //         changesubcat === false ? getChangesubcat(true) : getChangesubcat(false)
-    //     } else {
-    //         history.push("/subcategoria");
-    //     }
-    // };
-    // const [changesubcat, getChangesubcat] = useState(false)
-
-// //cambiar vista de categoria a subcategoria sin perder vista
-//     const changedView = () => {
-//         changesubcat === false ? getChangesubcat(true) : getChangesubcat(false)
-//     }
-
     const codigoqr = () => {
         !verqr ? getVerqr(true) : getVerqr(false);
     }//sirve para actualizar el estado
-
 
     if (restauranteData.length <= 0) {
         return <Redirect to='/'/>
@@ -222,62 +144,25 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
                           style={cat.span}
                           id="carta"
                           onClick={selectedView}
-                    >
-                        CARTA
-                    </span>
-                    {/*<span*/}
-                    {/*    className={selected === 'menus' ? 'span_no_select' : "span_select"}*/}
-                    {/*    style={cat.span}*/}
-                    {/*    id="carta"*/}
-                    {/*    onClick={selectedView}*/}
-                    {/*>*/}
-                    {/*    CARTA*/}
-                    {/*</span>*/}
+                    >CARTA</span>
                     <span className={selected === 'carta' ? 'span_no_select button' : "span_select button"}
                           style={cat.span}
                           id="menus"
                           onClick={selectedView}
-                    >
-                        MENU
-                    </span>
-                    {/*<span*/}
-                    {/*    className={selected === 'carta' ? 'span_no_select' : "span_select"}*/}
-                    {/*    style={cat.span}*/}
-                    {/*    id="menus"*/}
-                    {/*    onClick={selectedView}*/}
-                    {/*>*/}
-                    {/*    MENUS*/}
-                    {/*</span>*/}
+                    > MENU</span>
                 </div>
-                {/*********************/}
-                {/*********************/}
-                {/*********************/}
-                {/*IMPORTANTE: ESTABLECER SEMÁFORO CUANDO EL BACK MANDE ARRAY CON IMÁGENES*/}
                 {
                     restauranteData[0].tpsuscrip === 1 || restauranteData[0].tpsuscrip === 6 ?
                         <Publibanner background={true}/>
                         :
                         null
                 }
-                {/*********************/}
-                {/*********************/}
-                {/*********************/}
-                {selected === 'carta' && categorias.mensaje === 'OK' && carta ? (
+                {selected === 'carta' && categorias.mensaje === 'OK' ? (
                         //changesubcat establece el cambio de vista a subcategoría para
-                        changesubcat === false ?
+                        subcarta === false ?
                             categorias.respuesta.map(item => {
                                 if (!item.esmenu) {
                                     return (
-                                        // <Fragment>
-                                        // <Carta
-                                        //     sendCategory={sendCategory}
-                                        //     senditem={item}
-                                        //     styles={cat}
-                                        //     idcarta={item.id}
-                                        //     changesubcat={changesubcat}
-                                        //     changedView={changedView}
-                                        // />
-
                                         <div
                                             className="cont_childs"
                                             onClick={() => sendCategory(item.categoria_id, item.categoria, null, 'carta', item.id, true)}
@@ -312,7 +197,6 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
                                 }
                             })
                             :
-                            // <Spinner/>
                             <Subcarta
                                 sendCategory={sendCategory}
                                 changedView={changedView}
@@ -320,10 +204,13 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
                             />
 
                     ) :
+                    selected === 'carta' ?
+                        <Emptymessage/>
+                        :
                         null
                 }
                 {/*ESTO LO CAMBIAREMOS MÁS ADELANTE PARA OPTIMIZAR. sE CONVERTIRÁ EN COMPONENTECADA OPCIÓN*/}
-                {selected === 'menus' && categorias.mensaje === 'OK' && carta ? (
+                {selected === 'menus' && categorias.mensaje === 'OK' ? (
                         categorias.respuesta.map((item, index) => {
                             // if(/menú/gi.test(item.nombrecarta)) {
                             if (item.esmenu) {
@@ -377,7 +264,9 @@ const Categorias = ({pedidoViewHandler, restauranteData, changedView, sendCatego
 function mapStateToProps(state) {
     return {
         restauranteData: state.RestauranteData.RestauranteProfile,
-        token: state.Token.token
+        token: state.Token.token,
+        subcarta: state.SwitchMenu.subcarta,
+        dataProductSel: state.DataProductSelected.dataProductSel
     }
 }
 

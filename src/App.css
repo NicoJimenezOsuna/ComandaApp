@@ -385,6 +385,7 @@ button:focus {
     position: relative;
     /*width: calc(100% - 52%);*/
     width: 100%;
+    min-height: 200px;
     margin: 1%;
     text-align: center;
     line-height: 75px;
@@ -399,6 +400,7 @@ button:focus {
         position: relative;
         /*width: calc(100% - 68.7%);*/
         width: 48%;
+        min-height: 200px;
         margin: 1%;
         text-align: center;
         line-height: 75px;
@@ -412,7 +414,7 @@ button:focus {
 .padre {
     display: flex;
     flex-flow: row wrap;
-    padding: 1%;
+    padding: 0 1% 1% 1%;
 }
 
 a {
@@ -850,7 +852,6 @@ ul.uloptionsmenuhome {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -1026,6 +1027,9 @@ table {
 * ESTILOS FOOTER
 *
 */
+.lightOpacity{
+    opacity: .3;
+}
 .opacity {
     opacity: 1;
     bottom: -30em;

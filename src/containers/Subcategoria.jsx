@@ -19,7 +19,8 @@ import {Redirect} from "react-router-dom";
 import {connect} from 'react-redux';
 import {
     addPedidoMenu,
-    sumProductsMenu
+    sumProductsMenu,
+    addNewProductSelected
 } from "../redux/actions";
 import {dosDecim} from "../utils/utils";
 import Publibanner from "../components/publicidad/Publibanner";
@@ -27,7 +28,7 @@ import Login from "../components/homecomandapp/Login";
 import {useId} from "react-id-generator";
 
 
-const Subcategorias = ({restauranteData, PedidosMenu}) => {
+const Subcategorias = ({restauranteData, PedidosMenu, dataProductSel}) => {
 
     const [htmlId] = useId();
 
@@ -86,7 +87,10 @@ const Subcategorias = ({restauranteData, PedidosMenu}) => {
     };//sirve para actualizar el estado
 
     useEffect(() => {
-        getSubcategorias(JSON.parse(localStorage.getItem("categorySelected")));
+        let isMounted = true;
+        if (isMounted) {
+        // getSubcategorias(JSON.parse(localStorage.getItem("categorySelected")));
+        getSubcategorias(dataProductSel);
         getMapamodal(verMapamodal);
         getMailmodal(verMailmodal);
 
@@ -97,17 +101,22 @@ const Subcategorias = ({restauranteData, PedidosMenu}) => {
         // } else {
         //     //hacer algo si localstorage está vacío
         // }
-
+        }
+        return () => isMounted = false;
 
     }, [restauranteData, verMapamodal, verMailmodal]);
 
     useEffect(() => {
-        getValueradio({
-            ...valuRadio,
-            id: subcategorias.id,
-            nombre: subcategorias.nombre,
-            precio: parseFloat(dosDecim(subcategorias.precio, 2))
-        })
+        let isMounted = true;
+        if (isMounted) {
+            getValueradio({
+                ...valuRadio,
+                id: subcategorias.id,
+                nombre: subcategorias.nombre,
+                precio: parseFloat(dosDecim(subcategorias.precio, 2))
+            })
+        }
+        return () => isMounted = false;
     }, [subcategorias.id, subcategorias.nombre, subcategorias.precio])
 
     //define y pasa por props los títulos
@@ -361,19 +370,12 @@ const Subcategorias = ({restauranteData, PedidosMenu}) => {
                     visible={visibleHandler}
                     pedidoViewHandler={pedidoViewHandler}
                 />
-                {/*********************/}
-                {/*********************/}
-                {/*********************/}
-                {/*IMPORTANTE: ESTABLECER SEMÁFORO CUANDO EL BACK MANDE ARRAY CON IMÁGENES*/}
                 {
                     restauranteData[0].tpsuscrip === 1 || restauranteData[0].tpsuscrip === 6 ?
                         <Publibanner background={true}/>
                         :
                         null
                 }
-                {/*********************/}
-                {/*********************/}
-                {/*********************/}
                 <div className="padre">
                     <Migas data={subcategorias.nombre} visible={visibleHandler}/>
                     {renderCategory()}
@@ -397,7 +399,8 @@ const Subcategorias = ({restauranteData, PedidosMenu}) => {
 function mapStateToProps(state) {
     return {
         restauranteData: state.RestauranteData.RestauranteProfile,
-        PedidosMenu: state.PedidosMenu.pedidoMenu
+        PedidosMenu: state.PedidosMenu.pedidoMenu,
+        dataProductSel: state.DataProductSelected.dataProductSel
     }
 }
 

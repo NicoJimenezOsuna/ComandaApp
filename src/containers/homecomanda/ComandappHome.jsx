@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useState, useRef} from 'react';
 import {Redirect} from "react-router-dom";
 import {connect} from 'react-redux';
 import MenuHome from "../../components/homecomandapp/MenuHome";
@@ -8,13 +8,30 @@ import Header from "../../components/Header";
 import Profileuser from "../../components/homecomandapp/Profileuser";
 import SendComanda from "../../components/homecomandapp/SendComanda";
 import OrderStatus from "../../components/homecomandapp/OrderStatus";
+import OrderHistory from "../../components/homecomandapp/OrderHistory";
 import {
-    dischardFull
-} from '../../redux/actions/index';
+    dischardFull,
+    addLastOrder,
+    addPendingOrders,
+    addEndOrders
+} from '../../redux/actions/index'
+import {
+    HTTP_PROTOCOL,
+    URL_MAIN,
+    USER_HEADERS,
+    PATH_API
+} from '../../data/connect_data_restaurantes';
 import axios from "axios";
 import {urlImage} from "../../utils/utils";
+import Spinnercircle from "../../components/Spinnercircle";
 
-const ComandappHome = ({restauranteData, clientProfile, reduxToken}) => {
+const ComandappHome = ({
+                           restauranteData,
+                           clientProfile,
+                           reduxToken,
+                           pendingOrders,
+                           lastOrder
+                       }) => {
 
     const menu = {
         cont_img: {
@@ -43,7 +60,31 @@ const ComandappHome = ({restauranteData, clientProfile, reduxToken}) => {
     const [completeOrder, getCompleteOrder] = useState({});
     const [finallySend, setFinallySend] = useState(false);
     const [errormessage, getErrorMessage] = useState('');
-    const [errorModalOrder, getErrorModalOrder] = useState('')
+    const [errorModalOrder, getErrorModalOrder] = useState('');
+    const [princOrder, getPrincOrder] = useState({});
+    const [onSpinner, getOnspinner] = useState('off');
+
+    useEffect(() => {
+        let is_unmount = true;
+        //CHECK ORDERS
+        if (clientProfile.telefono) {
+            // http://restaurante.comandapp.es/api/ws/9/cLZDdvFTJcl5cWG/TLF/' + clientProfile.telefono
+            axios.get(`${HTTP_PROTOCOL}${URL_MAIN}${PATH_API}9/${reduxToken}/${clientProfile.telefono}`, USER_HEADERS)
+                .then(response => {
+                    if (is_unmount) {
+                        const numpedido_descend = response.data.data.respuesta.sort((a, b) => b.numpedido - a.numpedido)
+                        // CLASSIFY ORDERS PENDING DELIVERY
+                        //--PENDING ORDERS:
+                        addPendingOrders(numpedido_descend.filter(order => order.estado_id >= 5))
+                        //--END ORDERS:
+                        addEndOrders(numpedido_descend.filter(order => order.estado_id < 5))
+                    }
+                }).catch(error => console.log(error))
+        }
+        return () => { // ComponentWillUnmount in Class Component
+            is_unmount = false
+        }
+    }, [clientProfile.telefono])
 
     const SendComandaFull = () => {
         if (completeOrder.length === 0) return;
@@ -55,7 +96,7 @@ const ComandappHome = ({restauranteData, clientProfile, reduxToken}) => {
                 'Access-Control-Allow-Origin': '*'
             }
         };
-
+        getOnspinner('on');
         axios.post('http://restaurante.comandapp.es/api/ws/6/' + reduxToken,
             completeOrder,
             userHeader
@@ -72,12 +113,13 @@ const ComandappHome = ({restauranteData, clientProfile, reduxToken}) => {
 
                     }, 2500);
                     getCompleteOrder({})
+                    addLastOrder(response.data.data.respuesta.id);
                     localStorage.setItem('pedionline', JSON.stringify(response))
-                    // console.log(response.data.data.mensaje)
+                    getOnspinner('off');
                 }
             })
             .catch(error => {
-                // console.log(error)
+                getOnspinner('off');
                 getErrorModalOrder('Error en la conexión.')
             })
         getCompleteOrder({})
@@ -110,7 +152,12 @@ const ComandappHome = ({restauranteData, clientProfile, reduxToken}) => {
 
     return (
         <div className="subRootHome">
-            <Header/>
+            {
+                expandmenu ?
+                    null :
+                    <Header/>
+            }
+
             {/*CONFIRM WINDOW*/}
             <div className={confirmbox ?
                 "displayed absolute_medium confirm_box"
@@ -135,7 +182,7 @@ const ComandappHome = ({restauranteData, clientProfile, reduxToken}) => {
                     alignItems: 'center',
                     padding: '.5em 1em'
                 }}>
-                    {errorModalOrder.length > 0  && !finallySend ?
+                    {errorModalOrder.length > 0 && !finallySend ?
                         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                             <ErrorIcon style={{
                                 maxWidth: '4em',
@@ -154,30 +201,33 @@ const ComandappHome = ({restauranteData, clientProfile, reduxToken}) => {
                             </button>
                         </div>
                         :
-                        !finallySend ?
-                            <Fragment>
-                                <button className="confirmbox_button" type="button"
-                                        onClick={() => SendComandaFull()}
-                                >SI
-                                </button>
-                                <button className="confirmbox_button" type="button"
-                                        onClick={() => getConfirmBox(false)}
-                                >NO
-                                </button>
-                            </Fragment>
+                        onSpinner === 'on' ?
+                            <Spinnercircle/>
                             :
-                            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                                <Confirm style={{
-                                    maxWidth: '4em',
-                                    maxHeight: '4em',
-                                    fill: 'green'
-                                }}/>
-                                <p style={{
-                                    color: 'green',
-                                    fontFamily: 'Papyrus',
-                                    fontSize: '1.3em'
-                                }}>Enviado con éxito</p>
-                            </div>
+                            !finallySend ?
+                                <Fragment>
+                                    <button className="confirmbox_button" type="button"
+                                            onClick={() => SendComandaFull()}
+                                    >SI
+                                    </button>
+                                    <button className="confirmbox_button" type="button"
+                                            onClick={() => getConfirmBox(false)}
+                                    >NO
+                                    </button>
+                                </Fragment>
+                                :
+                                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                                    <Confirm style={{
+                                        maxWidth: '4em',
+                                        maxHeight: '4em',
+                                        fill: 'green'
+                                    }}/>
+                                    <p style={{
+                                        color: 'green',
+                                        fontFamily: 'Papyrus',
+                                        fontSize: '1.3em'
+                                    }}>Enviado con éxito</p>
+                                </div>
                     }
                 </div>
                 <img src={urlImage() + restauranteData[0].logo} alt="logo restaurante"
@@ -194,8 +244,6 @@ const ComandappHome = ({restauranteData, clientProfile, reduxToken}) => {
                     position: 'sticky',
                     top: 0,
                     minWidth: '100%',
-                    // height: '100%',
-                    // height: expandmenu ? '100%' : 0,
                     overflow: 'visible',
                     zIndex: '0'
                 }}>
@@ -203,12 +251,6 @@ const ComandappHome = ({restauranteData, clientProfile, reduxToken}) => {
                               expandmenu={expandmenu}
                               changeView={changeView}
                     />
-                    {/*<div*/}
-                    {/*    style={menu.cont_img}>*/}
-                    {/*    <img id="img_boton_comanda"*/}
-                    {/*         style={menu.img}*/}
-                    {/*         src="./assets/img/homecomanda/comandapp_home_300.png" alt="logo comandahome socialpymes"/>*/}
-                    {/*</div>*/}
                 </div>
                 <div className={expandmenu ? 'reduce' : 'normal'}>
                     <div
@@ -234,7 +276,9 @@ const ComandappHome = ({restauranteData, clientProfile, reduxToken}) => {
                                         getErrorMessage={getErrorMessage}
                                     />;
                                 case "#estado-pedido":
-                                    return <OrderStatus/>;
+                                    return <OrderStatus />;
+                                case "#historico-pedidos":
+                                    return <OrderHistory/>
                                 default:
                                     return <Profileuser/>;
                             }
@@ -251,6 +295,8 @@ function mapStateToProps(state) {
         restauranteData: state.RestauranteData.RestauranteProfile,
         clientProfile: state.ClientProfile.clientProfile,
         reduxToken: state.Token.token,
+        pendingOrders: state.Orders.pendingOrders,
+        lastOrder: state.LastOrder.lastOrder
     }
 }
 

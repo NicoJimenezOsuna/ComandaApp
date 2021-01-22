@@ -5,7 +5,7 @@ const Labelscarta = ({ data, restauranteData }) => {
   const label = {
     cont_princ: {
       width: "100%",
-      margin: "20px 7.5px",
+      margin: '0 7.5px 20px 7.5px',
       borderTop: "2px solid rgb(112, 112, 112)",
       borderBottom: "2px solid rgb(112, 112, 112)",
       display: "flex",

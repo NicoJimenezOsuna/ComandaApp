@@ -7,8 +7,8 @@ import {ReactComponent as Nomenu} from "../icons/nutricion.svg";
 import {ReactComponent as Nocarta} from "../icons/cocina.svg";
 import DischardFullComanda from "./comandkeymenu/DischardFullComanda";
 import {ReactComponent as Iconbutton} from "../icons/homecomanda/fuego.svg";
-import {dischardFull} from "../redux/actions";
 import {Link} from 'react-router-dom';
+import {accessComandaHome} from '../data/tokens_access_comanda_home';
 
 const Listcomandamodal = (
     {
@@ -17,7 +17,8 @@ const Listcomandamodal = (
         products,
         productMenuSel,
         closeloginmodal,
-        clientProfile
+        clientProfile,
+        token
     }
 ) => {
     const comanda = {
@@ -145,12 +146,9 @@ const Listcomandamodal = (
         getMenuProduct(productMenuSel)
     }, [products, productMenuSel])
 
-
-// const ped = JSON.parse(localStorage.getItem('pedidosModal'))
     return (
         <div
             style={comanda.cont_princ}
-            // className={!isVisiblePedido ? "displayed_none" : "displayed"}
             className={!isVisiblePedido ? "displayed_none" : "displayed"}
         >
             <div style={comanda.cont_slider}>
@@ -204,15 +202,26 @@ const Listcomandamodal = (
                                 Realizar pedido
                             </button>
                             :
-                            <Link to="/comandappHome">
-                                <button style={comanda.boton_home}
-                                        onClick={closeloginmodal}
-                                >
-                                    <Iconbutton style={comanda.icon_button}
-                                    />
-                                    Realizar pedido
-                                </button>
-                            </Link>
+
+                                accessComandaHome.find(existToken => existToken.token === token) ?
+                                    <Link to="/comandappHome">
+                                        <button style={comanda.boton_home}
+                                                onClick={closeloginmodal}
+                                        >
+                                            <Iconbutton style={comanda.icon_button}
+                                            />
+                                            Realizar pedido
+                                        </button>
+                                    </Link>
+                                    :
+                                    <button style={comanda.boton_home}
+                                            className="lightOpacity"
+                                    >
+                                        <Iconbutton style={comanda.icon_button}
+                                        />
+                                        Realizar pedido
+                                    </button>
+
                         }
                     </div>
                 </div>
@@ -225,7 +234,8 @@ function mapStateToProps(state) {
     return {
         products: state.PedidosCarta.pedidoCarta,
         productMenuSel: state.PedidosMenu.pedidoMenu,
-        clientProfile: state.ClientProfile.clientProfile
+        clientProfile: state.ClientProfile.clientProfile,
+        token: state.Token.token,
     }
 }
 

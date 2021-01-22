@@ -8,8 +8,6 @@ const Qrmodal = ({codigoqr, verqr, restauranteData}) => {
         princ: {
             width: "100%",
             height: "100%",
-            //            maxWidth: '720px',
-            //            height: '100%',
             position: "absolute",
             top: 0,
             left: 0,
@@ -48,42 +46,38 @@ const Qrmodal = ({codigoqr, verqr, restauranteData}) => {
             padding: '10px 0 10px 20px',
             fontSize: `1.3rem`
         },
-        qr:{
-            maxWidth:`100%`,
+        qr: {
+            maxWidth: `100%`,
             maxHeight: '250px'
         },
         cabecera: {
             display: "flex",
-            justifyContent:"space-between",
+            justifyContent: "space-between",
             alignItems: 'flex-start'
         },
     };
 
     return (
-        <div
-            className={verqr ? "displayed" : "displayed_none"}
-            style={style.princ}
-        >
+        <div className={verqr ? "displayed" : "displayed_none"}
+             style={style.princ}>
             <div style={style.second}>
                 <div style={style.cabecera}>
-                <IconClose
-                    className="close"
-                    onClick={codigoqr}/>
-                <h1 style={style.h1}>
-                    Este es el código Qr <br/>
-                    que utiliza este establecimiento. ¡Compártelo!
-                </h1>
+                    <IconClose
+                        className="close"
+                        onClick={codigoqr}/>
+                    <h1 style={style.h1}>
+                        Este es el código Qr <br/>
+                        que utiliza este establecimiento. ¡Compártelo!
+                    </h1>
                 </div>
                 <div style={style.cont_data}>
-                    <img
-                        style={style.qr}
-                        src={restauranteData.length > 0 ? (urlImage() + restauranteData[0].codigoqr) : null} alt="Qr restaurante"/>
+                    <img style={style.qr}
+                         src={restauranteData.length > 0 ? (urlImage() + restauranteData[0].codigoqr) : null}
+                         alt="Qr restaurante"/>
                 </div>
             </div>
         </div>
     )
-
-
 };
 
 function mapStateToProps(state) {

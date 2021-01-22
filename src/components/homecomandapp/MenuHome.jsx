@@ -1,9 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React,{useEffect, useState, useRef} from 'react';
+import {Link} from 'react-router-dom';
 import {ReactComponent as Menusquare} from "../../icons/homecomanda/menu_square.svg";
+import {connect} from 'react-redux';
+import {urlImage} from "../../utils/utils";
 
-
-const MenuHome = ({expandMenuHome, expandmenu, changeView}) => {
+const MenuHome = ({expandMenuHome, expandmenu, changeView, restauranteData}) => {
     const menu = {
         cont_menu: {
             position: 'absolute',
@@ -24,16 +25,26 @@ const MenuHome = ({expandMenuHome, expandmenu, changeView}) => {
         }
     };
 
+    const logoComanda = useRef();
+    const [logoComandaHeight, getLogoComandaHeright] = useState('');
+
+    const logoComandappHeight = () => {
+        getLogoComandaHeright(logoComanda.current.clientHeight + 'px')
+    }
+    useEffect(()=>{
+        logoComandappHeight();
+    })
+
     return (
         <div style={menu.cont_menu}
              className={expandmenu ? "cont_menuhome nav-comandhome_expand" : "cont_menuhome nav-comandhome"}
              onClick={expandMenuHome}
         >
             <Menusquare style={menu.icon_menu}/>
-            {/*<div>*/}
-
-
-            <ul className="uloptionsmenuhome">
+            <ul className="uloptionsmenuhome"
+                // SET PADDING-TOP TO HEIGHT OF LOGO
+                style={{paddingTop:logoComandaHeight }}
+            >
                 <li className="lioptionsmenuhome"
                     id="datos-envio"
                     onClick={changeView}
@@ -52,6 +63,25 @@ const MenuHome = ({expandMenuHome, expandmenu, changeView}) => {
                 >Estado de pedido
                 </li>
                 <li className="lioptionsmenuhome"
+                    id={'historico-pedidos'}
+                    onClick={changeView}
+                >Histórico de pedidos
+                </li>
+                {restauranteData.length > 0 ?
+                    <li className="lioptionsmenuhome"
+                        ref={logoComanda}
+                    >
+                        <img src={urlImage() + restauranteData[0].logo} alt=""
+                             style={{
+                                 width: '3em',
+                                 height: 'auto'
+                             }}/>
+                    </li>
+                    :
+                    null
+                }
+
+                <li className="lioptionsmenuhome"
                     style={{
                         position: 'absolute',
                         top: '-.5em',
@@ -59,18 +89,22 @@ const MenuHome = ({expandMenuHome, expandmenu, changeView}) => {
                     }}
                 >
                     <Link to={'/categoria'}>
-                        <img src="assets/favicons/ms-icon-310x310.png" alt="logotipo compandapp"
+                        <img src="assets/img/comanda_transparente.png" alt="logotipo compandapp"
                              style={{
                                  width: '5rem',
                                  height: '5rem',
                                  display: 'block',
-                                 margin: '0 auto'
+                                 margin: '0px auto',
+                                 borderRadius: '50%',
+                                 background: 'linear-gradient(225deg, #8080808c, rgb(255, 255, 255))',
+                                 boxShadow: 'grey -3px 8px 31px -5px'
                              }}
                         />
                         <span style={{
                             fontSize: '1.3rem',
                             textAlign: 'center',
-                            display: 'block'
+                            display: 'block',
+                            color: '#757575'
                         }}>
                         volver a
                     </span>
@@ -79,15 +113,22 @@ const MenuHome = ({expandMenuHome, expandmenu, changeView}) => {
                             textAlign: 'center',
                             display: 'block',
                             lineHeight: 0,
-                            textDecoration: 'none'
+                            textDecoration: 'none',
+                            color: '#757575'
                         }}>
                         Comandapp
                     </span>
                     </Link>
                 </li>
             </ul>
-            {/*</div>*/}
         </div>
     )
 }
-export default MenuHome;
+
+function mapStateToProps(state) {
+    return {
+        restauranteData: state.RestauranteData.RestauranteProfile,
+    }
+}
+
+export default connect(mapStateToProps)(MenuHome);

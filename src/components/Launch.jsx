@@ -72,17 +72,22 @@ const Launch = ({logo}) => {
     return (
         <div style={styles.princ}>
             <Seo/>
-            <div style={styles.cont_logo}>
-                <div style={styles.logo_size}>
-                    <div style={styles.cont_logo_text}>
-                        <span style={styles.span_tu_carta}>Tu carta digital</span>
-                        <span style={styles.span_comanda_text}>ComandApp</span>
-                    </div>
-                    <LogoComanda style={styles.image_logo} alt="Logo de ComandaApp"/>
-                    {/*<img style={styles.image_princ} src={logo.length > 0 ? urlImage() + logo[0].logo : null}
-                         alt="Imagen de inicio"/>*/}
-                </div>
+            <div style={{width: '100%', marginBottom: '1em'}}>
+                <img src="./assets/img/comanda_free_azul_con_logo.png" alt="Comandapp free"
+                     style={{
+                         width: '100%',
+                         height: '100%'
+                     }}/>
             </div>
+            {/*<div style={styles.cont_logo}>*/}
+            {/*    <div style={styles.logo_size}>*/}
+            {/*        <div style={styles.cont_logo_text}>*/}
+            {/*            <span style={styles.span_tu_carta}>Tu carta digital</span>*/}
+            {/*            <span style={styles.span_comanda_text}>ComandApp</span>*/}
+            {/*        </div>*/}
+            {/*        <LogoComanda style={styles.image_logo} alt="Logo de ComandaApp"/>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
             <img style={styles.image_princ} src={logo.length > 0 ? urlImage() + logo[0].logo : null}
                  alt="Imagen de inicio"/>
             <Binicio/>

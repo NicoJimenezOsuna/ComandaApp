@@ -14,8 +14,12 @@ import {Redirect} from 'react-router-dom'
 import {useHistory} from "react-router-dom";
 import Login from '../components/homecomandapp/Login'
 import Seo from "../components/Seo/Seo";
+import {
+    addNewStateSubcarta,
+    addNewProductSelected
+} from '../redux/actions'
 
-function App({restauranteData}) {
+function App({restauranteData, subcarta, dataProductSel}) {
     const history = useHistory();
     //Constantes de modales
     const [verMapamodal, getMapamodal] = useState(false);
@@ -47,22 +51,37 @@ function App({restauranteData}) {
         !verMailmodal ? getMailmodal(true) : getMailmodal(false);
     }//sirve para actualizar el estado
 
-    //cambiar vista de categoria a subcategoria sin perder vista
+    // CHANGE CATEGORY WITHOUT LOSING VIEW (MENU OR CARTA).
     const changedView = () => {
-        changesubcat === false ? getChangesubcat(true) : getChangesubcat(false)
+        // changesubcat === false ? getChangesubcat(true) : getChangesubcat(false)
+        // subcarta === false ? addNewStateSubcarta(true) : addNewStateSubcarta(false)
+        // addNewStateSubcarta(false)
     }
-    const sendCategory = (item1, item2, item3, wordKey, idcarta, seccat) => {
-        localStorage.setItem('categorySelected', JSON.stringify({
+    const sendCategory = (item1, item2, item3, wordKey, idcarta, isSubcarta) => {
+        // localStorage.setItem('categorySelected', JSON.stringify({
+        //     id: item1,
+        //     nombre: item2,
+        //     precio: item3,
+        //     wordKey: wordKey,
+        //     idcarta: idcarta,
+        //     // seccat: null
+        // }));
+        addNewProductSelected({
             id: item1,
             nombre: item2,
             precio: item3,
             wordKey: wordKey,
             idcarta: idcarta,
-            seccat: null
-        }));
-        if (seccat === true || seccat === false) {
-            changesubcat === false ? getChangesubcat(true) : getChangesubcat(false)
+        })
+        // if (seccat === true || seccat === false) {
+        // if (seccat === true || seccat === false) {
+        if (isSubcarta === true) {
+            // changesubcat === false ? getChangesubcat(true) : getChangesubcat(false)
+            // subcarta === false ? addNewStateSubcarta(true) : addNewStateSubcarta(false)
+            //IF 'isSubcarta' IS TRUE, UPDATE STATE OF SUBCARTA FOR RENDER.
+            addNewStateSubcarta(true)
         } else {
+            // IF IT IS NOT TRUE, THE SUBCATEGORY WILL BE RENDERED WITH THE DATA FROM THE SELECTED SUBCATEGORY.
             history.push("/subcategoria");
         }
     };
@@ -125,7 +144,9 @@ function App({restauranteData}) {
 
 function mapStateToProps(state) {
     return {
-        restauranteData: state.RestauranteData.RestauranteProfile
+        restauranteData: state.RestauranteData.RestauranteProfile,
+        subcarta: state.SwitchMenu.subcarta,
+        dataProductSel: state.DataProductSelected.dataProductSel
     }
 }
 

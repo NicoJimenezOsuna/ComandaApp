@@ -5,18 +5,21 @@ import React, {Fragment, useEffect, useState} from "react";
 import Spinner from "../components/Spinner";
 import Socialpymes from "../components/Socialpymes";
 import Launch from "../components/Launch";
-import {CONNECT_TOKEN, URL} from '../data/restaurante';
-import {protocol} from '../utils/utils';
+import {
+    HTTP_PROTOCOL,
+    URL_MAIN,
+    USER_HEADERS,
+    PATH_API,
+    FOLDER_STORAGE
+} from '../data/connect_data_restaurantes';
 import {ReactComponent as LogoComanda} from "../icons/logo.svg";
 import Errormessage from "../components/Errormessage";
-// import {firstRequest} from '../data/restaurante';
-import {ReactComponent as Refresh} from "../icons/refresh.svg";
 import {connect} from 'react-redux';
 import axios from "axios";
-import {addProfile, addToken} from "../redux/actions";
+import {addProfile, addToken, addArrPubli} from "../redux/actions";
 import Seo from "../components/Seo/Seo";
 
-const Launcher = ({restauranteData, reduxToken}) => {
+const Launcher = ({reduxToken}) => {
     const launcher = {
         princ: {
             height: '100%',
@@ -68,45 +71,40 @@ const Launcher = ({restauranteData, reduxToken}) => {
             addToken(token)
         }
 
-
-        let url = "//restaurante.comandapp.es/api/ws/0/";
-
         const firstRequest = async (
             protocol,
             url,
+            pathAPI,
             token,
             getMensaje,
             getDatos,
+            header,
             getNoconnection
         ) => {
             try {
-
-                const userHeader = {
-                    headers: {
-                        "X-Requested-With": "XMLHttpRequest",
-                        "Content-Type": "application/json",
-                        'Access-Control-Allow-Origin': '*'
-                    }
-                };
-                // Make a request
-                const response = await axios.get(`${protocol}${url}${token}`, userHeader);
-                const toString = JSON.stringify(response.data);
-                const toObject = JSON.parse(toString);
+                // Make a request cLZDdvFTJcl5cWG
+                // "//restaurante.comandapp.es/api/ws/0/";
+                const response = await axios.get(`${protocol}${url}${pathAPI}0/${token}`, header);
                 //MOSTRAR DEMO BÁSICA EN DICHO HOST
-                if(window.location.host === 'democappbasica.socialpymes.com'){
-                // if(window.location.host === 'localhost:3000' || window.location.host === '192.168.0.24:3000'){
-                    toObject.data.tpsuscrip = 2
+                if (window.location.host === 'democappbasica.socialpymes.com') {
+                    //FOR SIMPLE COMANDA MODE
+                    // if(window.location.host === 'localhost:3000' || window.location.host === '192.168.0.24:3000'){
+                    response.data.data.tpsuscrip = 2
                 }
                 //to Localstorage
                 if (isConnect) {
-                    if (toObject.data.mensaje !== 'OK') {
-                        getMensaje(toObject.data.mensaje)
+                    if (response.data.data.mensaje !== 'OK') {
+                        getMensaje(response.data.data.mensaje)
                     } else {
-                        getMensaje(toObject.data.mensaje)
-                        addProfile(toObject.data)
+                        // getMensaje(toObject.data.mensaje)
+                        getMensaje(response.data.data.mensaje)
+                        // addProfile(toObject.data)
+                        addProfile(response.data.data)
+                        // addArrPubli(toObject.data.publicidad)
+                        addArrPubli(response.data.data.publicidad)
                     }
                 }
-                await getDatos(toObject);
+                await getDatos(response.data.data);
                 // getNoconnection(false)
             } catch (error) {
                 // getNoconnection(true)
@@ -116,10 +114,21 @@ const Launcher = ({restauranteData, reduxToken}) => {
         };
 
 
-        firstRequest(protocol, url, reduxToken, getMensaje, getDatos)
+        firstRequest(HTTP_PROTOCOL, URL_MAIN, PATH_API, reduxToken, getMensaje, getDatos, USER_HEADERS)
 
         return () => isConnect = false
     }, [isreload, reduxToken]);
+
+    const [orientationScreen, getOrientationScreen] = useState('')
+
+    useEffect(() => {
+        function detectOrientation() {
+            getOrientationScreen(window.screen.orientation.type)
+        }
+
+        window.addEventListener('orientationchange', detectOrientation)
+        return () => window.removeEventListener('orientationchange', detectOrientation);
+    })
 
     const a = (value) => setTimeout(value => {
         getIsreload(false)
@@ -139,17 +148,28 @@ const Launcher = ({restauranteData, reduxToken}) => {
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    height: '100%'
+                    minHeight: '100%'
                 }}>
-                    <LogoComanda style={{height: '30%'}}/>
-                    <div>
-                        <div style={launcher.ComandApp}>
-                            <span>ComandApp</span>
+                    {orientationScreen === 'portrait-primary' ?
+                        <Fragment>
+                            <LogoComanda style={{height: '30%'}}/>
+                            <div style={{width: '100%'}}>
+                                <img src="./assets/img/comanda_free_azul_no_logo.png" alt="Comandapp free"
+                                     style={{
+                                         width: '100%',
+                                         height: '100%'
+                                     }}/>
+                            </div>
+                        </Fragment>
+                        :
+                        <div style={{width: '100%'}}>
+                            <img src="./assets/img/comanda_free_azul_con_logo.png" alt="Comandapp free"
+                                 style={{
+                                     width: '100%',
+                                     height: '100%'
+                                 }}/>
                         </div>
-                        <div style={launcher.Tu_carta_digital}>
-                            <span>Tu carta digital</span>
-                        </div>
-                    </div>
+                    }
                     <div style={{position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                         {mensaje === 'Error al conectar. Revise su conexión o token de acceso' ?
                             // mensaje === 'ERROR NO HAY RESTAURANTE O RESTAURANTE INACTIVO' ?

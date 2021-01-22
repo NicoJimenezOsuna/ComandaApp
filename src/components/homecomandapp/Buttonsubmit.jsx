@@ -1,9 +1,6 @@
 import React from 'react';
 
 const Buttonsubmit = () => {
-
-
-
     return (
         <button
             type="submit"

@@ -42,7 +42,7 @@ const Modalmenuselected = ({
                                     return (
                                         <li key={index}
                                             style={{listStyle: 'square', fontWeight: 'bolder'}}
-                                        >{item[prop]}</li>
+                                        >{item[prop].split('?')[0]}</li>
                                     )
                                 }
                             })

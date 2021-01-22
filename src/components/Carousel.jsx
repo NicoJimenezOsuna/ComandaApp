@@ -1,14 +1,26 @@
 import React, {Fragment, useState, useEffect} from "react";
 import Spinner from './Spinner';
-import '../data/data'
-import {allergens} from "../data/data";
-import {dosDecim, protocol, urlImage, urlComplete} from "../utils/utils";
-import Commandkeypad from './Commandkeypad'
+import {
+    HTTP_PROTOCOL,
+    URL_MAIN,
+    USER_HEADERS,
+    PATH_API,
+    FOLDER_STORAGE
+} from '../data/connect_data_restaurantes';
+import {dosDecim, protocol, urlImage} from "../utils/utils";
+import Commandkeypad from './Commandkeypad';
 import {connect} from "react-redux";
-import "../App.css"
+import "../App.css";
 import axios from "axios";
 
-const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, products, token}) => {
+const Carousel = ({
+                      datas,
+                      dataInicios,
+                      actualizaPropDataProductId,
+                      wordkey,
+                      products,
+                      token
+                  }) => {
     const slide = {
         column: {
             display: 'flex',
@@ -79,9 +91,6 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
         divSpanButton: {
             width: '100%',
             mergin: '0 2em',
-            // display: 'flex',
-            // justifyContent: 'space-between',
-            // alignItems: 'center',
             margin: '.6em 0',
             alignSelf: 'end'
         },
@@ -118,104 +127,72 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
     const [buttonPrevius, getButtonPrevius] = useState(true);
     const [stwordkey, getStWordkey] = useState('');
     const [product, getProduct] = useState(false);
-    const [lallergens, getAllergens] = useState([])
-    const [idplato, getIdplato] = useState(null)
+    const [lallergens, getAllergens] = useState([]);
+    const [idplato, getIdplato] = useState(null);
 
     useEffect(() => {
         getDataSlider(datas);
         getDataInicio(dataInicios);
-        getStWordkey(wordkey)
-        getProduct(products)
+        getStWordkey(wordkey);
+        getProduct(products);
 
     }, [datas, dataInicios, wordkey, products]);
 
     useEffect(() => {
         if (datas && dataInicios) {
-            getIdplato(datas[dataInicios].plato_id)
+            getIdplato(datas[dataInicios].plato_id);
         }
     }, [datas, dataInicios])
 
     useEffect(() => {
-        // let isSubscribed = true;
-
         if (datas.length > 0) {
-
-            // http://restaurante.comandapp.es/storage/rest0/pescado.png
-            // http://restaurante.comandapp.es/api/ws/3/ypOoSpbC97phxCx/56
-            let url = "//restaurante.comandapp.es/api/ws/3/";
-            const userHeader = {
-                headers: {
-                    "X-Requested-With": "XMLHttpRequest",
-                    "Content-Type": "application/json"
-                }
-            };
-
-            const firstRequest = async (protocol, url, token, idplato) => {
+            const allergensRequest = async (headers, protocol, url, pathApi, token, idplato) => {
                 try {
-                    console.log('CategoriaRequest', `${protocol}${url}${token}/${idplato}`)
                     // Make a request
-                    const response = await axios.get(`${protocol}${url}${token}/${idplato}`, userHeader);
-                    const toString = JSON.stringify(response.data);
-                    const toObject = JSON.parse(toString);
-
-                    // if (isSubscribed) {
-                    await getAllergens(toObject.data.respuesta);
-                    // }
+                    const response = await axios.get(`${protocol}${url}${pathApi}3/${token}/${idplato}`, USER_HEADERS);
+                    await getAllergens(response.data.data.respuesta);
 
                 } catch (error) {
                     console.log("error", error);
                 }
             };
-            firstRequest(protocol, url, token, datas[dataInicios].plato_id)
-
-
+            allergensRequest(USER_HEADERS, HTTP_PROTOCOL, URL_MAIN, PATH_API, token, datas[dataInicios].plato_id);
         }
-        // return () => isSubscribed = false
-    }, [datas, idplato, dataInicios, dataSlider, token,])
+    }, [USER_HEADERS, HTTP_PROTOCOL, URL_MAIN, PATH_API, datas, idplato, dataInicios, dataSlider, token])
 
     const renderSlider = () => {
-        // let productoSel = dataSlider.find(item => {
-        //     if (item.plato_id === dataInicio.id) return item;
-        // })
-        let productoSel = dataSlider[dataInicio];
-        // console.log('productSel', productoSel)
-        return productoSel;
+        return dataSlider[dataInicio];
     }
 
     const controllerButton = (e) => {
         let position = 0;
         dataSlider.find(item => {
             if (item.plato_id === dataInicio) {
-                position = dataSlider.indexOf(item)
+                position = dataSlider.indexOf(item);
             }
-            return position
+            return position;
         });
-        // console.log('pos', position)
-        // console.log('id', dataInicio)
         if (e.target.id === 'next') {
             if (position === dataSlider.length - 1) {
-                // getDataInicio(dataSlider[0].plato_id)
-                getButtonNext(false)
+                getButtonNext(false);
             } else {
-                getButtonPrevius(true)
+                getButtonPrevius(true);
                 getDataInicio(dataInicio + 1);
                 //Update initial state of dataProductId in the Subcategoria Component to receive it
                 // again as props and not lose state between props and last item.id selected
-                actualizaPropDataProductId(dataInicio + 1)
+                actualizaPropDataProductId(dataInicio + 1);
             }
         }
 
         if (e.target.id === 'previus') {
             if (position === 0) {
-                // getDataInicio(dataSlider[dataSlider.length - 1].plato_id)
-                // getButtonPrevius(false)
-                actualizaPropDataProductId(dataInicio - 1)
+                actualizaPropDataProductId(dataInicio - 1);
             } else {
-                getButtonNext(true)
+                getButtonNext(true);
                 getDataInicio(dataInicio - 1);
                 //Update initial state of dataProductId in the Subcategoria Component to receive it
                 // again as props and not lose state between props and last item.id selected
-                actualizaPropDataProductId(dataInicio - 1)
+                actualizaPropDataProductId(dataInicio - 1);
             }
         }
     }
@@ -285,14 +262,14 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
                                                             'paddingAllergensModal'
                                                     }
                                                 >
-                                                    <img style={{width: '3em'}} src={urlImage()+item.imagen}
+                                                    <img style={{width: '3em'}} src={urlImage() + item.imagen}
                                                          alt={item.nombrealergeno}/>
                                                     <p>{item.nombrealergeno}</p>
                                                 </li>
                                             )
-                                    })
-                                    :
-                                    'Alergenos no disponibles'
+                                        })
+                                        :
+                                        'Alergenos no disponibles'
                                     }
                                 </ul>
                                 <figure style={slide.figure}>
@@ -303,13 +280,6 @@ const Carousel = ({datas, dataInicios, actualizaPropDataProductId, wordkey, prod
                                     <figcaption>{renderSlider().nombreplato}</figcaption>
                                 </figure>
                                 <div style={slide.descrip}>
-                                    {/*<h3 style={{*/}
-                                    {/*    fontWeight: 'bolder',*/}
-                                    {/*    textDecoration: 'underline',*/}
-                                    {/*    marginBottom: '.5em'*/}
-                                    {/*}}>*/}
-                                    {/*    {renderSlider().nombreplato}*/}
-                                    {/*</h3>*/}
                                     <p style={{fontWeight: 'bolder'}}>
                                         {renderSlider().observaciones}
                                     </p>

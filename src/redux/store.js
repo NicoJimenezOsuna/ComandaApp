@@ -13,7 +13,9 @@ const createStoreWithMiddleware = applyMiddleware(
             'PedidosCarta',
             "RestauranteData",
             'Token',
-            'ClientProfile'
+            'ClientProfile',
+            'LastOrder',
+            'Orders'
         ]
     }), // Saving done here
 )(createStore);
@@ -24,7 +26,9 @@ const store = createStoreWithMiddleware(
             'PedidosMenu',
             'PedidosCarta',
             'Token',
-            'ClientProfile'
+            'ClientProfile',
+            'LastOrder',
+            'Orders'
             // "RestauranteData"
         ]
     }), // Loading done here

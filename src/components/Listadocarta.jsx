@@ -2,13 +2,22 @@ import React, {Fragment, useEffect, useState} from "react";
 import axios from "axios";
 import Buttoninfo from "./Buttoninfo";
 import Spinnercircle from '../components/Spinnercircle';
-/*
- * IMPORT SUPPORT FUNCIONS
- */
-import {dosDecim, urlComplete, protocol} from "../utils/utils";
+import {dosDecim, urlComplete} from "../utils/utils";
 import {connect} from "react-redux";
+import {
+    HTTP_PROTOCOL,
+    URL_MAIN,
+    USER_HEADERS,
+    PATH_API
+} from '../data/connect_data_restaurantes';
 
-const Listadocarta = ({dataid, dataSliderHandler, token, restauranteData, productsCarta}) => {
+const Listadocarta = ({
+                          dataid,
+                          dataSliderHandler,
+                          token,
+                          restauranteData,
+                          productsCarta
+                      }) => {
     const listmenu = {
         cont_princ: {
             width: "100%",
@@ -43,63 +52,33 @@ const Listadocarta = ({dataid, dataSliderHandler, token, restauranteData, produc
         }
     };
 
-    let protocol = "http://";
-    let url = "restaurante.comandapp.es/api/ws/2/";
-    // let token = "cLzDdvFTJcl5cWg";
-    //    http://restaurante.comandaapp.es/api/ws/1/cLzDdvFTJcl5cWg/6
-    //    http://restaurante.comandaapp.es/api/ws/1/4xpD2gLLNSSdrRZ/6
-    // imagenes
-    // http://restaurante.comandaapp.es/storage/rest1/ensaladas-300.png
-
     const [products, getProducts] = useState({});
 
     useEffect(() => {
-        // const idcarta = JSON.parse(localStorage.getItem('categorySelected')).idcarta
-
-
-        const userHeader = {
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "Content-Type": "application/json"
-            }
-        };
-
-        // let idcarta = JSON.parse(localStorage.getItem('categorySelected')).idcarta
-
-        const catIdtRequest = async (protocol, url, token, dataid, idcarta) => {
+        //    http://restaurante.comandapp.es/api/ws/2/token/platoID/cartaID
+        const subcatCartatRequest = async (protocol, url, pathAPI, token, dataid, idcarta, header) => {
             try {
                 // Make a request
                 const response = await axios.get(
-                    `${protocol}${url}${token}/${idcarta}/${dataid}`,
-                    userHeader
-                );
-
-                const toString = JSON.stringify(response.data);
-                const toObject = JSON.parse(toString);
+                    `${protocol}${url}${pathAPI}2/${token}/${idcarta}/${dataid}`,
+                    header
+                )
                 //Incorporamos una key a la lista de productos con el id de la carta
-                const toObjectWithIdOfCarta = toObject.data.respuesta.map(item => {
+                const toObjectWithIdOfCarta = response.data.data.respuesta.map(item => {
                     item.carta_id = idcarta;
                     return item;
                 })
-
-                // if (!toObject.data.respuesta > 0) {
-                //     getProducts(fakeData2.data.respuesta)
-                // } else {
                 await getProducts(urlComplete(toObjectWithIdOfCarta));
-                // urlComplete(toObject.data.respuesta)
-                // console.log(urlComplete(toObject.data.respuesta))
-                // }
 
             } catch (error) {
-                // getProducts(fakeData2.data.respuesta)
                 console.log("error", error);
             }
         };
 
         //to State
-        catIdtRequest(protocol, url, token, dataid.id, dataid.idcarta);
+        subcatCartatRequest(HTTP_PROTOCOL, URL_MAIN, PATH_API, token, dataid.id, dataid.idcarta, USER_HEADERS);
 
-    }, [token, dataid, protocol, url]);
+    }, [HTTP_PROTOCOL, URL_MAIN, USER_HEADERS, PATH_API, token, dataid]);
 
     if (!Object.keys(products).length > 0) {
         return (
@@ -172,7 +151,6 @@ const Listadocarta = ({dataid, dataSliderHandler, token, restauranteData, produc
                 :
                 <Spinnercircle/>
             }
-            {/*    Aqui se mete los spiners de carga    */}
         </Fragment>
     );
 };

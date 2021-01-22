@@ -2,11 +2,25 @@ import React, {Fragment, useEffect, useState} from 'react';
 import {protocol, urlComplete} from "../utils/utils";
 import Buttoninfo from "./Buttoninfo";
 import axios from "axios";
-import {CONNECT_TOKEN} from "../data/restaurante";
+import {
+    HTTP_PROTOCOL,
+    URL_MAIN,
+    USER_HEADERS,
+    PATH_API
+} from '../data/connect_data_restaurantes';
 import Spinnercircle from "./Spinnercircle";
 import {connect} from "react-redux";
 
-const Platosmenus = ({catid, seccid, dataSliderHandler, token, data, getValue, labelsLength, getMenu, restauranteData}) => {
+const Platosmenus = ({
+                         catid,
+                         seccid,
+                         dataSliderHandler,
+                         token,
+                         data,
+                         getValue,
+                         labelsLength,
+                         restauranteData
+                     }) => {
     const listaplatos = {
         cont_princ: {
             width: "100%",
@@ -43,61 +57,29 @@ const Platosmenus = ({catid, seccid, dataSliderHandler, token, data, getValue, l
 
     const [platos, getPlatos] = useState([]);
 
-
     useEffect(() => {
         //clean call is not mounted
         let isSubscribed = true
 
-        // http://restaurante.comandaapp.es/api/ws/1/cLZDdvFTJcl5cWG/5
-        let url = "//restaurante.comandapp.es/api/ws/2/";
-        const userHeader = {
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "Content-Type": "application/json"
-            }
-        };
-
-        const menusRequest = async (protocol, url, token, seccid, id) => {
-
+        // http://restaurante.comandaapp.es/api/ws/2/cLZDdvFTJcl5cWG/seccID/platoID
+        const menusRequest = async (protocol, url, pathAPI, token, seccid, id, header) => {
             try {
                 // Make a request
-                const response = await axios.get(`${protocol}${url}${token}/${seccid}/${id}`, userHeader);
-                const toString = JSON.stringify(response.data);
-                const toObject = JSON.parse(toString);
-                //to Localstorage
-                // localStorage.setItem(
-                //     "comandaApp",
-                //     JSON.stringify(response.data)
-                // );
-                //to State
-                // if (!toObject.data.respuesta > 0) {
-                //     localStorage.setItem(
-                //         "comandaApp",
-                //         JSON.stringify(fakeData1)
-                //     );
-                //     getDatos(fakeData1.data.respuesta)
-                // } else {
+                const response = await axios.get(`${protocol}${url}${pathAPI}2/${token}/${seccid}/${id}`, header);
                 if (isSubscribed) {
-                    getPlatos(urlComplete(toObject.data.respuesta));
+                    getPlatos(urlComplete(response.data.data.respuesta));
                 }
-                // }
-
             } catch (error) {
-                // localStorage.setItem(
-                //     "comandaApp",
-                //     JSON.stringify(fakeData1)
-                // );
-                // getSectionsMenu(fakeData1.data.respuesta)
                 console.log("error", error);
             }
         }
         //REQUEST
-        menusRequest(protocol, url, token, seccid, catid)
+        menusRequest(HTTP_PROTOCOL, URL_MAIN, PATH_API,token, seccid, catid, USER_HEADERS)
 
         //clean function: no update state if is unmount component
         return () => isSubscribed = false
 
-    }, [token, catid, seccid]);
+    }, [HTTP_PROTOCOL, URL_MAIN, PATH_API, token, catid, seccid]);
 
     return (
         <Fragment>
@@ -110,20 +92,15 @@ const Platosmenus = ({catid, seccid, dataSliderHandler, token, data, getValue, l
                                     <div style={listaplatos.cont_name}>
                                         <p>{item.nombreplato}</p>
                                     </div>
-                                    {/*<div style={listaplatos.cont_price}>*/}
-                                    {/*    <p>*/}
-                                    {/*        {dosDecim(item.precio, 2)}{" "}*/}
-                                    {/*        <span style={listaplatos.font}>€</span>*/}
-                                    {/*    </p>*/}
-                                    {/*</div>*/}
                                     {restauranteData[0].tpsuscrip === 1 || restauranteData[0].tpsuscrip === 6 ?
                                         <Fragment>
+                                            {console.log('id de platos', item.plato_id)}
                                             <div className="wrapper">
                                                 <input style={{display: 'none'}}
                                                        type="radio"
                                                        name={data}
                                                        id={item.nombreplato}
-                                                       value={item.nombreplato}
+                                                       value={item.nombreplato + '?' + item.plato_id}
                                                        onChange={(e) => getValue(e, labelsLength)}
                                                        key={item.nombreplato}
                                                        className="state"

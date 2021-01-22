@@ -13,7 +13,6 @@ const Deletebutton = ({dataproduct}) => {
     }
 
     const [product, getProduct] = useState({})
-    // const [category, getCategory] = useState({})
 
     useEffect(() => {
         getProduct(dataproduct)

@@ -5,7 +5,6 @@ import {ReactComponent as Nombre} from "../../icons/homecomanda/nombre.svg";
 import {ReactComponent as Cpostal} from "../../icons/homecomanda/cpostal.svg";
 import {ReactComponent as Email} from "../../icons/homecomanda/correo-electronico.svg";
 import {ReactComponent as Poblacion} from "../../icons/homecomanda/pueblo.svg";
-import Buttonsubmit from "./Buttonsubmit";
 
 const Input = ({
                    textlabel,

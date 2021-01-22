@@ -1,43 +1,31 @@
 import React, {Fragment, useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {CONNECT_TOKEN, firstRequest, URL} from "../data/restaurante";
-import {protocol, urlImage} from "../utils/utils";
 import Publibanner from "./publicidad/Publibanner";
-import {ReactComponent as Close} from "../icons/footer/cerrar.svg";
+import {addNewStateSubcarta} from '../redux/actions';
+import {accessComandaHome} from '../data/tokens_access_comanda_home';
 
 const Footer = ({
                     vermapa,
                     vermail,
                     restauranteData,
                     back,
-                    changesubcat,
-                    changedView,
                     closeloginmodal,
                     token,
-                    clientProfile
+                    clientProfile,
+                    subcarta
                 }) => {
 
     const style = {
         contenedor: {
             position: 'sticky',
-            // // border: '2px solid rgba(112,112,112,1)',
-            // // backgroundColor: `rgba(230, 230, 230, 1)`,
-            // backgroundColor: '#ffffff',
-            // boxShadow: 'inset -10px 10px 20px #bfbfbf, inset 10px -10px 20px #ffffff',
-            // bottom: 0,
-            // width: `100%`,
-            // height: '80px',
             display: 'flex',
             justifyContent: 'space-around',
             alignItems: 'center',
             flexWrap: 'wrap',
             zIndex: 999,
-            // borderRadius: '20px'
         },
         boton: {
-            // width: '3.5em',
-            // height: '3.5em',
             border: 'none !important',
             position: 'relative',
             width: '3.5em',
@@ -46,15 +34,12 @@ const Footer = ({
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: '50%',
-            // border: '1.5px solid #707070',
             // background: 'white',
             background: 'linear-gradient(225deg, #e6e6e6, #ffffff)',
-            boxShadow:  '-5px 5px 10px #bfbfbf, 5px -5px 10px #ffffff',
+            boxShadow: '-5px 5px 10px #bfbfbf, 5px -5px 10px #ffffff',
 
         },
         boton2: {
-            // width: '3.5em',
-            // height: '3.5em',
             border: 'none !important',
             position: 'relative',
             width: '3.5em',
@@ -63,10 +48,8 @@ const Footer = ({
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: '50%',
-            // border: '1.5px solid #707070',
-            // background: 'white',
             background: 'linear-gradient(225deg, #e6e6e6, #ffffff)',
-            boxShadow:  '5px 5px 10px #e0e0e0, -5px -5px 10px #ffffff',
+            boxShadow: '5px 5px 10px #e0e0e0, -5px -5px 10px #ffffff',
 
         },
         boton_retroceso: {
@@ -78,12 +61,11 @@ const Footer = ({
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: '50%',
-            // border: '1.5px solid #707070',
             // background: 'white',
             background: 'linear-gradient(225deg, #e6e6e6, #ffffff)',
             boxShadow: 'rgb(255 0 0) 0px 0px 10px, rgb(226 226 226) 5px 5px 10px'
         },
-        link_boton : {
+        link_boton: {
             border: 'none !important',
             position: 'relative',
             width: '3.5em',
@@ -92,10 +74,7 @@ const Footer = ({
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: '50%',
-            // border: '1.5px solid #707070',
-            // background: 'white',
             background: 'linear-gradient(225deg, #e6e6e6, #ffffff)',
-            // boxShadow: 'rgb(191, 191, 191) -10px 10px 20px, rgb(255, 255, 255) 10px -10px 20px'
             boxShadow: 'rgb(191, 191, 191) -10px 10px 20px'
         },
         cont_logo_basica_footer: {
@@ -114,11 +93,8 @@ const Footer = ({
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: '50%',
-            // border: '1.5px solid #707070',
-            // background: 'white',
             background: 'linear-gradient(225deg, #e6e6e6, #ffffff)',
-            // boxShadow:  '-10px 10px 20px #bfbfbf, 10px -10px 20px #ffffff',
-            boxShadow:  '-10px 10px 20px #bfbfbf',
+            boxShadow: '-10px 10px 20px #bfbfbf',
         },
         img_div_info_rest: {
             width: '2.2em',
@@ -159,13 +135,13 @@ const Footer = ({
             position: 'relative',
             background: 'linear-gradient(225deg, #e6e6e6, #ffffff)',
             // boxShadow:  '-10px 10px 20px #bfbfbf, 10px -10px 20px #ffffff',
-            boxShadow:  '-10px 10px 20px #bfbfbf',
+            boxShadow: '-10px 10px 20px #bfbfbf',
         },
         comanda_home_img: {
             width: '100%',
             // height: '100%'
         },
-        botonera : {
+        botonera: {
             // boxShadow:  '5px 5px 10px #e0e0e0, 0px 0px 10px #ffffff',
             // boxShadow:  '5px 5px 10px #e0e0e0',
         }
@@ -174,7 +150,6 @@ const Footer = ({
 
     const [viewinfo, getViewinfo] = useState(false)
     const [viewshare, getViewshare] = useState(false)
-
 
     const viewInfo = () => {
         viewinfo ? getViewinfo(false) : getViewinfo(true)
@@ -201,32 +176,59 @@ const Footer = ({
     return (
         <div className="cont_footer_absolut">
             <div style={style.contenedor}>
-                {changesubcat === false ?
-                    back === '/categoria' ?
-                        <Link to={back}>
-                            <img
-                                style={style.link_boton}
-                                src="./assets/img/footer/ico-back.svg"
-                                alt="imagen de footer"
-                            />
-                        </Link>
+                {
+                    //GO BACK ICON
+                    back === '/' ?
+                        subcarta ?
+                            // <span>subcarta</span>//cambiar addNewStateSubcarta a false
+                            //SUBCARTA(RENDER HERE) -> TO CAT [-* SUBCARTA *-]
+                            <Fragment>
+                                <img
+                                    onClick={() => addNewStateSubcarta(false)}
+                                    style={style.link_boton}
+                                    src="./assets/img/footer/ico-back.svg"
+                                    alt="imagen de footer"
+                                />
+                            </Fragment>
+                            :
+                            // <span>cat men & cart</span>
+                            // CATEGORY(RENDER HERE) -> INIT APP [-* CATEGORY MENU AND CARTA *-]
+                            <Link style={style.link_boton} to={back}>
+                                <img
+                                    style={style.boton_retroceso}
+                                    src="./assets/img/footer/ico-back.svg"
+                                    /*ico-back-red.svg*/
+                                    alt="imagen de footer"
+                                />
+                            </Link>
                         :
-                        <Link style={style.link_boton} to={back}>
-                            <img
-                                style={style.boton_retroceso}
-                                src="./assets/img/footer/ico-back.svg"
-                                /*ico-back-red.svg*/
-                                alt="imagen de footer"
-                            />
-                        </Link>
-                    :
-                    <img
-                        onClick={changedView}
-                        style={style.link_boton}
-                        src="./assets/img/footer/ico-back.svg"
-                        alt="imagen de footer"
-                    />
+                        subcarta ?
+                            // <span>subcarta carta</span>
+                            //SUBCAT(RENDER HERE) -> TO SUBCARTA [-* SUBCATEGORY OF CARTA *-]
+                            <Fragment>
+                                <Link style={style.link_boton} to={back}>
+                                    <img
+                                        style={style.link_boton}
+                                        src="./assets/img/footer/ico-back.svg"
+                                        alt="imagen de footer"
+                                    />
+                                </Link>
+                            </Fragment>
+                            :
+                            // <span>subcarta menu</span>
+                            //SUBCAT(RENDER HERE) -> TO MENU CATEGORY [-* SUBCATEGORY OF MENU *-]
+                            // use wordKey of selectedProduct reducer to render menu category
+                            <Fragment>
+                                <Link style={style.link_boton} to={back}>
+                                    <img
+                                        style={style.link_boton}
+                                        src="./assets/img/footer/ico-back.svg"
+                                        alt="imagen de footer"
+                                    />
+                                </Link>
+                            </Fragment>
                 }
+                {/*// REST OF ICONS*/}
                 {restauranteData[0].tpsuscrip === 1 || restauranteData[0].tpsuscrip === 6 ?
                     <Fragment>
                         <div className="menu"
@@ -247,7 +249,8 @@ const Footer = ({
                                 />
                             }
 
-                            <ul style={style.botonera} className={viewinfo ? 'opacity cont_extra submenu' : 'opacity_none submenu'}>
+                            <ul style={style.botonera}
+                                className={viewinfo ? 'opacity cont_extra submenu' : 'opacity_none submenu'}>
                                 <li className={viewinfo ? 'child_1 no_opa_trans' : null}>
                                     <a style={style.boton2}
                                        href={`tel:${restauranteData.length > 0 ? restauranteData[0].telefono : null}`}>
@@ -300,7 +303,8 @@ const Footer = ({
                                     alt="imagen de footer"
                                 />
                             }
-                            <ul style={style.botonera} className={viewshare ? 'opacity cont_extra submenu' : 'opacity_none submenu'}>
+                            <ul style={style.botonera}
+                                className={viewshare ? 'opacity cont_extra submenu' : 'opacity_none submenu'}>
                                 <li className={viewshare ? 'child_1 no_opa_trans' : null}>
                                     <img
                                         // onClick={vermail}
@@ -330,29 +334,37 @@ const Footer = ({
                                 </li>
                             </ul>
                         </div>
-                        {clientProfile.telefono.length === 0 ?
-                            <div style={style.comanda_home_cont_button}
-                                 onClick={closeloginmodal}
-                            >
-                                <img style={style.comanda_home_img}
-                                     src="./assets/img/homecomanda/comandapp_home_300.png" alt=""/>
-                            </div>
-                            :
-                            <Link to="/comandappHome">
+                        {accessComandaHome.find(existToken => existToken.token === token) ?
+                            clientProfile.telefono.length === 0 ?
                                 <div style={style.comanda_home_cont_button}
                                      onClick={closeloginmodal}
                                 >
                                     <img style={style.comanda_home_img}
-                                         src="./assets/img/homecomanda/comandapp_home_300.png" alt=""/>
+                                         src="./assets/img/homecomanda/comandapp_home_300.png"
+                                         alt="imagen botón comandaHome"/>
                                 </div>
-                            </Link>
+                                :
+                                <Link to="/comandappHome">
+                                    <div style={style.comanda_home_cont_button}
+                                         onClick={closeloginmodal}
+                                    >
+                                        <img style={style.comanda_home_img}
+                                             src="./assets/img/homecomanda/comandapp_home_300.png"
+                                             alt="imagen botón comandaHome"/>
+                                    </div>
+                                </Link>
+                            :
+                            <div style={style.comanda_home_cont_button}
+                                 className="lightOpacity"
+                            >
+                                <img style={style.comanda_home_img}
+                                     src="./assets/img/homecomanda/comandapp_home_300.png"
+                                     alt="imagen botón comandaHome"/>
+
+                            </div>
                         }
                     </Fragment>
                     :
-                    // null
-                    // <div style={style.cont_logo_basica_footer}>
-                    // 	<img style={style.logo_basica_footer} src={urlImage() + restauranteData[0].logo} alt=""/>
-                    // </div>
                     <div style={style.cont_logo_basica_footer}>
                         <Publibanner/>
                     </div>
@@ -366,7 +378,8 @@ function mapStateToProps(state) {
     return {
         restauranteData: state.RestauranteData.RestauranteProfile,
         token: state.Token.token,
-        clientProfile: state.ClientProfile.clientProfile
+        clientProfile: state.ClientProfile.clientProfile,
+        subcarta: state.SwitchMenu.subcarta
     }
 }
 

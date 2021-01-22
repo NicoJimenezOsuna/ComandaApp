@@ -19,8 +19,7 @@ const Dischardbutton = ({dataproduct}) => {
     const [product, getProduct] = useState({})
 
     useEffect(() => {
-        getProduct(dataproduct)
-        // getCategory(wordkey)
+        getProduct(dataproduct);
     }, [dataproduct])
 
     return (

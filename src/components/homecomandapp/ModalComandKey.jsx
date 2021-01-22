@@ -14,19 +14,19 @@ const MoldalComandKey = ({
     }
 
     return (
-            <div
-                className={modaltable && modalid === ident ? 'pos-abs-command displayed' : 'pos-abs-command displayed_none'}
-                style={mtable.cont_princ}
-            >
-                <Commandkeypad
-                    //pasamos el producto
-                    data={data}
-                    //si es carta true, si es menu false
-                    nonprice={true}
-                    wordkey={'carta'}
-                />
-                <div className="triangulo"></div>
-            </div>
+        <div
+            className={modaltable && modalid === ident ? 'pos-abs-command displayed' : 'pos-abs-command displayed_none'}
+            style={mtable.cont_princ}
+        >
+            <Commandkeypad
+                //pasamos el producto
+                data={data}
+                //si es carta true, si es menu false
+                nonprice={true}
+                wordkey={'carta'}
+            />
+            <div className="triangulo"></div>
+        </div>
     )
 }
 

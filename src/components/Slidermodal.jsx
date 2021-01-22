@@ -1,10 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {ReactComponent as IconClose} from "../icons/times-circle-regular.svg";
 import Carousel from './Carousel'
-/*
-* Glide.js import
-*/
-
 
 const Slidermodal = ({
                          isVisibleSlider,

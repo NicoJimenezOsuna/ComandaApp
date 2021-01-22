@@ -6,8 +6,6 @@ const Buttoninfo = ({dataSliderHandler, dataListaFull, dataIdSelf, wordkey}) => 
         search_ico: {
             width: "30px",
             height: '30px',
-            // color: "#404448",
-            // cursor: "pointer",
             fill: 'rgb(110, 104, 104)'
         }
     };

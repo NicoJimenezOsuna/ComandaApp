@@ -5,6 +5,10 @@ import RestauranteData from './RestauranteData';
 import Token from './Token';
 import Publicidad from './Publicidad';
 import ClientProfile from './ClientProfile';
+import LastOrder from './LastOrder';
+import Orders from './Orders';
+import SwitchMenu from "./SwitchMenu";
+import DataProductSelected from "./DataProductSelected";
 
 let reducers = combineReducers({
     PedidosCarta,
@@ -12,7 +16,11 @@ let reducers = combineReducers({
     RestauranteData,
     Token,
     Publicidad,
-    ClientProfile
+    ClientProfile,
+    LastOrder,
+    Orders,
+    SwitchMenu,
+    DataProductSelected
 });
 
 export default reducers;

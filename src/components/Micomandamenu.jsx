@@ -94,7 +94,6 @@ const Micomandamenu = ({comandamenu}) => {
                             </div>
                             <div style={com.cont_title}>
                                 <p style={com.title}>{item.nombre}</p>
-                                {/*PARA CUANDO EXISTA PREDIO DE MENU DESCOMENTAR*/}
                                 <p style={com.price}>PVP ud.: <span
                                     style={{color: '#000'}}>{dosDecim(item.precio, 2)} €</span>
                                     <sup style={com.sup}> + iva</sup>
@@ -104,19 +103,6 @@ const Micomandamenu = ({comandamenu}) => {
                         <hr style={com.hr}/>
                         <div style={com.cont_platos}>
                             <div style={com.env_platos}>
-                                {/*<p style={com.platos}>*/}
-                                {/*    PRIMER PLATO: <span style={com.spanplatos}>{item.plato1}</span>*/}
-                                {/*</p>*/}
-                                {/*<p style={com.platos}>*/}
-                                {/*    SEGUNDO PLATO: <span style={com.spanplatos}>{item.plato2}</span>*/}
-                                {/*</p>*/}
-                                {/*<p style={com.platos}>*/}
-                                {/*    BEBIDA: <span style={com.spanplatos}>{item.drink}</span>*/}
-                                {/*</p>*/}
-                                {/*<p style={com.platos}>*/}
-                                {/*    POSTRE: <span style={com.spanplatos}>{item.dessert}</span>*/}
-                                {/*</p>*/}
-                                {/*<p>{Object.keys(item)[index]  + ': ' + item[Object.keys(item)[index]]}</p>*/}
                                 {validkeys.map((prop, index) => {
                                     return (
                                         <ul key={Math.random()}>

@@ -1,18 +1,20 @@
-import React, {Fragment, useState, useEffect} from 'react';
-import {ReactComponent as Phoneicon} from "../../icons/homecomanda/llamada.svg";
+import React, {Fragment, useState} from 'react';
 import {ReactComponent as IconClose} from "../../icons/times-circle-regular.svg";
 import Input from "./Input";
 import Buttonsubmit from "./Buttonsubmit";
 import {connect} from 'react-redux';
 import axios from "axios";
-import {userHeader} from '../../utils/utils';
+import {
+    HTTP_PROTOCOL,
+    URL_MAIN,
+    USER_HEADERS,
+    PATH_API
+} from '../../data/connect_data_restaurantes';
 import {addClientProfile} from '../../redux/actions/index';
 import {Redirect} from 'react-router'
 
-const Login = ({
-                   closeloginmodal,
-                   reduxToken
-               }) => {
+const Login = ({closeloginmodal, reduxToken}) => {
+
     const login = {
         cont_form: {
             width: '100%',
@@ -37,14 +39,11 @@ const Login = ({
             textAlign: 'center',
             width: '80%',
             color: 'white',
-            // margin: '.2em 1em',
             left: '50%',
             transform: 'translateX(-50%)',
             padding: '.5em 0',
             background: '#fe4949',
             borderRadius: '10px',
-
-            // height: '5em',
             marginBottom: '30px'
         }
     }
@@ -60,19 +59,11 @@ const Login = ({
         e.preventDefault();
         let numphone = phone;
         const token = reduxToken;
-        const url = `http://restaurante.comandapp.es/api/ws/5/${token}/${numphone}`;
-        // http://restaurante.comandapp.es/api/ws/5/cLZDdvFTJcl5cWG/666666666
         if (inputok) {
             let datos;
-            axios.get(url, userHeader)
+            // http://restaurante.comandapp.es/api/ws/5/cLZDdvFTJcl5cWG/666666666
+            axios.get(`${HTTP_PROTOCOL}${URL_MAIN}${PATH_API}5/${token}/${numphone}`, USER_HEADERS)
                 .then(response => {
-                    // addClientProfile({telefono: response.})
-                    // cp: null
-                    // direccion: "Las Gaunas"
-                    // email: null
-                    // htpcliente_id: 1
-                    // nombre: "Aurelio"
-                    // poblacion: null
                     if (response.data.data.mensaje === 'OK') {
                         datos = response.data.data.respuesta[0];
                         datos = {...datos, telefono: numphone};
@@ -87,9 +78,8 @@ const Login = ({
                     setTimeout(function () {
                         getMessageErrorConection('');
                     }, 2000)
+                    console.log('error en login', error);
                 })
-        } else {
-            getErrorsProfile({telefono: 'Debes introducir un número de teléfono'})
         }
     }
 
@@ -111,10 +101,10 @@ const Login = ({
             getInputOk(false);
             return;
         }
-        if (value.length < 9 && value !== '') {
+        if (value.length !== 9 && value !== '') {
             getErrorsProfile({
                 ...errorsProfile,
-                "telefono": "Tiene que ser mayor de 9 dígitos"
+                "telefono": "Introduce un número válido"
             })
             getInputOk(false);
             return;
@@ -158,7 +148,7 @@ const Login = ({
                     setplaceholder="teléfono"
                     setname="telefono"
                     icontype={'telefono'}
-                    textlabel={null}
+                    // textlabel={null}
                     bgIcon={null}
                     textlabel={'Introduce tu teléfono:'}
                     handleChange={handleChange}

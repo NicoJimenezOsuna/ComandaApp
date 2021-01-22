@@ -16,7 +16,13 @@ export const ADD_TOKEN = 'ADD_TOKEN';
 export const SET_COUNT = 'SET_COUNT';
 export const ADD_CLIENT_PROFILE = 'ADD_CLIENT_PROFILE';
 export const SUM_PRODUCTS_MENU = 'SUM_PRODUCTS_MENU';
-// export const ADD_ENTERPRISES = 'ADD_ENTERPRISES';
+export const ADD_LAST_ORDER = 'ADD_LAST_ORDER';
+export const ADD_END_ORDERS = 'ADD_END_ORDERS';
+export const ADD_PENDING_ORDERS = 'ADD_PENDING_ORDERS';
+export const ADD_ENTERPRISES = 'ADD_ENTERPRISES';
+export const ADD_RENDER_SUBCARTA = 'ADD_RENDER_SUBCARTA';
+export const ADD_DATA_PRODUCT_SELECTED = 'ADD_DATA_PRODUCT_SELECTED';
+
 
 
 /*
@@ -78,11 +84,38 @@ export function setCount(count) {
     store.dispatch({type: SET_COUNT, payload: count});
 }
 
-// export function addArrPubli(arrEnterprises){
-//     store.dispatch({type: ADD_ENTERPRISES, payload: arrEnterprises})
-// }
+export function addArrPubli(arrEnterprises){
+    store.dispatch({type: ADD_ENTERPRISES, payload: arrEnterprises})
+}
 
 //CLIENT_PROFILE
 export function addClientProfile(profile) {
     store.dispatch({type: ADD_CLIENT_PROFILE, payload: profile})
+}
+
+//LAST_ORDER
+export function addLastOrder(numberOrder) {
+    store.dispatch({type: ADD_LAST_ORDER, payload: numberOrder})
+}
+
+//END ORDERS & PENDING ORDERS
+export function addEndOrders(orders) {
+    //CAPTURE FULL ORDERS ( ARRAY OF OBJECTS )
+    store.dispatch({type: ADD_END_ORDERS, payload: orders})
+}
+
+export function addPendingOrders(orders) {
+    //CAPTURE ID OF ORDERS ( ARRAY OF ID )
+    console.log('PAYLOAD PENDING', orders)
+    store.dispatch({type: ADD_PENDING_ORDERS, payload: orders})
+}
+
+//STATE OF COMPONET SUBCARTA (FOR MENU OPERATIONS)
+export function addNewStateSubcarta(subcartaNewState) {
+    store.dispatch({type: ADD_RENDER_SUBCARTA, payload: subcartaNewState})
+}
+
+//PRODUCT SELECTED FOR RENDER COMPONENTS
+export function addNewProductSelected(productSelected) {
+    store.dispatch({type: ADD_DATA_PRODUCT_SELECTED, payload: {...productSelected}})
 }

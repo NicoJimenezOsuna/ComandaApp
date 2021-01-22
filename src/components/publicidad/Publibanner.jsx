@@ -1,6 +1,7 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {setCount} from '../../redux/actions'
+import {urlImage} from "../../utils/utils";
 
 const Publibanner = ({background, publiCount, advertisement}) => {
     const publi = {
@@ -34,10 +35,8 @@ const Publibanner = ({background, publiCount, advertisement}) => {
             width: `100%`,
             maxHeight: `80px`,
             marginTop: '2px',
-            paddingTop: '3px'
         },
         h3: {
-            marginRight: '1em',
             width: "50%",
             textAlign: 'center'
         },
@@ -50,8 +49,11 @@ const Publibanner = ({background, publiCount, advertisement}) => {
             maxHeight: '70px',
         },
         contenedor: {
-            // width: '50%',
-            textAlign: 'center'
+            width: '75%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: '.3em'
         }
     }
 
@@ -73,8 +75,8 @@ const Publibanner = ({background, publiCount, advertisement}) => {
         <div style={background ? publi.banner_main : publi.banner_footer} className="cont_publi">
             <h2 style={publi.h3} className="patrocinadores text-shadow">Patrocinado por: </h2>
             <div style={publi.contenedor}>
-                <img style={background ? publi.img_publi_main : publi.img_publi_footer} src={advertisement[publiCount]}
-                     alt=""/>
+                <img style={background ? publi.img_publi_main : publi.img_publi_footer} src={urlImage() + advertisement[publiCount].imagen}
+                     alt={advertisement[publiCount].nombrepublicidad}/>
             </div>
         </div>
     )

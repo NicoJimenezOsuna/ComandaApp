@@ -1,16 +1,13 @@
-import React, {Fragment, useEffect} from "react";
+import React, {Fragment} from "react";
 import {ReactComponent as LogoComanda} from "../icons/logo.svg";
 import {connect} from 'react-redux';
 import {urlImage} from "../utils/utils";
-import {ReactComponent as Logocomanda} from "../icons/logo.svg";
 
 const Header = ({restauranteData}) => {
     const header = {
         grupo_17: {
             overflow: "visible",
-            // position: "absolute",
             width: `100%`,
-            // minHeight: `100px`,
             left: `0px`,
             top: `102px`,
             transform: "matrix(1, 0, 0, 1, 0, 0)",
@@ -19,12 +16,11 @@ const Header = ({restauranteData}) => {
             justifyContent: 'space-between',
             flexWrap: 'wrap',
             padding: '10px',
-            // backgroundImage: 'url(https://cdn.pixabay.com/photo/2017/08/30/17/25/restaurant-2697945_960_720.jpg)',
-            backgroundImage: restauranteData[0].imagen_restaurante ?
+            backgroundImage: restauranteData[0].imagen_restaurante.length !== '0' ?
                 `url(${urlImage() + restauranteData[0].imagen_restaurante})`
                 :
-                'url(https://cdn.pixabay.com/photo/2017/08/30/17/25/restaurant-2697945_960_720.jpg)',
-            backgroundSize: 'contain',
+                'url(https://cdn.pixabay.com/photo/2016/10/22/20/34/wine-1761613_960_720.jpg)',
+            backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center'
         },
@@ -61,7 +57,6 @@ const Header = ({restauranteData}) => {
             marginLeft: '.5em'
         },
         restaurante: {
-            // backgroundColor:'red'
             fontSize: `1.3em`,
             fontFamily: 'Papyrus',
             color: '#fff',
@@ -70,7 +65,6 @@ const Header = ({restauranteData}) => {
         },
         cont_logo_comanda: {
             display: 'flex',
-            // marginRight: '4em',
             marginTop: '0.2em',
             width: '100%'
         },
@@ -78,9 +72,6 @@ const Header = ({restauranteData}) => {
             paddingTop: '5px',
             display: 'flex',
             justifyContent: 'flex-end',
-            // marginRight: '4em',
-            // marginTop: '-.5em',
-            // width: '100%',
             position: 'absolute',
             top: '0',
             right: '5em'
@@ -118,7 +109,6 @@ const Header = ({restauranteData}) => {
                                  style={{width: '30%'}}
                             />
                             :
-                            // <Logocomanda/>
                             <img src={urlImage() + restauranteData[0].logo} alt=""/>
                         }
                         <span className="text-shadow"
