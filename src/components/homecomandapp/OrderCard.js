@@ -137,12 +137,20 @@ const OrderCard = ({
                                         border: '1px solid #d3d3d3',
                                         marginBottom: '1em'
                                     }}/>
-                                    <p>Estado del producto: <span style={{display: 'inline-block', textIndent: '.5em'}}>
+                                    <p>Estado del producto: <span style={{
+                                        display: 'inline-block',
+                                        textIndent: '.5em',
+                                        color: 'rgb(78, 151, 170)',
+                                        fontWeight: 'bold',
+                                        fontStyle: 'oblique'
+                                    }}>
                                         {item.estado}</span></p>
                                     <p>Última modificación: <span style={{
-                                        color: 'rgb(78, 151, 170)',
                                         display: 'inline-block',
-                                        textIndent: '.5em'
+                                        textIndent: '.5em',
+                                        color: 'rgb(78, 151, 170)',
+                                        fontWeight: 'bold',
+                                        fontStyle: 'oblique'
                                     }}>
                                         {item.modificado.split(' ')[1]}
                                     </span>

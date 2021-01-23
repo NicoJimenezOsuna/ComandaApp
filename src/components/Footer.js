@@ -171,7 +171,8 @@ const Footer = ({
         })
     })
 
-    let link = 'whatsapp://send?text=' + restauranteData[0].nombre_restaurante + ' ' + window.location.protocol + '//' + window.location.host + '?' + token;
+    let linkWathsapp = 'whatsapp://send?text=' + restauranteData[0].nombre_restaurante + ' ' + window.location.protocol + '//' + window.location.host + '?' + token;
+    let linkTelegram = 'tg:msg_url?url=' + window.location.protocol + '//' + window.location.host + '?' + token + '&text=' + restauranteData[0].nombre_restaurante;
 
     return (
         <div className="cont_footer_absolut">
@@ -306,16 +307,19 @@ const Footer = ({
                             <ul style={style.botonera}
                                 className={viewshare ? 'opacity cont_extra submenu' : 'opacity_none submenu'}>
                                 <li className={viewshare ? 'child_1 no_opa_trans' : null}>
-                                    <img
-                                        // onClick={vermail}
-                                        className={'telegram'}
-                                        style={style.boton}
-                                        src="./assets/img/footer/telegrama.svg"
-                                        alt="icono de Telegram"
-                                    />
+                                    <a href={linkTelegram}
+                                    >
+                                        <img
+                                            // onClick={vermail}
+                                            className={'telegram'}
+                                            style={style.boton}
+                                            src="./assets/img/footer/telegrama.svg"
+                                            alt="icono de Telegram"
+                                        />
+                                    </a>
                                 </li>
                                 <li className={viewshare ? 'child_2 no_opa_trans' : null}>
-                                    <a href={link}
+                                    <a href={linkWathsapp}
                                     >
                                         <img
                                             // onClick={vermail}
