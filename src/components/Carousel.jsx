@@ -5,9 +5,8 @@ import {
     URL_MAIN,
     USER_HEADERS,
     PATH_API,
-    FOLDER_STORAGE
 } from '../data/connect_data_restaurantes';
-import {dosDecim, protocol, urlImage} from "../utils/utils";
+import {dosDecim, urlImage} from "../utils/utils";
 import Commandkeypad from './Commandkeypad';
 import {connect} from "react-redux";
 import "../App.css";
@@ -114,7 +113,8 @@ const Carousel = ({
         between: {
             display: 'flex',
             justifyContent: 'space-between',
-            alignItems: 'center'
+            alignItems: 'center',
+            marginLeft: '2em'
         },
         title: {
             textAlign: 'center'
@@ -158,7 +158,7 @@ const Carousel = ({
             };
             allergensRequest(USER_HEADERS, HTTP_PROTOCOL, URL_MAIN, PATH_API, token, datas[dataInicios].plato_id);
         }
-    }, [USER_HEADERS, HTTP_PROTOCOL, URL_MAIN, PATH_API, datas, idplato, dataInicios, dataSlider, token])
+    }, [datas, idplato, dataInicios, dataSlider, token])
 
     const renderSlider = () => {
         return dataSlider[dataInicio];
@@ -218,7 +218,8 @@ const Carousel = ({
                                             fontVariant: 'normal',
                                             fontSize: '.7em'
                                         }}>ud:</span> </span>{dosDecim(renderSlider().precio, 2)} €
-                                            <sup style={slide.sup}> + iva</sup></p>
+                                            {/*<sup style={slide.sup}> + iva</sup>*/}
+                                        </p>
                                     </div>
                                     :
                                     null

@@ -9,15 +9,13 @@ import {
     HTTP_PROTOCOL,
     URL_MAIN,
     USER_HEADERS,
-    PATH_API,
-    FOLDER_STORAGE
+    PATH_API
 } from '../data/connect_data_restaurantes';
 import {ReactComponent as LogoComanda} from "../icons/logo.svg";
 import Errormessage from "../components/Errormessage";
 import {connect} from 'react-redux';
 import axios from "axios";
 import {addProfile, addToken, addArrPubli} from "../redux/actions";
-import Seo from "../components/Seo/Seo";
 
 const Launcher = ({reduxToken}) => {
     const launcher = {
@@ -54,11 +52,11 @@ const Launcher = ({reduxToken}) => {
         }
     };
     //no tocar(usado en firstRequest función)
-    const [datos, getDatos] = useState({});
+    // const [datos, getDatos] = useState({});
     //-----------
     const [mensaje, getMensaje] = useState('');
-    const [noconnection, getNoconnection] = useState(false);
-    const [isreload, getIsreload] = useState(false)
+    // const [noconnection, getNoconnection] = useState(false);
+    // const [isreload, getIsreload] = useState(false)
 
     useEffect(() => {
         let isConnect = true
@@ -77,7 +75,7 @@ const Launcher = ({reduxToken}) => {
             pathAPI,
             token,
             getMensaje,
-            getDatos,
+            // getDatos,
             header,
             getNoconnection
         ) => {
@@ -104,7 +102,7 @@ const Launcher = ({reduxToken}) => {
                         addArrPubli(response.data.data.publicidad)
                     }
                 }
-                await getDatos(response.data.data);
+                // await getDatos(response.data.data);
                 // getNoconnection(false)
             } catch (error) {
                 // getNoconnection(true)
@@ -114,10 +112,10 @@ const Launcher = ({reduxToken}) => {
         };
 
 
-        firstRequest(HTTP_PROTOCOL, URL_MAIN, PATH_API, reduxToken, getMensaje, getDatos, USER_HEADERS)
+        firstRequest(HTTP_PROTOCOL, URL_MAIN, PATH_API, reduxToken, getMensaje, USER_HEADERS)
 
         return () => isConnect = false
-    }, [isreload, reduxToken]);
+    }, [reduxToken]);
 
     const [orientationScreen, getOrientationScreen] = useState('')
 
@@ -130,15 +128,15 @@ const Launcher = ({reduxToken}) => {
         return () => window.removeEventListener('orientationchange', detectOrientation);
     })
 
-    const a = (value) => setTimeout(value => {
-        getIsreload(false)
-    }, 3000)
+    // const a = (value) => setTimeout(value => {
+    //     getIsreload(false)
+    // }, 3000)
 
-    const reload = () => {
-        // firstRequest(protocol, URL, CONNECT_TOKEN, getMensaje, getDatos, getNoconnection);
-        getIsreload(true)
-        a(true)
-    }
+    // const reload = () => {
+    //     // firstRequest(protocol, URL, CONNECT_TOKEN, getMensaje, getDatos, getNoconnection);
+    //     getIsreload(true)
+    //     a(true)
+    // }
 
     return (
         <div style={launcher.princ}>

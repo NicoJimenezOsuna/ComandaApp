@@ -12,9 +12,8 @@ const DischardFullComanda = () => {
             // background: '#fff',
             // border: '1px solid black',
             padding: '1px'
-
         },
-        cont:{
+        cont: {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -22,11 +21,13 @@ const DischardFullComanda = () => {
             backgroundColor: 'rgba(153, 153, 153, 0.19)',
             borderRadius: '15px',
             marginBottom: '10px',
-            marginTop: '10px'
+            marginTop: '10px',
+            background: 'linear-gradient(225deg, rgb(230, 230, 230), rgb(255, 255, 255))',
+            boxShadow: 'rgb(191, 191, 191) -10px 10px 20px'
         }
     }
 
-    return(
+    return (
         <div
             style={dis.cont}
             onClick={dischardFull}

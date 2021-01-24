@@ -19,18 +19,14 @@ import {Redirect} from "react-router-dom";
 import {connect} from 'react-redux';
 import {
     addPedidoMenu,
-    sumProductsMenu,
-    addNewProductSelected
+    sumProductsMenu
 } from "../redux/actions";
 import {dosDecim} from "../utils/utils";
 import Publibanner from "../components/publicidad/Publibanner";
 import Login from "../components/homecomandapp/Login";
-import {useId} from "react-id-generator";
-
+import HelmetSeoComponent from '../components/Seo/HelmetSeoComponent'
 
 const Subcategorias = ({restauranteData, PedidosMenu, dataProductSel}) => {
-
-    const [htmlId] = useId();
 
     const [subcategorias, getSubcategorias] = useState({});
     const [isVisible, getIsVisible] = useState(false);
@@ -45,16 +41,15 @@ const Subcategorias = ({restauranteData, PedidosMenu, dataProductSel}) => {
     const [verMailmodal, getMailmodal] = useState(false);
     const [isVisiblePedido, getIsVisiblePedido] = useState(false)
     const [viewloginmodal, getViewclosemodal] = useState(false);
+    const [warningmessage, getWarningmessage] = useState(false)
+    const [errormessage, getErrormessage] = useState(false)
+    const [okmessage, getOkmessage] = useState(false)
+    const [valuRadio, getValueradio] = useState({})
+    const [numberOfsectionsforRadios, getNumberOfsectionsforRadios] = useState(null);
+    const [keysofpedido, getkeysofpedido] = useState({});
 
     const closeLoginModal = () => {
         !viewloginmodal ? getViewclosemodal(true) : getViewclosemodal(false);
-
-        let styleBodyTag = document.body.style
-        // if(styleBodyTag.overflow === "hidden"){
-        //     styleBodyTag.overflow = 'inherit';
-        // }else{
-        //     styleBodyTag.overflow = "hidden";
-        // }
     };
     //Variables para actualizar el estado de modales
     let vermapa = () => {
@@ -89,22 +84,22 @@ const Subcategorias = ({restauranteData, PedidosMenu, dataProductSel}) => {
     useEffect(() => {
         let isMounted = true;
         if (isMounted) {
-        // getSubcategorias(JSON.parse(localStorage.getItem("categorySelected")));
-        getSubcategorias(dataProductSel);
-        getMapamodal(verMapamodal);
-        getMailmodal(verMailmodal);
+            // getSubcategorias(JSON.parse(localStorage.getItem("categorySelected")));
+            getSubcategorias(dataProductSel);
+            getMapamodal(verMapamodal);
+            getMailmodal(verMailmodal);
 
 
-        // let datosderetaurante = JSON.parse(localStorage.getItem('comandaApp')).data;
-        // if (datosderetaurante) {
-        getDatosRestaurante(...restauranteData)
-        // } else {
-        //     //hacer algo si localstorage está vacío
-        // }
+            // let datosderetaurante = JSON.parse(localStorage.getItem('comandaApp')).data;
+            // if (datosderetaurante) {
+            getDatosRestaurante(...restauranteData)
+            // } else {
+            //     //hacer algo si localstorage está vacío
+            // }
         }
         return () => isMounted = false;
 
-    }, [restauranteData, verMapamodal, verMailmodal]);
+    }, [restauranteData, verMapamodal, verMailmodal, dataProductSel]);
 
     useEffect(() => {
         let isMounted = true;
@@ -131,13 +126,6 @@ const Subcategorias = ({restauranteData, PedidosMenu, dataProductSel}) => {
     const actualizaPropDataProductId = (value) => {
         getDataProductId(value)
     }
-
-    const [warningmessage, getWarningmessage] = useState(false)
-    const [errormessage, getErrormessage] = useState(false)
-    const [okmessage, getOkmessage] = useState(false)
-    const [valuRadio, getValueradio] = useState({})
-    const [numberOfsectionsforRadios, getNumberOfsectionsforRadios] = useState(null);
-    const [keysofpedido, getkeysofpedido] = useState({})
 
     const getValue = (e, labelsLength) => {
 
@@ -240,7 +228,7 @@ const Subcategorias = ({restauranteData, PedidosMenu, dataProductSel}) => {
                 for (let i = 0; i < exist.length; i++) {
                     for (let j = 0; j < numberOfsectionsforRadios; j++) {
                         if (exist[i][Object.keys(keysofpedido)[j]] === valuRadio[Object.keys(keysofpedido)[j]]) {
-                            console.log('res', valuRadio[Object.keys(keysofpedido)[j]]);
+                            // console.log('res', valuRadio[Object.keys(keysofpedido)[j]]);
                             isEqual++;
                         } else {
                             isEqual = 0;
@@ -330,6 +318,7 @@ const Subcategorias = ({restauranteData, PedidosMenu, dataProductSel}) => {
 
     return (
         <Fragment>
+            <HelmetSeoComponent/>
             <div className="subRoot">
                 <Listcomandamodal
                     onClick={pedidoViewHandler}

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import Publibanner from "./publicidad/Publibanner";
 import {addNewStateSubcarta} from '../redux/actions';
 import {accessComandaHome} from '../data/tokens_access_comanda_home';
+import {urlImage} from "../utils/utils";
 
 const Footer = ({
                     vermapa,
@@ -51,6 +52,20 @@ const Footer = ({
             background: 'linear-gradient(225deg, #e6e6e6, #ffffff)',
             boxShadow: '5px 5px 10px #e0e0e0, -5px -5px 10px #ffffff',
 
+        },
+        botonLinkedin: {
+            border: 'none !important',
+            position: 'relative',
+            width: '3.5em',
+            height: '3.5em',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: '50%',
+            // background: 'white',
+            background: 'linear-gradient(225deg, #e6e6e6, #ffffff)',
+            boxShadow: '-5px 5px 10px #bfbfbf, 5px -5px 10px #ffffff',
+            padding: '.2em'
         },
         boton_retroceso: {
             border: 'none !important',
@@ -170,9 +185,25 @@ const Footer = ({
 
         })
     })
+    // <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//comandapp.socialpymes.com?wHSBHdgdjBV">
+    // Share on Facebook
+    // </a>
+    // <a href="http://twitter.com/home?status=' + encodeURIComponent("Leyendo http://www.desarrolloWeb.com/css en DesarrolloWeb.com.") + '">
+    // <img src="logo_twitter.gif" alt="Comparte esto en Twitter" />
+    // </a>
+    // <a href="https://pinterest.com/pin/create/button/?url=url_de_imagen&media=nombre_imagen&description=aqui_una_descripci%C3%B3n">
+    // Pin on Pinterest
+    // </a>
+    // <a href="https://www.linkedin.com/shareArticle?mini=true&url=url_de_la_imagen&title=titulo&summary=comentario&source=url_de_la_web">
+    // Share on LinkedIn
+    // </a>
 
     let linkWathsapp = 'whatsapp://send?text=' + restauranteData[0].nombre_restaurante + ' ' + window.location.protocol + '//' + window.location.host + '?' + token;
     let linkTelegram = 'tg:msg_url?url=' + window.location.protocol + '//' + window.location.host + '?' + token + '&text=' + restauranteData[0].nombre_restaurante;
+    let linkFacebook = "https://www.facebook.com/sharer/sharer.php?u=" + window.location.protocol + '//' + window.location.host + '?' + token;
+    let linkTwitter = "http://twitter.com/home?status=" + encodeURIComponent("Disfrutando los deliciosos platos de " + restauranteData[0].nombre_restaurante + ' ' + window.location.protocol + '//' + window.location.host + '?' + token) + '"';
+    let linkPinterest = "https://pinterest.com/pin/create/button/?url=" + window.location.protocol + '//' + window.location.host + '?' + token + '&media=' + urlImage() + restauranteData[0].imagen_restaurante + '&description=' + restauranteData[0].nombre_restaurante;
+    let linkLinkedin = "https://www.linkedin.com/shareArticle?mini=true&url=" + urlImage() + restauranteData[0].imagen_restaurante + '&title=Comanda digital de ' + restauranteData[0].nombre_restaurante + '&summary=Realiza tu pedido en el local o desde casa&source=' + window.location.protocol + '//' + window.location.host + '?' + token;
 
     return (
         <div className="cont_footer_absolut">
@@ -278,7 +309,7 @@ const Footer = ({
                                         alt="imagen de footer"
                                     />
                                 </li>
-                                <li style={style.cont_down_arrow}>
+                                <li className={viewinfo ? "down_arrow_icons_container no_opa_trans" : null}>
                                     <img
                                         style={style.down_arrow}
                                         src="./assets/img/footer/arrow_down.svg"
@@ -306,7 +337,47 @@ const Footer = ({
                             }
                             <ul style={style.botonera}
                                 className={viewshare ? 'opacity cont_extra submenu' : 'opacity_none submenu'}>
+                                {/*PINTEREST*/}
                                 <li className={viewshare ? 'child_1 no_opa_trans' : null}>
+                                    <a href={linkPinterest}
+                                    >
+                                        <img
+                                            // onClick={vermail}
+                                            className={'telegram'}
+                                            style={style.boton}
+                                            src="./assets/img/footer/pinterest.svg"
+                                            alt="icono de Telegram"
+                                        />
+                                    </a>
+                                </li>
+                                {/*FACEBOOK*/}
+                                <li className={viewshare ? 'child_2 no_opa_trans' : null}>
+                                    <a href={linkFacebook}
+                                    >
+                                        <img
+                                            // onClick={vermail}
+                                            className={'telegram'}
+                                            style={style.boton}
+                                            src="./assets/img/footer/facebook.svg"
+                                            alt="icono de Telegram"
+                                        />
+                                    </a>
+                                </li>
+                                {/*TWITTER*/}
+                                <li className={viewshare ? 'child_3 no_opa_trans' : null}>
+                                    <a href={linkTwitter}
+                                    >
+                                        <img
+                                            // onClick={vermail}
+                                            className={'telegram'}
+                                            style={style.boton}
+                                            src="./assets/img/footer/twitter.svg"
+                                            alt="icono de Telegram"
+                                        />
+                                    </a>
+                                </li>
+                                {/*TELEGRAM*/}
+                                <li className={viewshare ? 'child_4 no_opa_trans' : null}>
                                     <a href={linkTelegram}
                                     >
                                         <img
@@ -318,7 +389,8 @@ const Footer = ({
                                         />
                                     </a>
                                 </li>
-                                <li className={viewshare ? 'child_2 no_opa_trans' : null}>
+                                {/*WHATSAPP*/}
+                                <li className={viewshare ? 'child_5 no_opa_trans' : null}>
                                     <a href={linkWathsapp}
                                     >
                                         <img
@@ -329,7 +401,19 @@ const Footer = ({
                                         />
                                     </a>
                                 </li>
-                                <li style={style.cont_down_arrow}>
+                                {/*LINKEDIN*/}
+                                <li className={viewshare ? 'child_6 no_opa_trans' : null}>
+                                    <a href={linkLinkedin}
+                                    >
+                                        <img
+                                            // onClick={vermail}
+                                            style={style.botonLinkedin}
+                                            src="./assets/img/footer/linkedin.svg"
+                                            alt="icono de whatsapp"
+                                        />
+                                    </a>
+                                </li>
+                                <li className={viewshare ? "down_arrow_icons_container no_opa_trans" : null}>
                                     <img
                                         style={style.down_arrow}
                                         src="./assets/img/footer/arrow_down.svg"

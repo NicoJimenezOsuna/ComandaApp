@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState, useRef} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {Redirect} from "react-router-dom";
 import {connect} from 'react-redux';
 import MenuHome from "../../components/homecomandapp/MenuHome";
@@ -24,13 +24,12 @@ import {
 import axios from "axios";
 import {urlImage} from "../../utils/utils";
 import Spinnercircle from "../../components/Spinnercircle";
+import HelmetSeoComponent from '../../components/Seo/HelmetSeoComponent';
 
 const ComandappHome = ({
                            restauranteData,
                            clientProfile,
-                           reduxToken,
-                           pendingOrders,
-                           lastOrder
+                           reduxToken
                        }) => {
 
     const menu = {
@@ -61,7 +60,6 @@ const ComandappHome = ({
     const [finallySend, setFinallySend] = useState(false);
     const [errormessage, getErrorMessage] = useState('');
     const [errorModalOrder, getErrorModalOrder] = useState('');
-    const [princOrder, getPrincOrder] = useState({});
     const [onSpinner, getOnspinner] = useState('off');
 
     useEffect(() => {
@@ -84,7 +82,7 @@ const ComandappHome = ({
         return () => { // ComponentWillUnmount in Class Component
             is_unmount = false
         }
-    }, [clientProfile.telefono])
+    }, [clientProfile.telefono, reduxToken])
 
     const SendComandaFull = () => {
         if (completeOrder.length === 0) return;
@@ -152,6 +150,7 @@ const ComandappHome = ({
 
     return (
         <div className="subRootHome">
+            <HelmetSeoComponent/>
             {
                 expandmenu ?
                     null :
@@ -264,7 +263,6 @@ const ComandappHome = ({
                             switch (view) {
                                 case "#datos-envio":
                                     return <Profileuser/>;
-                                    break;
                                 case "#enviar-pedido":
                                     return <SendComanda
                                         modaltable={modaltable}
@@ -276,7 +274,7 @@ const ComandappHome = ({
                                         getErrorMessage={getErrorMessage}
                                     />;
                                 case "#estado-pedido":
-                                    return <OrderStatus />;
+                                    return <OrderStatus/>;
                                 case "#historico-pedidos":
                                     return <OrderHistory/>
                                 default:

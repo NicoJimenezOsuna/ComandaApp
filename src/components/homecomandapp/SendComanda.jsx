@@ -5,7 +5,6 @@ import React, {
 } from 'react';
 import TitleSection from "./TitleSection";
 import ExplanationSection from "./ExplanationSection";
-import Micomandacarta from "../Micomandacarta";
 import {connect} from 'react-redux';
 import EnvioPedido from "./EnvioPedido";
 import Textarea from "./Textarea";
@@ -37,15 +36,15 @@ const SendComanda = ({
         const onlyLocalData = accessComandaHome.filter(data => data.token === reduxToken);
         console.log('objeto', onlyLocalData)
         // if (onlyLocalData.length > 0) {
-            if(!onlyLocalData[0].localOnly){
-                getOnlyLocal(false)
-            }else{
-                getOnlyLocal(true)
-                getCheckState(true)
-            }
+        if (!onlyLocalData[0].localOnly) {
+            getOnlyLocal(false)
+        } else {
+            getOnlyLocal(true)
+            getCheckState(true)
+        }
         // }
 
-    }, [accessComandaHome])
+    }, [reduxToken])
 
     const send = {
         button: {
@@ -107,7 +106,7 @@ const SendComanda = ({
                 // "identificador": null
             }
         })
-        let ident = 0;
+
         const defMenu = productMenuSel.map((item, index) => {
             //     delete item.internalID;
             //     delete item.precio;

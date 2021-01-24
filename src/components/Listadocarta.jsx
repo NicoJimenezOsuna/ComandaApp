@@ -78,7 +78,7 @@ const Listadocarta = ({
         //to State
         subcatCartatRequest(HTTP_PROTOCOL, URL_MAIN, PATH_API, token, dataid.id, dataid.idcarta, USER_HEADERS);
 
-    }, [HTTP_PROTOCOL, URL_MAIN, USER_HEADERS, PATH_API, token, dataid]);
+    }, [token, dataid]);
 
     if (!Object.keys(products).length > 0) {
         return (
@@ -88,7 +88,7 @@ const Listadocarta = ({
     const MiniatureOrder = (item) => {
 
         const element = productsCarta.filter(itempedido => itempedido.plato_id === item && itempedido.cant > 0)
-        console.log(element)
+
         if (element.length > 0) {
             return element[0].cant
         }

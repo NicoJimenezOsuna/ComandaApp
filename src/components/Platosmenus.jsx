@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import {protocol, urlComplete} from "../utils/utils";
+import {urlComplete} from "../utils/utils";
 import Buttoninfo from "./Buttoninfo";
 import axios from "axios";
 import {
@@ -79,7 +79,7 @@ const Platosmenus = ({
         //clean function: no update state if is unmount component
         return () => isSubscribed = false
 
-    }, [HTTP_PROTOCOL, URL_MAIN, PATH_API, token, catid, seccid]);
+    }, [token, catid, seccid]);
 
     return (
         <Fragment>

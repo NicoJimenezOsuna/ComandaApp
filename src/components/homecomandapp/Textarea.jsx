@@ -18,7 +18,6 @@ const Textarea = ({
         switch (icontype) {
             case 'observaciones':
                 return <Observaciones style={input.icon}/>
-                break;
             default:
                 return <Observaciones style={input.icon}/>
         }
@@ -74,7 +73,7 @@ const Textarea = ({
 
     return (
         <Fragment>
-            <label style={input.label} htmlFor="phone">{textlabel !== null > 0 ? textlabel : null}</label>
+            <label style={input.label} htmlFor={setname}>{textlabel !== null ? textlabel : null}</label>
             <div style={input.cont_input}>
                 <div className="alturatextarea">
                     {renderIconInput()}

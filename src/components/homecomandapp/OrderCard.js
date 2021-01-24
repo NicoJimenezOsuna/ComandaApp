@@ -32,7 +32,7 @@ const OrderCard = ({
             .catch(error => {
                 console.log(error)
             })
-    }, [item.numpedido])
+    }, [reduxToken, item.numpedido])
 
     return (
         <div className="full"

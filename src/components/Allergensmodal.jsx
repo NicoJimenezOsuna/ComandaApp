@@ -78,19 +78,10 @@ const Allergensmodal = ({
     //clean call is not mounted
     let isSubscribed = true
 
-    let url = "//restaurante.comandapp.es/api/ws/4/";
-    const userHeader = {
-        headers: {
-            "X-Requested-With": "XMLHttpRequest",
-            "Content-Type": "application/json"
-        }
-    };
-
     const allergensRequest = async (protocol, url, pathAPI, token, id, header) => {
         try {
-            // Make a request
+            // Make a request //restaurante.comandapp.es/api/ws/4/
             const response = await axios.get(`${protocol}${url}${pathAPI}4/${token}/${id}`, header);
-            console.log('response allergens', response.data.data.respuesta)
 
             if (isSubscribed) {
                 getAllergens(response.data.data.respuesta);
@@ -106,7 +97,7 @@ const Allergensmodal = ({
     //clean function: no update state if is unmount component
     return () => isSubscribed = false
 
-}, [token, allergens])
+}, [token, id])
 
 if (!Object.keys(allergens).length > 0) {
     return (

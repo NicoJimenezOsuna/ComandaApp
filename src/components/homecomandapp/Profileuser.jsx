@@ -1,7 +1,5 @@
 import React, {Fragment, useState} from 'react';
 import Input from "./Input";
-import Textarea from "./Textarea";
-import Buttonsubmit from "./Buttonsubmit";
 import TitleSection from "./TitleSection";
 import ExplanationSection from "./ExplanationSection";
 import {connect} from 'react-redux';
@@ -186,6 +184,8 @@ const Profileuser = ({clientProfile}) => {
                     ...errorsProfile,
                     "email": "",
                 })
+                break;
+            default:
                 break;
         }
         getValuesProfile({

@@ -1,5 +1,4 @@
 import React from 'react';
-import {ReactComponent as LogoComanda} from "../icons/logo.svg";
 import {connect} from 'react-redux'
 
 /*
@@ -10,7 +9,6 @@ import {connect} from 'react-redux'
 import Socialpymes from "./Socialpymes";
 import Binicio from "./Binicio";
 import {urlImage} from "../utils/utils";
-import Seo from "./Seo/Seo";
 
 const Launch = ({logo}) => {
 
@@ -71,7 +69,6 @@ const Launch = ({logo}) => {
 
     return (
         <div style={styles.princ}>
-            <Seo/>
             <div style={{width: '100%', marginBottom: '1em'}}>
                 <img src="./assets/img/comanda_free_azul_con_logo.png" alt="Comandapp free"
                      style={{

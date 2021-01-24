@@ -13,11 +13,11 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom'
 import {useHistory} from "react-router-dom";
 import Login from '../components/homecomandapp/Login'
-import Seo from "../components/Seo/Seo";
 import {
     addNewStateSubcarta,
     addNewProductSelected
 } from '../redux/actions'
+import HelmetSeoComponent from '../components/Seo/HelmetSeoComponent'
 
 function App({restauranteData, subcarta, dataProductSel}) {
     const history = useHistory();
@@ -30,13 +30,6 @@ function App({restauranteData, subcarta, dataProductSel}) {
 
     const closeLoginModal = () => {
         !viewloginmodal ? getViewclosemodal(true) : getViewclosemodal(false);
-        let styleBodyTag = document.body.style
-        // if(styleBodyTag.overflow === "hidden"){
-        //     styleBodyTag.overflow = 'inherit';
-        // }else{
-        //     styleBodyTag.overflow = "hidden";
-        // }
-
     };
 
     const pedidoViewHandler = () => {
@@ -101,7 +94,7 @@ function App({restauranteData, subcarta, dataProductSel}) {
 
     return (
         <Fragment>
-            <Seo/>
+            <HelmetSeoComponent/>
             <Listcomandamodal
                 isVisiblePedido={isVisiblePedido}
                 pedidoViewHandler={pedidoViewHandler}

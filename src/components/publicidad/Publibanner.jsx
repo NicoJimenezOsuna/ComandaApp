@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {setCount} from '../../redux/actions'
 import {urlImage} from "../../utils/utils";
@@ -33,7 +33,7 @@ const Publibanner = ({background, publiCount, advertisement}) => {
             overflow: "hidden",
             position: "relative",
             width: `100%`,
-            maxHeight: `80px`,
+            height: `80px`,
             marginTop: '2px',
         },
         h3: {

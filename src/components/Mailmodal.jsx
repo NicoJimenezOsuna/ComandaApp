@@ -24,10 +24,10 @@ const Mailmodal = ({verMailmodal, vermail, restauranteData}) => {
             backgroundColor: "#fff",
             border: "2px solid #000",
             borderRadius: "20px",
-            padding: "10px",
             overflow: "scroll",
             display: "flex",
-            flexWrap: "wrap"
+            flexWrap: "wrap",
+            padding: '1em 2em 2em 2em'
         },
         cont_data: {
             display: "flex",
@@ -54,17 +54,7 @@ const Mailmodal = ({verMailmodal, vermail, restauranteData}) => {
             alignItems: 'flex-start'
         },
         botonsi: {
-            backgroundColor: `rgb(0, 255, 0, 0.5)`,
-            padding: `5px 25px 5px 25px`,
-            alignItems: 'center',
-            filter: 'drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.161))',
-            borderRadius: `50px`,
-            border: '2px solid  rgb(112, 112, 112)',
-            marginTop: `15px`,
-            textDecoration: 'none'
-        },
-        botonno: {
-            backgroundColor: `rgb(255, 0, 0, 0.5)`,
+            // backgroundColor: `rgb(0, 255, 0, 0.5)`,
             padding: `5px 25px 5px 25px`,
             alignItems: 'center',
             filter: 'drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.161))',
@@ -72,7 +62,21 @@ const Mailmodal = ({verMailmodal, vermail, restauranteData}) => {
             border: '2px solid  rgb(112, 112, 112)',
             marginTop: `15px`,
             textDecoration: 'none',
-            color: 'black'
+            background: 'linear-gradient(225deg, rgb(230, 230, 230), rgb(255, 255, 255))',
+            boxShadow: 'rgb(191, 191, 191) -10px 10px 20px'
+        },
+        botonno: {
+            // backgroundColor: `rgb(255, 0, 0, 0.5)`,
+            padding: `5px 25px 5px 25px`,
+            alignItems: 'center',
+            filter: 'drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.161))',
+            borderRadius: `50px`,
+            border: '2px solid  rgb(112, 112, 112)',
+            marginTop: `15px`,
+            textDecoration: 'none',
+            color: 'black',
+            background: 'linear-gradient(225deg, rgb(230, 230, 230), rgb(255, 255, 255))',
+            boxShadow: 'rgb(191, 191, 191) -10px 10px 20px'
         },
         botonnoHover: {
             color: 'black'
@@ -112,7 +116,7 @@ const Mailmodal = ({verMailmodal, vermail, restauranteData}) => {
     );
 };
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {
         restauranteData: state.RestauranteData.RestauranteProfile
     }

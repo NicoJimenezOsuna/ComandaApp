@@ -1,9 +1,7 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment} from 'react';
 import TitleSection from "./TitleSection";
 import ExplanationSection from "./ExplanationSection";
 import {connect} from "react-redux";
-import axios from "axios";
-import Spinnercircle from "../Spinnercircle";
 import EndOrdersCard from "./EndOrdersCard";
 import NoOrders from './NoOrders'
 

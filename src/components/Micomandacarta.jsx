@@ -69,7 +69,7 @@ const Micomandacarta = ({comandacarta}) => {
                                 <p style={com.title}>{item.nombreplato}</p>
                                 {/*<p style={com.price}>PVP: {item.precio}</p>*/}
                                 <p style={com.price}>PVP ud.: <span style={{color: '#000'}}>{dosDecim(item.precio, 2)} €</span>
-                                    <sup style={com.sup}> + iva</sup>
+                                    {/*<sup style={com.sup}> + iva</sup>*/}
                                 </p>
                             </div>
                         </div>

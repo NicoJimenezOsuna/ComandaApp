@@ -1,9 +1,9 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import {Redirect, useHistory} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import NavUtils from './NavUtils';
 import Allergensmodal from './Allergensmodal';
 import Qrmodal from './Qrmodal';
-import {protocol, urlImage} from '../utils/utils';
+import {urlImage} from '../utils/utils';
 import {connect} from 'react-redux';
 import Subcarta from './Subcarta';
 import Emptymessage from "./Emptymessage";
@@ -20,7 +20,6 @@ const Categorias = ({
                         dataProductSel
                     }) => {
 
-    const history = useHistory();
     const cat = {
         padre: {
             display: 'flex',

@@ -26,22 +26,16 @@ const Input = ({
         switch (icontype) {
             case 'telefono':
                 return <Phoneicon style={input.icon}/>
-                break;
             case 'direccion':
                 return <Domicilio style={input.icon}/>
-                break;
             case 'nombre':
                 return <Nombre style={input.icon}/>
-                break;
             case 'cpostal':
                 return <Cpostal style={input.icon}/>
-                break;
             case 'poblacion':
                 return <Poblacion style={input.icon}/>
-                break;
             case 'email':
                 return <Email style={input.icon}/>
-                break;
             default:
                 return <Phoneicon style={input.icon}/>
         }

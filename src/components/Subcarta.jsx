@@ -40,7 +40,7 @@ const Subcarta = ({restauranteData, token, sendCategory, styles, dataProductSel}
         //clean function: no update state if is unmount component
         return () => isSubscribed = false
 
-    }, [HTTP_PROTOCOL, URL_MAIN, PATH_API, idcarta, token, restauranteData])
+    }, [idcarta, token, restauranteData])
 
     return (
         <Fragment>

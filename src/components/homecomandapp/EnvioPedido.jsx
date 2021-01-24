@@ -1,17 +1,15 @@
 import React, {
-    Fragment,
-    useState
+    Fragment
 } from 'react';
 import ModalTable from "./ModalTable";
 import {ReactComponent as Masmenos} from "../../icons/homecomanda/masmenos.svg";
 import {connect} from 'react-redux';
-import {dosDecim, urlImage} from "../../utils/utils";
+import {dosDecim} from "../../utils/utils";
 import MoldalComandKey from "./ModalComandKey";
 import {ReactComponent as Editarproductos} from "../../icons/homecomanda/editar.svg";
 import {ReactComponent as Touch} from "../../icons/homecomanda/mano.svg";
 import {ReactComponent as Close} from "../../icons/homecomanda/eliminar.svg";
 import Modalmenuselected from "./Modalmenuselected";
-import Commandkeypadmenu from "../comandkeymenu/Commandkeymenu";
 import Modalcomandkeypadhomemenu from "./Modalcomandkeypadhomemenu";
 import {TotalComanda} from '../../utils/utils';
 
@@ -46,7 +44,7 @@ const EnvioPedido = ({
     // plato_id: 34
     // precio: "1.2000"
 
-    const [selectedIcon, getelectedIcon] = useState(false);
+    // const [selectedIcon, getelectedIcon] = useState(false);
 
     return (
         <Fragment>

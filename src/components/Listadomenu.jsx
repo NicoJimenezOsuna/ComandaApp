@@ -64,7 +64,7 @@ const Listadomenu = ({
         },
         warning: {
             color: 'white',
-            backgroundColor: ' #FF5733',
+            backgroundColor: '#17a2b8',
             padding: '.8em',
             borderRadius: '10px',
             position: 'absolute'
@@ -99,7 +99,7 @@ const Listadomenu = ({
         //clean function: no update state if is unmount component
         return () => isSubscribed = false
 
-    }, [HTTP_PROTOCOL, URL_MAIN, PATH_API, token, dataid, productMenuSel, subcategorias])
+    }, [token, dataid, productMenuSel, subcategorias])
 
     if (!Object.keys(sectionsMenu).length > 0) {
         return (
@@ -123,7 +123,7 @@ const Listadomenu = ({
                     <p
                         className={warningmessage ? 'displayed' : 'displayed_none '}
                         style={listado.warning}>
-                        Ya tiene selecionado ese menú.
+                        Añadido de nuevo este menú.
                     </p>
                     <p
                         className={errormessage ? 'displayed' : 'displayed_none '}

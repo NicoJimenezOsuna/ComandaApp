@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {ReactComponent as LogoComanda} from "../icons/logo.svg";
+import HelmetSeoComponent from '../components/Seo/HelmetSeoComponent';
 
 const Error404 = () => {
     const styles = {
@@ -58,7 +59,7 @@ const Error404 = () => {
         h3: {
             fontWeight: '500',
         },
-        enlace : {
+        enlace: {
             color: '#1EA098',
             marginTop: '2rem',
             fontSize: '1.3em'
@@ -67,6 +68,7 @@ const Error404 = () => {
 
     return (
         <div className="subRoot">
+            <HelmetSeoComponent/>
             <div style={styles.cont}>
                 <div style={styles.cont_comanda_social}>
                     <div style={styles.cont_logo_comanda}>

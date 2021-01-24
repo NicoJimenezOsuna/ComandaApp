@@ -2,15 +2,13 @@ import React, {Fragment, useEffect, useState} from 'react';
 import Plusbuttonmenu from "./Plusbuttonmenu";
 import Subtrackbuttonmenu from "./Substrackbuttonmenu";
 import Deletebuttonmenu from "./Deletebuttonmenu";
-import Dischardbutton from "../Dischardbutton";
 import {connect} from "react-redux";
-import Dischardbuttonmenu from "./Dischardbuttonmenu";
 
 const Comamandkeymenu = ({data, productsmenu}) => {
 
     const [dataproduct, getDataproduct] = useState({});
-    const [stwordkey, getStWordkey] = useState('');
-    const [product, getProduct] = useState({});
+    // const [stwordkey, getStWordkey] = useState('');
+    // const [product, getProduct] = useState({});
     const [cant, getCant] = useState(0);
     const [productmenus, getProductsMenu] = useState({})
 
