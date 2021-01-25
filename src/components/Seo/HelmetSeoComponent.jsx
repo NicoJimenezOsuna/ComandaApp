@@ -11,11 +11,12 @@ const HelmetSeoComponent = ({restauranteData, reduxToken}) => {
     const [urlRestaurantImage, getUrlRestaurantImage] = useState('');
 
     useEffect(() => {
-        getTitle(restauranteData[0].nombre_restaurante + ' | Comanda digital powered by Socialpymes');
-        getDescription("Comanda digital de " + restauranteData[0].nombre_restaurante + " realizar pedidos en el propio local o desde casa powered by Socialpymes")
-        getHrefCanonical(window.location.protocol + '//' + window.location.host + '?' + reduxToken);
-        getUrlRestaurantImage(urlImage() + restauranteData[0].imagen_restaurante)
-
+        if (restauranteData.length > 0) {
+            getTitle(restauranteData[0].nombre_restaurante + ' | Comanda digital powered by Socialpymes');
+            getDescription("Comanda digital de " + restauranteData[0].nombre_restaurante + " realizar pedidos en el propio local o desde casa powered by Socialpymes")
+            getHrefCanonical(window.location.protocol + '//' + window.location.host + '/?' + reduxToken);
+            getUrlRestaurantImage(urlImage() + restauranteData[0].imagen_restaurante)
+        }
     }, [reduxToken, restauranteData])
 
     //EJEMPLOS BUTTON COMPARTIR
@@ -41,24 +42,24 @@ const HelmetSeoComponent = ({restauranteData, reduxToken}) => {
                  comida para llevar app,
                      "/>
             <link rel="canonical" href={hrefCanonical}/>
-            <meta name="author" content="Alberto García Elías, agarcweb@gmail.com" />
-            <meta name="copyright" content="Socialpymes" />
-            <meta name="robots" content="index"/>
-            <meta name="application-name" content="ComandappFree, Comanda digital de Socialpymes para restaurantes" />
+            <meta name="author" content="Alberto García Elías, agarcweb@gmail.com"/>
+            <meta name="copyright" content="Socialpymes"/>
+            <meta name="application-name" content="ComandappFree, Comanda digital de Socialpymes para restaurantes"/>
 
             {/*Open Graph */}
             <meta property="og:url" content={getHrefCanonical}/>
             <meta property="og:title" content={tagTitle}/>
             <meta property="og:image" content={urlRestaurantImage}/>
             <meta property="og:description" content={tagDescrption}/>
+            <meta property="og:type" content="restaurant.menu"/>
 
             {/*Twitter Card*/}
-            <meta name="twitter:card" content="summary_large_image"/>
             <meta name="twitter:title" content={tagTitle}/>
             <meta name="twitter:description" content={tagDescrption}/>
-            {/*<meta name="twitter:site" content="@jorge_maiden"/>*/}
-            {/*<meta name="twitter:creator" content="@jorge_maiden"/>*/}
+            {/*<meta name="twitter:site" content=""/>*/}
+            {/*<meta name="twitter:creator" content=""/>*/}
             <meta name="twitter:image" content={urlRestaurantImage}/>
+            <meta name="twitter:card" content="summary_large_image"/>
 
         </Helmet>
     )

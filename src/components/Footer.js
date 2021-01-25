@@ -202,7 +202,7 @@ const Footer = ({
     let linkTelegram = 'tg:msg_url?url=' + window.location.protocol + '//' + window.location.host + '?' + token + '&text=' + restauranteData[0].nombre_restaurante;
     let linkFacebook = "https://www.facebook.com/sharer/sharer.php?u=" + window.location.protocol + '//' + window.location.host + '?' + token;
     let linkTwitter = "http://twitter.com/home?status=" + encodeURIComponent("Disfrutando los deliciosos platos de " + restauranteData[0].nombre_restaurante + ' ' + window.location.protocol + '//' + window.location.host + '?' + token) + '"';
-    let linkPinterest = "https://pinterest.com/pin/create/button/?url=" + window.location.protocol + '//' + window.location.host + '?' + token + '&media=' + urlImage() + restauranteData[0].imagen_restaurante + '&description=' + restauranteData[0].nombre_restaurante;
+    // let linkPinterest = "https://pinterest.com/pin/create/button/?url=" + window.location.protocol + '//' + window.location.host + '?' + token + '&media=' + urlImage() + restauranteData[0].imagen_restaurante + '&description=' + restauranteData[0].nombre_restaurante;
     let linkLinkedin = "https://www.linkedin.com/shareArticle?mini=true&url=" + urlImage() + restauranteData[0].imagen_restaurante + '&title=Comanda digital de ' + restauranteData[0].nombre_restaurante + '&summary=Realiza tu pedido en el local o desde casa&source=' + window.location.protocol + '//' + window.location.host + '?' + token;
 
     return (
@@ -338,18 +338,18 @@ const Footer = ({
                             <ul style={style.botonera}
                                 className={viewshare ? 'opacity cont_extra submenu' : 'opacity_none submenu'}>
                                 {/*PINTEREST*/}
-                                <li className={viewshare ? 'child_1 no_opa_trans' : null}>
-                                    <a href={linkPinterest}
-                                    >
-                                        <img
-                                            // onClick={vermail}
-                                            className={'telegram'}
-                                            style={style.boton}
-                                            src="./assets/img/footer/pinterest.svg"
-                                            alt="icono de Telegram"
-                                        />
-                                    </a>
-                                </li>
+                                {/*<li className={viewshare ? 'child_1 no_opa_trans' : null}>*/}
+                                {/*    <a href={linkPinterest}*/}
+                                {/*    >*/}
+                                {/*        <img*/}
+                                {/*            // onClick={vermail}*/}
+                                {/*            className={'telegram'}*/}
+                                {/*            style={style.boton}*/}
+                                {/*            src="./assets/img/footer/pinterest.svg"*/}
+                                {/*            alt="icono de Telegram"*/}
+                                {/*        />*/}
+                                {/*    </a>*/}
+                                {/*</li>*/}
                                 {/*FACEBOOK*/}
                                 <li className={viewshare ? 'child_2 no_opa_trans' : null}>
                                     <a href={linkFacebook}
