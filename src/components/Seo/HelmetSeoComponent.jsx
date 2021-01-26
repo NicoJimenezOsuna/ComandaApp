@@ -42,7 +42,7 @@ const HelmetSeoComponent = ({restauranteData, reduxToken}) => {
                  comida para llevar app,
                      "/>
             <link rel="canonical" href={hrefCanonical}/>
-            <meta name="author" content="Alberto García Elías, agarcweb@gmail.com"/>
+            <meta name="author" content="Alberto García Elías & Joan Nicolau Jimenez Osuna, agarcweb@gmail.com"/>
             <meta name="copyright" content="Socialpymes"/>
             <meta name="application-name" content="ComandappFree, Comanda digital de Socialpymes para restaurantes"/>
 
