@@ -99,13 +99,13 @@ const Platosmenus = ({
                                                 <input style={{display: 'none'}}
                                                        type="radio"
                                                        name={data}
-                                                       id={item.nombreplato}
+                                                       id={item.nombreplato + '_' + data}
                                                        value={item.nombreplato + '?' + item.plato_id}
                                                        onChange={(e) => getValue(e, labelsLength)}
                                                        key={item.nombreplato}
                                                        className="state"
                                                 />
-                                                <label className="label" htmlFor={item.nombreplato}>
+                                                <label className="label" htmlFor={item.nombreplato + '_' + data}>
                                                     <div className="indicator"></div>
                                                     {/*<span className="text">a) close</span>*/}
                                                 </label>

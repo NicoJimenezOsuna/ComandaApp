@@ -103,7 +103,7 @@ const SendComanda = ({
                 "carta_id": item.carta_id,
                 "unidades": item.cant,
                 "plato_id": item.plato_id,
-                // "identificador": null
+                "maxmenu": null
             }
         })
 
@@ -142,14 +142,32 @@ const SendComanda = ({
                     "carta_id": item.id,
                     "unidades": item.cant,
                     "plato_id": parseInt(item[key].split('?')[1]),
-                    // "identificador": index + 1
+                    "maxmenu": productMenuSel.filter(menu=>menu.id === item.id).length
                 }
             })
         })
+
         let defEnvArray = [];
         for (let i = 0; i < defMenu.length; i++) {
             defEnvArray = [...defEnvArray, ...defMenu[i]];
         }
+
+        //  GROUPING ITEMS BY KEY === "plato_id"
+        const allComandaGroupingAll = [...defCarta, ...defEnvArray]
+        const groupBy = function (miarray, prop) {
+            return miarray.reduce(function (groups, item) {
+                let val = item[prop];
+                groups[val] = groups[val] || {carta_id: item.carta_id, unidades: 0, plato_id: item.plato_id, maxmenu: '' };
+                groups[val].unidades += item.unidades;
+                groups[val].maxmenu = item.maxmenu;
+                return groups;
+            }, {});
+        }
+        // ------------ END GROUPING FUNCTION -----------
+        console.log('group by', groupBy(allComandaGroupingAll, 'plato_id'));
+
+        const allComandaGroupingFORSEND = groupBy(allComandaGroupingAll, 'plato_id')
+        //FIN PRUEBA
         //CONTROL PRUEBA DE ENVÍO
         console.log('resumen pedido', ...defCarta, ...defEnvArray);
         // userBody.pedido = {...defCarta, ...defMenu}
@@ -162,14 +180,16 @@ const SendComanda = ({
             !userBody.telefono
         ) {
             getErrorMessage('Completa los datos necesarios en perfil de usuario');
-        } else if (defCarta.length === 0) {
+        } else if (defCarta.length === 0 && defMenu.length === 0) {
             getErrorMessage('No has seleccionado ningún producto');
         } else {
+            console.log('predfbh', userBody.pedido)
             //ENVÍO SÓLO CARTA
             // userBody.pedido = JSON.stringify({...defCarta})
             // ENVÍO CARTA Y MENÚ
-            // userBody.pedido = JSON.stringify({...defCarta, ...defEnvArray})/
-            console.log(userBody)
+            // userBody.pedido = JSON.stringify({...defCarta, ...defEnvArray})
+            // userBody.pedido = JSON.stringify(allComandaGroupingFORSEND)
+            console.log('nueva restructuración', allComandaGroupingFORSEND)
             getCompleteOrder(userBody)
             getConfirmBox(true)
         }

@@ -244,7 +244,7 @@ const ComandappHome = ({
                     top: 0,
                     minWidth: '100%',
                     overflow: 'visible',
-                    zIndex: '0'
+                    zIndex: '9000'
                 }}>
                     <MenuHome expandMenuHome={expandMenuHome}
                               expandmenu={expandmenu}

@@ -107,7 +107,7 @@ const Micomandamenu = ({comandamenu}) => {
                                     return (
                                         <ul key={Math.random()}>
                                             <li style={{fontWeight: 'bolder', color: 'grey'}}>{prop + ':'}</li>
-                                            <li style={{listStyle: 'none', fontWeight: 'bolder'}}>{item[prop]}</li>
+                                            <li style={{listStyle: 'none', fontWeight: 'bolder'}}>{item[prop].split('?')[0]}</li>
                                         </ul>
                                     )
                                 })}

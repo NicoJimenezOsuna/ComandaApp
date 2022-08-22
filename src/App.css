@@ -36,6 +36,11 @@ button:focus {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c1e2ec', endColorstr='#68b5ca', GradientType=1);
 }
 
+/*ESTILOS UL STATUS ORDER PARA MENU*/
+ul#list_menu li:nth-child(even) {
+    background-color: #69696914;
+}
+
 /*INPUT-RADIO STYLE*/
 /* Centra el input personalizado con el texto */
 *,
@@ -1176,6 +1181,7 @@ ul {
     -o-transition-delay: .5s !important;
     transition-delay: .5s !important;
 }
+
 .child_6 {
     -webkit-transition-delay: .6s !important;
     -moz-transition-delay: .6s !important;
